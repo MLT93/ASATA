@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Marcos Lambir Torres" />
+    <meta name="description" content="JavaScript" />
+    <meta name="keywords" content="Curso, Formación, Examen" />
+    <link rel="stylesheet" href="./src/css/map-filter.css" />
+    <title>Curso ASATA - JavaScript</title>
+  </head>
+  <body>
+    <header>
+      <section>
+        <h1>Script - Métodos Array - map() && filter()</h1>
+      </section>
+    </header>
+
+    <nav><section></section></nav>
+
+    <main>
+      <p>Ver el archivo JavaScript linkeado</p>
+      <article class="order-containers">
+        <!-- INPUT TEXTO PARA ALMACENAR INFO Y FILTRAR POR LETRA "b" -->
+        <section class="section-container background-2">
+          <form action="">
+            <div class="label-input-container">
+              <label for="text" class="text-label"
+                >Array<b>.map().filter()</b></label
+              >
+              <input
+                type="text"
+                name="text"
+                id="myInputText"
+                placeholder="Introduce un texto"
+              />
+              <button type="submit" id="buttonAdd">Añadir</button>
+              <button type="submit" id="buttonSortByb">Ordenar</button>
+            </div>
+
+            <div>
+              <h4>Palabras añadidas:</h4>
+              <p id="textShowWords" class="text-words"></p>
+              <h4>Palabras con la segunda letra 'b':</h4>
+              <p id="textSortBybWords" class="text-words"></p>
+            </div>
+          </form>
+        </section>
+      </article>
+    </main>
+
+    <aside><section></section></aside>
+
+    <footer><section></section></footer>
+
+    <!-- El `type=""` nos indica la forma en JavaScript para importar o exportar funciones entre archivos -->
+    <script type="module" src="./src/js/mapFilter.js"></script>
+  </body>
+</html>

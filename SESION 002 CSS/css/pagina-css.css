@@ -1,0 +1,55 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+:root {
+  /* El `font-size` va siempre en el `:root` para que la medida `rem` pueda tomar efecto. Ponerlo en esta parte del CSS es como ponerlo en el tag `html{}` sin afectar a todos los elementos el documento (si lo ponemos en `*{}` afectaremos a todos los elementos del documento) */
+  font-size: 16px;
+
+  --variables: ;
+}
+
+h1 {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 2em;
+  text-align: center;
+  word-spacing: 10px;
+}
+
+h2 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.5em;
+  text-align: center;
+  letter-spacing: 3px;
+}
+
+h3 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1em;
+  text-align: center;
+}
+
+h4 {
+  font: italic 0.8em Arial;
+  text-decoration: underline;
+}
+
+p {
+  text-align: justify;
+  text-indent: 2em;
+  line-height: 1em;
+}
+
+ol {
+  font-family: "Times New Roman", Times, serif;
+  color: red;
+  text-align: justify;
+}
+
+.etiqueta {
+  font-style: italic;
+  font-weight: 600;
+  text-transform: uppercase;
+}

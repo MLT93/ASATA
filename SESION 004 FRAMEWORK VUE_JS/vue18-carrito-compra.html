@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Marcos Lambir Torres" />
+    <meta name="description" content="JavaScript" />
+    <meta name="keywords" content="Curso, Formación, Examen" />
+    <link rel="stylesheet" href="./src/css/vue18-carrito-compra.css" />
+    <!-- Este `script` sí va en la cabecera del HTML -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Curso ASATA - JavaScript</title>
+  </head>
+  <body>
+    <header>
+      <section>
+        <h1>Script - Vue.js</h1>
+      </section>
+    </header>
+
+    <nav><section></section></nav>
+
+    <main>
+      <p>Ver el archivo JavaScript linkeado</p>
+      <article class="order-containers">
+        <section class="section-container background-4">
+          <div id="vm">
+            <article class="content-direction">
+              <div class="product" v-for="iterator of products">
+                <img :src="iterator.image" :alt="iterator.name" />
+                <div class="product-info">
+                  <h4>{{iterator.name}}</h4>
+                  <p>{{iterator.price}}{{iterator.currency}}</p>
+                </div>
+                <button @click="addProduct(iterator)">ADD</button>
+              </div>
+            </article>
+            <div id="theCart">
+              <h4>Carrito de la compra</h4>
+
+              <p v-if="shoppingCart.length === 0">El carrito está vacío.</p>
+
+              <ul>
+                <li v-for="iterator of shoppingCart">
+                  {{iterator.name}} - {{iterator.price}}{{iterator.currency}}
+                </li>
+              </ul>
+
+              <h4>Total de la compra: {{totalShoppingCart}}€</h4>
+            </div>
+          </div>
+        </section>
+      </article>
+    </main>
+
+    <aside><section></section></aside>
+
+    <footer><section></section></footer>
+
+    <!-- El `type=""` nos indica la forma en JavaScript para importar o exportar funciones entre archivos -->
+    <script type="module" src="./src/js/vue18CarritoCompra.js"></script>
+  </body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="MLT" />
+    <meta name="description" content="Ejercicio titulos" />
+    <meta name="keywords" content="HTML5, títulos y subtítulos" />
+    <title>Curso ASATA - Imágenes Mapeo</title>
+  </head>
+  <body>
+    <header>
+      <h1>IMÁGENES MAPEADAS</h1>
+    </header>
+    <hr />
+    <main>
+      <h2>Descripción de lugar de trabajo</h2>
+      <p>Vamos a escribir cada uno de estos elementos</p>
+      <!-- La conexión al mapeo interno de imágenes se realiza enlazando con una almohadilla el atributo `name` del tag `map` al tag en el cual deseamos acceder -->
+      <img
+        src="./img/workplace.jpg"
+        alt="workplace"
+        usemap="#lugar-de-trabajo"
+      />
+      <map name="lugar-de-trabajo">
+        <!-- Para mapear, utilizamos la siguiente página https://www.photopea.com/ para cargar la imagen que deseamos mapear y conseguir los puntos de coordenada X e Y para obtener las referencias necesarias que cargaremos en el tag `area`. Recuerda que si modificamos el "width" o el "height" deberemos corregir las coordenadas que tomamos. -->
+        <!-- En el tag `area` se define un atributo "shape" para definir la forma del mapeo que deseamos definir al interno de la imagen. Posteriormente, un atributo "coords" para definir (en sentido horario), las coordenadas X e Y de los puntos que deseamos definir (en "rect", simplemente utilizamos el punto superior izq y el punto inferior dcho. En "poly" utilizamos todos los puntos de la imagen que deseamos recortar, y en "circle" necesitamos el punto central del círculo (podemos dibujar una forma círculo en la imagen para recortar el pedazo que deseamos tomar) y la longitud del radio (esta longitud la conseguimos restando el punto X de un extremo del círculo, menos el punto X del punto central del mismo). Agregamos también un atr. "href" para realizar el link a una página externa y un "alt" para definir qué estamos mapeando -->
+        <!-- Más info en: https://www.w3schools.com/html/html_images_imagemap.asp -->
+        <!-- MAP GENERATOR: https://www.fla-shop.com/image-map/ -->
+        <area
+          shape="rect"
+          coords="34,36,260,345"
+          href="https://www.backmarket.es/es-es/p/macbook-pro-13-retina-2015-core-i5-27-ghz-ssd-256-gb-8gb-teclado-espanol/d21d015d-fe0e-4f03-b821-ed17cd37e295?shopping=gmc&msclkid=5bf24e34239117eeda632be864f0d6aa&utm_source=bing&utm_medium=cpc&utm_campaign=ES_SA_SHOP_M_GEN_Apple%20Other&utm_term=4583108108549112&utm_content=Mac%20%26%20Mac%20Book#l=11"
+          alt="Portátil"
+          target="_blank"
+        />
+        <area
+          shape="poly"
+          coords="290,172,327,170,334,274,294,246"
+          href="https://www.macnificos.com/apple-iphone-se#sku-APP6542"
+          alt="Móvil"
+          target="_blank"
+        />
+        <area
+          shape="circle"
+          coords="336,293,45"
+          href="https://www.ladudapublicidad.es/tienda/tazas-botes-y-termos/taza-sublimacion-talmex/?msclkid=2914d3f089691ac284e4b62cc077cf2a"
+          alt="Taza"
+          target="_blank"
+        />
+      </map>
+    </main>
+
+    <!-- El tag del archivo `./script.js` hace la conexión al archivo JavaScript y SIEMPRE debe ponerse antes del cierre del cuerpo 'body' -->
+    <script src="./script.js"></script>
+  </body>
+</html>

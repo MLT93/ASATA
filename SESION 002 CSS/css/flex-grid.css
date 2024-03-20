@@ -1,0 +1,105 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+:root {
+  /* El `font-size` va siempre en el `:root` para que la medida `rem` pueda tomar efecto. Ponerlo en esta parte del CSS es como ponerlo en el tag `html{}` sin afectar a todos los elementos el documento (si lo ponemos en `*{}` afectaremos a todos los elementos del documento) */
+  font-size: 16px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  
+  line-height: 1.5;
+
+  --color-background-1: #c82bce;
+  --color-background-2: #28ffffce;
+  --color-background-3: #ff7f08;
+  --color-background-4: #3bff29;
+  --color-background-5: #ff2929;
+}
+
+p,
+a,
+ol,
+ul,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span {
+  margin: unset;
+  padding: unset;
+  list-style-type: none;
+  text-decoration: none;
+}
+
+body {
+  min-width: 100%;
+  min-height: 100vh;
+
+  margin: unset;
+  padding: unset;
+
+  display: grid;
+  grid-template-areas:
+    "cabecera   cabecera   cabecera"
+    "navegacion navegacion navegacion"
+    "principal  principal  principal"
+    "publi      publi      publi"
+    "pie        pie        pie";
+  /* grid-template-columns: ; */
+  grid-template-rows: 5rem 3rem auto 3rem 5rem;
+}
+
+header {
+  background-color: var(--color-background-1);
+
+  grid-area: cabecera;
+}
+
+nav {
+  background-color: var(--color-background-2);
+
+  grid-area: navegacion;
+}
+
+main {
+  background-color: var(--color-background-3);
+
+  grid-area: principal;
+}
+
+aside {
+  background-color: var(--color-background-4);
+
+  grid-area: publi;
+}
+
+footer {
+  background-color: var(--color-background-5);
+
+  grid-area: pie;
+}
+
+ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+}
+
+@media (width > 1000px) {
+  body {
+    grid-template-areas:
+      "cabecera   cabecera   cabecera"
+      "navegacion navegacion navegacion"
+      "publi  principal  principal"
+      "pie        pie        pie";
+    grid-template-columns: 10rem auto auto;
+    grid-template-rows: 5rem 3rem auto 3.5rem;
+    gap: 0.3rem;
+  }
+}

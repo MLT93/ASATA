@@ -1,0 +1,200 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+:root {
+  /* El `font-size` va siempre en el `:root` para que la medida `rem` pueda tomar efecto. Ponerlo en esta parte del CSS es como ponerlo en el tag `html{}` sin afectar a todos los elementos el documento (si lo ponemos en `*{}` afectaremos a todos los elementos del documento) */
+  font-size: 16px;
+
+  --variables: ;
+}
+
+body {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+
+  margin: unset;
+  padding: unset;
+
+  width: 100%;
+  min-height: 100vh;
+}
+
+p,
+ul,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: unset;
+  padding: unset;
+  list-style-type: none;
+}
+
+header {
+  width: 100%;
+  height: 100px;
+
+  background-color: #19a4ad;
+
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 1;
+
+  border-radius: 10px;
+}
+
+nav {
+  width: 100%;
+  height: fit-content;
+
+  margin-top: 100px;
+}
+
+#header-img {
+  width: 80px;
+  height: 80px;
+
+  margin: unset;
+
+  position: absolute;
+  top: 10%;
+  left: 50%;
+}
+
+article {
+  width: 100%;
+  height: auto;
+
+  margin-top: 120px;
+}
+
+img {
+  width: 300px;
+  height: auto;
+
+  margin-left: 20px;
+}
+
+p {
+  width: 88%;
+  margin-left: 30px;
+}
+
+h3 {
+  padding-bottom: 30px;
+  margin: 0px 20px;
+}
+
+.container-relative {
+  position: relative;
+}
+
+.item-absolute-img-1 {
+  position: absolute;
+}
+
+.item-absolute-div-1 {
+  position: absolute;
+  left: 320px;
+}
+
+.item-absolute-img-2 {
+  position: absolute;
+  top: 350px;
+}
+
+.item-absolute-div-2 {
+  position: absolute;
+  left: 320px;
+  top: 350px;
+}
+
+.item-absolute-img-3 {
+  position: absolute;
+  top: 700px;
+}
+
+.item-absolute-div-3 {
+  position: absolute;
+  left: 320px;
+  top: 700px;
+}
+
+.item-absolute-img-4 {
+  position: absolute;
+  top: 1050px;
+}
+
+.item-absolute-div-4 {
+  position: absolute;
+  left: 320px;
+  top: 1050px;
+}
+
+.item-absolute-table-1 {
+  position: absolute;
+  top: 1400px;
+}
+
+table {
+  margin-left: 20px;
+}
+
+td {
+  border: 3px solid black;
+}
+
+span {
+  font-size: 14px;
+}
+
+.element-container {
+  width: 93px;
+  padding: 5px;
+}
+
+
+.element-flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.element-simbol {
+  text-align: center;
+  text-transform: capitalize;
+  font-size: 22px;
+  padding: 7px;
+}
+
+.element-name {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: small;
+}
+
+.color-h {
+  background-color: #4476ff;
+  cursor: pointer;
+}
+.color-li {
+  background-color: #e43333;
+  cursor: alias;
+}
+.color-be {
+  background-color: #e49834;
+  cursor: cell;
+}
+.color-na {
+  background-color: #e43333;
+  cursor: grab;
+}
+.color-mg {
+  background-color: #e49834;
+  cursor: help;
+}

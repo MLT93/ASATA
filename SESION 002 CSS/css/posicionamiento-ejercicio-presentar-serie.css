@@ -1,0 +1,369 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+:root {
+  /* El `font-size` va siempre en el `:root` para que la medida `rem` pueda tomar efecto. Ponerlo en esta parte del CSS es como ponerlo en el tag `html{}` sin afectar a todos los elementos el documento (si lo ponemos en `*{}` afectaremos a todos los elementos del documento) */
+  font-size: 16px;
+
+  --color-gradient: linear-gradient(180deg, #dadada 22%, #7a6eaa 100%);
+  --color-gradient-nav: linear-gradient(45deg, #c7c7c7 0 30%, #7a6eaa 70% 100%);
+  --color-gradient-aside: linear-gradient(
+    180deg,
+    #c7c7c7 0 30%,
+    #7d73a5 70% 100%
+  );
+  --color-button: #2e8cca;
+  --hover-color-button: #336ce9;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+
+  margin: unset;
+  padding: unset;
+
+  background: var(--color-gradient);
+
+  display: flex;
+  flex-flow: column wrap;
+
+  line-height: 1.5;
+}
+
+p,
+a,
+ul,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: unset;
+  padding: unset;
+  list-style-type: none;
+  text-decoration: none;
+}
+
+header {
+  width: 100%;
+  background-color: #7a6eaa;
+
+  display: flex;
+
+  padding: 20px;
+}
+
+.header-container {
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+
+  background-color: #7a6eaa;
+}
+
+.header-img {
+  width: 100px;
+}
+
+nav {
+  width: 100%;
+
+  background: var(--color-gradient-nav);
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  padding: 0px 20px;
+
+  border-top: 1px solid lightgray;
+}
+
+.logo {
+  width: 5rem;
+  height: auto;
+}
+
+.nav-item {
+  width: 30%;
+
+  display: flex;
+  justify-content: center;
+}
+
+.list-container {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.button-primary {
+  width: fit-content;
+
+  padding: 3px 20px;
+
+  border: 3px solid lightgrey;
+  border-radius: 15px;
+
+  background-color: var(--color-button);
+}
+
+.button-text {
+  text-align: center;
+
+  font-size: medium;
+  font-weight: 600;
+
+  color: lightgrey;
+}
+
+.button-primary:hover {
+  color: var(--hover-color-button);
+
+  animation: spring 0.7s ease-in-out;
+
+  transform: scale(1.1);
+
+  border-color: lightgrey;
+}
+
+.button-secondary {
+  width: fit-content;
+
+  padding: 5px 20px;
+
+  border: 3px solid lightgrey;
+  border-radius: 20px;
+
+  background-color: transparent;
+}
+
+.button-secondary:hover {
+  transform: scale(1.1);
+}
+
+.button-secondary:hover {
+  color: var(--hover-color-button);
+
+  animation: spring-secondary 0.7s ease-in-out;
+
+  transform: scale(1.1);
+
+  border-color: lightgrey;
+}
+
+aside {
+  width: 20%;
+
+  background: var(--color-gradient-aside);
+
+  display: flex;
+  flex-flow: column wrap;
+
+  padding: 20px;
+}
+
+main {
+  /* background-color: thistle; */
+
+  display: flex;
+  flex: 1;
+}
+
+section {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: flex-start;
+
+  width: 100%;
+
+  padding: 10px;
+}
+
+.background-img {
+  width: 100%;
+
+  padding: 20px;
+
+  background: url("../img/one-piece.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  border: 1px solid #dadada;
+}
+
+.card-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  width: 100%;
+}
+
+.card {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+  align-items: center;
+
+  text-align: center;
+
+  padding: 5px;
+
+  box-shadow: 0px 5px 20px 4px black;
+
+  border: 1px solid #464646;
+  border-radius: 10px;
+
+  background-color: #e7e7e7;
+
+  width: 370px;
+}
+
+.card-item:hover {
+  transform: scale(1.1);
+  transition: all 0.2s ease-in-out;
+}
+
+.card-title {
+  font-size: 1.2rem;
+}
+
+.card-img-width {
+  width: 15rem;
+  height: 13rem;
+
+  /* margin: 1rem; */
+
+  border-radius: 10px;
+  border: 1px solid black;
+}
+
+#img-float-left {
+  width: 200px;
+
+  margin: 0px 10px 10px 0px;
+}
+
+#img-float-right {
+  width: 200px;
+
+  float: right;
+
+  margin: 0px 0px 10px 10px;
+}
+
+.section-title-capitalize {
+  font-size: 1.5rem;
+
+  text-align: left;
+
+  text-shadow: 1px 3px 3px #5c5c5c;
+
+  text-transform: capitalize;
+
+  color: #e7e7e7;
+}
+
+.section-title-text {
+  font-size: 1.1rem;
+
+  text-shadow: 1px 3px 3px #5c5c5c;
+
+  text-align: left;
+
+  color: #e7e7e7;
+}
+
+span {
+  font-size: 0.9rem;
+
+  text-align: left;
+
+  padding: 10px;
+
+  /* white-space: pre-line; */
+}
+
+footer {
+  /* background-color: tomato; */
+
+  display: flex;
+
+  padding: 20px;
+}
+
+@keyframes spring {
+  0% {
+    background-color: var(--hover-color-button);
+    border-color: lightgrey;
+  }
+  7% {
+    background-color: var(--hover-color-button);
+    border-color: lightgrey;
+    transform: scale(1.07);
+  }
+  25% {
+    background-color: var(--hover-color-button);
+    border-color: lightgrey;
+  }
+  55% {
+    background-color: var(--hover-color-button);
+    border-color: lightgrey;
+    transform: scale(1);
+  }
+  75% {
+    background-color: var(--hover-color-button);
+    border-color: lightgrey;
+    transform: scale(1.03);
+  }
+  100% {
+    background-color: var(--hover-color-button);
+    border-color: lightgrey;
+  }
+}
+
+@keyframes spring-secondary {
+  0% {
+    background-color: transparent;
+    border-color: lightgrey;
+  }
+  7% {
+    background-color: transparent;
+    border-color: lightgrey;
+    transform: scale(1.07);
+  }
+  25% {
+    background-color: transparent;
+    border-color: lightgrey;
+  }
+  55% {
+    background-color: transparent;
+    border-color: lightgrey;
+    transform: scale(1);
+  }
+  75% {
+    background-color: transparent;
+    border-color: lightgrey;
+    transform: scale(1.03);
+  }
+  100% {
+    background-color: transparent;
+    border-color: lightgrey;
+  }
+}

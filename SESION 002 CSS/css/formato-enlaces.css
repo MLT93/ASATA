@@ -1,0 +1,42 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+:root {
+  /* El `font-size` va siempre en el `:root` para que la medida `rem` pueda tomar efecto. Ponerlo en esta parte del CSS es como ponerlo en el tag `html{}` sin afectar a todos los elementos el documento (si lo ponemos en `*{}` afectaremos a todos los elementos del documento) */
+  font-size: 16px;
+
+  --variables: ;
+}
+
+ol {
+  width: max-content;
+}
+
+a:link /* Color del link */ {
+  color: lightgray;
+}
+
+a:visited /* Color del link cuando es visitado */ {
+  color: gray;
+}
+
+a:hover /* Estilos del link cuando se pasa el mouse por encima */ {
+  cursor: pointer;
+  color: lightgray;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+}
+
+a:active /* Estilos del link cuando hago click */ {
+  color: lightgray;
+  font-style: italic;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+}
+
+ul {
+  list-style-image: url("../img/wikipedia.png");
+}

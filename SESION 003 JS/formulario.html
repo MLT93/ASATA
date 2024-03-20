@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Marcos Lambir Torres" />
+    <meta name="description" content="JavaScript" />
+    <meta name="keywords" content="Curso, Formación, Examen" />
+    <link rel="stylesheet" href="./src/css/formulario.css" />
+    <title>Curso ASATA - JavaScript</title>
+  </head>
+  <body>
+    <header>
+      <section>
+        <h1>Script - DOM - Formulario</h1>
+      </section>
+    </header>
+
+    <nav><section></section></nav>
+
+    <main>
+      <section>
+        <p>Ver el archivo JavaScript linkeado</p>
+      </section>
+
+      <section class="section-form">
+        <form
+          action="./server-saving-form.php"
+          method="post"
+          target="_self"
+          autocomplete="on"
+          id="formulario"
+        >
+          <fieldset>
+            <legend>
+              <h3>PRODUCTO</h3>
+            </legend>
+            <div>
+              <label for="producto">Nombre del producto:</label>
+              <input
+                type="text"
+                name="producto"
+                id="nombreID"
+                placeholder="Nombre"
+                required
+              />
+            </div>
+            <div>
+              <label for="precio">Precio del producto:</label>
+              <input
+                type="number"
+                name="precio"
+                id="precioID"
+                step="0.01"
+                placeholder="Precio"
+                required
+              />
+            </div>
+            <div>
+              <label for="colores">Colores disponibles:</label>
+              <input
+                type="text"
+                name="colores"
+                id="coloresID"
+                placeholder="Color"
+                required
+              />
+            </div>
+            <div>
+              <label for="cantidad">Cantidad disponible:</label>
+              <input
+                type="number"
+                name="cantidad"
+                id="cantidadID"
+                placeholder="Cantidad"
+                required
+              />
+            </div>
+            <button type="submit">Agregar</button>
+          </fieldset>
+        </form>
+      </section>
+
+      <section id="container"></section>
+    </main>
+
+    <aside><section></section></aside>
+
+    <footer><section></section></footer>
+
+    <script src="./src/js/formulario.js"></script>
+  </body>
+</html>

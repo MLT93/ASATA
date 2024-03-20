@@ -1,0 +1,182 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+:root {
+  /* El `font-size` va siempre en el `:root` para que la medida `rem` pueda tomar efecto. Ponerlo en esta parte del CSS es como ponerlo en el tag `html{}` sin afectar a todos los elementos el documento (si lo ponemos en `*{}` afectaremos a todos los elementos del documento) */
+  font-size: 16px;
+
+  --variables: ;
+}
+
+p,
+a,
+ul,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 10px;
+  padding: unset;
+  list-style-type: none;
+  text-decoration: none;
+}
+
+body {
+  min-width: 100%;
+  min-height: 100vh;
+
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+
+  line-height: 1.5;
+
+  margin: unset;
+  padding: unset;
+}
+
+.box-container {
+  width: 100%;
+
+  padding: 10px;
+
+  border: 1px solid black;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.box-item {
+  width: fit-content;
+
+  padding: 50px;
+
+  margin: 30px;
+
+  border: 1px solid black;
+}
+
+.box-1 {
+  border: 2px solid black;
+}
+
+.box-1:hover {
+  transform: translate(
+    200px,
+    100px
+  ); /* eje X, eje Y. Esto es válido usarlo para los `:hover` */
+
+  transition: all 0.2s linear 0.1s;
+
+  background-color: red;
+}
+
+.box-2 {
+  border: 2px solid black;
+}
+
+.box-2:hover {
+  transform: rotate(30deg);
+
+  transition: all 0.2s linear 0.1s;
+
+  background-color: aqua;
+}
+
+.box-3 {
+  border: 2px solid black;
+}
+
+.box-3:hover {
+  transform: rotateY(180deg);
+
+  transition: all 0.2s linear 0.1s;
+
+  background-color: violet;
+}
+
+.box-4 {
+  border: 2px solid black;
+}
+
+.box-4:hover {
+  transform: scale(
+    1.1
+  ); /* Se mueve con el eje X y el eje Y. Si ponemos solo una medida, transforma todo el elemento. Si hacemos esto `scale(50%, 100%)` la primera cifra corresponde al eje X y la segunda al eje Y */
+
+  transition: all 0.2s linear 0.1s;
+
+  background-color: greenyellow;
+}
+
+.box-5 {
+  border: 2px solid black;
+}
+
+.box-5:hover {
+  transform: skew(30deg, 20deg);
+
+  transition: all 0.2s linear 0.1s;
+
+  background-color: orange;
+}
+
+.box-6 {
+  border: 2px solid black;
+}
+
+.box-6:hover {
+  transform: matrix(
+    1.7,
+    -0.3,
+    0,
+    1.1,
+    0,
+    0
+  ); /* matrix(scaleX(), skewY(), skewX(), scaleY(), translateX(), translateY()) */
+
+  transition: all 0.2s linear 0.1s;
+
+  background-color: violet;
+}
+
+.color-light-blue {
+  background-color: lightblue;
+}
+
+.ej-1:hover {
+  transform: translate(100px, 200px);
+
+  transition: all 0.2s linear 0.1s;
+
+  background-color: red;
+}
+
+.ej-2:hover {
+  transform: rotate(45deg);
+
+  transition: all 0.2s linear 0.1s;
+
+  background-color: aqua;
+}
+
+.ej-3:hover {
+  transform: scale(50%, 100%);
+
+  transition: all 0.2s linear 0.1s;
+
+  background-color: greenyellow;
+}
+
+.ej-4:hover {
+  transform: skew(30deg, 20deg);
+
+  transition: all 0.2s linear 0.1s;
+
+  background-color: orange;
+}

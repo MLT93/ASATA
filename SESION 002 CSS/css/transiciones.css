@@ -1,0 +1,179 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+:root {
+  /* El `font-size` va siempre en el `:root` para que la medida `rem` pueda tomar efecto. Ponerlo en esta parte del CSS es como ponerlo en el tag `html{}` sin afectar a todos los elementos el documento (si lo ponemos en `*{}` afectaremos a todos los elementos del documento) */
+  font-size: 16px;
+
+  --variables: ;
+}
+
+p,
+a,
+ul,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 10px;
+  padding: unset;
+  list-style-type: none;
+  text-decoration: none;
+}
+
+body {
+  min-width: 100%;
+  min-height: 100vh;
+
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+
+  line-height: 1.5;
+
+  margin: unset;
+  padding: unset;
+}
+
+.box-container {
+  width: 100%;
+
+  padding: 10px;
+
+  border: 1px solid black;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+div {
+  width: 200px;
+  height: 150px;
+
+  background-color: darkorange;
+  color: white;
+
+  font-weight: bold;
+
+  text-align: center;
+
+  padding-top: 50px;
+  margin: 10px;
+}
+
+#div1:hover {
+  width: 300px;
+  background-color: #428bca;
+  -webkit-transition: width 1s, background-color 1s; /* Property name | Duration | Easing Function | Delay */
+  -moz-transition: width 1s, background-color 1s; /* Property name | Duration | Easing Function | Delay */
+  -o-transition: width 1s, background-color 1s; /* Property name | Duration | Easing Function | Delay */
+  transition: width 1s, background-color 1s; /* Property name | Duration | Easing Function | Delay */
+
+  -webkit-transition-timing-function: linear; /* Easing Function: efecto `linear`. Es constante */
+  -moz-transition-timing-function: linear;
+  -o-transition-timing-function: linear;
+  transition-timing-function: linear;
+}
+
+#div2:hover {
+  width: 300px;
+  background-color: #428bca;
+  -webkit-transition: width 1s, background-color 1s; /* Property name | Duration | Easing Function | Delay */
+  -moz-transition: width 1s, background-color 1s; /* Property name | Duration | Easing Function | Delay */
+  -o-transition: width 1s, background-color 1s; /* Property name | Duration | Easing Function | Delay */
+  transition: width 1s, background-color 1s; /* Property name | Duration | Easing Function | Delay */
+
+  -webkit-transition-timing-function: ease; /* Easing Function: efecto `ease`. Empieza lento, acelera rápido y acaba lento */
+  -moz-transition-timing-function: ease;
+  -o-transition-timing-function: ease;
+  transition-timing-function: ease;
+}
+
+#div3:hover {
+  width: 300px;
+  background-color: #428bca;
+  -webkit-transition: width 1s, background-color 1s; /* Property name | Duration | Easing Function | Delay */
+  -moz-transition: width 1s, background-color 1s; /* Property name | Duration | Easing Function | Delay */
+  -o-transition: width 1s, background-color 1s; /* Property name | Duration | Easing Function | Delay */
+  transition: width 1s, background-color 1s; /* Property name | Duration | Easing Function | Delay */
+
+  -webkit-transition-timing-function: ease-in; /* Easing Function: efecto `ease-in`. Empieza lento y va aumentando progresivamente */
+  -moz-transition-timing-function: ease-in;
+  -o-transition-timing-function: ease-in;
+  transition-timing-function: ease-in;
+}
+
+#div4:hover {
+  width: 300px;
+  background-color: #428bca;
+  -webkit-transition: width 1s, background-color 1s; /* Property name | Duration | Easing Function | Delay */
+  -moz-transition: width 1s, background-color 1s; /* Property name | Duration | Easing Function | Delay */
+  -o-transition: width 1s, background-color 1s; /* Property name | Duration | Easing Function | Delay */
+  transition: width 1s, background-color 1s; /* Property name | Duration | Easing Function | Delay */
+
+  -webkit-transition-timing-function: ease-out; /* Easing Function: efecto `ease-out`. Empieza constante y acaba lento */
+  -moz-transition-timing-function: ease-out;
+  -o-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+
+#div5:hover {
+  width: 300px;
+  background-color: #428bca;
+  -webkit-transition: width 1s, background-color 1s; /* Property name | Duration | Easing Function | Delay */
+  -moz-transition: width 1s, background-color 1s; /* Property name | Duration | Easing Function | Delay */
+  -o-transition: width 1s, background-color 1s; /* Property name | Duration | Easing Function | Delay */
+  transition: width 1s, background-color 1s; /* Property name | Duration | Easing Function | Delay */
+
+  -webkit-transition-timing-function: ease-in-out; /* Easing Function: efecto `ease-in-out`. Empieza lento y termina lento */
+  -moz-transition-timing-function: ease-in-out;
+  -o-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
+}
+
+.transition {
+  width: 100px;
+  height: 100px;
+  background-color: #f92672;
+  margin: 50px auto 0;
+}
+
+.transition:hover {
+  width: 30%;
+  height: 500px;
+  margin: 0 auto;
+  transition: width 2s, height 2s, margin 2s;
+}
+
+.fade-container {
+  width: 200px;
+  height: 200px;
+  background-color: #f92672;
+  position: relative;
+}
+
+.fade-in {
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 200px;
+  width: 50px;
+  background-color: darkorange;
+}
+
+.fade-container:hover {
+  background-color: #428bca;
+  width: 300px;
+  transition: all 0.5s linear;
+}
+
+.fade-container:hover .fade-in {
+  opacity: 1;
+  transition: opacity 0.9s cubic-bezier(0.455, 0.03, 0.515, 0.955); /* cubic-bezier() funciona para determinar las velocidades de inicio, transición-1, transición-2 y final de una función de tiempo `Easing Function` */
+}

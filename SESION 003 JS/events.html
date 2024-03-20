@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Marcos Lambir Torres" />
+    <meta name="description" content="JavaScript" />
+    <meta name="keywords" content="Curso, Formación, Examen" />
+    <link rel="stylesheet" href="./src/css/events.css" />
+    <title>Curso ASATA - JavaScript</title>
+  </head>
+  <body>
+    <header>
+      <section>
+        <h1>Script - Events</h1>
+      </section>
+    </header>
+
+    <nav><section></section></nav>
+
+    <main>
+      <section>
+        <p>Ver el archivo JavaScript linkeado</p>
+      </section>
+
+      <h2 id="onmouseover" class="event">
+        Pasa el "mouse" por encima para ver el evento
+      </h2>
+
+      <h2 id="onclick" class="event">
+        Haz "click" aquí encima para ver el evento
+      </h2>
+
+      <div id="events" class="eventsP">
+        <p onmouseover="bienHechoOver()">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde quo
+          dolorum earum magnam! Laboriosam dolores impedit dolorem
+          reprehenderit. Omnis provident ipsa consequatur repellat iusto maiores
+          fugit eos voluptatem dolores aliquid.
+        </p>
+
+        <hr />
+
+        <p onmouseover="bienHechoOver()">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam dolore
+          reprehenderit aliquam ad dignissimos est voluptatibus sapiente sequi
+          repellendus, nihil rem reiciendis quod magnam impedit consectetur in
+          earum amet harum!
+        </p>
+
+        <hr />
+
+        <p>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dicta
+          voluptatem voluptatibus doloribus deserunt cum accusantium
+          consequuntur vitae repellat laboriosam, repudiandae qui aperiam facere
+          explicabo quidem debitis nostrum eum numquam eveniet?
+          <span id="spanOnClick"><b>Aquí</b></span>
+        </p>
+
+        <hr />
+      </div>
+
+      <hr />
+
+      <button id="buttonOnClick">Haz Click</button>
+    </main>
+
+    <aside><section></section></aside>
+
+    <footer><section></section></footer>
+
+    <script src="./src/js/events.js"></script>
+  </body>
+</html>
