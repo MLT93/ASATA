@@ -57,7 +57,10 @@ new Vue({
     eliminarIncidencia(indexParam) {
       this.incidencias.splice(indexParam, 1);
     },
-    /* Añadir input para indicar el usuario que reserva (el nombre) la instalación. ese campo hay que metérselo a "instalaciones" con el nombre "ususarioReserva" */
+    /* Añadir input para indicar el usuario que reserva (el nombre) la instalación. ese campo hay que añadirlo a "instalaciones" con el nombre "usuarioReserva" */
+    /**
+     * ??? Cómo hacer si deseo reemplazar el botón sin utilizar el `document.getElementById` para hacer aparece un botón de "cancelar reserva"
+     */
     validReservation(arr) {
       var isValid = arr.usuarioReserva.length >= 3;
       if (arr.reservada === true) {
@@ -65,10 +68,6 @@ new Vue({
       }
 
       return isValid;
-
-      /**
-       * ??? Cómo hacer si deseo reemplazar el botón sin utilizar el `document.getElementById` para hacer aparece un botón de "cancelar reserva"
-       */
     },
   },
   computed: {

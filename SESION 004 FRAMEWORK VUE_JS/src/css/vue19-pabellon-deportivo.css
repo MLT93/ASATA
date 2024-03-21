@@ -22,6 +22,7 @@
   --color-5: #ff4208d7;
   --color-6: #8808ffd7;
   --color-7: #0835ffd7;
+  --color-8: #707070;
 
   --color-contrast-1: #dbdbdb;
   --color-contrast-2: #070707;
@@ -129,6 +130,10 @@ footer {
   color: var(--color-contrast-3);
 }
 
+.background-8 {
+  background: var(--color-8);
+}
+
 .instalaciones {
   display: inline-flex;
   justify-content: space-around;
@@ -153,6 +158,14 @@ footer {
 
 .incidencias button {
   margin: 10px;
+}
+
+.free {
+  background: #1ee617;
+}
+
+.busy {
+  background: #ec2727;
 }
 
 @media (width >= 1080px) {
