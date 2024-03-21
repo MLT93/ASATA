@@ -59,7 +59,7 @@ new Vue({
     },
     /* Añadir input para indicar el usuario que reserva (el nombre) la instalación. ese campo hay que añadirlo a "instalaciones" con el nombre "usuarioReserva" */
     /**
-     * ??? Cómo hacer si deseo reemplazar el botón sin utilizar el `document.getElementById` para hacer aparece un botón de "cancelar reserva"
+     * ? Cómo hacer si deseo reemplazar el botón sin utilizar el `document.getElementById` para hacer aparece un botón de "cancelar reserva"
      */
     validReservation(arr) {
       var isValid = arr.usuarioReserva.length >= 3;
