@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Marcos Lambir Torres" />
+    <meta name="description" content="JavaScript" />
+    <meta name="keywords" content="Curso, Formación, Examen" />
+    <link rel="stylesheet" href="./src/css/try-catch.css" />
+    <title>Curso ASATA - JavaScript</title>
+  </head>
+  <body>
+    <header>
+      <section>
+        <h1>Script - Gestión de Errores</h1>
+      </section>
+    </header>
+
+    <nav><section></section></nav>
+
+    <main>
+      <p>Ver el archivo JavaScript linkeado</p>
+      <article class="order-containers">
+        <section class="section-container background-8">
+          <form action="" id="formRegistro">
+            <fieldset>
+              <legend>REGISTRO</legend>
+              <label for="nombre">Nombre</label>
+              <input
+                type="text"
+                name="nombre"
+                id="name"
+                placeholder="Ingrese nombre..."
+                autocomplete
+              />
+
+              <label for="apellido">Apellido</label>
+              <input
+                type="text"
+                name="apellido"
+                id="surname"
+                placeholder="Ingrese apellidos..."
+                autocomplete
+              />
+
+              <label for="correo">Email</label>
+              <input
+                type="email"
+                name="correo"
+                id="email"
+                placeholder="ejemplo@email.com..."
+                autocomplete
+              />
+
+              <label for="edad">Edad</label>
+              <input type="number" name="edad" id="age" placeholder="Ingrese edad..." autocomplete />
+
+              <label for="pagina-web">Página Web</label>
+              <input
+                type="url"
+                name="pagina-web"
+                id="web"
+                placeholder="Ingrese página web..."
+                autocomplete
+              />
+
+              <label for="c-postal">Código Postal</label>
+              <input
+                type="text"
+                name="c-postal"
+                id="postalCode"
+                placeholder="Ingrese código postal..."
+                autocomplete
+              />
+
+              <label for="pass"></label>
+              <input
+                type="password"
+                name="pass"
+                id="password"
+                placeholder="Ingrese contraseña..."
+                autocomplete
+              />
+
+              <label for="archivo"></label>
+              <input type="file" name="archivo" accept=".json" />
+            </fieldset>
+            <fieldset>
+              <legend>CONFIRMACIÓN</legend>
+              <button type="button" id="validationButton">Registrar</button>
+              <button type="reset" id="resetButton">Reset</button>
+            </fieldset>
+          </form>
+          <!-- ACÁ VERÉ LAS VALIDACIONES -->
+          <div id="errors">
+
+          </div>
+        </section>
+      </article>
+    </main>
+
+    <aside><section></section></aside>
+
+    <footer><section></section></footer>
+
+    <!-- El `type=""` nos indica la forma en JavaScript para importar o exportar funciones entre archivos -->
+    <script type="module" src="./src/js/tryCatch.js"></script>
+  </body>
+</html>

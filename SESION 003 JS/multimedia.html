@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Marcos Lambir Torres" />
+    <meta name="description" content="JavaScript" />
+    <meta name="keywords" content="Curso, Formación, Examen" />
+    <link rel="stylesheet" href="./src/css/multimedia.css" />
+    <title>Curso ASATA - JavaScript</title>
+  </head>
+  <body>
+    <header>
+      <section>
+        <h1>Script - Multimedia</h1>
+      </section>
+    </header>
+
+    <nav><section></section></nav>
+
+    <main>
+      <p>Ver el archivo JavaScript linkeado</p>
+      <article class="order-containers">
+        <section class="section-container background-8">
+          <div id="fade" class="box">Desvanecer</div>
+          <button id="buttonFade">Desvanecer</button>
+          <div></div>
+          <div id="zoom" class="box">Zoom</div>
+          <button id="buttonZoom">Zoom</button>
+          <div></div>
+          <div id="oscilar" class="box">Oscilar</div>
+          <button id="buttonOscilar">Oscilar</button>
+          <div></div>
+          <div id="agrandarYRotar" class="box">Big Grow</div>
+          <button id="buttonBigRotate">Big Grow</button>
+
+          <button id="buttonReset">Restablecer</button>
+        </section>
+        <section class="sectioin-container background-1">
+          <h3>Audio</h3>
+          <audio id="audioReproductor" width="400" height="200" controls>
+            <source src="src/assets/audio/audio01.mp3" type="audio/mp3" />
+          </audio>
+        </section>
+        <section class="sectioin-container background-4">
+          <h3>Video</h3>
+          <video id="videoReproductor" width="400" height="200" controls>
+            <source src="src/assets/vdo/lluvia.mp4" type="video/mp4" />
+          </video>
+        </section>
+
+        <section class="sectioin-container background-3">
+          <h3>Pintar Gráficos</h3>
+          <canvas id="lienzo" width="400" height="200"> </canvas>
+          <canvas id="lienzo2" width="500" height="500"> </canvas>
+        </section>
+      </article>
+    </main>
+
+    <aside><section></section></aside>
+
+    <footer><section></section></footer>
+
+    <!-- El `type=""` nos indica la forma en JavaScript para importar o exportar funciones entre archivos -->
+    <script type="module" src="./src/js/multimedia.js"></script>
+  </body>
+</html>
