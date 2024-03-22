@@ -24,18 +24,34 @@ new Vue({
       }
       console.log("Foto borrada");
     },
+    /**
+     * !: Al agregar el prompt la posibilidad de utilizar `borrarFoto` desaparece
+     */
     moverFoto: function (index) {
-      var movimientoUsuario = prompt(
-        "¿Cuántas posiciones deseas mover la foto?"
+      var movimientoUsuario = Number(
+        prompt("¿Cuántas posiciones deseas mover la foto?")
       );
 
+      if (isNaN(movimientoUsuario)) {
+        alert("Introduce un valor correcto");
+      }
+
+      // La nueva posición corresponderá al valor introducido del usuario sumado al índice correspondiente al elemento antes de moverlo
       var newPosition = index + movimientoUsuario;
 
-      this.images.forEach((e) => splice(index, 1, newPosition));
-
-      if (movimientoUsuario > this.images.length) {
-        this.images.push(e);
+      // Evita que el nuevo índice tome posiciones negativas con respecto al array
+      if (newPosition < 0) {
+        newPosition = 0;
       }
+
+      // Hago que el nuevo índice tome la última posición del array si el cliente introduce un valor superior a la longitud del array
+      if (newPosition >= this.images.length) {
+        newPosition = this.images.length - 1;
+      }
+      // Tomo el valor del elemento que deseo mover de su posición original
+      const imgToMove = this.images.splice(index, 1)[0];
+      // Añado el elemento en la nueva posición
+      this.images.splice(newPosition, 0, imgToMove);
     },
   },
   computed: {},

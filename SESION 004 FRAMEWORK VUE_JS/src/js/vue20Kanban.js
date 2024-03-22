@@ -49,12 +49,6 @@ new Vue({
       console.log(colorAleatorio);
       return colorAleatorio;
     },
-
-    /**
-     * !: Al agregar un nuevo bloque e intentar escribir una linea sin caracteres, me devuelve un error.
-     * ToDo: Resolver el error de arriba.
-     */
-
     agregarBloque: function () {
       var colorRandom = this.colorAleatorio();
       this.bloques.push({
@@ -68,7 +62,9 @@ new Vue({
       console.log(this.bloques);
     },
     insertarLinea: function (indexBloque) {
-      if (this.nuevaLinea[indexBloque].trim() != "") {
+      if (this.nuevaLinea[indexBloque] === undefined) {
+        alert(`Escribe algo primero`);
+      } else if (this.nuevaLinea[indexBloque].trim() != "") {
         this.bloques[indexBloque].lineas.push(this.nuevaLinea[indexBloque]);
         this.nuevaLinea[indexBloque] = "";
       } else {
