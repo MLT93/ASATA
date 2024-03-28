@@ -28,7 +28,7 @@
   --color-contrast-2: #070707;
   --color-contrast-3: #fff;
 
-  --color-shadow: #505050;
+  --color-shadow: #555;
 }
 
 p,
@@ -123,6 +123,7 @@ footer {
 
 .background-6 {
   background: var(--color-6);
+  color: var(--color-contrast-3);
 }
 
 .background-7 {
