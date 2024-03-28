@@ -40,12 +40,19 @@ buttonReset.onclick = function () {
 /**
  * !: ANTES DE DIBUJAR:
  * !: para calcular los RADIANES, debemos hacer una regla de 3
- * ?: Si el valor de los grados es => 360º --> 2Pi
- * ?: El valor en radianes será    =>   0º --> XRad
- *                                 => 360 -> (2*Math.PI)
- *                                 =>  30 -> x
- *                               * => xRad = ((2*Math.PI) * 30) / 360
+ * ?: Si el valor de 360 grados son 2Pi, entonces     => 180º = Pi
+ * ?: El valor en radianes entonces será igual a      =>   0º = radianes
+ * ?: El valor final [radianes = (grados * Pi) / 180] => regla de tres
+ * *: También se puede considerar el extremo de la dcha del eje X del círculo como punto 0 y, en sentido horario, el punto irá sumando su valor hasta llegar al mismo punto habiendo dado la vuelta, con un valor de 2.
+ * *: El inicio es siempre el extremo dcha en el eje X (Math.PI * 0), el extremo inferior del eje Y (en sentido horario) equivaldrá a (Math.PI * 0.5), el extremo izq. del eje X valdrá (Math.PI * 1). El extremo superior del eje Y valdrá (Math.PI * 1.5) y al final el punto valdrá  (Math.PI * 2)
+ *
+ *
+ * *: const functionCalcularRadianes = (grados) => {
+ * *:   var radianes = (grados * Math.PI) / 180;
+ * *:   return Math.PI * radianes;
+ * *: };
  */
+const calcularRadianes = (grados) => (grados * Math.PI) / 180;
 
 /* Obtener el elemento donde voy a dibujar cualquier cosa */
 const lienzo = document.getElementById("lienzo");
@@ -60,7 +67,7 @@ ctx.beginPath();
 // 2º
 ctx.fillStyle = "rgb(70, 30, 23)";
 // 3º
-ctx.arc(200, 100, 50, 0, 2 * Math.PI, true); //
+ctx.arc(200, 100, 50, 0, 2 * Math.PI, true); // coordenadaX, coordenadaY, radio, startAngle, endAngle, antihorario
 // 4º
 ctx.fill();
 
@@ -87,13 +94,49 @@ ctx.fill();
 /* Dibujar la estructura del RECTÁNGULO REDONDEADO en el contexto del lienzo */
 ctx.beginPath();
 ctx.strokeStyle = "red";
-ctx.roundRect(10, 20, 150, 100, [10, 20, 0, 50]); // coordenadaX, coordenadaY, width, height, radii
-ctx.strokeStyle();
+ctx.roundRect(170, 7, 150, 100, [10, 20, 0, 50]); // coordenadaX, coordenadaY, width, height, radio
+ctx.stroke();
 
 /**
- * ToDo: Ejercicio pa casa
+ * ToDo: Ejercicio para casa
  */
-const lienzo2 = document.getElementById("lienzo2");
-const ctx2 = lienzo.getContext("2d");
+
+// LIENZO & CONTEXTO
+const lienzo2 = document.getElementById("lienzo-2");
+const ctx2 = lienzo2.getContext("2d");
+// CÍRCULO ENTERO DE REFERENCIA
 ctx2.beginPath();
-ctx2.fillStyle = "rgb(20, 10, 150)";
+ctx2.fillStyle = "rgba(130, 130, 130, 0.75)";
+ctx2.arc(250, 250, 100, 0, Math.PI * 2, false);
+ctx2.fill();
+// CÍRCULOS DEL EJERCICIO
+/* Primer círculo para los extremos superiores y segundo para el punto inferior */
+ctx2.beginPath();
+ctx2.fillStyle = "rgb(250, 220, 70)";
+let coordinateX = 250;
+let coordinateY = 250;
+let radius = 100;
+let startAngleArc = Math.PI * 1.062;
+let endAngleArc = Math.PI * 1.825;
+let centerRadiusPoint = 0;
+let startAndEndAngleToInsertNewDrawPoint = Math.PI * 0.5;
+ctx2.arc(coordinateX, coordinateY, radius, startAngleArc, endAngleArc, false);
+ctx2.arc(
+  coordinateX,
+  coordinateY,
+  centerRadiusPoint,
+  startAndEndAngleToInsertNewDrawPoint,
+  startAndEndAngleToInsertNewDrawPoint,
+  false
+);
+ctx2.fill();
+/* Segundo círculo independiente */
+ctx2.beginPath();
+ctx2.fillStyle = "rgb(190, 0, 0)";
+let coordX = 350;
+let coordY = 300;
+let radi = 30;
+let startAngArc = 0;
+let endAngArc = Math.PI * 2;
+ctx2.arc(coordX, coordY, radi, startAngArc, endAngArc, false);
+ctx2.fill();
