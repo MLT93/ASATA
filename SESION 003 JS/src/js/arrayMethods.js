@@ -5,8 +5,8 @@ myButtonAdd.onclick = function (event) {
   event.preventDefault();
 
   let myInputText = document.getElementById("myInputText").value;
-  myInputText = myInputText.toLocaleLowerCase();
-  myInputText.substring(0.1).toLocaleUpperCase() + myInputText.substring();
+  myInputText = myInputText.toLocaleLowerCase(); // Paso a minúsculas para evitar la sensibilidad entre mayúsculas y minúsculas
+  myInputText.substring(0, 1).toLocaleUpperCase() + myInputText.substring(1); // Pongo en mayúsculas sólo la primera letra
   console.log(myInputText);
 
   myWords.push(myInputText);
@@ -47,13 +47,15 @@ myButtonSearch.onclick = function (e) {
 
   showSearchedWords();
 };
-let wordSearched = [];
+let wordSearched = "";
 function search(array) {
-  let myInputSearchingText = document.getElementById(
-    "myInputSearchingText"
-  ).value;
+  let myInputSearchingText = document
+    .getElementById("myInputSearchingText")
+    .value.toLocaleLowerCase();
   /* `find()` filtra los elementos en base a una función de comparación. Devuelve un nuevo Array con los elementos correspondientes al éxito de la comparación */
-  wordSearched = array.find((element) => element === myInputSearchingText);
+  wordSearched = array.find(
+    (element) => element.toLowerCase() === myInputSearchingText
+  );
   console.log(wordSearched);
 }
 function showSearchedWords() {
@@ -73,10 +75,10 @@ myButtonSearchByIndex.onclick = function (e) {
 };
 let wordSearchedByIndex = [];
 function searchByIndex(array) {
-  let myInputSearchingTextByIndex = document.getElementById(
-    "myInputSearchingTextByIndex"
-  ).value;
-  /* `indexOf()` requiere que se le pase lo que se busca directamente y devuelve el ínice de la posición del elemento buscado */
+  let myInputSearchingTextByIndex = document
+    .getElementById("myInputSearchingTextByIndex")
+    .value.toLocaleLowerCase();
+  /* `indexOf()` requiere que se le pase lo que se busca directamente y devuelve el índice de la posición del elemento buscado */
   wordSearchedByIndex = array.indexOf(myInputSearchingTextByIndex);
   console.log(wordSearchedByIndex);
 }
@@ -107,7 +109,6 @@ function showNumbers() {
   HTML_p_numbers.innerHTML = `${myNumbers.join(", ")}`;
 }
 // ORDENAR NÚMEROS EN PARES E IMPARES CON OPERADOR %
-
 /**
  * ToDo: comprobar funcionamiento de la siguiente función
  */
@@ -123,21 +124,17 @@ myButtonNumberPairsNoPairs.onclick = function (e) {
 let numbersPair = ["Pares:"];
 let numbersNoPair = ["Impares:"];
 function orderByPairs(array) {
-  array.map((element) => {
-    /* `%` este operador devuélve el resto de la división entre dos números. En este caso, dividimos el número del input entre 2, y si el resto es igual a 0 el número es par. Si no, es impar */
-    let elementPair = "";
-    element % 2 === 0 ? (elementPair = element) : null; // El resto de la división entre 2 es 0? Entonces es par
-    numbersPair.push(elementPair);
-    console.log(numbersPair);
-    let elementNoPair = "";
-    element % 2 === 1 ? (elementNoPair = element) : null; // El esto de la división entre 2 es 1? Entonces es impar
-    numbersNoPair.push(elementNoPair);
-    console.log(numbersNoPair);
+  array.forEach((element) => {
+    /* `%` este operador devuelve el resto de la división entre dos números. En este caso, dividimos el número del input entre 2, y si el resto es igual a 0 el número es par. Si no, es impar */
+    if (element % 2 === 0) {
+      numbersPair.push(element); // El resto de la división entre 2 es 0? Entonces es par
+    } else {
+      numbersNoPair.push(element); // El esto de la división entre 2 es 1 o más? Entonces es impar
+    }
   });
 }
-let concatArrays = numbersPair.concat(numbersNoPair);
-let respuesta = concatArrays.filter((e) => e !== undefined)
+
 function showPairsAndNoPairs() {
   const HTML_p_PairsNoPairs = document.getElementById("textSortPairsNoPairs");
-  HTML_p_PairsNoPairs.innerHTML = `${respuesta.join(", ")}`;
+  HTML_p_PairsNoPairs.innerHTML = `${numbersPair.join(", ")} ${numbersNoPair.join(", ")}`;
 }
