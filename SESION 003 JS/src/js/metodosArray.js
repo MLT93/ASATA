@@ -25,8 +25,8 @@ function ordenar(){
 
 function buscar(){
     var textoBuscado = document.getElementById("textobusco").value;
-    textoBuscado = textoBuscado.toLowerCase(); //PASO A MINUSCULA
-    textoBuscado = textoBuscado.substring(0,1).toUpperCase() +textoBuscado.substring(1); //PONGO EN MAYUSCULA LA PRIMERA LETRA
+    textoBuscado = textoBuscado.toLowerCase(); //PASO A MINÚSCULA
+    textoBuscado = textoBuscado.substring(0,1).toUpperCase() +textoBuscado.substring(1); //PONGO EN MAYÚSCULA LA PRIMERA LETRA
     var indiceTextoBuscado = arrayTextos.indexOf(textoBuscado);
     var miIndice = document.getElementById("indice");
     miIndice.innerHTML = indiceTextoBuscado;

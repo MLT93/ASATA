@@ -37,18 +37,21 @@ document.addEventListener("DOMContentLoaded", async function () {
     mySection_HTML.style.maxWidth = "580px";
     mySection_HTML.style.boxShadow = "1px 3px 10px 1px black";
 
-    // Para manipular el contenido del array de objetos, debo "parsear" la data que me trae la llamada de la API
+    // Para manipular el contenido del array de objetos, se debe "parsear" la data que me trae la llamada de la API
     const dataUsuariosEnParsed = JSON.parse(dataUsuariosEnString);
+    /* Obtener Nombres */
     const nombresUsuarios = dataUsuariosEnParsed.map((e) => {
       return e.name;
     });
+    /* Obtener Emails */
     const emailsUsuarios = dataUsuariosEnParsed.map((e) => {
       return e.email;
     });
+    /* Obtener Ciudades */
     const ciudadesUsuarios = dataUsuariosEnParsed.map((e) => {
       return e.address.city;
     });
-    // Nombres
+    /* Pintar Nombres */
     const myNames_HTML = document.getElementById("names");
     myNames_HTML.innerHTML = `${nombresUsuarios
       .map((e) => {
@@ -56,7 +59,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       })
       .join("")}`;
     console.log(nombresUsuarios);
-    // Emails
+    /* Pintar Emails */
     const myEmails_HTML = document.getElementById("emails");
     myEmails_HTML.innerHTML = `${emailsUsuarios
       .map((e) => {
@@ -64,7 +67,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       })
       .join("")}`;
     console.log(emailsUsuarios);
-    // Ciudades
+    /* Pintar Ciudades */
     const myCities_HTML = document.getElementById("cities");
     myCities_HTML.innerHTML = `${ciudadesUsuarios
       .map((e) => {
@@ -72,6 +75,24 @@ document.addEventListener("DOMContentLoaded", async function () {
       })
       .join("")}`;
     console.log(ciudadesUsuarios);
+
+    /* Obtener info input y buscar */
+    const buttonSearch = document.getElementById("buttonSearch");
+    buttonSearch.onclick = function () {
+      search();
+    };
+    var elementSearched = [];
+    function search() {
+      var searched = document.getElementById("searchingText").value;
+      searched = searched.toLowerCase(); //PASO A MINÚSCULA
+      /* searched = searched.substring(0, 1).toUpperCase() + searched.substring(1); //PONGO EN MAYÚSCULA LA PRIMERA LETRA */
+      // Crear una expresión regular que coincida con las letras en cualquier posición. La bandera `gi` en la expresión regular indica que la búsqueda debe ser insensible a las mayúsculas y minúsculas.
+      const regExp = new RegExp(searched, "i");
+      dataUsuariosEnParsed.forEach((e) => {
+        elementSearched.push(regExp.test(e));
+      });
+    }
+    console.log(elementSearched);
   } catch (error) {
     console.error("Error mostrando usuarios: ", error);
   }
