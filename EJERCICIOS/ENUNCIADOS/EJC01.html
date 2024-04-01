@@ -22,6 +22,22 @@
           <span id="emails"></span>
           <span id="cities"></span>
         </div>
+        <!-- INPUT PARA VER UNA CANTIDAD DE USUARIOS ESPECÍFICA -->
+        <div>
+          <label for="usuarios-por-pag"></label>
+          <input
+            type="number"
+            name="usuarios-por-pag"
+            id="usersPerPage"
+            placeholder="Número de usuarios..."
+          />
+        </div>
+        <!-- NAVEGADOR DE PÁGINAS SEGÚN LOS USUARIOS QUE SE MUESTREN -->
+        <div class="margin-bottom">
+          <button id="prevPag">Anterior</button>
+          <span id="actualPag"></span>
+          <button id="postPag">Posterior</button>
+        </div>
         <!-- INPUT FILTRADO -->
         <div class="flex-col-cnt">
           <label for="input-search">Filtrar por nombre</label>
@@ -34,22 +50,6 @@
             />
             <button id="buttonSearch">Buscar</button>
           </div>
-        </div>
-        <!-- INPUT PARA VER UNA CANTIDAD DE USUARIOS ESPECÍFICA -->
-        <div>
-          <label for="usuarios-por-pag"></label>
-          <input
-            type="number"
-            name="usuarios-por-pag"
-            id="usersPerPage"
-            placeholder="Número de usuarios..."
-          />
-        </div>
-        <!-- NAVEGADOR DE PÁGINAS SEGÚN LOS USUARIOS QUE SE MUESTREN -->
-        <div>
-          <button id="prevPag">Anterior</button>
-          <span id="actualPag"></span>
-          <button id="postPag">Posterior</button>
         </div>
       </section>
     </main>

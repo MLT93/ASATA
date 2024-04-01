@@ -45,21 +45,20 @@ document.addEventListener("DOMContentLoaded", async function () {
     const emailsUsuarios = dataUsuariosEnParsed.map((e) => e.email);
     /* Obtener Ciudades */
     const ciudadesUsuarios = dataUsuariosEnParsed.map((e) => e.address.city);
-    /* Pintar Nombres */
+
+    /* DOM y Pintar elementos */
     const myNames_HTML = document.getElementById("names");
-    myNames_HTML.innerHTML = `${nombresUsuarios
-      .map((e) => `<p>${e}</p>`)
-      .join("")}`;
-    /* Pintar Emails */
     const myEmails_HTML = document.getElementById("emails");
-    myEmails_HTML.innerHTML = `${emailsUsuarios
-      .map((e) => `<p>${e}</p>`)
-      .join("")}`;
-    /* Pintar Ciudades */
     const myCities_HTML = document.getElementById("cities");
-    myCities_HTML.innerHTML = `${ciudadesUsuarios
-      .map((e) => `<p>${e}</p>`)
-      .join("")}`;
+    function displayElements(array1, array2, array3) {
+      /* Pintar Nombres */
+      myNames_HTML.innerHTML = `${array1.map((e) => `<p>${e}</p>`).join("")}`;
+      /* Pintar Emails */
+      myEmails_HTML.innerHTML = `${array2.map((e) => `<p>${e}</p>`).join("")}`;
+      /* Pintar Ciudades */
+      myCities_HTML.innerHTML = `${array3.map((e) => `<p>${e}</p>`).join("")}`;
+    }
+    displayElements(nombresUsuarios, emailsUsuarios, ciudadesUsuarios);
     /* Botón para asignar onclick */
     const buttonSearch = document.getElementById("buttonSearch");
     buttonSearch.onclick = function (e) {
@@ -91,22 +90,37 @@ document.addEventListener("DOMContentLoaded", async function () {
           citiesCorresponding.push(e.address.city);
         }
         // Pinto los nuevos valores
-        myNames_HTML.innerHTML = `${elementSearched
-          .map((element) => `<p>${element}</p>`)
-          .join("")}`;
-        myEmails_HTML.innerHTML = `${emailsCorresponding
-          .map((element) => `<p>${element}</p>`)
-          .join("")}`;
-        myCities_HTML.innerHTML = `${citiesCorresponding
-          .map((element) => `<p>${element}</p>`)
-          .join("")}`;
+        displayElements(
+          elementSearched,
+          emailsCorresponding,
+          citiesCorresponding
+        );
       });
       // Restablezco los arrays para que no acumule valores en cada búsqueda
       elementSearched = [];
       emailsCorresponding = [];
       citiesCorresponding = [];
     }
-    console.log(elementSearched);
+    async function usersPerPage() {
+      let usersPerPage = document.getElementById("usersPerPage");
+      usersPerPage.addEventListener("change", () => {
+        let valueToShow = Number(this.value);
+        // ToDo: esta función debe retornar un nuevo array con los elementos para mostrar
+
+        nombresUsuarios.filter((elem, index) => {
+          elementSearched.slice(nombresUsuarios.length / valueToShow);
+          newElement = 
+          return e;
+        });
+
+        return displayElements(
+          nombresUsuarios,
+          emailsUsuarios,
+          ciudadesUsuarios
+        );
+      });
+    }
+    usersPerPage();
   } catch (error) {
     console.error("Error mostrando usuarios: ", error);
   }
