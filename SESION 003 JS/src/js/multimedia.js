@@ -40,17 +40,28 @@ buttonReset.onclick = function () {
 /**
  * !: ANTES DE DIBUJAR:
  * !: para calcular los RADIANES, debemos hacer una regla de 3
- * ?: Si el valor de 360 grados son 2Pi, entonces     => 180º = Pi
- * ?: El valor en radianes entonces será igual a      =>   0º = radianes
- * ?: El valor final [radianes = (grados * Pi) / 180] => regla de tres
- * *: También se puede considerar el extremo de la dcha del eje X del círculo como punto 0 y, en sentido horario, el punto irá sumando su valor hasta llegar al mismo punto habiendo dado la vuelta, con un valor de 2.
- * *: El inicio es siempre el extremo dcha en el eje X (Math.PI * 0), el extremo inferior del eje Y (en sentido horario) equivaldrá a (Math.PI * 0.5), el extremo izq. del eje X valdrá (Math.PI * 1). El extremo superior del eje Y valdrá (Math.PI * 1.5) y al final el punto valdrá  (Math.PI * 2)
+ * 
+ * ?: Si el valor de 360º son 2Pi, entonces => 180º = 1Pi
+ * ?: El valor en radianes será una regla de tres => [radianes = (grados * Pi) / 180]
+ * ?: [const ang30Radi = (30 * Math.PI) / 180]
+ * 
+ * ?: Después necesitaremos sus razones trigonométricas (seno y coseno):
+ * ?: [const sen30 = Math.sin(ang30Radi)] // El seno es el cateto opuesto al ángulo
+ * ?: [const cos30 = Math.cos(ang30Radi)] // El coseno es el cateto contiguo al ángulo
+ * 
+ * ?: También se puede considerar el extremo de la dcha del eje X como punto 0.0 y, en sentido horario, el punto irá sumando su valor hasta llegar al mismo punto habiendo dado la vuelta, con un valor de 2.0, equivalente a 360º o 2Pi.
  *
+ * ?: El inicio siempre será el extremo dcha en el eje X en su parte positiva (Math.PI * 0)
+ * ?: El extremo inferior del eje Y en su parte negativa (en sentido horario) equivaldrá a (Math.PI * 0.5)
+ * ?: El extremo izq. del eje X en su parte negativa valdrá (Math.PI * 1)
+ * ?: El extremo superior del eje Y en su parte positiva será (Math.PI * 1.5)
+ * ?: El punto final valdrá  (Math.PI * 2)
  *
  * *: const functionCalcularRadianes = (grados) => {
  * *:   var radianes = (grados * Math.PI) / 180;
  * *:   return Math.PI * radianes;
  * *: };
+ * 
  */
 const calcularRadianes = (grados) => (grados * Math.PI) / 180;
 
