@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     async function search() {
       let searched = document.getElementById("searchingText").value;
       searched = searched.toLowerCase(); //PASO A MINÚSCULA
-      // Crear una expresión regular que coincida con las letras en cualquier posición. La bandera `gi` en la expresión regular indica que la búsqueda debe ser insensible a las mayúsculas y minúsculas.
+      // Crear una expresión regular que coincida con las letras en cualquier posición. La bandera `gi` en la expresión regular indica que la búsqueda debe ser general e insensible a mayúsculas y minúsculas.
       const regExp = new RegExp(searched, "gi");
       await dataUsuariosEnParsed.filter((e) => {
         // Si hay un match con el `regExp` entonces lo guarda en `elementSearched`

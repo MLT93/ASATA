@@ -40,15 +40,15 @@ buttonReset.onclick = function () {
 /**
  * !: ANTES DE DIBUJAR:
  * !: para calcular los RADIANES, debemos hacer una regla de 3
- * 
+ *
  * ?: Si el valor de 360º son 2Pi, entonces => 180º = 1Pi
  * ?: El valor en radianes será una regla de tres => [radianes = (grados * Pi) / 180]
  * ?: [const ang30Radi = (30 * Math.PI) / 180]
- * 
+ *
  * ?: Después necesitaremos sus razones trigonométricas (seno y coseno):
  * ?: [const sen30 = Math.sin(ang30Radi)] // El seno es el cateto opuesto al ángulo
  * ?: [const cos30 = Math.cos(ang30Radi)] // El coseno es el cateto contiguo al ángulo
- * 
+ *
  * ?: También se puede considerar el extremo de la dcha del eje X como punto 0.0 y, en sentido horario, el punto irá sumando su valor hasta llegar al mismo punto habiendo dado la vuelta, con un valor de 2.0, equivalente a 360º o 2Pi.
  *
  * ?: El inicio siempre será el extremo dcha en el eje X en su parte positiva (Math.PI * 0)
@@ -61,7 +61,7 @@ buttonReset.onclick = function () {
  * *:   var radianes = (grados * Math.PI) / 180;
  * *:   return Math.PI * radianes;
  * *: };
- * 
+ *
  */
 const calcularRadianes = (grados) => (grados * Math.PI) / 180;
 
@@ -127,19 +127,21 @@ ctx2.fillStyle = "rgb(250, 220, 70)";
 let coordinateX = 250;
 let coordinateY = 250;
 let radius = 100;
-let startAngleArc = Math.PI * 1.062;
+let startAngleArc = Math.PI * 1.052;
 let endAngleArc = Math.PI * 1.825;
 let centerRadiusPoint = 0;
 let startAndEndAngleToInsertNewDrawPoint = Math.PI * 0.5;
 ctx2.arc(coordinateX, coordinateY, radius, startAngleArc, endAngleArc, false);
-ctx2.arc(
-  coordinateX,
-  coordinateY,
-  centerRadiusPoint,
-  startAndEndAngleToInsertNewDrawPoint,
-  startAndEndAngleToInsertNewDrawPoint,
-  false
-);
+// ctx2.arc(
+//   coordinateX,
+//   coordinateY,
+//   centerRadiusPoint,
+//   startAndEndAngleToInsertNewDrawPoint,
+//   startAndEndAngleToInsertNewDrawPoint,
+//   false
+// );
+/* Agrega simplemente un punto extra para rellenar lo que nos falta */
+ctx2.lineTo(250, 250);
 ctx2.fill();
 /* Segundo círculo independiente */
 ctx2.beginPath();

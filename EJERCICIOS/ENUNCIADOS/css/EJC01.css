@@ -108,6 +108,15 @@ footer {
   width: 100%;
 }
 
+.flex-row-aro {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+
+  width: 100%;
+}
+
 .flex-col-cnt {
   display: flex;
   flex-flow: column wrap;
@@ -135,11 +144,27 @@ footer {
 }
 
 .gap-m {
-  gap: 1.7rem;
+  gap: 1.5rem;
 }
 
 .gap-l {
-  gap: 2.1rem;
+  gap: 3rem;
+}
+
+.gap-xl {
+  gap: 5rem;
+}
+
+.gap-xxl {
+  gap: 7rem;
+}
+
+.gap-3xl {
+  gap: 8rem;
+}
+
+.margin-bottom {
+  margin-bottom: 1rem;
 }
 
 .section-container {
