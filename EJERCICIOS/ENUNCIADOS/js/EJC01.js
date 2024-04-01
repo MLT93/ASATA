@@ -1,6 +1,6 @@
 // Usa async aquí para permitir el uso de await dentro
 document.addEventListener("DOMContentLoaded", async function () {
-  //url (endopint) de una API pública que me devuelve un JSON con 10 usuarios ficticios
+  //url (endpoint) de una API pública que me devuelve un JSON con 10 usuarios ficticios
   const apiUrl = "https://jsonplaceholder.typicode.com/users";
 
   //definición de la función "fetchUsers" para obtener los usuarios que devuelve la API. Es una función asincrona, la veremos en clase, de momento usadla para obtener los valores del JSON y trabajar con él, algo semejante a como lo hemos hecho cuando el JSON era un archivo en nuestro equipo.
@@ -40,57 +40,71 @@ document.addEventListener("DOMContentLoaded", async function () {
     // Para manipular el contenido del array de objetos, se debe "parsear" la data que me trae la llamada de la API
     const dataUsuariosEnParsed = JSON.parse(dataUsuariosEnString);
     /* Obtener Nombres */
-    const nombresUsuarios = dataUsuariosEnParsed.map((e) => {
-      return e.name;
-    });
+    const nombresUsuarios = dataUsuariosEnParsed.map((e) => e.name);
     /* Obtener Emails */
-    const emailsUsuarios = dataUsuariosEnParsed.map((e) => {
-      return e.email;
-    });
+    const emailsUsuarios = dataUsuariosEnParsed.map((e) => e.email);
     /* Obtener Ciudades */
-    const ciudadesUsuarios = dataUsuariosEnParsed.map((e) => {
-      return e.address.city;
-    });
+    const ciudadesUsuarios = dataUsuariosEnParsed.map((e) => e.address.city);
     /* Pintar Nombres */
     const myNames_HTML = document.getElementById("names");
     myNames_HTML.innerHTML = `${nombresUsuarios
-      .map((e) => {
-        return `<p>${e}</p>`;
-      })
+      .map((e) => `<p>${e}</p>`)
       .join("")}`;
-    console.log(nombresUsuarios);
     /* Pintar Emails */
     const myEmails_HTML = document.getElementById("emails");
     myEmails_HTML.innerHTML = `${emailsUsuarios
-      .map((e) => {
-        return `<p>${e}</p>`;
-      })
+      .map((e) => `<p>${e}</p>`)
       .join("")}`;
-    console.log(emailsUsuarios);
     /* Pintar Ciudades */
     const myCities_HTML = document.getElementById("cities");
     myCities_HTML.innerHTML = `${ciudadesUsuarios
-      .map((e) => {
-        return `<p>${e}</p>`;
-      })
+      .map((e) => `<p>${e}</p>`)
       .join("")}`;
-    console.log(ciudadesUsuarios);
-
-    /* Obtener info input y buscar */
+    /* Botón para asignar onclick */
     const buttonSearch = document.getElementById("buttonSearch");
-    buttonSearch.onclick = function () {
+    buttonSearch.onclick = function (e) {
+      e.preventDefault();
+
       search();
     };
-    var elementSearched = [];
-    function search() {
-      var searched = document.getElementById("searchingText").value;
+    /* Crear función de búsqueda y obtener el valor del input */
+    let elementSearched = [];
+    let emailsCorresponding = [];
+    let citiesCorresponding = [];
+    async function search() {
+      let searched = document.getElementById("searchingText").value;
       searched = searched.toLowerCase(); //PASO A MINÚSCULA
-      /* searched = searched.substring(0, 1).toUpperCase() + searched.substring(1); //PONGO EN MAYÚSCULA LA PRIMERA LETRA */
       // Crear una expresión regular que coincida con las letras en cualquier posición. La bandera `gi` en la expresión regular indica que la búsqueda debe ser insensible a las mayúsculas y minúsculas.
-      const regExp = new RegExp(searched, "i");
-      dataUsuariosEnParsed.forEach((e) => {
-        elementSearched.push(regExp.test(e));
+      const regExp = new RegExp(searched, "gi");
+      await dataUsuariosEnParsed.filter((e) => {
+        // Si hay un match con el `regExp` entonces lo guarda en `elementSearched`
+        if (regExp.test(e.name) === true) {
+          // Reemplazar las palabras encontradas con un `<span></span>` con el nuevo estilo. La variable `$&` llama a la variable en la cual se almacena este mismo valor
+          const highlightedName = e.name.replace(
+            regExp,
+            `<span style="background-color: yellow;">$&</span>`
+          );
+          // Reemplaza también los viejos elementos con los nuevos elementos encontrados y los agrego al nuevo array
+          myNames_HTML.innerHTML = `<p>${highlightedName}</p>`;
+          elementSearched.push(highlightedName);
+          emailsCorresponding.push(e.email);
+          citiesCorresponding.push(e.address.city);
+        }
+        // Pinto los nuevos valores
+        myNames_HTML.innerHTML = `${elementSearched
+          .map((element) => `<p>${element}</p>`)
+          .join("")}`;
+        myEmails_HTML.innerHTML = `${emailsCorresponding
+          .map((element) => `<p>${element}</p>`)
+          .join("")}`;
+        myCities_HTML.innerHTML = `${citiesCorresponding
+          .map((element) => `<p>${element}</p>`)
+          .join("")}`;
       });
+      // Restablezco los arrays para que no acumule valores en cada búsqueda
+      elementSearched = [];
+      emailsCorresponding = [];
+      citiesCorresponding = [];
     }
     console.log(elementSearched);
   } catch (error) {

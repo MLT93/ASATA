@@ -95,7 +95,8 @@ footer {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 3rem;
+
+  width: 100%;
 }
 
 .flex-row-spb {
@@ -112,7 +113,8 @@ footer {
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
+
+  width: 100%;
 }
 
 .flex-col-cnt-str {
@@ -120,7 +122,24 @@ footer {
   flex-flow: column wrap;
   justify-content: flex-start;
   align-items: center;
+
+  width: 100%;
+}
+
+.gap-xs {
+  gap: 0.5rem;
+}
+
+.gap-s {
   gap: 1rem;
+}
+
+.gap-m {
+  gap: 1.7rem;
+}
+
+.gap-l {
+  gap: 2.1rem;
 }
 
 .section-container {
