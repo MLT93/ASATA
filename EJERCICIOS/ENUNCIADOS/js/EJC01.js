@@ -109,8 +109,8 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         nombresUsuarios.filter((elem, index) => {
           elementSearched.slice(nombresUsuarios.length / valueToShow);
-          newElement = 
-          return e;
+          newElement;
+          return elem;
         });
 
         return displayElements(
@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         );
       });
     }
-    usersPerPage();
+
   } catch (error) {
     console.error("Error mostrando usuarios: ", error);
   }
