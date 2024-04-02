@@ -39,40 +39,41 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     // Para manipular el contenido del array de objetos, se debe "parsear" la data que me trae la llamada de la API
     const dataUsuariosEnParsed = JSON.parse(dataUsuariosEnString);
-    /* Obtener Nombres */
+
+    // Obtener arrays para de los elementos que deseamos mostrar
     const nombresUsuarios = dataUsuariosEnParsed.map((e) => e.name);
-    /* Obtener Emails */
     const emailsUsuarios = dataUsuariosEnParsed.map((e) => e.email);
-    /* Obtener Ciudades */
     const ciudadesUsuarios = dataUsuariosEnParsed.map((e) => e.address.city);
 
-    /* DOM y Pintar elementos */
+    // DOM
     const myNames_HTML = document.getElementById("names");
     const myEmails_HTML = document.getElementById("emails");
     const myCities_HTML = document.getElementById("cities");
+
+    // Pintar elementos
     function displayElements(array1, array2, array3) {
-      /* Pintar Nombres */
       myNames_HTML.innerHTML = `${array1.map((e) => `<p>${e}</p>`).join("")}`;
-      /* Pintar Emails */
       myEmails_HTML.innerHTML = `${array2.map((e) => `<p>${e}</p>`).join("")}`;
-      /* Pintar Ciudades */
       myCities_HTML.innerHTML = `${array3.map((e) => `<p>${e}</p>`).join("")}`;
     }
     displayElements(nombresUsuarios, emailsUsuarios, ciudadesUsuarios);
-    /* Botón para asignar onclick */
+
+    // Botón para onclick
     const buttonSearch = document.getElementById("buttonSearch");
     buttonSearch.onclick = function (e) {
       e.preventDefault();
 
       search();
     };
-    /* Crear función de búsqueda y obtener el valor del input */
+
+    // Crear función de búsqueda y obtener el valor del input
     let elementSearched = [];
     let emailsCorresponding = [];
     let citiesCorresponding = [];
     async function search() {
       let searched = document.getElementById("searchingText").value;
-      searched = searched.toLowerCase(); //PASO A MINÚSCULA
+      searched = searched.toLowerCase(); // PASO A MINÚSCULA
+
       // Crear una expresión regular que coincida con las letras en cualquier posición. La bandera `gi` en la expresión regular indica que la búsqueda debe ser general e insensible a mayúsculas y minúsculas.
       const regExp = new RegExp(searched, "gi");
       await dataUsuariosEnParsed.filter((e) => {
@@ -83,12 +84,14 @@ document.addEventListener("DOMContentLoaded", async function () {
             regExp,
             `<span style="background-color: yellow;">$&</span>`
           );
-          // Reemplaza también los viejos elementos con los nuevos elementos encontrados y los agrego al nuevo array
+
+          // Reemplaza también los viejos elementos con los nuevos elementos encontrados y los agrega al nuevo array
           myNames_HTML.innerHTML = `<p>${highlightedName}</p>`;
           elementSearched.push(highlightedName);
           emailsCorresponding.push(e.email);
           citiesCorresponding.push(e.address.city);
         }
+
         // Pinto los nuevos valores
         displayElements(
           elementSearched,
@@ -96,6 +99,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           citiesCorresponding
         );
       });
+
       // Restablezco los arrays para que no acumule valores en cada búsqueda
       elementSearched = [];
       emailsCorresponding = [];
@@ -104,23 +108,30 @@ document.addEventListener("DOMContentLoaded", async function () {
     async function usersPerPage() {
       let usersPerPage = document.getElementById("usersPerPage");
       usersPerPage.addEventListener("change", () => {
-        let valueToShow = Number(this.value);
-        // ToDo: esta función debe retornar un nuevo array con los elementos para mostrar
+        let valueToShow = Number(this.usersPerPage.value);
+        console.log(valueToShow);
+        let namesPerPage = [];
+        let emailsPerPage = [];
+        let citiesPerPage = [];
+        /* ToDo: revisar condición para mostrar usuarios por páginas */
+        for (
+          let index = 0;
+          index < dataUsuariosEnParsed.length / valueToShow;
+          index++
+        ) {
+          const elementName = dataUsuariosEnParsed[index].name;
+          const elementEmail = dataUsuariosEnParsed[index].email;
+          const elementCity = dataUsuariosEnParsed[index].address.city;
+          namesPerPage.push(elementName);
+          namesPerPage.push(elementEmail);
+          namesPerPage.push(elementCity);
+          // elementsPerPageToShow.push(element);
+        }
 
-        nombresUsuarios.filter((elem, index) => {
-          elementSearched.slice(nombresUsuarios.length / valueToShow);
-          newElement;
-          return elem;
-        });
-
-        return displayElements(
-          nombresUsuarios,
-          emailsUsuarios,
-          ciudadesUsuarios
-        );
+        return displayElements(namesPerPage, emailsPerPage, citiesPerPage);
       });
     }
-
+    usersPerPage();
   } catch (error) {
     console.error("Error mostrando usuarios: ", error);
   }
