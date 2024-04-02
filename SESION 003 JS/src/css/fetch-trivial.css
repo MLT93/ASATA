@@ -1,0 +1,305 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+:root {
+  /* El `font-size` va siempre en el `:root` para que la medida `rem` pueda tomar efecto. Ponerlo en esta parte del CSS es como ponerlo en el tag `html{}` sin afectar a todos los elementos el documento (si lo ponemos en `*{}` afectaremos a todos los elementos del documento) */
+  font-size: 16px;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+
+  line-height: 1.5;
+
+  /* Variables */
+  --color-1: #c92bceda;
+  --color-2: #28ffffce;
+  --color-3: #ff7f08e7;
+  --color-4: #08ff08b0;
+  --color-5: #ff4208d7;
+  --color-6: #8808ffd7;
+  --color-7: #0835ffd7;
+  --color-8: #707070;
+
+  --color-contrast-1: #dbdbdb;
+  --color-contrast-2: #070707;
+  --color-contrast-3: #fff;
+
+  --color-shadow: #505050;
+}
+
+p,
+a,
+ol,
+ul,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span {
+  margin: unset;
+  padding: unset;
+  list-style-type: none;
+  text-decoration: none;
+}
+
+body {
+  min-width: 100%;
+  min-height: 100vh;
+
+  margin: unset;
+  padding: unset;
+
+  background: var(--color-contrast-3);
+  color: var(--color-contrast-2);
+
+  display: grid;
+  grid-template-areas:
+    "cabecera       cabecera      cabecera"
+    "navegacion     navegacion    navegacion"
+    "principal      principal     principal"
+    "publi          publi         publi"
+    "pie            pie           pie";
+  grid-template-rows: 5rem 3rem auto 3rem 5rem;
+  /* grid-template-columns: 10rem auto auto; */
+}
+
+header {
+  grid-area: cabecera;
+}
+
+nav {
+  grid-area: navegacion;
+}
+
+main {
+  grid-area: principal;
+}
+
+aside {
+  grid-area: publi;
+}
+
+footer {
+  grid-area: pie;
+}
+
+.flex-row-cnt {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+}
+
+.flex-row-spb {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+}
+
+.flex-row-aro {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+
+  width: 100%;
+}
+
+.flex-col-cnt {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+}
+
+.flex-col-cnt-str {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: flex-start;
+  align-items: center;
+
+  width: 100%;
+}
+
+.gap-xs {
+  gap: 0.5rem;
+}
+
+.gap-s {
+  gap: 1rem;
+}
+
+.gap-m {
+  gap: 1.5rem;
+}
+
+.gap-l {
+  gap: 3rem;
+}
+
+.gap-xl {
+  gap: 5rem;
+}
+
+.gap-xxl {
+  gap: 7rem;
+}
+
+.gap-3xl {
+  gap: 8rem;
+}
+
+.margin-bottom {
+  margin-bottom: 1rem;
+}
+
+.margin-all {
+  margin: 1rem;
+}
+
+.section-container {
+  width: fit-content;
+
+  padding: 20px;
+}
+
+.background-1 {
+  background: var(--color-1);
+}
+
+.background-2 {
+  background: var(--color-2);
+}
+
+.background-3 {
+  background: var(--color-3);
+}
+
+.background-4 {
+  background: var(--color-4);
+}
+
+.background-5 {
+  background: var(--color-5);
+}
+
+.background-6 {
+  background: var(--color-6);
+}
+
+.background-7 {
+  background: var(--color-7);
+  color: var(--color-contrast-3);
+}
+
+.background-8 {
+  background: var(--color-8);
+}
+
+#trivial {
+  width: 100%;
+  max-width: 700px;
+
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+
+  box-shadow: 1px 3px 10px 1px black;
+}
+
+#progress {
+  margin: 10px 0px;
+
+  font-weight: bold;
+  font-size: larger;
+}
+
+#question {
+  width: 100%;
+  max-width: 500px;
+
+  margin: 10px 0px;
+
+  font-size: large;
+  font-style: italic;
+}
+
+#answers li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  font-size: medium;
+  font-weight: bold;
+
+  width: 100%;
+  max-width: 300px;
+
+  margin: 5px;
+  padding: 10px;
+
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+.correct {
+  background: #257c25;
+}
+
+.incorrect {
+  background: #b82525;
+}
+
+#submit {
+  margin: 20px;
+  padding: 5px 10px;
+
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+
+  border: 1px solid black;
+
+  font-size: medium;
+
+  background: #2323c4;
+  color: white;
+}
+
+@media (width >= 1080px) {
+  body {
+    grid-template-areas:
+      "cabecera       cabecera      cabecera"
+      "navegacion     navegacion    navegacion"
+      "principal      principal     principal"
+      "pie            pie           pie";
+    grid-template-rows: 5rem 3rem auto 5rem;
+    grid-template-columns: 10rem auto auto;
+    gap: 0.3rem;
+  }
+
+  aside {
+    display: none;
+  }
+}
