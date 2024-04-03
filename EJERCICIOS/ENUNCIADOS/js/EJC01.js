@@ -105,27 +105,34 @@ document.addEventListener("DOMContentLoaded", async function () {
       emailsCorresponding = [];
       citiesCorresponding = [];
     }
+
+    // Crear función de pagination y obtener el valor del input
     async function usersPerPage() {
       let usersPerPage = document.getElementById("usersPerPage");
       usersPerPage.addEventListener("change", () => {
-        let valueToShow = Number(this.usersPerPage.value);
-        console.log(valueToShow);
+        // Obtener la cantidad e elementos por página
+        let valuePerPage = Number(this.usersPerPage.value);
+        console.log(valuePerPage);
+
+        // Calcular el tamaño de cada sección
+        let sectionSize = Math.ceil(dataUsuariosEnParsed.length / valuePerPage);
+
+        // Arrays vacíos para las nuevas secciones
         let namesPerPage = [];
         let emailsPerPage = [];
         let citiesPerPage = [];
-        /* ToDo: revisar condición para mostrar usuarios por páginas */
-        for (
-          let index = 0;
-          index < dataUsuariosEnParsed.length / valueToShow;
-          index++
-        ) {
-          const elementName = dataUsuariosEnParsed[index].name;
-          const elementEmail = dataUsuariosEnParsed[index].email;
-          const elementCity = dataUsuariosEnParsed[index].address.city;
+        let sectionCounter = 1;
+        for (let i = 0; i < dataUsuariosEnParsed.length; i++) {
+          const elementName = dataUsuariosEnParsed[i].name;
+          const elementEmail = dataUsuariosEnParsed[i].email;
+          const elementCity = dataUsuariosEnParsed[i].address.city;
           namesPerPage.push(elementName);
-          namesPerPage.push(elementEmail);
-          namesPerPage.push(elementCity);
-          // elementsPerPageToShow.push(element);
+          emailsPerPage.push(elementEmail);
+          citiesPerPage.push(elementCity);
+
+          if (i % sectionSize === 0) {
+            sectionCounter++;
+          }
         }
 
         return displayElements(namesPerPage, emailsPerPage, citiesPerPage);
@@ -140,3 +147,42 @@ document.addEventListener("DOMContentLoaded", async function () {
 //La variable "dataUsuariosEnJSON" tiene todos los datos en formato JSON, es la variable más aconsejable para usar a la hora de trabajar con lso datos de la API
 
 //La variable "dataUsuariosEnString" tiene los datos transformados en string pro el metodo JSON.stringify()
+
+// ----------------------------------------------------------------------------------
+
+/* 
+
+const originalArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+
+const arrayLength = originalArray.length;
+const sectionSize = Math.floor(arrayLength / 4);
+
+const section1 = [];
+const section2 = [];
+const section3 = [];
+const section4 = [];
+
+let sectionCounter = 1;
+for (let i = 0; i < arrayLength; i++) {
+  if (sectionCounter === 1) {
+    section1.push(originalArray[i]);
+  } else if (sectionCounter === 2) {
+    section2.push(originalArray[i]);
+  } else if (sectionCounter === 3) {
+    section3.push(originalArray[i]);
+  } else {
+    section4.push(originalArray[i]);
+  }
+
+  if (i % sectionSize === 0) {
+    sectionCounter++;
+  }
+}
+
+console.log("Section 1:", section1);
+console.log("Section 2:", section2);
+console.log("Section 3:", section3);
+console.log("Section 4:", section4);
+
+
+*/
