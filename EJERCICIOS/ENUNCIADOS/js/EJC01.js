@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           // Reemplazar las palabras encontradas con un `<span></span>` con el nuevo estilo. La variable `$&` llama a la variable en la cual se almacena este mismo valor
           const highlightedName = e.name.replace(
             regExp,
-            `<span style="background-color: yellow;">$&</span>`
+            `<span style="background-color: yellow;">$&</span>`,
           );
 
           // Reemplaza también los viejos elementos con los nuevos elementos encontrados y los agrega al nuevo array
@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         displayElements(
           elementSearched,
           emailsCorresponding,
-          citiesCorresponding
+          citiesCorresponding,
         );
       });
 
@@ -111,29 +111,43 @@ document.addEventListener("DOMContentLoaded", async function () {
       let usersPerPage = document.getElementById("usersPerPage");
       usersPerPage.addEventListener("change", () => {
         // Obtener la cantidad e elementos por página
-        let valuePerPage = Number(this.usersPerPage.value);
-        console.log(valuePerPage);
+        let valueOfElementsPerPage = Number(usersPerPage.value);
+        console.log(`Valor en el input: ${valueOfElementsPerPage}`);
 
-        // Calcular el tamaño de cada sección
-        let sectionSize = Math.ceil(dataUsuariosEnParsed.length / valuePerPage);
+        // Calcular el tamaño de cada página
+        let numberOfPages = Math.ceil(
+          dataUsuariosEnParsed.length / valueOfElementsPerPage,
+        );
+        console.log(`Cantidad de secciones: ${numberOfPages}`);
 
         // Arrays vacíos para las nuevas secciones
         let namesPerPage = [];
         let emailsPerPage = [];
         let citiesPerPage = [];
-        let sectionCounter = 1;
-        for (let i = 0; i < dataUsuariosEnParsed.length; i++) {
-          const elementName = dataUsuariosEnParsed[i].name;
-          const elementEmail = dataUsuariosEnParsed[i].email;
-          const elementCity = dataUsuariosEnParsed[i].address.city;
-          namesPerPage.push(elementName);
-          emailsPerPage.push(elementEmail);
-          citiesPerPage.push(elementCity);
 
-          if (i % sectionSize === 0) {
-            sectionCounter++;
+        // Creo un contador para saber en qué página estoy y recorto el array original según el valor del input para guardar los elementos en el array que iré a iterar
+        let pageCounter = 1;
+        const startSlicer = valueOfElementsPerPage * (pageCounter - 1); // Número usuarios por página x (pagActual - 1);
+        const endSlicer = startSlicer + valueOfElementsPerPage; // Número inicial del recorte + el número del input
+        let elementsToSavePerPage = dataUsuariosEnParsed.slice(
+          startSlicer,
+          endSlicer,
+        ); // `slice(start(included), end(excluded))`
+        const slicedArray = [];
+        slicedArray.push(elementsToSavePerPage);
+        console.log(slicedArray);
+
+        // Itero el array recortado y aumento la cantidad de páginas dinamicamente
+        for (let i = 0; i < slicedArray.length; i++) {
+          console.log(slicedArray[i].name);
+          namesPerPage.push(slicedArray[i].name);
+
+          // Si el resto de la división entre i que recorre el array y el numberOfPages es igual a 0, entonces aumenta la cantidad de secciones
+          if (i % numberOfPages === 0) {
+            pageCounter++;
           }
         }
+        console.log(namesPerPage);
 
         return displayElements(namesPerPage, emailsPerPage, citiesPerPage);
       });

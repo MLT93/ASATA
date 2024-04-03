@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ejeercicio1</title>
+    <link rel="stylesheet" href="css/ejercicio1.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+
+  <body>
+    <div id="todolist">
+      <h1>LISTADO DE TAREAS</h1>
+      <div>
+        <button @click="setVisibilidad('todas')">LISTA COMPLETA</button>
+        <button @click="setVisibilidad('pendientes')">LISTA PENDIENTES</button>
+        <button @click="setVisibilidad('completadas')">
+          LISTA FINALIZADAS
+        </button>
+        <br /><br />
+
+        <input type="text" v-model="nuevaTarea" />
+        <button @click="agregarTarea">AGREGAR TAREA</button>
+
+        <h2>TAREAS PENDIENTES {{tareasPendientes}}</h2>
+      </div>
+      <div>
+        <h2>LISTA</h2>
+        <div
+          v-for="tarea in tareasFiltradas"
+          :key="tarea.id"
+          class="tarea"
+          :class="{completada: tarea.completada}"
+          @click="toggleCompletada(tarea.id)">
+          {{ tarea.descripcion }}
+          <span v-if="tarea.fechaRegistro"
+            >Registrado: {{ tarea.fechaRegistro }}</span
+          >
+          <span v-if="tarea.fechaCompletado">
+            | Completado: {{ tarea.fechaCompletado }}</span
+          >
+        </div>
+      </div>
+    </div>
+
+    <script src="js/ejercicio1.js"></script>
+  </body>
+</html>
