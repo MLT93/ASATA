@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           // Reemplazar las palabras encontradas con un `<span></span>` con el nuevo estilo. La variable `$&` llama a la variable en la cual se almacena este mismo valor
           const highlightedName = e.name.replace(
             regExp,
-            `<span style="background-color: yellow;">$&</span>`,
+            `<span style="background-color: yellow;">$&</span>`
           );
 
           // Reemplaza también los viejos elementos con los nuevos elementos encontrados y los agrega al nuevo array
@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         displayElements(
           elementSearched,
           emailsCorresponding,
-          citiesCorresponding,
+          citiesCorresponding
         );
       });
 
@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         // Calcular el tamaño de cada página
         let numberOfPages = Math.ceil(
-          dataUsuariosEnParsed.length / valueOfElementsPerPage,
+          dataUsuariosEnParsed.length / valueOfElementsPerPage
         );
         console.log(`Cantidad de secciones: ${numberOfPages}`);
 
@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         const endSlicer = startSlicer + valueOfElementsPerPage; // Número inicial del recorte + el número del input
         let elementsToSavePerPage = dataUsuariosEnParsed.slice(
           startSlicer,
-          endSlicer,
+          endSlicer
         ); // `slice(start(included), end(excluded))`
         const slicedArray = [];
         slicedArray.push(elementsToSavePerPage);
