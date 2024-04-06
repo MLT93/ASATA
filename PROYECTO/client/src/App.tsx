@@ -1,5 +1,5 @@
 import "./App.css";
-import "./styles/main.scss";
+import "./sass/for-app.scss";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Dev } from "./pages/Developer/Dev";
 
