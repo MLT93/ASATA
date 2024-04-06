@@ -2,6 +2,27 @@
 *::after,
 *::before {
   box-sizing: border-box;
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: gray;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 7px black;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+  }
 }
 
 :root {
@@ -171,11 +192,11 @@ main {
 }
 
 .button-absolute img {
- width: 50px;
- color: white;
- background-color: white;
- border-radius: 50%;
- border: 1px solid white;
+  width: 50px;
+  color: white;
+  background-color: white;
+  border-radius: 50%;
+  border: 1px solid white;
 }
 
 .button-subm-reset {
@@ -204,13 +225,13 @@ main {
     align-items: center;
     text-align: center;
   }
-  
+
   .menu,
   .menu a {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    
+
     left: -1rem;
     top: 15rem;
     z-index: 10;

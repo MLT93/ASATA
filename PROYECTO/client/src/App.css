@@ -1,0 +1,220 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+
+  /* Los estilos del scrollbar siempre van en el `*{}` */
+  ::-webkit-scrollbar {
+    width: var(--space-xs);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-8);
+    border-radius: var(--space-xs);
+    -webkit-border-radius: var(--space-xs);
+    -moz-border-radius: var(--space-xs);
+    -ms-border-radius: var(--space-xs);
+    -o-border-radius: var(--space-xs);
+  }
+
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 7px var(--color-contrast-2);
+    border-radius: var(--space-s);
+    -webkit-border-radius: var(--space-s);
+    -moz-border-radius: var(--space-s);
+    -ms-border-radius: var(--space-s);
+    -o-border-radius: var(--space-s);
+  }
+}
+
+p,
+a,
+ol,
+ul,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span {
+  margin: unset;
+  padding: unset;
+  list-style-type: none;
+  text-decoration: none;
+}
+
+body {
+  min-width: 100%;
+  min-height: 100vh;
+
+  margin: unset;
+  padding: unset;
+
+  background: var(--color-contrast-3);
+  color: var(--color-contrast-2);
+
+  display: grid;
+  grid-template-areas:
+    "cabecera       cabecera      cabecera"
+    "navegacion     navegacion    navegacion"
+    "principal      principal     principal"
+    "publi          publi         publi"
+    "pie            pie           pie";
+  grid-template-rows: 5rem 3rem auto 3rem 5rem;
+  /* grid-template-columns: 10rem auto auto; */
+}
+
+header {
+  grid-area: cabecera;
+}
+
+nav {
+  grid-area: navegacion;
+}
+
+main {
+  grid-area: principal;
+}
+
+aside {
+  grid-area: publi;
+}
+
+footer {
+  grid-area: pie;
+}
+
+.flex-row-cnt {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+}
+
+.flex-row-spb {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+}
+
+.flex-row-aro {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+
+  width: 100%;
+}
+
+.flex-col-cnt {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+}
+
+.flex-col-cnt-str {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: flex-start;
+  align-items: center;
+
+  width: 100%;
+}
+
+.gap-xs {
+  gap: 0.5rem;
+}
+
+.gap-s {
+  gap: 1rem;
+}
+
+.gap-m {
+  gap: 1.5rem;
+}
+
+.gap-l {
+  gap: 3rem;
+}
+
+.gap-xl {
+  gap: 5rem;
+}
+
+.gap-xxl {
+  gap: 7rem;
+}
+
+.gap-3xl {
+  gap: 8rem;
+}
+
+.margin-bottom {
+  margin-bottom: 1rem;
+}
+
+.section-container {
+  width: fit-content;
+
+  padding: 20px;
+}
+
+.background-1 {
+  background: var(--color-1);
+}
+
+.background-2 {
+  background: var(--color-2);
+}
+
+.background-3 {
+  background: var(--color-3);
+}
+
+.background-4 {
+  background: var(--color-4);
+}
+
+.background-5 {
+  background: var(--color-5);
+}
+
+.background-6 {
+  background: var(--color-6);
+}
+
+.background-7 {
+  background: var(--color-7);
+  color: var(--color-contrast-3);
+}
+
+.background-8 {
+  background: var(--color-8);
+}
+
+@media (width >= 1080px) {
+  body {
+    grid-template-areas:
+      "cabecera       cabecera      cabecera"
+      "navegacion     navegacion    navegacion"
+      "principal      principal     principal"
+      "pie            pie           pie";
+    grid-template-rows: 5rem 3rem auto 5rem;
+    grid-template-columns: 10rem auto auto;
+    gap: 0.3rem;
+  }
+
+  aside {
+    display: none;
+  }
+}
