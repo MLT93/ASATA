@@ -113,7 +113,7 @@ console.log(message);
 let peso = 70; // kg
 let altura = 1.75; // metros
 // PROGRAMA
-let imc = peso / (altura * altura);
+let imc = peso / (altura ** 2);
 if (imc < 18.5) {
   console.log("Bajo peso");
 } else if (imc <= 24.9) {
