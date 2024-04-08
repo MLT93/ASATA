@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <title>Página con Problemas de Accesibilidad</title>
+    <link rel="stylesheet" href="css/accesibilidad01_copy.css" />
+    <!-- Los metadatos para la accesibilidad son necesarios -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Marcos Lambir Torres" />
+    <meta name="description" content="Accesibilidad" />
+    <meta name="keywords" content="Curso, Formación, Examen" />
+  </head>
+  <body>
+    <!-- La alineación efectiva de la página y su estructuración debe ser legible y fácil de ver. Esto se consigue con UI/UX -->
+
+    <!-- Las props como "onclick" es preferible utilizarlas directamente desde el archivo JavaScript -->
+    <div onclick="alert('Haz clic aquí para más información')">
+      Haz click en este apartado para obtener una información añadida.
+    </div>
+    <div>
+      <h2 id="divInfo">
+        Haz click en este apartado para obtener una información añadida.
+      </h2>
+    </div>
+    <!-- La prop "alt=''" es necesaria para la accesibilidad -->
+    <img
+      src="https://picsum.photos/200/300"
+      alt="Foto placeholder para ejecutar descripción si la imagen no se carga"
+    />
+    <!-- Los estilos es preferible utilizarlos desde su proprio archivo con su atributo 'class=""' y con un contraste fácil de leer -->
+    <!-- Las etiquetas de texto es preferible utilizarlas con etiquetas creadas apropósito -->
+    <div style="color: grey; background-color: white">
+      Texto difícil de leer debido al bajo contraste
+    </div>
+    <h4 class="contrast my-hover">Texto fácil de leer debido al contraste</h4>
+    <!-- Las etiquetas de enlaces deben utilizarse correctamente, y además, es preferible darle una indicación más específica que un simple "haz clic aquí" -->
+    <!-- Poner enlaces de forma clara -->
+    <!-- No se dejan atributos vacíos -->
+    <div href="" style="color: blue">Haz clic aquí.</div>
+    <div>
+      <a href="###" target="_blank">Enlace para ir a otra página.</a>
+    </div>
+    <!-- La etiqueta "label" es necesaria para cada input -->
+    <!-- Los "placeholder=''" son descriptivos para indicar donde se escribe. Aunque por accesibilidad se puede interpretar como texto, es un tema confuso -->
+    <!-- La prop "title=''" sirven para dar información poniendo el cursor sobre de la etiqueta relacionada -->
+    <div>
+      <label for="mi-texto">Búsqueda</label>
+      <input
+        type="text"
+        name="mi-texto"
+        title="Búsqueda relativa al usuario"
+        placeholder="Realiza aquí tu búsqueda..."
+      />
+    </div>
+
+    <script type="module" src="./js/accesibilidad01_copy.js"></script>
+  </body>
+</html>

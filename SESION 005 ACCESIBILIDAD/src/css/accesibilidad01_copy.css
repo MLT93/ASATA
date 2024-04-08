@@ -1,0 +1,57 @@
+body {
+  font-size: 12px;
+  /* Tamaño de fuente pequeño */
+  font-size: 16px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+div {
+  color: #000;
+  background-color: #444;
+  /* Contraste insuficiente */
+  background-color: inherit;
+  cursor: pointer;
+  /* No indica claramente que es clickeable */
+}
+/* Para indicar claramente que es clickeable, podemos agregar un ":hover" */
+.my-hover:hover {
+  cursor: pointer;
+  background: #aeadad;
+  width: fit-content;
+  padding: 5px;
+}
+
+a {
+  text-decoration: none;
+  /* No hay indicación visual de que es un enlace */
+  text-decoration: underline;
+}
+
+input[type="text"] {
+  border: 1px solid #ccc;
+  /* Bordes poco contrastados */
+}
+
+img {
+  /* Es necesario poner dimensión y un borde de contraste en la imagen para que se vea bien */
+  width: 15rem;
+  border: 1px solid black;
+}
+
+.contrast {
+  /* Contraste debido al color del texto */
+  color: #000;
+}
+
+input {
+  /* Tamaño del input */
+  max-width: 200px;
+}
+
+
+label:hover {
+  background-color: unset;
+}
