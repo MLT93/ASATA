@@ -1,0 +1,67 @@
+.anchor {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+
+  cursor: pointer;
+
+  width: fit-content;
+
+  opacity: 1;
+
+  &:hover {
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+
+    transition: all 0.2s ease 0s;
+    -webkit-transition: all 0.2s ease 0s;
+    -moz-transition: all 0.2s ease 0s;
+    -ms-transition: all 0.2s ease 0s;
+    -o-transition: all 0.2s ease 0s;
+  }
+}
+
+.is-anchor-primary {
+  color: var(--color-contrast-2);
+
+  &:hover {
+    filter: drop-shadow(0 0 0.5rem var(--color-contrast-1));
+    -webkit-filter: drop-shadow(0 0 0.5rem var(--color-contrast-1));
+  }
+}
+
+.is-anchor-secondary {
+  flex-flow: column wrap;
+  align-items: center;
+
+  margin-bottom: var(--space-5xs);
+
+  color: var(--color-7);
+
+  &:hover {
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    transition: all 0.2s linear;
+    -webkit-transition: all 0.2s linear;
+    -moz-transition: all 0.2s linear;
+    -ms-transition: all 0.2s linear;
+    -o-transition: all 0.2s linear;
+  }
+}
+
+.is-anchor-tertiary {
+  color: var(--color-contrast-3);
+
+  &:hover {
+    filter: drop-shadow(0 0 0.5rem var(--color-contrast-3));
+    -webkit-filter: drop-shadow(0 0 0.5rem var(--color-contrast-3));
+    text-decoration-line: underline;
+    -moz-text-decoration-line: underline;
+  }
+}

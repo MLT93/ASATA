@@ -1,0 +1,101 @@
+:root {
+  /* El `font-size` va siempre en el `:root` para que la medida `rem` pueda tomar efecto. Ponerlo en esta parte del CSS es como ponerlo en el tag `html{}` sin afectar a todos los elementos el documento (si lo ponemos en `*{}` afectaremos a todos los elementos del documento) */
+  font-size: 16px;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+
+  line-height: 1.5;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* SIZE */
+  --font-size-sp: 14px;
+  --font-size-pa: 16px;
+  --font-size-h5: 18px;
+  --font-size-h4: 24px;
+  --font-size-h3: 32px;
+  --font-size-h2: 40px;
+  --font-size-h1: 64px;
+
+  /* SPACING */
+  --space-rem: 1rem;
+  --space-rem-m: 1.5rem;
+  --space-5xs: 1px;
+  --space-4xs: 2px;
+  --space-3xs: 4px;
+  --space-xxs: 6px;
+  --space-xs: 8px;
+  --space-s: 10px;
+  --space-sm: 12px;
+  --space-ms: 14px;
+  --space-md: 16px;
+  --space-ml: 20px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-xll: 40px;
+  --space-xxl: 48px;
+  --space-3xl: 56px;
+  --space-4xl: 64px;
+
+  /* RADIUS */
+  --border-radius-sm: 5px;
+  --border-radius-m: 10px;
+  --border-radius-md: 16px;
+  --border-radius-ml: 20px;
+  --border-radius-xl: 30px;
+  --border-radius-xxl: 72px;
+
+  /* COLORS */
+  --color-1: rgba(201, 43, 206, 0.855);
+  --color-2: rgba(40, 255, 255, 0.808);
+  --color-3: rgba(255, 127, 8, 0.906);
+  --color-4: rgba(8, 255, 8, 0.69);
+  --color-5: rgba(255, 66, 8, 0.843);
+  --color-6: rgba(136, 8, 255, 0.843);
+  --color-7: rgba(8, 53, 255, 0.843);
+  --color-8: rgb(112, 112, 112);
+
+  --color-contrast-1: rgb(219, 219, 219);
+  --color-contrast-2: rgb(7, 7, 7);
+  --color-contrast-3: rgb(255, 255, 255);
+
+  --color-shadow: rgb(80, 80, 80);
+
+  /* GRADIENTS */
+  --button-bg-image: linear-gradient(
+    37deg,
+    rgb(18, 45, 142) 12%,
+    rgba(22, 57, 185, 0.969) 39%,
+    rgb(4, 107, 218) 78%
+  );
+
+  --slider-bg-image: linear-gradient(
+    211deg,
+    var(--color-tertiary) 2%,
+    var(--color-text-primary) 77%
+  );
+
+  --gradient-bg-image-primary: linear-gradient(
+    rgb(83, 222, 233),
+    rgb(141, 87, 255)
+  );
+  --gradient-bg-image-secondary: linear-gradient(
+    rgb(232, 44, 12),
+    rgb(255, 238, 0)
+  );
+  --gradient-bg-image-tertiary: linear-gradient(
+    164deg,
+    var(--color-3) 1%,
+    var(--color-6) 88%
+  );
+  --gradient-bg-image-quaternary: linear-gradient(
+    157deg,
+    var(--color-1) 31%,
+    var(--color-5) 100%
+  );
+}

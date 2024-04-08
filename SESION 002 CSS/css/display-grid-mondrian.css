@@ -2,6 +2,27 @@
 *::after,
 *::before {
   box-sizing: border-box;
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: gray;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 7px black;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+  }
 }
 
 :root {
@@ -117,7 +138,7 @@ footer {
 }
 
 .red1 {
-    /* Decimos a las líneas de las columnas desde donde, hasta donde, debe expandirse la celda horizontalmente */
+  /* Decimos a las líneas de las columnas desde donde, hasta donde, debe expandirse la celda horizontalmente */
   grid-column: 1/4;
   background-color: red;
 }
@@ -128,7 +149,7 @@ footer {
 }
 
 .border2 {
-    /* Decimos a las líneas de las filas desde donde, hasta donde, deben expandirse la celda verticalmente */
+  /* Decimos a las líneas de las filas desde donde, hasta donde, deben expandirse la celda verticalmente */
   grid-row: 2/4;
 }
 

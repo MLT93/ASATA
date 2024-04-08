@@ -1,0 +1,15 @@
+@mixin logo-animation {
+  $duration: 3s;
+
+  @keyframes logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  animation: logo-spin $duration ease infinite;
+  -webkit-animation: logo-spin $duration ease infinite;
+}
