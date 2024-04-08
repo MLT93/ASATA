@@ -2,7 +2,9 @@ body {
   font-size: 12px;
   /* Tamaño de fuente pequeño */
   font-size: 16px;
+}
 
+main {
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -50,7 +52,6 @@ input {
   /* Tamaño del input */
   max-width: 200px;
 }
-
 
 label:hover {
   background-color: unset;
