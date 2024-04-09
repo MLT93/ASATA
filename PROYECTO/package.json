@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "cd server/ && npm run dev:1",
-    "client": "cd client/ && npm run dev:2"
+    "client": "cd client/ && npm run dev:1",
+    "server": "cd server/ && npm run dev:2",
+    "installClient": "cd client/ && npm i",
+    "installServer": "cd server/ && npm i"
   },
   "repository": {
     "type": "git",
