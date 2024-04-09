@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!-- Lenguaje de la página. Normativa 9.3.1.1 -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <meta name="author" content="Marcos Lambir Torres" />
+    <meta name="description" content="Accesibilidad" />
+    <meta name="keywords" content="Curso, Formación, Examen" />
+    <link rel="stylesheet" href="./css/accesibilidad02.css" />
+    <title>Página Inaccesible</title>
+  </head>
+  <!-- Estructura semántica. Normativa 9.1.3.1 -->
+  <body>
+    <header><h1>Texto muy claro sobre fondo claro</h1></header>
+    <nav>
+      <h3>Presentación</h3>
+      <div>
+        <h5>Texto descriptivo de la imagen</h5>
+        <img src="https://via.placeholder.com/150" />
+      </div>
+    </nav>
+    <main>
+      <section>
+        <h3>Multimedia</h3>
+        <audio src="mm/aud.mp3" controls></audio>
+      </section>
+      <section>
+        <h3>Sobre nosotros</h3>
+        <a
+          id="anchorAboutUs"
+          href="#"
+          onclick="document.getElementById('oculto').style.display='block'; return false;"
+          >About Us. Read more!</a
+        >
+        <div id="oculto" style="display: none">
+          <h5>Contenido informativo oculto</h5>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse
+            aliquid ipsum, voluptatibus cumque possimus dolorum eos accusantium
+            quidem facere culpa iusto consequuntur illum, doloremque quae
+            similique soluta sequi. At, similique!
+          </p>
+        </div>
+      </section>
+      <section>
+        <h3>No encuentras tu producto? Añádelo</h3>
+        <div>
+          <form action="">
+            <fieldset>
+              <legend>Añade tu producto aquí</legend>
+              <label for="nombre">Introduce el nombre del producto</label>
+              <input type="text" name="nombre" placeholder="..." required />
+              <label for="imagen">Introduce una foto</label>
+              <input type="file" accept="png" required />
+              <button
+                type="submit"
+                onclick="alert('Has enviado tu formulario')">
+                Enviar
+              </button>
+            </fieldset>
+          </form>
+        </div>
+      </section>
+      <section>
+        <h3>Productos</h3>
+        <div>
+          <h5>Texto explicativo para la imagen</h5>
+          <img
+            type="image"
+            src="https://picsum.photos/150"
+            alt="Imagen aleatoria" />
+        </div>
+      </section>
+    </main>
+    <aside></aside>
+    <footer></footer>
+    <script src="js/accesibilidad02.js"></script>
+    <noscript
+      >Tu navegador no soporta JavaScript o está deshabilitado.</noscript
+    >
+  </body>
+</html>
