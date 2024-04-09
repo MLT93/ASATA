@@ -42,4 +42,4 @@ let textos = ["radar", "JavaScript", "sol", "mundo", "programar"];
 //*******************************  ESCRIBE A CONTINUACIÓN TU CÓDIGO PARA RESOLVER EL EJC *********************************/
 let textChartOverFive = [];
 textos.forEach((e) => (e.length > 5 ? textChartOverFive.push(e) : null));
-console.log(textChartOverFive);ñ
+console.log(textChartOverFive);
