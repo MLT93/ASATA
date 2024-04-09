@@ -91,33 +91,29 @@ invertirCadena("Hola");
 function contarVocales(cadena) {
   // ********************* ESCRIBE AQUÍ TU CÓDIGO PARA RESOLVER EL EJC ********************* /
   let contador = 0;
+  let result = [];
+  
   for (let i = 0; i < cadena.length; i++) {
     const element = cadena[i];
-    switch (true) {
-      case element === "a":
-        contador+=contador;
-        console.log(`Hay ${contador} vocales 'a'`);
-        break;
-      case element === "e":
-        contador++;
-        console.log(`Hay ${contador} vocales 'e'`);
-        break;
-      case element === "i":
-        contador++;
-        console.log(`Hay ${contador} vocales 'i'`);
-        break;
-      case element === "o":
-        contador++;
-        console.log(`Hay ${contador} vocales 'o'`);
-        break;
-      case element === "u":
-        contador++;
-        console.log(`Hay ${contador} vocales 'u'`);
-        break;
-      default:
-        break;
+    if (element === "a") {
+      contador++;
+      result.push(`Hay ${contador} vocales 'a'`);
+    } else if (element === "e") {
+      contador++;
+      result.push(`Hay ${contador} vocales 'e'`);
+    } else if (element === "i") {
+      contador++;
+      result.push(`Hay ${contador} vocales 'i'`);
+    } else if (element === "o") {
+      contador++;
+      result.push(`Hay ${contador} vocales 'o'`);
+    } else if (element === "u") {
+      contador++;
+      result.push(`Hay ${contador} vocales 'u'`);
     }
   }
+  console.log(result);
+  return result;
 }
 // ********************* ESCRIBE A CONTINUACIÓN LA INVOCACIÓN DE LA FUNCIÓN ********************* /
 contarVocales("Pepe");
