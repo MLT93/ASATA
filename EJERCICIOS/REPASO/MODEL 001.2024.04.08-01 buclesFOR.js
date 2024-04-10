@@ -100,28 +100,38 @@ function contarVocales(cadena) {
 
   cadena = cadena.toLowerCase();
 
+  /* Es mejor no utilizar el controlador Switch en general. Únicamente en casos particulares */
+  // for (let i = 0; i < cadena.length; i++) {
+  //   const element = cadena[i];
+  //   switch (true) {
+  //     case element === "a":
+  //       vocalesContadas.contador_A++;
+  //       break;
+  //     case element === "e":
+  //       vocalesContadas.contador_E++;
+  //       break;
+  //     case element === "i":
+  //       vocalesContadas.contador_I++;
+  //       break;
+  //     case element === "o":
+  //       vocalesContadas.contador_O++;
+  //       break;
+  //     case element === "u":
+  //       vocalesContadas.contador_U++;
+  //       break;
+  //   }
+  // }
+  // console.log(`Las vocales en '${cadena.toUpperCase()}' son:`, vocalesContadas);
+  // return vocalesContadas;
+
+  let counter = 0;
+  const vocales = ["aeiou", "AEIOU"];
   for (let i = 0; i < cadena.length; i++) {
     const element = cadena[i];
-    switch (true) {
-      case element === "a":
-        vocalesContadas.contador_A++;
-        break;
-      case element === "e":
-        vocalesContadas.contador_E++;
-        break;
-      case element === "i":
-        vocalesContadas.contador_I++;
-        break;
-      case element === "o":
-        vocalesContadas.contador_O++;
-        break;
-      case element === "u":
-        vocalesContadas.contador_U++;
-        break;
-    }
+    vocales.includes(element) ? counter++ : null;
   }
-  console.log(`Las vocales en '${cadena.toUpperCase()}' son:`, vocalesContadas);
-  return vocalesContadas;
+  console.log(`Las vocales en '${cadena.toUpperCase()}' son:`, vocales);
+  return counter;
 }
 // ********************* ESCRIBE A CONTINUACIÓN LA INVOCACIÓN DE LA FUNCIÓN ********************* /
 contarVocales("Pancho Villalba");
