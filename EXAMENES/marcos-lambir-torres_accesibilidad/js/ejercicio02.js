@@ -20,9 +20,10 @@ document.addEventListener("DOMContentLoaded", function () {
   changeFontSize();
 
   // Función para alternar el modo de alto contraste
-  isHighLightContrast = false;
+  let isHighLightContrast = false;
   function toggleHighContrast() {
     highContrastBtn.onclick = function () {
+      isHighLightContrast = !isHighLightContrast;
       if (isHighLightContrast) {
         body.style.background = "var(--color-contrast-4)";
         body.style.color = "white";
@@ -43,7 +44,6 @@ document.addEventListener("DOMContentLoaded", function () {
         resetBtn.style.background = "var(--color-contrast-5)";
         resetBtn.style.border = "3px solid white";
       } else {
-        isHighLightContrast = !isHighLightContrast;
         resetAccessibilitySettings();
       }
     };
@@ -52,33 +52,34 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Función para restablecer los ajustes de accesibilidad a los valores predeterminados
   function resetAccessibilitySettings() {
-    resetBtn.onclick = function () {
-      body.style.background = "";
-      body.style.color = "";
-      body.style.fontSize = "";
-      body.style.letterSpacing = "";
+    body.style.background = "";
+    body.style.color = "";
+    body.style.fontSize = "";
+    body.style.letterSpacing = "";
 
-      buttonSubmit.style.background = "";
-      buttonSubmit.style.border = " ";
-      buttonSubmit.style.fontSize = "";
+    buttonSubmit.style.background = "";
+    buttonSubmit.style.border = " ";
+    buttonSubmit.style.fontSize = "";
 
-      increaseTextBtn.style.background = "";
-      increaseTextBtn.style.border = " ";
-      increaseTextBtn.style.fontSize = "";
+    increaseTextBtn.style.background = "";
+    increaseTextBtn.style.border = " ";
+    increaseTextBtn.style.fontSize = "";
 
-      decreaseTextBtn.style.background = "";
-      decreaseTextBtn.style.border = " ";
-      decreaseTextBtn.style.fontSize = "";
+    decreaseTextBtn.style.background = "";
+    decreaseTextBtn.style.border = " ";
+    decreaseTextBtn.style.fontSize = "";
 
-      highContrastBtn.style.background = "";
-      highContrastBtn.style.border = " ";
-      highContrastBtn.style.fontSize = "";
+    highContrastBtn.style.background = "";
+    highContrastBtn.style.border = " ";
+    highContrastBtn.style.fontSize = "";
 
-      resetBtn.style.background = "";
-      resetBtn.style.border = " ";
-      resetBtn.style.fontSize = "";
-    };
+    resetBtn.style.background = "";
+    resetBtn.style.border = " ";
+    resetBtn.style.fontSize = "";
   }
+  resetBtn.onclick = function () {
+    resetAccessibilitySettings();
+  };
 
   // Event listeners para los botones de control
   increaseTextBtn.addEventListener("click", function () {});
