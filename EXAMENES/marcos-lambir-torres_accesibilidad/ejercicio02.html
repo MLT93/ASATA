@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cursos Online Accesibles para Todos</title>
+    <link rel="stylesheet" href="css/ejercicio02.css" />
+    <meta name="author" content="Marcos Lambir Torres" />
+    <meta name="description" content="Accesibilidad" />
+    <meta name="keywords" content="Curso, Formación, Examen" />
+  </head>
+  <body>
+    <header>
+      <h1>Cursos Online Accesibles para Todos</h1>
+    </header>
+    <nav>
+      <div class="accessibility-controls flex-row-cnt gap-m">
+        <button id="increaseText">A+ Tamaño de Texto</button>
+        <button id="decreaseText">A- Tamaño de Texto</button>
+        <button id="highContrast">Alto Contraste</button>
+        <button id="reset">Restablecer</button>
+      </div>
+    </nav>
+    <main>
+      <section id="inicio" class="flex-col-cnt gap-m max-width margin-top">
+        <div>
+          <h2>Descripción</h2>
+          <p>
+            La <strong>accesibilidad web</strong> en HTML se refiere a la
+            práctica de diseñar y desarrollar sitios web de manera que sean
+            <strong>accesibles para todas las personas</strong>, incluyendo
+            aquellas con discapacidades. Aquí tienes algunos puntos clave sobre
+            la accesibilidad en HTML:
+          </p>
+        </div>
+        <ol>
+          <li>
+            <h4>1. HTML Semántico:</h4>
+            <p>
+              Utilizar elementos HTML apropiados para su propósito es
+              fundamental. Esto se llama HTML semántico.
+            </p>
+            <p>
+              Por ejemplo, en lugar de usar un <code>div</code> para un botón de
+              reproducción de video, es preferible emplear un
+              <code>button</code>.
+            </p>
+            <p>
+              El uso correcto de elementos no solo mejora la accesibilidad, sino
+              también facilita el desarrollo y el SEO.
+            </p>
+          </li>
+          <li>
+            <h4>2. Beneficios del HTML Semántico:</h4>
+            <p>
+              Desarrollo más sencillo: Obtienes funcionalidades gratuitas y es
+              más fácil de entender.
+            </p>
+            <p>
+              Mejor en dispositivos móviles: El HTML semántico suele ser más
+              ligero y más fácil de hacer responsivo.
+            </p>
+            <p>
+              Bueno para SEO: Los motores de búsqueda valoran palabras clave
+              dentro de elementos semánticos como encabezados y enlaces.
+            </p>
+          </li>
+          <li>
+            <h4>3. Buena Semántica:</h4>
+            <p>
+              Al escribir HTML, es importante considerar la buena semántica.
+            </p>
+            <p>
+              Utiliza los elementos adecuados para cada caso y asegúrate de que
+              tu contenido sea comprensible y accesible para todos los usuarios.
+            </p>
+          </li>
+          <li>
+            <h4>4. Herramientas de Accesibilidad:</h4>
+            <p>
+              Además, es útil familiarizarse con herramientas como
+              <strong>lectores de pantalla</strong> para probar la accesibilidad
+              de tus páginas web.
+            </p>
+          </li>
+        </ol>
+      </section>
+
+      <section id="curosOfrecidos">
+        <h2>Cursos ofrecidos</h2>
+        <table>
+          <caption>
+            <h4>
+              Tabla de cursos formativos donde aprenderás accesibilidad web.
+            </h4>
+          </caption>
+          <thead>
+            <tr>
+              <th>Curso</th>
+              <th>Descripción</th>
+              <th>Duración</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Curso de HTML y CSS</td>
+              <td>
+                Para aprender a crear páginas web con HTML5 y estilos con CSS.
+              </td>
+              <td class="border-right-none">4 semanas</td>
+            </tr>
+            <tr>
+              <td>Curso de Introducción al Desarrollo Web: HTML y CSS</td>
+              <td>
+                Conocimientos básicos de HTML y CSS para crear páginas web
+                adaptativas.
+              </td>
+              <td class="border-right-none">6 semanas</td>
+            </tr>
+            <tr>
+              <td>HTML para principiantes</td>
+              <td>
+                Aprende el lenguaje HTML desde cero con ejemplos prácticos.
+              </td>
+              <td class="border-right-none">2 semanas</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="contacto">
+        <h2>Información de contacto</h2>
+        <form action="" id="formContacto">
+          <fieldset>
+            <legend>| FORMULARIO DE CONTACTO |</legend>
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" name="nombre" />
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" />
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" name="password" required />
+            <label for="confirm_password">Confirma contraseña:</label>
+            <input
+              type="password"
+              id="confirm_password"
+              name="confirm_password"
+              required />
+            <label for="birthdate">Fecha de nacimiento:</label>
+            <input type="date" id="birthdate" name="birthdate" />
+            <button type="submit" id="buttonSubmit">Enviar</button>
+            <!-- <input type="button" value="Registrarse" id="" onclick="register()" /> -->
+          </fieldset>
+        </form>
+      </section>
+      <!-- IMPLEMENTAR EL CONTENIDO AQUÍ -->
+    </main>
+    <footer>
+      <p>
+        &copy; 2024 Cursos Online Accesibles. Todos los derechos reservados.
+      </p>
+    </footer>
+    <script src="js/ejercicio02.js"></script>
+  </body>
+</html>
