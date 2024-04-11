@@ -1,23 +1,26 @@
-document.addEventListener("DOMContentLoaded", function (e) {
-  e.preventDefault();
-
+document.addEventListener("DOMContentLoaded", function () {
   // VARIABLES
+  const user = document.getElementById("userID");
+  const password = document.getElementById("passwordID");
   const buttonSubmit = document.getElementById("buttonSubmit");
-  const buttonShow = document.getElementById("buttonShow");
-  const comments = document.getElementById("comments");
+  const divUser = document.getElementById("divUserID");
+  const divPassword = document.getElementById("divPassID");
+  const mySpan_HTML = document.createElement("span");
 
-  // LOG IN
+  // VALIDAR LOG IN
   buttonSubmit.onclick = function (e) {
     e.preventDefault();
 
     try {
       /* Validación Nombre */
-      const user = document.getElementById("userID");
       if (!user.value) {
+        mySpan_HTML.classList.add("error");
+        mySpan_HTML.textContent = `Introduce tu nombre de usuario`;
+        divUser.appendChild(mySpan_HTML);
         throw { msg: "El nombre de usuario es obligatorio", element: user };
       }
+
       /* Validación de Password */
-      const password = document.getElementById("passwordID");
       if (
         !password.value ||
         password.value.match(
@@ -25,8 +28,11 @@ document.addEventListener("DOMContentLoaded", function (e) {
         ) ||
         Number(password.value) < 8
       ) {
+        mySpan_HTML.classList.add("error");
+        mySpan_HTML.textContent = `8 Chart, 1 Mayúscula, 1 Minúscula, 1 Símbolo`;
+        divPassword.appendChild(mySpan_HTML);
         throw {
-          msg: "La contraseña debe tener minimo 8 caracteres",
+          msg: "La contraseña debe tener al menos 8 caracteres, 1 letra mayúscula, 1 letra minúscula y 1 símbolo",
           element: password,
         };
       }
@@ -38,46 +44,13 @@ document.addEventListener("DOMContentLoaded", function (e) {
         e.style.backgroundColor = "";
         e.style.color = "";
       });
+      mySpan_HTML.textContent = ""
 
-      /* Si el usuario es correcto, carga la otra página */
-      if (password.value === "asdf123#Z" && user.value === "asdf123#Z") {
+      /* Autenticación del usuario */
+      if (password.value === "asdf#123%" && user.value === "asdf#123%") {
         alert("El usuario y contraseña son correctos");
         window.location.href = "pag02.html";
       }
-    } catch (error) {
-      console.error(error.msg);
-      error.element.style.borderColor = "red";
-      if (error.element.style.borderColor) {
-        error.element.style.color = "white";
-      }
-      error.element.style.backgroundColor = "tomato";
-      error.element.focus();
-    }
-  };
-
-  // TEXTAREA
-  buttonShow.onclick = function (event) {
-    event.preventDefault();
-
-    try {
-      /* Validación TextArea */
-      const textarea = document.getElementById("textAreaID");
-      if (!textarea.value) {
-        throw { msg: "Este campo no puede estar vacío", element: textarea };
-      }
-
-      // Create a new paragraph element
-      const myP_HTML = document.createElement("p");
-      myP_HTML.textContent = textarea.value; // Set its text content to the value of the textarea
-      comments.appendChild(myP_HTML); // Append the paragraph element to the comments container
-
-      /* Restablezco valores */
-      const formInputs = Array.from(document.querySelectorAll("input"));
-      formInputs.forEach((e) => {
-        e.style.borderColor = "";
-        e.style.backgroundColor = "";
-        e.style.color = "";
-      });
     } catch (error) {
       console.error(error.msg);
       error.element.style.borderColor = "red";

@@ -103,9 +103,8 @@ body {
     "header       header      header"
     "nav          nav         nav"
     "main         main        main"
-    "aside        aside       aside"
     "footer       footer      footer";
-  grid-template-rows: 7rem 7rem auto 5rem 7rem;
+  grid-template-rows: 7rem 7rem auto 7rem;
   /* grid-template-columns: 10rem auto auto; */
 }
 
@@ -254,6 +253,14 @@ footer {
   margin-top: 1rem;
 }
 
+.padding-top {
+  padding-top: 1rem;
+}
+
+.padding-bottom {
+  padding-bottom: 1rem;
+}
+
 .max-width {
   width: 100%;
   height: 100%;
@@ -381,6 +388,29 @@ a:hover {
   color: var(--color-9);
 }
 
+.comments {
+  padding: 10px;
+  background: var(--color-white);
+  color: var(--color-black);
+  font-style: italic;
+  text-transform: capitalize;
+  text-align: left;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  min-width: 200px;
+  border: 1px solid var(--color-shadow);
+}
+
+.error {
+  font-size: 0.5rem;
+  font-weight: bold;
+  letter-spacing: 0.3px;
+  color: rgb(151, 0, 0);
+}
+
 /* * LOG IN */
 fieldset {
   border: none;
@@ -388,7 +418,7 @@ fieldset {
 
 label[for="userID"],
 label[for="passwordID"] {
-  width: 90px;
+  width: 80%;
 }
 
 input[id="userID"],
@@ -413,6 +443,8 @@ textarea[id="textAreaID"] {
   padding: 0.5rem;
   font-size: medium;
   max-width: 200px;
+  background: var(--color-white);
+  border: 1px solid var(--color-shadow);
 }
 
 @media (width >= 1080px) {
@@ -425,9 +457,5 @@ textarea[id="textAreaID"] {
     grid-template-rows: 7rem 5rem auto 5rem;
     grid-template-columns: 10rem auto auto;
     /* gap: 0.3rem; */
-  }
-
-  aside {
-    display: none;
   }
 }
