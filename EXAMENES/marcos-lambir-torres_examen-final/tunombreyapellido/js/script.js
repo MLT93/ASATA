@@ -1,14 +1,15 @@
-document.addEventListener("DOMContentLoaded", function () {
-  // FORMULARIO
+document.addEventListener("DOMContentLoaded", function (e) {
+  e.preventDefault();
 
+  // VARIABLES
   const buttonSubmit = document.getElementById("buttonSubmit");
   const buttonShow = document.getElementById("buttonShow");
   const comments = document.getElementById("comments");
 
+  // LOG IN
   buttonSubmit.onclick = function (e) {
     e.preventDefault();
 
-    // VALIDACIONES LOG IN
     try {
       /* Validación Nombre */
       const user = document.getElementById("userID");
@@ -38,7 +39,8 @@ document.addEventListener("DOMContentLoaded", function () {
         e.style.color = "";
       });
 
-      if (password.value === "asdf3#" && user.value === "asdf") {
+      /* Si el usuario es correcto, carga la otra página */
+      if (password.value === "asdf123#Z" && user.value === "asdf123#Z") {
         alert("El usuario y contraseña son correctos");
         window.location.href = "pag02.html";
       }
@@ -53,20 +55,18 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 
+  // TEXTAREA
   buttonShow.onclick = function (event) {
     event.preventDefault();
 
-    // VALIDACIÓN TEXTAREA
     try {
       /* Validación TextArea */
       const textarea = document.getElementById("textAreaID");
       if (!textarea.value) {
         throw { msg: "Este campo no puede estar vacío", element: textarea };
-      } else {
-        const myP_HTML = document.createElement("p");
-        myP_HTML.innerHTML = `${comments.value}`;
-        comments.appendChild(myP_HTML);
       }
+
+      comments.innerHTML = `<p>${myP_HTML}</p>`;
 
       /* Restablezco valores */
       const formInputs = Array.from(document.querySelectorAll("input"));
