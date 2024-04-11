@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Marcos Lambir Torres" />
+    <meta name="description" content="JavaScript" />
+    <meta name="keywords" content="Curso, Formación, Examen" />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="shortcut icon" href="public/favicon.ico" type="image/x-icon" />
+    <title>Log In</title>
+  </head>
+  <body class="gradient-1">
+    <header>
+      <section class="flex-col-cnt section-container">
+        <div class="flex-row-cnt gap-s max-width">
+          <img
+            src="./asset/img/logo_empresa.png"
+            alt="Logo empresarial"
+            class="logo" />
+        </div>
+      </section>
+    </header>
+
+    <nav>
+      <section class="flex-col-cnt section-container">
+        <div class="flex-row-cnt gap-m max-width">
+          <ul>
+            <li><a href="./pag02.html" title="Página Principal">Home</a></li>
+          </ul>
+          <h2 class="">COMPANY</h2>
+          <ul>
+            <li><a href="./pag01.html" title="Página Login">Log In</a></li>
+          </ul>
+        </div>
+      </section>
+    </nav>
+
+    <main>
+      <section class="flex-col-cnt section-container">
+        <div class="flex-row-cnt gap-s position-relative section-container">
+          <div class="position-absolute svg-coordinate">
+            <svg
+              viewBox="0 0 1660 338"
+              width="100%"
+              color="text"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M804 166.523C520.5 166.523 267.5 290.022 0 304V338.5H1660V0C1358.83 0 1104 166.523 804 166.523Z"
+                fill="url(#paint0_linear_dark)"></path>
+              <defs>
+                <linearGradient
+                  id="paint0_linear_dark"
+                  x1="830"
+                  y1="83.5"
+                  x2="830"
+                  y2="338.5"
+                  gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#08060B" stop-opacity="0.2"></stop>
+                  <stop
+                    offset="0.545554"
+                    stop-color="#08060B"
+                    stop-opacity="0.5"></stop>
+                  <stop offset="1" stop-color="#08060B"></stop>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+
+          <div class="flex-row-cnt gap-s max-width z-index">
+            <form
+              action="./server-saving-form.php"
+              method="post"
+              target="_self"
+              autocomplete="on"
+              novalidate
+              id="formulario">
+              <fieldset class="flex-col-cnt gap-m text-align-center">
+                <legend class="margin-bottom">
+                  <h3>Introduce tu usuario y contraseña</h3>
+                </legend>
+                <div class="flex-row-cnt gap-s text-align-right">
+                  <label for="userID">Usuario</label>
+                  <input type="text" name="name" id="userID" required />
+                </div>
+                <div class="flex-row-cnt gap-s text-align-right">
+                  <label for="passwordID" class="text-alignt-right"
+                    >Contraseña</label
+                  >
+                  <input
+                    type="password"
+                    name="password"
+                    id="passwordID"
+                    autocomplete
+                    required />
+                </div>
+                <div class="margin-top">
+                  <button type="submit" id="buttonSubmit">Enviar</button>
+                </div>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <aside class="background-10">
+      <section class="flex-col-cnt section-container">
+        <div class="flex-row-cnt gap-s max-width">
+          <h2>Aside</h2>
+        </div>
+      </section>
+    </aside>
+
+    <footer class="gradient-2">
+      <section class="flex-col-cnt section-container">
+        <div class="flex-row-cnt gap-m max-width">
+          <h4 class="text-align-center">Todos los derechos reservados&copy;</h4>
+        </div>
+      </section>
+    </footer>
+
+    <script type="module" src="./js/script.js"></script>
+  </body>
+</html>

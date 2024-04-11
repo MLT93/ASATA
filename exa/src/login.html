@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Marcos Lambir Torres" />
+    <meta name="description" content="JavaScript" />
+    <meta name="keywords" content="Curso, Formación, Examen" />
+    <link rel="stylesheet" href="./css/login.css" />
+    <link rel="shortcut icon" href="public/favicon.ico" type="image/x-icon" />
+    <title>Home</title>
+  </head>
+  <body>
+    <header class="background-1">
+      <section class="flex-col-cnt section-container">
+        <div class="flex-row-cnt gap-s max-width">
+          <h1>Header</h1>
+        </div>
+      </section>
+    </header>
+
+    <nav class="background-2">
+      <section class="flex-col-cnt section-container">
+        <div class="flex-row-cnt gap-m max-width">
+          <ul>
+            <li><a href="./pag01.html" title="Página Principal">Home</a></li>
+          </ul>
+          <h2>Nav</h2>
+          <ul>
+            <li><a href="./pag02.html" title="Página Login">LogIn</a></li>
+          </ul>
+        </div>
+      </section>
+    </nav>
+
+    <main class="background-3">
+      <section class="flex-col-cnt section-container">
+        <div class="flex-row-cnt gap-s max-width">
+          <h2>Main</h2>
+          <form
+            action="./server-saving-form.php"
+            method="post"
+            target="_self"
+            autocomplete="on"
+            novalidate
+            id="formulario">
+            <fieldset>
+              <legend>
+                <h3>LOG IN</h3>
+              </legend>
+              <div>
+                <label for="nameID">Nombre:</label>
+                <input
+                  type="text"
+                  name="name"
+                  id="nameID"
+                  placeholder="Nombre"
+                  required />
+              </div>
+              <div>
+                <label for="lastNameID">Apellidos:</label>
+                <input
+                  type="text"
+                  name="last-name"
+                  id="lastNameID"
+                  placeholder="Apellidos"
+                  required />
+              </div>
+              <div>
+                <label for="ageID">Edad:</label>
+                <input
+                  type="date"
+                  name="age"
+                  id="ageID"
+                  placeholder="Edad"
+                  required />
+              </div>
+              <div>
+                <label for="emailID">E-mail:</label>
+                <input
+                  type="email"
+                  name="email"
+                  id="emailID"
+                  placeholder="Correo"
+                  required />
+              </div>
+              <div>
+                <label for="passwordID">Contraseña:</label>
+                <input
+                  type="password"
+                  name="password"
+                  id="passwordID"
+                  placeholder="*********"
+                  required />
+              </div>
+              <button type="submit" id="buttonSubmit">Enviar Formulario</button>
+            </fieldset>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <aside class="background-4">
+      <section class="flex-col-cnt section-container">
+        <div class="flex-row-cnt gap-s max-width">
+          <h2>Aside</h2>
+        </div>
+      </section>
+    </aside>
+
+    <footer class="background-5">
+      <section class="flex-col-cnt section-container">
+        <div class="flex-row-cnt gap-m max-width">
+          <h2>&copy;Footer</h2>
+          <ul>
+            <li><a href="#" title="Footer link">Footer link</a></li>
+          </ul>
+        </div>
+      </section>
+    </footer>
+
+    <script type="module" src="./js/login.js"></script>
+  </body>
+</html>

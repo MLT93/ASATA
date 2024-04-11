@@ -23,6 +23,9 @@
       }
     </style>
   </head>
+  <!-- ToDo: MODIFICAR TODOS LOS CAMPOS "label". -->
+  <!-- El atributo "for=''" se enlaza únicamente al atributo "id=''" del tag "input" -->
+  <!-- Existe otra forma: envolver el tag "input" dentro del tag "label". Ideal para "input type='checkbox'" o "input type='radio'" -->
   <body>
     <header>
       <h1>FORMULARIOS</h1>
@@ -35,23 +38,22 @@
           method="post"
           class="form"
           target="_self"
-          autocomplete="on"
-        >
+          autocomplete="on">
           <fieldset class="field">
             <legend>
               <h3>INFORMACIÓN PERSONAL</h3>
             </legend>
             <div>
               <label for="nombre">Nombre usuario</label>
-              <input type="text" name="nombre" placeholder="Nombre" />
+              <input type="text" name="nombre" placeholder="Nombre" required />
             </div>
             <div>
               <label for="apellidos">Apellidos usuario</label>
-              <input type="text" name="apellidos" placeholder="Apellidos" />
+              <input type="text" name="apellidos" placeholder="Apellidos" required />
             </div>
             <div>
               <label for="date">Fecha de nacimiento</label>
-              <input type="date" name="date" />
+              <input type="date" name="date" required />
             </div>
             <div>
               <label for="#edad">Edad</label>
@@ -59,8 +61,7 @@
                 type="number"
                 name="edad"
                 id=""
-                placeholder="Introduce tu edad"
-              />
+                placeholder="Introduce tu edad" required />
             </div>
             <div style="display: flex; flex-direction: column">
               <label for="#descripcion">Descripción personal</label>
@@ -69,8 +70,7 @@
                 id=""
                 cols="30"
                 rows="10"
-                placeholder="Cuéntanos algo sobre ti"
-              ></textarea>
+                placeholder="Cuéntanos algo sobre ti"></textarea>
             </div>
             <div>
               <label for="#web">Página web personal</label>
@@ -89,8 +89,7 @@
                 placeholder="Número de teléfono"
                 required
                 min="0"
-                max="9"
-              />
+                max="9" />
             </div>
           </fieldset>
           <fieldset class="field">
@@ -103,8 +102,7 @@
                 type="text"
                 name="usuario"
                 placeholder="Usuario"
-                autofocus
-              />
+                autofocus />
             </div>
             <div>
               <label for="passowrd">Contraseña</label>
@@ -181,8 +179,7 @@
               <input
                 type="button"
                 value="Haz click aqui"
-                onclick="alert(`Esto es un mejsaje de alerta`)"
-              />
+                onclick="alert(`Esto es un mejsaje de alerta`)" />
             </div>
           </fieldset>
 
@@ -205,8 +202,7 @@
               src="./img/arrow_right.png"
               alt="Submit"
               width="30"
-              height="30"
-            />
+              height="30" />
           </div>
         </form>
       </section>
