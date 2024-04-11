@@ -66,7 +66,10 @@ document.addEventListener("DOMContentLoaded", function (e) {
         throw { msg: "Este campo no puede estar vacío", element: textarea };
       }
 
-      comments.innerHTML = `<p>${myP_HTML}</p>`;
+      // Create a new paragraph element
+      const myP_HTML = document.createElement("p");
+      myP_HTML.textContent = textarea.value; // Set its text content to the value of the textarea
+      comments.appendChild(myP_HTML); // Append the paragraph element to the comments container
 
       /* Restablezco valores */
       const formInputs = Array.from(document.querySelectorAll("input"));
