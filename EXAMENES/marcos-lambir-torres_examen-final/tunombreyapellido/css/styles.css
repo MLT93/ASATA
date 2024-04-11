@@ -48,7 +48,7 @@
   --color-11: rgb(95, 164, 215);
 
   --color-2-hover: rgba(40, 255, 255, 0.508);
-  --color-7-hover: rgba(0, 106, 255, 0.592);
+  --color-7-hover: rgba(0, 106, 255, 0.704);
 
   --color-black: rgb(7, 7, 7);
   --color-white: rgb(230, 237, 250);
@@ -377,6 +377,10 @@ a:hover {
   z-index: 1;
 }
 
+.text-white {
+  color: var(--color-9);
+}
+
 /* * LOG IN */
 fieldset {
   border: none;
@@ -408,7 +412,7 @@ textarea[id="textAreaID"] {
   -o-border-radius: 10px;
   padding: 0.5rem;
   font-size: medium;
-  max-width: 170px;
+  max-width: 200px;
 }
 
 @media (width >= 1080px) {

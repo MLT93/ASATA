@@ -38,9 +38,9 @@ document.addEventListener("DOMContentLoaded", function () {
         e.style.color = "";
       });
 
-      if (password.value === "asdf" && user.value === "asdf") {
+      if (password.value === "asdf3#" && user.value === "asdf") {
         alert("El usuario y contraseña son correctos");
-        window.document.open("pag02.html");
+        window.location.href = "pag02.html";
       }
     } catch (error) {
       console.error(error.msg);
@@ -53,18 +53,20 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 
-  buttonShow.onclick = function (e) {
-    e.preventDefault();
+  buttonShow.onclick = function (event) {
+    event.preventDefault();
 
     // VALIDACIÓN TEXTAREA
     try {
       /* Validación TextArea */
-      const textarea = document.getElementById("textareaID");
+      const textarea = document.getElementById("textAreaID");
       if (!textarea.value) {
         throw { msg: "Este campo no puede estar vacío", element: textarea };
+      } else {
+        const myP_HTML = document.createElement("p");
+        myP_HTML.innerHTML = `${comments.value}`;
+        comments.appendChild(myP_HTML);
       }
-
-      comments.innerHTML = `<p>${comments.value}</p>`
 
       /* Restablezco valores */
       const formInputs = Array.from(document.querySelectorAll("input"));
@@ -73,7 +75,6 @@ document.addEventListener("DOMContentLoaded", function () {
         e.style.backgroundColor = "";
         e.style.color = "";
       });
-
     } catch (error) {
       console.error(error.msg);
       error.element.style.borderColor = "red";
