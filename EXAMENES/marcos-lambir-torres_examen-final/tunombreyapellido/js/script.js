@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         if (!regExpSearched.test(password.value)) {
           mySpan_HTML.classList.add("error");
-          mySpan_HTML.textContent = `8 Chart, 1 Mayúscula, 1 Minúscula, 1 Símbolo`;
+          mySpan_HTML.textContent = `8 Chart, 1 Capital, 1 Lower, 1 Symbol`;
           divPassword.appendChild(mySpan_HTML);
           throw {
             msg: "La contraseña debe tener 8 caracteres, 1 letra mayúscula, 1 letra minúscula y 1 símbolo",
