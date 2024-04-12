@@ -74,7 +74,9 @@ document.addEventListener("DOMContentLoaded", async function () {
       let searched = document.getElementById("searchingText").value;
       searched = searched.toLowerCase(); // PASO A MINÚSCULA
 
-      // Crear una expresión regular que coincida con las letras en cualquier posición. La bandera `gi` en la expresión regular indica que la búsqueda debe ser general e insensible a mayúsculas y minúsculas.
+      // Crear una expresión regular que coincida con las letras en cualquier posición
+      // `regExp()` es útil para crear una expresión regular y buscar cosas determinadas
+      // La bandera `gi` en la expresión regular indica que la búsqueda debe ser general e insensible a mayúsculas y minúsculas
       const regExp = new RegExp(searched, "gi");
       await dataUsuariosEnParsed.filter((e) => {
         // Si hay un match con el `regExp` entonces lo guarda en `elementSearched`
@@ -82,7 +84,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           // Reemplazar las palabras encontradas con un `<span></span>` con el nuevo estilo. La variable `$&` llama a la variable en la cual se almacena este mismo valor
           const highlightedName = e.name.replace(
             regExp,
-            `<span style="background-color: yellow;">$&</span>`
+            `<span style="background-color: yellow;">$&</span>`,
           );
 
           // Reemplaza también los viejos elementos con los nuevos elementos encontrados y los agrega al nuevo array
@@ -96,7 +98,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         displayElements(
           elementSearched,
           emailsCorresponding,
-          citiesCorresponding
+          citiesCorresponding,
         );
       });
 

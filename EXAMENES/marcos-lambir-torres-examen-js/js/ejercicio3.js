@@ -84,6 +84,7 @@ function validarSeleccion(id, mensajeError) {
   //INTRODUCIR EL CÓDIGO NECESARIO
   const country = document.getElementById(id);
   let searched = country.value;
+  // `regExp()` es útil para crear una expresión regular y buscar cosas determinadas
   const myRegExp = new RegExp(searched, "gi");
   if (!country.value.match(myRegExp)) {
     throw {
@@ -97,6 +98,7 @@ function validarCheckbox(nombre, mensajeError) {
   //INTRODUCIR EL CÓDIGO NECESARIO
   const checkbox = document.getElementById(nombre);
   let searched = checkbox.value;
+  // `regExp()` es útil para crear una expresión regular y buscar cosas determinadas
   const myRegExp = new RegExp(searched, "gi");
   if (!checkbox.value.match(myRegExp)) {
     throw {

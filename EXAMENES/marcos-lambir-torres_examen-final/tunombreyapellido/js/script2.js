@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   // VARIABLES
+  const formulario = document.getElementById("formulario");
   const comments = document.getElementById("comments");
   const buttonShow = document.getElementById("buttonShow");
   const textarea = document.getElementById("textAreaID");
@@ -34,15 +35,23 @@ document.addEventListener("DOMContentLoaded", function () {
   function resetTextArea() {
     textarea.onclick = function () {
       textarea.innerHTML = "";
+      textarea.style.color = "";
       textarea.style.borderColor = "";
       textarea.style.backgroundColor = "";
-      textarea.style.color = "";
     };
+    textarea.addEventListener("keypress", () => {
+      textarea.innerHTML = "";
+      textarea.style.color = "";
+      textarea.style.borderColor = "";
+      textarea.style.backgroundColor = "";
+    });
   }
 
-  buttonShow.onclick = function (e) {
-    e.preventDefault();
-    validation();
-    resetTextArea();
-  };
+  if (formulario) {
+    buttonShow.onclick = function (e) {
+      e.preventDefault();
+      validation();
+      resetTextArea();
+    };
+  }
 });

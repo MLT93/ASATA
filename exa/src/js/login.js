@@ -36,6 +36,14 @@ document.addEventListener("DOMContentLoaded", () => {
         };
       }
       /* Validación de Password */
+      /**
+       * | INPUT ||         CONDITION          |
+       * password.value.match(regExpValidation);
+       *
+       * |     CONDITION      ||    INPUT     |
+       * regExpValidation.test(password.value);
+       */
+
       const password = document.getElementById("passwordID");
       if (
         !password.value ||
