@@ -25,14 +25,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
         /* Validación de Password */
         /**
-         * | INPUT ||         CONDITION          |
-         * password.value.match(regExpValidation);
+         * * | INPUT ||         CONDITION        |
+         * * password.value.match(regExpSearched);
          *
-         * |     CONDITION      ||    INPUT     |
-         * regExpValidation.test(password.value);
+         * * |     CONDITION      ||    INPUT    |
+         * * !regExpSearched.test(password.value);
          */
         password.value.trim();
-        const regExpValidation =
+        const regExpSearched =
           /^(?=.*\d)(?=(.*\W))(?=.*[a-zA-Z])(?!.*\s).{8,16}$/;
         if (!password.value) {
           mySpan_HTML.classList.add("error");
@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
             element: password,
           };
         }
-        if (!regExpValidation.test(password.value)) {
+        if (!regExpSearched.test(password.value)) {
           mySpan_HTML.classList.add("error");
           mySpan_HTML.textContent = `8 Chart, 1 Mayúscula, 1 Minúscula, 1 Símbolo`;
           divPassword.appendChild(mySpan_HTML);

@@ -52,17 +52,15 @@ validationButton.onclick = function () {
     }
     /* Validación de Password */
     /**
-     * | INPUT ||         CONDITION          |
-     * password.value.match(regExpValidation);
+     * * | INPUT ||         CONDITION        |
+     * * password.value.match(regExpSearched);
      *
-     * |     CONDITION      ||    INPUT     |
-     * regExpValidation.test(password.value);
+     * * |     CONDITION      ||    INPUT    |
+     * * !regExpSearched.test(password.value);
      */
+    const regExpSearched = /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/;
     const password = document.getElementById("password");
-    if (
-      !password.value ||
-      password.value.match(/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/)
-    ) {
+    if (!password.value || password.value.match(regExpSearched)) {
       throw { msg: "La contraseña no es correcta", element: password };
     }
 

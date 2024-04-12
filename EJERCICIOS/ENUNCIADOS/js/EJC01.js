@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
       // Crear una expresión regular que coincida con las letras en cualquier posición
       // `regExp()` es útil para crear una expresión regular y buscar cosas determinadas
-      // La bandera `gi` en la expresión regular indica que la búsqueda debe ser general e insensible a mayúsculas y minúsculas
+      // La bandera/flag `gi` en la expresión regular indica que la búsqueda debe ser global e insensible a mayúsculas y minúsculas
       const regExp = new RegExp(searched, "gi");
       await dataUsuariosEnParsed.filter((e) => {
         // Si hay un match con el `regExp` entonces lo guarda en `elementSearched`
