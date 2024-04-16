@@ -45,9 +45,9 @@
 
   for ($i = 0; $i < count($array); $i++) {
     $array[$i] = $array[$i] / 3;
-    # Si se divide entre 1 y da 0, es entero
+    # Si se divide entre 1 y el resto es 0, será entero
     if ($array[$i] % 1 === 0) {
-      # Si se divide entre 2 y da 0, es par
+      # Si se divide entre 2 y el resto es 0, será par
       if ($array[$i] % 2 === 0) {
         echo "$array[$i], ";
       }
