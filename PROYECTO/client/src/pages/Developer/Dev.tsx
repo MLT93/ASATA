@@ -12,9 +12,10 @@ const Dev = () => {
       <Text size="h5" text="H5" />
       <Text size="p" text="P" />
       <Text size="a" text="A" />
+      <br />
       <Text size="sp-bold" text="Sp" />
       <hr />
-      <Link text="Link" href="###" isAnchorPrimary />
+      <Link text="Link" href="###" isAnchorPrimary isTarget />
     </>
   );
 };

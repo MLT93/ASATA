@@ -28,8 +28,8 @@
   color: var(--color-contrast-2);
 
   &:hover {
-    filter: drop-shadow(0 0 0.5rem var(--color-contrast-1));
-    -webkit-filter: drop-shadow(0 0 0.5rem var(--color-contrast-1));
+    filter: drop-shadow(0 0 0.5rem var(--color-3));
+    -webkit-filter: drop-shadow(0 0 0.5rem var(--color-3));
   }
 }
 
