@@ -38,14 +38,19 @@
 
   echo "<br/>";
 
+  # `count()` sería el contador de la longitud del array (como el length en JavaScript)
   $section = count($array) / 3;
 
   echo "$section <br/>";
 
-  for ($i=0; $i < count($array); $i++) { 
+  for ($i = 0; $i < count($array); $i++) {
     $array[$i] = $array[$i] / 3;
-    if ($array[$i]%2 === 0 ) {
-      echo "$array[$i], ";
+    # Si se divide entre 1 y da 0, es entero
+    if ($array[$i] % 1 === 0) {
+      # Si se divide entre 2 y da 0, es par
+      if ($array[$i] % 2 === 0) {
+        echo "$array[$i], ";
+      }
     }
   }
   ?>
