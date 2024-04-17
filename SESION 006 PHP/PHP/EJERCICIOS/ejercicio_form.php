@@ -65,7 +65,7 @@
     // `count()` sirve para contar la cantidad de elementos dentro de un objeto iterable. Como `length` en JavaScript
     for ($i = 0; $i < (count($usuarios)); $i++) {
       // Esta forma es mejor porque identifica exactamente cada "input"
-      if ($name === $usuarios[$i][0] && $password === $usuarios[$i][1] || $email === $usuarios[$i][2] && $password === $usuarios[$i][1]) {
+      if ($name === $usuarios[$i][0] && $password === $usuarios[$i][2] || $email === $usuarios[$i][1] && $password === $usuarios[$i][2]) {
         echo "<p>Index: $i | <strong>201 - Se ha encontrado el usuario</strong></p>";
       } else {
         echo "<p> Index: $i | 404 - Not Found</p>";
