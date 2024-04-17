@@ -53,6 +53,7 @@
     // * ENTONCES, SI LE DECIMOS QUE CUENTE HASTA 5 UTILIZANDO EL OPERADOR "<=", OBTENDREMOS UN ERROR PORQUE TRATARÁ DE IGUALAR SIEMPRE EL VALOR
 
     echo "<h4>Forma incorrecta en cuanto al orden de ingreso en los INPUTS</h4>";
+    echo "<p>Si modificamos el orden entre 'password' y 'nombre' encontrará igualmente el usuario porque el código no especifica el orden en el cual debe buscar</p>";
 
     // `count()` sirve para contar la cantidad de elementos dentro de un objeto iterable. Como `length` en JavaScript
     for ($i = 0; $i < (count($usuarios)); $i++) {
