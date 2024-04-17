@@ -52,6 +52,8 @@
     // * ESTO OCURRE PORQUE "$i" EMPIEZA A CONTAR DESDE EL NÚMERO 0 HASTA EL FINAL DEL ARRAY, QUE SEGÚN "$i" VALE 4 (PORQUE TODO ARRAY EMPIEZA A CONTAR DESDE EL 0)
     // * ENTONCES, SI LE DECIMOS QUE CUENTE HASTA 5 UTILIZANDO EL OPERADOR "<=", OBTENDREMOS UN ERROR PORQUE TRATARÁ DE IGUALAR SIEMPRE EL VALOR
 
+    echo "<h4>Forma incorrecta</h4><br/>";
+
     // `count()` sirve para contar la cantidad de elementos dentro de un objeto iterable. Como `length` en JavaScript
     for ($i = 0; $i < (count($usuarios)); $i++) {
       // Esta forma no es válida porque no identifica el orden de los "inputs"
@@ -61,6 +63,8 @@
         echo "<p> Index: $i | 404 - Not Found</p>";
       }
     }
+
+    echo "<h4>Forma Correcta</h4><br/>";
 
     // `count()` sirve para contar la cantidad de elementos dentro de un objeto iterable. Como `length` en JavaScript
     for ($i = 0; $i < (count($usuarios)); $i++) {
