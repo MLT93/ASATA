@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
       element.unshift(`id: ${index}`);
       console.log(element);
 
-      /*       if (element.lenght - 1 < 18) {
+      /*       if (element.length - 1 < 18) {
         console.log("Este alumno es menor de edad.");
       } else {
         clase2.push(element);

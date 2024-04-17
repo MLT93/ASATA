@@ -1,6 +1,6 @@
 <?php
 
-// Concatenación con "."
+// ? PARA CONCATENAR SE UTILIZA EL PUNTO "."
 
 $cadena1 = "Mi nombre es ";
 $cadena2 = "Pancho";

@@ -3,7 +3,7 @@
 // ! false = 0
 // ! Recuerda que si es falso, al devolver 0 no se verá el resultado en pantalla
 
-// TODO: VERIFICAR EXISTENCIA DEL PARÁMETRO Y BORRAR SU EXISTENCIA
+// ? VERIFICAR EXISTENCIA DEL PARÁMETRO Y BORRAR SU EXISTENCIA
 $nombre = "Antonio";
 
 // `isset()` verifica si el parámetro existe y posee un valor, devolviendo `1` o `0` (verdadero o falso)
@@ -31,7 +31,7 @@ $precioIVA = $precioTotal * 1.21;
 $respuesta = "El precio total de mi compra es:";
 $productos = ["queso", "agua", "huevos", "azúcar"];
 
-// TODO: COMPRUEBA EL TIPO DEL PARÁMETRO
+// ? COMPRUEBA EL TIPO DEL PARÁMETRO
 
 // `is_integer()` verifica si es de tipo `Integer`
 echo "El precio total es un 'Integer'? " . is_integer($precioTotal); //=> 1
@@ -53,7 +53,7 @@ echo "<br/>";
 echo "****************************************";
 echo "<br/>";
 
-// TODO: PARSEA EL TIPO DE DATO
+// ? PARSEA EL TIPO DE DATO
 
 $cadena = "200"; // Tipo string
 
@@ -77,7 +77,7 @@ echo "<br/>";
 echo "****************************************";
 echo "<br/>";
 
-// TODO: CREACIÓN DE VARIABLES CONSTANTES
+// ? CREACIÓN DE VARIABLES CONSTANTES
 
 // `define()` recibe dos parámetros. El nombre de la constante y su valor
 define("IFCD0210", "Desarrollo Web");
@@ -93,7 +93,7 @@ echo "<br/>";
 echo "****************************************";
 echo "<br/>";
 
-// TODO: SABER SI UNA CONSTANTE ESTÁ DEFINIDA
+// ? SABER SI UNA CONSTANTE ESTÁ DEFINIDA
 
 // `defined()` comprueba si un nombre dado de una constante existe
 echo defined("numberPI"); //=> 1
