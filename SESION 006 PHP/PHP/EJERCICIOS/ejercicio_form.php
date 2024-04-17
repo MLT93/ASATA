@@ -52,7 +52,7 @@
     // * ESTO OCURRE PORQUE "$i" EMPIEZA A CONTAR DESDE EL NÚMERO 0 HASTA EL FINAL DEL ARRAY, QUE SEGÚN "$i" VALE 4 (PORQUE TODO ARRAY EMPIEZA A CONTAR DESDE EL 0)
     // * ENTONCES, SI LE DECIMOS QUE CUENTE HASTA 5 UTILIZANDO EL OPERADOR "<=", OBTENDREMOS UN ERROR PORQUE TRATARÁ DE IGUALAR SIEMPRE EL VALOR
 
-    echo "<h4>Forma incorrecta</h4><br/>";
+    echo "<h4>Forma incorrecta en cuanto al orden de ingreso en los INPUTS</h4>";
 
     // `count()` sirve para contar la cantidad de elementos dentro de un objeto iterable. Como `length` en JavaScript
     for ($i = 0; $i < (count($usuarios)); $i++) {
@@ -64,7 +64,7 @@
       }
     }
 
-    echo "<h4>Forma Correcta</h4><br/>";
+    echo "<h4>Forma Correcta en cuanto al orden de ingreso en los INPUTS</h4>";
 
     // `count()` sirve para contar la cantidad de elementos dentro de un objeto iterable. Como `length` en JavaScript
     for ($i = 0; $i < (count($usuarios)); $i++) {
@@ -81,10 +81,6 @@
   $miArrayEjemplo = ["blanco", "azul", "negro"];
   // Función para buscar en un array: recibe dos parámetros. Lo que deseo buscar y el array donde buscarlo
   in_array("verde", $miArrayEjemplo); //=> 0
-
-
-
-
   ?>
 </body>
 
