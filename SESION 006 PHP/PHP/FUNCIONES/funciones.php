@@ -1,5 +1,7 @@
 <?php
 
+// ? SIGUE EL MÉTODO DE JavaScript PARA FUNCS NORMALES
+
 function cuadrado($num)
 {
   echo "Esto en la función " . __FUNCTION__;
