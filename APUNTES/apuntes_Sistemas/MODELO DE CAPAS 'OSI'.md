@@ -8,8 +8,13 @@ MODELO DE CAPAS 'OSI'
 
 4. Capa de transporte -> es la seguridad y el cifrado entre el sitio web y el navegador.  Es garantizar que los paquetes de datos lleguen en el orden correcto (SSL, TLS...)
 
-5. Capa de sesión -> protocolos de incio, modificación y finalización de la sesión de un usuario. Es responsable de la coordinación de la red entre dos aplicaciones independientes en una sesión. Una sesión gestiona el inicio y el final de los conflictos de sincronización y conexión de una aplicación uno a uno (TIP, NFS, SMB, SIP...)
+5. Capa de sesión -> protocolos de inicio, modificación y finalización de la sesión de un usuario. Es responsable de la coordinación de la red entre dos aplicaciones independientes en una sesión. Una sesión gestiona el inicio y el final de los conflictos de sincronización y conexión de una aplicación uno a uno (TIP, NFS, SMB, SIP...)
 
 6. Capa de presentación -> es la sintaxis de los datos en sí. El lenguaje de programación que los procesa (PHP, HTML, JSON...)
 
 7. Capa de aplicación -> se refiere al tipo específico de aplicación en sí y a sus métodos de comunicación para los usuarios finales (HTTP, HTTPS, SMTP, POP3...)
+
+
+DNS
+  
+1. Es una gran database (aplicación) con todas las IP de las páginas web. Cada IP tiene asociada un nombre específico (ej. google.com === 142.250.200.142)
