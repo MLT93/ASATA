@@ -1,0 +1,41 @@
+body {
+ font-family: Arial, sans-serif;
+ line-height: 1.6;
+ margin: 0;
+ padding: 0;
+ background-color: #f4f4f4;
+}
+
+header, nav, main, footer {
+ padding: 20px;
+}
+
+h1, h2 {
+ color: #333;
+}
+
+nav ul {
+ list-style: none;
+ padding: 0;
+}
+
+nav ul li {
+ background-color: #333;
+ color: white;
+ margin-bottom: 1px;
+ padding: 10px;
+ cursor: pointer;
+}
+
+nav ul li:focus {
+ background-color: #555;
+ outline: none;
+}
+
+footer {
+ text-align: center;
+ margin-top: 20px;
+}
+button:focus {
+ outline: 2px solid blue; /* Asegura que el foco sea visible */
+}

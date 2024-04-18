@@ -11,8 +11,8 @@ let resta = 10 - 5;// se asigna el valor de la resta a la variable resta
 console.log(resta); // se imprime el valor de la variable resta
 
 //Multiplicación
-let multiplicacion = 5 * 5;// se asigna el valor de la multiplicacion a la variable multiplicacion
-console.log(multiplicacion); // se imprime el valor de la variable multiplicacion
+let multiplicar = 5 * 5;// se asigna el valor de la multiplicar a la variable multiplicar
+console.log(multiplicar); // se imprime el valor de la variable multiplicar
 
 //División
 let division = 10 / 5;
@@ -35,33 +35,33 @@ console.log(decremento);
 //Operadores de asignación
 
 //Asignación
-let asignacion = 10;
-console.log(asignacion);
+let asignar = 10;
+console.log(asignar);
 
 //Suma y asignación
-let sumaAsignacion = 10;
-sumaAsignacion += 5;//sumaAsignacion = sumaAsignacion + 5
-console.log(sumaAsignacion); // se imprime el valor de la variable sumaAsignacion
+let actualizaValorConSuma = 10;
+actualizaValorConSuma += 5;//actualizaValorConSuma = actualizaValorConSuma + 5
+console.log(actualizaValorConSuma); // se imprime el valor de la variable actualizaValorConSuma
 
 //Resta y asignación
-let restaAsignacion = 10;
-restaAsignacion -= 5;//restaAsignacion = restaAsignacion - 5
-console.log(restaAsignacion); // se imprime el valor de la variable restaAsignacion
+let actualizaValorConResta = 10;
+actualizaValorConResta -= 5;//actualizaValorConResta = actualizaValorConResta - 5
+console.log(actualizaValorConResta); // se imprime el valor de la variable actualizaValorConResta
 
 //Multiplicación y asignación
-let multiplicacionAsignacion = 10;
-multiplicacionAsignacion *= 5;//multiplicacionAsignacion = multiplicacionAsignacion * 5
-console.log(multiplicacionAsignacion); // se imprime el valor de la variable multiplicacionAsignacion
+let actualizaValorConMultiplication = 10;
+actualizaValorConMultiplication *= 5;//actualizaValorConMultiplication = actualizaValorConMultiplication * 5
+console.log(actualizaValorConMultiplication); // se imprime el valor de la variable actualizaValorConMultiplication
 
 //División y asignación
-let divisionAsignacion = 10;
-divisionAsignacion /= 5;//divisionAsignacion = divisionAsignacion / 5
-console.log(divisionAsignacion); // se imprime el valor de la variable divisionAsignacion
+let actualizaValorConDivision = 10;
+actualizaValorConDivision /= 5;//actualizaValorConDivision = actualizaValorConDivision / 5
+console.log(actualizaValorConDivision); // se imprime el valor de la variable actualizaValorConDivision
 
 // Módulo y asignación
-let moduloAsignacion = 10;
-moduloAsignacion %= 5;//moduloAsignacion = moduloAsignacion % 5
-console.log(moduloAsignacion); // se imprime el valor de la variable moduloAsignacion
+let actualizaValorConModule = 10;
+actualizaValorConModule %= 5;//actualizaValorConModule = actualizaValorConModule % 5
+console.log(actualizaValorConModule); // se imprime el valor de la variable actualizaValorConModule
 
 //Operadores de comparación
 
@@ -119,14 +119,14 @@ console.log(not);// se imprime false el valor de la variable not
 
 //Operadores de concatenación
 
-//Concatenación
-let concatenacion = 'Hola ' + 'Mundo';
-console.log(concatenacion);// se imprime Hola Mundo el valor de la variable concatenacion
+//Concatenación de strings
+let concat = 'Hola ' + 'Mundo';
+console.log(concat);// se imprime Hola Mundo el valor de la variable concatenación
 
 //Concatenación y asignación
-let concatenacion2 = 'Hola '; 
-concatenacion2 += 'Mundo';//concatenacion2 = concatenacion2 + 'Mundo'
-console.log(concatenacion2);// se imprime Hola Mundo el valor de la variable concatenacion2
+let concat2 = 'Hola '; 
+concat2 += 'Mundo';//concat2 = concat2 + 'Mundo'
+console.log(concat2);// se imprime Hola Mundo el valor de la variable concat2
 
 //Operadores ternarios
 // Ejemplo 1: Asignar un valor a una variable basado en una condición
@@ -203,7 +203,7 @@ for (let i = 0; i < 5; i++) {
   console.log(i);
 }// se imprime 0 1 2 3 4
 
-//While se ejecuta prieramente si la condición es verdadera, y se detiene cuando la condición es falsa
+//While se ejecuta después de comprobar la condición, y se detiene cuando la condición es falsa
 let i = 0;
 while (i < 5) {
   console.log(i);
@@ -231,7 +231,7 @@ for (let i = 10; i <= 55; i++) {//extra inicia en 10 y se ejecuta mientras extra
   }
 }
 
-console.log('Ejericio con While');
+console.log('Ejercicio con While');
 
 let extra = 10; //extra inicia en 10
 while (extra <= 55) { //se ejecuta mientras extra sea menor que 56

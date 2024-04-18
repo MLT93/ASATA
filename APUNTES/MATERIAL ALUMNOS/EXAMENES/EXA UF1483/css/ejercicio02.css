@@ -1,0 +1,80 @@
+/* Estilos Generales */
+body {
+ font-family: Arial, sans-serif;
+ color: #333; /* Color de texto oscuro para mejorar la legibilidad */
+ background-color: #fff; /* Fondo claro */
+ font-size: 16px; /* Tamaño de fuente base para facilitar la lectura */
+}
+
+h1, h2, p, button, input, textarea {
+ margin: 0.75em 0;
+}
+
+a {
+ color: #0066cc; /* Asegura que los enlaces tengan un color distintivo */
+}
+
+/* Controles de Accesibilidad */
+.accessibility-controls button {
+ background-color: #eee; /* Fondo claro para los botones */
+ border: 2px solid #ccc; /* Borde para definir claramente los límites */
+ padding: 10px;
+ font-size: 1rem; /* Tamaño de fuente legible para los textos de los botones */
+ cursor: pointer;
+}
+
+.accessibility-controls button:hover,
+.accessibility-controls button:focus {
+ background-color: #ddd; /* Feedback visual al interactuar */
+ outline: none; /* Eliminar el contorno predeterminado y usar un estilo personalizado si es necesario */
+}
+
+/* Alto Contraste */
+.high-contrast {
+ background-color: #000; /* Fondo oscuro */
+ color: #fff; /* Texto claro */
+}
+
+.high-contrast a {
+ color: #ff0; /* Enlaces en alto contraste amarillo */
+}
+
+.high-contrast .accessibility-controls button {
+ background-color: #444; /* Fondo de botones en modo alto contraste */
+ color: #fff; /* Texto de botones en modo alto contraste */
+ border: 2px solid #ff0; /* Borde de botones en modo alto contraste */
+}
+
+/* Formulario de Contacto */
+form {
+ display: grid;
+ grid-template-columns: 1fr 2fr; /* Diseño de dos columnas para etiquetas y campos */
+ gap: 10px; /* Espaciado entre elementos del formulario */
+ max-width: 600px; /* Ancho máximo para facilidad de lectura */
+ margin: 0 auto; /* Centrar el formulario */
+}
+
+form label {
+ text-align: right; /* Alinear las etiquetas a la derecha para una lectura clara junto a los campos */
+ padding-right: 10px; /* Espaciado para separar etiquetas de campos */
+}
+
+form input, form textarea, form button {
+ grid-column: 2 / 3; /* Extender campos y botón a través de la segunda columna */
+}
+
+form button {
+ width: 100%; /* Hacer que el botón de envío se extienda para facilitar la interacción */
+ cursor: pointer;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+ form {
+     grid-template-columns: 1fr; /* Cambio a diseño de una columna en dispositivos pequeños */
+ }
+
+ form label {
+     text-align: left; /* Alinear etiquetas a la izquierda en diseño de una columna */
+ }
+}

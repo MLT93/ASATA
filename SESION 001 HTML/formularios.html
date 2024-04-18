@@ -23,7 +23,6 @@
       }
     </style>
   </head>
-  <!-- ToDo: MODIFICAR TODOS LOS CAMPOS "label". -->
   <!-- El atributo "for=''" se enlaza únicamente al atributo "id=''" del tag "input" -->
   <!-- Existe otra forma: envolver el tag "input" dentro del tag "label". Ideal para "input type='checkbox'" o "input type='radio'" -->
   <body>
@@ -44,48 +43,48 @@
               <h3>INFORMACIÓN PERSONAL</h3>
             </legend>
             <div>
-              <label for="nombre">Nombre usuario</label>
-              <input type="text" name="nombre" placeholder="Nombre" required />
+              <label for="nombreID">Nombre usuario</label>
+              <input type="text" id="nombreID" name="nombre" placeholder="Nombre" required />
             </div>
             <div>
-              <label for="apellidos">Apellidos usuario</label>
-              <input type="text" name="apellidos" placeholder="Apellidos" required />
+              <label for="apellidosID">Apellidos usuario</label>
+              <input type="text" id="apellidosID" name="apellidos" placeholder="Apellidos" required />
             </div>
             <div>
-              <label for="date">Fecha de nacimiento</label>
-              <input type="date" name="date" required />
+              <label for="dateID">Fecha de nacimiento</label>
+              <input type="date" id="dateID" name="date" required />
             </div>
             <div>
-              <label for="#edad">Edad</label>
+              <label for="edadID">Edad</label>
               <input
                 type="number"
                 name="edad"
-                id=""
+                id="edadID"
                 placeholder="Introduce tu edad" required />
             </div>
             <div style="display: flex; flex-direction: column">
-              <label for="#descripcion">Descripción personal</label>
+              <label for="descripcionID">Descripción personal</label>
               <textarea
                 name="descripcion"
-                id=""
+                id="descripcionID"
                 cols="30"
                 rows="10"
                 placeholder="Cuéntanos algo sobre ti"></textarea>
             </div>
             <div>
-              <label for="#web">Página web personal</label>
-              <input type="url" name="web" id="" />
+              <label for="webID">Página web personal</label>
+              <input type="url" name="web" id="webID" />
             </div>
             <div>
-              <label for="#colores">Color favorito</label>
-              <input type="color" name="colores" />
+              <label for="coloresID">Color favorito</label>
+              <input type="color" id="coloresID" name="colores" />
             </div>
             <div>
-              <label for="#phone">Número de contacto</label>
+              <label for="phoneID">Número de contacto</label>
               <input
                 type="tel"
                 name="phone"
-                id=""
+                id="phoneID"
                 placeholder="Número de teléfono"
                 required
                 min="0"
@@ -97,20 +96,21 @@
               <h3>DATOS DE ACCESO</h3>
             </legend>
             <div>
-              <label for="usuario">Usuario</label>
+              <label for="usuarioID">Usuario</label>
               <input
                 type="text"
+                id="usuarioID"
                 name="usuario"
                 placeholder="Usuario"
                 autofocus />
             </div>
             <div>
-              <label for="passowrd">Contraseña</label>
-              <input type="password" name="password" placeholder="Password" />
+              <label for="passowrdID">Contraseña</label>
+              <input type="password" id="passowrdID" name="password" placeholder="Password" />
             </div>
             <div>
-              <label for="email">Email</label>
-              <input type="email" name="email" placeholder="Email" />
+              <label for="emailID">Email</label>
+              <input type="email" id="emailID" name="email" placeholder="Email" />
             </div>
           </fieldset>
           <fieldset class="field">
@@ -118,32 +118,32 @@
               <h3>NIVEL ACADÉMICO</h3>
             </legend>
             <div>
-              <input type="checkbox" name="primarios" id="" checked />
-              <label for="primarios">Estudios primarios</label>
+              <input type="checkbox" name="primarios" id="primariosID" checked />
+              <label for="primariosID">Estudios primarios</label>
             </div>
             <div>
-              <input type="checkbox" name="secundarios" id="" />
-              <label for="secundarios">Estudios secundarios</label>
+              <input type="checkbox" name="secundarios" id="secundariosID" />
+              <label for="primariosID">Estudios secundarios</label>
             </div>
             <div>
-              <input type="checkbox" name="pau" id="" />
-              <label for="pau">PAU</label>
+              <input type="checkbox" name="pau" id="pauID" />
+              <label for="pauID">PAU</label>
             </div>
             <div>
-              <input type="checkbox" name="ciclo" id="" />
-              <label for="ciclo">Ciclos formatiovos</label>
+              <input type="checkbox" name="ciclo" id="cicloID" />
+              <label for="cicloID">Ciclos formativos</label>
             </div>
             <div>
-              <input type="checkbox" name="universidad" id="" />
-              <label for="#universidad">Estudio universitario - Grado</label>
+              <input type="checkbox" name="universidad" id="universidadID" />
+              <label for="universidadID">Estudio universitario - Grado</label>
             </div>
             <div>
-              <input type="checkbox" name="masters" id="" />
-              <label for="#masters">Estudio universitario - Máster</label>
+              <input type="checkbox" name="masters" id="mastersID" />
+              <label for="mastersID">Estudio universitario - Máster</label>
             </div>
             <div>
-              <input type="checkbox" name="doctorados" id="" />
-              <label el for="#doctorados"
+              <input type="checkbox" name="doctorados" id="doctoradosID" />
+              <label el for="doctoradosID"
                 >Estudio universitario - Doctorado</label
               >
             </div>
@@ -153,20 +153,20 @@
               <h3>CURSO A MATRICULAR</h3>
             </legend>
             <div>
-              <input type="radio" name="curso-init" id="" value="Iniciación" />
-              <label for="#curso-init">Curso de iniciación</label>
+              <input type="radio" name="curso-init" id="cursoInitID" value="Iniciación" />
+              <label for="cursoInitID">Curso de iniciación</label>
             </div>
             <div>
-              <input type="radio" name="curso-med" id="" value="Intermedio" />
-              <label for="#curso-med">Curso medio</label>
+              <input type="radio" name="curso-med" id="cursoMediID" value="Intermedio" />
+              <label for="cursoMediID">Curso medio</label>
             </div>
             <div>
-              <input type="radio" name="curso-av" id="" value="Avanzado" />
-              <label for="#curso-av">Curso avanzado</label>
+              <input type="radio" name="curso-av" id="cursoAvID" value="Avanzado" />
+              <label for="cursoAvID">Curso avanzado</label>
             </div>
             <div>
-              <label for="#fecha-inicio">Fecha y hora de inicio curso</label>
-              <input type="datetime-local" name="fecha-inicio" />
+              <label for="fechaInicioID">Fecha y hora de inicio curso</label>
+              <input type="datetime-local" id="fechaInicioID" name="fecha-inicio" />
             </div>
           </fieldset>
 
@@ -175,9 +175,11 @@
               <h3>ALERTA</h3>
             </legend>
             <div>
-              <label for="alert">Alerta</label>
+              <label for="alertID">Alerta</label>
               <input
                 type="button"
+                id="alertID"
+                name="alert"
                 value="Haz click aquí"
                 onclick="alert(`Esto es un mensaje de alerta`)" />
             </div>
@@ -188,8 +190,8 @@
               <h3>DOCUMENTOS</h3>
             </legend>
             <div>
-              <label for="#foto">Foto DNI</label>
-              <input type="file" name="foto" value="Elegir archivo" />
+              <label for="fotoID">Foto DNI</label>
+              <input type="file" id="fotoID" name="foto" value="Elegir archivo" />
             </div>
           </fieldset>
 

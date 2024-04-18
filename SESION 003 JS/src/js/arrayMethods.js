@@ -92,6 +92,31 @@ function showSearchedWordsByIndex() {
 /**
  * ToDo: realizar función para invertir el array
  */
+const myButtonInvertArray = document.getElementById("buttonInvert");
+myButtonInvertArray.onclick = function (e) {
+  e.preventDefault();
+
+  invertArray(myWords);
+
+  showInvertedArray();
+};
+let invertTheArray = [];
+function invertArray(array) {
+  let myInputForInvert = document
+    .getElementById("myInputInvert")
+    .value.toLocaleLowerCase();
+  /* `reverse()` invierte el orden del array */
+  invertTheArray = array.reverse(myInputForInvert);
+  console.log(invertTheArray);
+}
+function showInvertedArray() {
+  const HTML_p_textShowInvertedWords = document.getElementById(
+    "textShowInvertedWords"
+  );
+  HTML_p_textShowInvertedWords.innerHTML = `Inverted: ${invertTheArray.join(
+    ", "
+  )}`;
+}
 // NÚMEROS
 const myButtonNumber = document.getElementById("buttonNumber");
 const myNumbers = [];
@@ -99,6 +124,8 @@ myButtonNumber.onclick = function (e) {
   e.preventDefault();
 
   let myInputNumber = document.getElementById("myInputNumber").value;
+  myInputNumber = Number(myInputNumber);
+
   myNumbers.push(myInputNumber);
   console.log(myNumbers);
 
@@ -121,20 +148,22 @@ myButtonNumberPairsNoPairs.onclick = function (e) {
 
   showPairsAndNoPairs();
 };
-let numbersPair = ["Pares:"];
-let numbersNoPair = ["Impares:"];
+let pairs = [];
+let noPairs = [];
 function orderByPairs(array) {
-  array.forEach((element) => {
+  array.map((element) => {
     /* `%` este operador devuelve el resto de la división entre dos números. En este caso, dividimos el número del input entre 2, y si el resto es igual a 0 el número es par. Si no, es impar */
     if (element % 2 === 0) {
-      numbersPair.push(element); // El resto de la división entre 2 es 0? Entonces es par
+      pairs.push(element); // El resto de la división entre 2 es 0? Entonces es par
     } else {
-      numbersNoPair.push(element); // El esto de la división entre 2 es 1 o más? Entonces es impar
+      noPairs.push(element); // El esto de la división entre 2 es 1 o más? Entonces es impar
     }
   });
 }
-
 function showPairsAndNoPairs() {
   const HTML_p_PairsNoPairs = document.getElementById("textSortPairsNoPairs");
-  HTML_p_PairsNoPairs.innerHTML = `${numbersPair.join(", ")} ${numbersNoPair.join(", ")}`;
+  HTML_p_PairsNoPairs.innerHTML = `
+  Pares: ${pairs.join(", ")} 
+  <br/> 
+  Impares: ${noPairs.join(", ")}`;
 }

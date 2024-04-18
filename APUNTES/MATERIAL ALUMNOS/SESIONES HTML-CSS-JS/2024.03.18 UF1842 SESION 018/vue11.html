@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VUE</title>
+
+<!-- versión de desarrollo, incluye advertencias de ayuda en la consola -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+</head>
+
+<body>
+<!-- 
+    <div id="vm">
+
+        <input v-model="saludo">
+        <p v-if="mostrarMensaje" >Este mensaje solo aprecera si "mostrarMensaje" == true </p>
+
+    </div>
+
+
+
+    <div id="vm2">
+        <p v-if = "estado == 'inicio'"> Estado incial </p>
+        <p v-else-if = " estado == 'procesando'"> Procesando... </p>
+        <p v-else-if = " estado == 'completado'"> Completado </p>
+        <p v-else> ERROR </p>
+    </div>
+
+
+    <div id="vm3">
+        <button @click= " visible = !visible " > Toggle </button>
+        <p v-show = "visible" >Ahora me ves</p>
+    </div>
+ -->
+
+
+
+
+    <div id="vm4">
+
+        <button @click="mostrarA = !mostrarA">Toggle</button>
+        <componente-a v-if="mostrarA"></componente-a>
+        <componente-b></componente-b>
+
+    </div>
+
+
+<script src="js/vue11.js"></script>
+</body>
+
+</html>

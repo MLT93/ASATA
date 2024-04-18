@@ -85,13 +85,13 @@ body {
 
   /* flex-direction: column-reverse; Lo mismo pero al revés */
 
-  /* flex-wrap: nowrap; Valor por defecto. No enciera los elementos hijos dentro de sí mismo */
+  /* flex-wrap: nowrap; Valor por defecto. No encierra los elementos hijos dentro de sí mismo */
 
   flex-wrap: wrap; /* Intenta encerrar todos los elementos hijos dentro de sí mismo */
 
   /* flex-wrap: wrap-reverse; Hace lo mismo pero además modifica el orden de los elementos hijos */
 
-  align-items: center; /* Alineación de contenido. Depenede de la dirección `flex-direction` que se use */
+  align-items: center; /* Alineación de contenido. Depende de la dirección `flex-direction` que se use */
 
   justify-content: end; /* Alineación de contenido. Depende de la dirección que se utilice `flex-direction` */
 }

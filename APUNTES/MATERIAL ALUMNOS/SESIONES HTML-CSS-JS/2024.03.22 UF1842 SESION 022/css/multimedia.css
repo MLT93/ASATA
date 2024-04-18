@@ -1,0 +1,51 @@
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    text-align: center;
+    margin-top:5px;
+}
+
+
+.box{
+    width:100px;
+    height: 100px;
+    background-color: cornflowerblue;
+    color: aliceblue;
+    line-height: 100px;
+    border-radius: 10px;
+    transition: all 2s;/*esta linea hace que al transicion sea suave*/
+
+}
+
+button{
+    cursor:pointer;
+}
+
+
+.fade-out{
+    opacity: 0;
+}
+
+.zoom-in{
+    transform: scale(1.5);
+}
+
+
+.swing{
+    animation: animacionswing 2s infinite;
+}
+
+@keyframes animacionswing {
+    0%, 100% { transform: rotate(-15deg);}
+    50% { transform: rotate(15deg);}
+}
+
+
+.giro{
+    animation: animaciongiro 2s infinite ;
+}
+
+@keyframes animaciongiro{
+
+    from{ transform: rotate(0deg) scale(1)}
+    to{   transform: rotate(360deg) scale(2)}
+}

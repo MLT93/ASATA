@@ -1,0 +1,40 @@
+
+body {
+ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+ font-size: 16px; /* Aumentar el tamaño de fuente para mejorar la legibilidad */
+ color: #333;
+ background-color: #f4f4f4;
+}
+
+header, main, footer {
+ padding: 20px;
+ margin: 10px;
+}
+
+button {
+ background-color: #007bff;
+ color: #ffffff;
+ padding: 10px 15px;
+ border: none;
+ border-radius: 5px;
+ cursor: pointer;
+}
+
+a {
+ /* padding: 10px; */
+ margin:50px;
+ color: #007bff;
+ font-weight: bolder;
+ font-style: italic;
+ text-decoration: underline; /* Hacer los enlaces visiblemente distintos */
+}
+
+audio, iframe {
+ display: block;
+ margin-top: 20px;
+}
+
+input, label, button{
+ padding: 10px;
+ margin:10px;
+}
