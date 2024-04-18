@@ -108,10 +108,6 @@ ctx.strokeStyle = "red";
 ctx.roundRect(170, 7, 150, 100, [10, 20, 0, 50]); // coordenadaX, coordenadaY, width, height, radio
 ctx.stroke();
 
-/**
- * ToDo: Ejercicio para casa
- */
-
 // LIENZO & CONTEXTO
 const lienzo2 = document.getElementById("lienzo-2");
 const ctx2 = lienzo2.getContext("2d");

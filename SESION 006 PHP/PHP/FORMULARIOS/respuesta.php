@@ -12,7 +12,7 @@
 
   <?php
 
-  // TODO: RECIBE EL ENVÍO DEL FORMULARIO
+  // ? `$_REQUEST` RECIBE EL ENVÍO DEL FORMULARIO
   // `$_REQUEST` es un array que posee toda la información del formulario. Para identificar un input en concreto, se utiliza el atributo `name=""` asociado en HTML
   $nombre = $_REQUEST["nombre"];
   $apellido1 = $_REQUEST["apellido1"];
@@ -22,7 +22,7 @@
   echo "El usuario registrado se llama: $nombre $apellido1 $apellido2";
   echo "<br/>";
 
-  // TODO: MUESTRA TODA LA INFORMACIÓN DEL PARÁMETRO
+  // ? MUESTRA TODA LA INFORMACIÓN DEL PARÁMETRO
   var_dump($_REQUEST); // Muestra toda la información sobre la variable que pongamos como parámetro
   ?>
 

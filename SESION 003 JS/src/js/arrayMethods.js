@@ -89,9 +89,6 @@ function showSearchedWordsByIndex() {
   HTML_p_textShowSearchedWordsByIndex.innerHTML = `Index: ${wordSearchedByIndex}`;
 }
 // INVERTIR EL ARRAY
-/**
- * ToDo: realizar función para invertir el array
- */
 const myButtonInvertArray = document.getElementById("buttonInvert");
 myButtonInvertArray.onclick = function (e) {
   e.preventDefault();
@@ -135,10 +132,7 @@ function showNumbers() {
   const HTML_p_numbers = document.getElementById("numberShow");
   HTML_p_numbers.innerHTML = `${myNumbers.join(", ")}`;
 }
-// ORDENAR NÚMEROS EN PARES E IMPARES CON OPERADOR %
-/**
- * ToDo: comprobar funcionamiento de la siguiente función
- */
+// ORDENAR NÚMEROS EN PARES E IMPARES CON OPERADOR MÓDULO O REST `%`
 const myButtonNumberPairsNoPairs =
   document.getElementById("buttonPairsNoPairs");
 myButtonNumberPairsNoPairs.onclick = function (e) {

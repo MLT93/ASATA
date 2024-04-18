@@ -1,6 +1,4 @@
-/**
- * ToDo: Pasar este código a "arrayMethods.js"
- */
+// ToDo: Pasar este código a "arrayMethods.js"
 
 const myButtonAdd = document.getElementById("buttonAdd");
 const myWords = [];
