@@ -49,10 +49,6 @@ document.addEventListener("DOMContentLoaded", () => {
         throw { msg: "La contraseña no es correcta", element: password };
       }
 
-      /**
-       * ToDo: Revisar el código
-       */
-
       // RESTABLECER EL FORMATO DE ERRORES
       /* Al lanzar `throw` un error, el input quedará en rojo aunque le pongamos el valor requerido */
       /* Para evitar eso, seleccionamos todos los `input` del formulario y modificamos ese comportamiento */

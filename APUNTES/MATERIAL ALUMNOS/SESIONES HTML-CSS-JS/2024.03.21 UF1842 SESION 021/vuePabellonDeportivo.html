@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>VUE</title>
+ <link rel="stylesheet" href="css/vuePabellonDeportivo.css">
+ <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+
+    <div id="vm">
+        <h1>Gestión de pabellón deportivo</h1>
+
+        <!-- DISPONIBILIDAD PABELLON -->
+        <div id="pabellon" :class="{disponible: instalacionesLibres>0, ocupado: instalacionesLibres == 0}">
+            <h2>Pabellón</h2>
+            <p v-if="instalacionesLibres > 0">DISPONIBLE</p>
+            <P v-else>COMPLETO</P>
+        </div>
+
+
+        <!-- INSTALACIONES -->
+        <div id="instalaciones">
+            <div class="instalacion" v-for="(instalacion, index) in instalaciones" :class="{ reservada: instalacion.reservada, libre: !instalacion.reservada }">
+
+                <h3>{{instalacion.id}}</h3>
+                <h3>{{instalacion.nombre}}</h3>
+
+                <P v-if="instalacion.reservada">RESERVADA</P>
+                <P v-else>LIBRE</P>
+
+                <button @click="toggleReserva(instalacion)"  >RESERVA / LIBERA</button>
+            </div>
+        </div>
+
+
+        <!-- INCIDENCIAS -->
+        <div id="incidencias">
+            <h2>Listado inicidencias</h2>
+
+            <button @click="agregarIncidencia" >AGREGAR INCIDENCIA</button>
+            <input v-model="nuevaIncidencia"  placeholder="Ingresa incidencia..."  type="text">
+
+            <div v-for="(incidencia, index) in incidencias" >
+                <button @click="eliminarIncidencia(index)" >RESUELTA</button>
+                <span>{{incidencia}}</span>
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+    <script src="js/vuePabellonDeportivo.js"></script>
+
+</body>
+
+</html>

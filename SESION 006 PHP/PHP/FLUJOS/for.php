@@ -1,4 +1,9 @@
 <?php
+<<<<<<< HEAD
+=======
+// ToDo: CREAR FLUJO CON BUCLE FOR Y EXPLICACIONES
+// ? OPERADOR FOR (igual que JavaScript)
+>>>>>>> 981cd26249dfd46e2d081384ad914e98ba265149
 
 // ? OPERADOR FOR (igual que JavaScript)
 // Ejecuta el código un determinado número de veces

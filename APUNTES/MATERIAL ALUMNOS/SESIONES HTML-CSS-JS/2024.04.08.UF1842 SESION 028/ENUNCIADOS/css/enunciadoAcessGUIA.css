@@ -1,0 +1,30 @@
+body {
+ font-family: 'Comic Sans MS', cursive;
+ background-color: #fff;
+ color: #ccc;
+}
+
+div.header, div.nav, div.main, div.footer {
+ padding: 10px;
+}
+
+ul {
+ list-style: none;
+}
+
+li {
+ background-color: #eee;
+ color: #999;
+ cursor: pointer;
+}
+
+button {
+ background-color: #eee;
+ color: #999;
+ border: none;
+ padding: 5px;
+}
+
+button:focus {
+ outline: none;
+}

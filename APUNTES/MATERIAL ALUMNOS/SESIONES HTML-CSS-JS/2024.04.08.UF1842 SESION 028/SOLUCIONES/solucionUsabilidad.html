@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Página Accesible</title>
+    <link rel="stylesheet" href="css/solucionUsabilidad.css">
+</head>
+<body>
+    <header>
+        <h1>Contenido accesible para todos</h1>
+    </header>
+    <main>
+        <section aria-labelledby="section1">
+            <h2 id="section1">Información Importante</h2>
+            <img src="https://picsum.photos/300/300" alt="Descripción adecuada de la imagen">
+            <p>Texto con un tamaño adecuado y contraste óptimo para fácil lectura.</p>
+            <button onclick="alert('Información más detallada.');">Más información</button>
+        </section>
+        <section aria-labelledby="audioSection">
+            <h2 id="audioSection">Audio importante</h2>
+            <audio controls>
+                <source src="mm/aud.mp3" type="audio/mpeg">
+                Tu navegador no soporta el elemento de audio.
+            </audio>
+        </section>
+        <form>
+         <label for="nombre">Tu nombre:</label>
+         <input type="text" id="nombre" name="nombre" required aria-required="true">
+         <button type="submit">Enviar</button>
+        </form>
+       </main>
+       <!-- <iframe src="accesibilidad01.html" title="Frame descriptivo"></iframe> -->
+       <p><a href="https://validator.w3.org/">Descubre más sobre nosotros</a></p>
+       <footer>
+        <p>Texto sobre cómo hacer el contenido web más accesible.</p>
+    </footer>
+    <script src="js/solucionUsabilidad.js"></script>
+</body>
+</html>
+<!-- 
+
+Añadido el atributo lang para indicar el idioma del documento.
+Mejorado el contraste del texto respecto a su fondo.
+Añadidas descripciones alt a las imágenes para mejorar la accesibilidad.
+Usado <button> para acciones interactivas, accesible tanto por ratón como por teclado.
+Evitado el uso de elementos como <marquee> y <audio autoplay> que son problemáticos desde el punto de vista de la accesibilidad.
+Añadidos controles a los elementos <audio> para permitir al usuario gestionar la reproducción.
+Corregidos los enlaces para que señalen a contenido real y sean descriptivos.
+Asociadas etiquetas (<label>) con campos de formulario para claridad y accesibilidad.
+Mejorado el contraste y claridad de botones y otros controles.
+Añadido el atributo title a los <iframe> para describir su contenido.
+Corregida la validación HTML para evitar errores y advertencias en el validador de W3.org. -->

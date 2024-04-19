@@ -1,0 +1,68 @@
+
+*{
+    margin:0px;
+    padding:0px;
+}
+
+
+header{
+    position: fixed;
+    height: 100px;
+    width: 100%;
+    background-color: aquamarine;
+}
+
+#logo{
+
+    position: absolute;
+    height: 80px;
+    width: 80px;
+
+    top:0px;
+    bottom:0px;
+    right: 0px;
+    left:0px;
+    margin:auto;
+
+
+}
+
+/*********************************************************/
+/* main{
+    position: fixed;
+    top: 120px;
+    width: 100%;
+    background-color: rgb(236, 236, 200);
+}
+*/
+
+article{
+    background-color: rgb(236, 236, 200);
+    position: relative;
+
+    top:    120px;
+    left:    20px;
+
+    height: 160px;
+    width:  900px;
+
+}
+
+.imgarticulo{
+
+    height: 100px;
+    width: 180px;
+}
+
+p{
+
+}
+
+img{
+
+
+} 
+
+
+
+

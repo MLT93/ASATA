@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Mosaico de Imágenes con Vue.js</title>
+ <link rel="stylesheet" href="css/galeria.css">
+ <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+
+ <div id="app">
+  <div id="cabecera">
+   <span>AÑADE</span>
+   <input id="numimg"  type="number" v-model="numeroImagenes">
+   <span>DIMENSION</span>
+   <input id="dimimg"  type="number" v-model="dimImagenes">
+   <button id="genimg" @click="crearGaleriaAleatoria(numeroImagenes)">CREAR GALERIA</button>
+  </div>
+
+  <div v-for="(imagen, index) in imagenes" :key="index" class="imagen-container" @mouseover="hoverImagen(index, true)" @mouseleave="hoverImagen(index, false)"  @click="desplazarImagenes(index)" >
+
+      <img :src="imagen.src"  
+      @dblclick.stop.prevent="confirmarEliminacion(index)"
+      :class="{'bnw': !imagen.hover, 'color': imagen.hover}">
+
+  </div>
+
+
+</div>
+
+
+    <script src="js/galeria.js"></script>
+
+</body>
+
+</html>
+
+
+<!-- @dblclick.stop.prevent="confirmarEliminacion(index)"   -->

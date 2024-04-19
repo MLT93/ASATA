@@ -2,7 +2,7 @@
 $precio1 = 100;
 $precio2 = 200;
 $porcentaje = 0.20;
-// TODO: REVISAR CÓDIGO
+// ToDo: REVISAR CÓDIGO
 // ? DADO EL VALOR DE DOS PRECIOS, SI AMBOS SON MAYORES DE 100 HACER UN DESCUENTO DEL 20% A CADA PRODUCTO
 
 function creaDescuento($num, $percentage)

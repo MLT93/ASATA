@@ -34,7 +34,7 @@ validationButton.onclick = function () {
     if (
       !web.value ||
       !web.value.match(
-        /(?:https?):\/\/(\w+:?\w*)?(\S+)(:\d+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/,
+        /(?:https?):\/\/(\w+:?\w*)?(\S+)(:\d+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/
       )
     ) {
       throw {
@@ -64,22 +64,19 @@ validationButton.onclick = function () {
       throw { msg: "La contraseña no es correcta", element: password };
     }
 
-    /**
-     * ToDo: Revisar el código
-     */
-
     // RESTABLECER EL FORMATO DE ERRORES
     /* Al lanzar `throw` un error, el input quedará en rojo aunque le pongamos el valor requerido */
     /* Para evitar eso, seleccionamos todos los `input` del formulario y modificamos ese comportamiento */
     /* Usamos `forEach` porque `querySelectorAll` devuelve un array de elementos */
-    /* const formInputs = Array.from(document.querySelectorAll("input"));
+    const formInputs = Array.from(document.querySelectorAll("input"));
     formInputs.forEach((e) => {
       e.style.borderColor = "";
       e.style.backgroundColor = "";
-    }); */
+    });
 
-    /* alert("Formulario enviado con éxito!");
-    document.getElementById("errors").innerHTML = ""; */
+    alert("Formulario enviado con éxito!");
+    // ToDo: revisar esta linea de abajo
+    // document.getElementById("errors").innerHTML = "";
   } catch (error) {
     document.getElementById("errors").innerHTML = `<p>${error.msg}</p>`;
     error.element.style.borderColor = "red";

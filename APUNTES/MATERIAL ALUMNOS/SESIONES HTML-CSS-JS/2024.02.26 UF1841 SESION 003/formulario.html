@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf8">
+<title>Formularios</title>
+
+
+</head>
+
+<body >
+
+<form  action="pagina.php" method="post" >
+
+
+
+<fieldset>
+<legend> Información personal</legend>
+
+<p>
+
+    <label for="nombreusuario"> Nombre Usuario</label> 
+    <input tabindex="2" id="nombreusuario" type="text"   name="nombre" >
+    
+</p>
+
+
+<p>
+
+    <label for="apellidousuario"> Apellido Usuario</label> 
+    <input tabindex="3" type="apellidousuario"   name="apellido" >
+    
+</p>
+        <p>Edad</p> 
+        <input type="number" name="edad" min="18"  max="99"  step="1"  value="18">
+
+        <p>Pagina web Personal</p>
+        <input type="url" name="web">
+
+        <p>Descripción personal</p>
+        <textarea name="descripcion" cols="100" rows="5" >
+
+        </textarea>
+
+    
+</fieldset>
+
+
+
+<fieldset>
+    <legend> Datos de acceso</legend>
+
+
+        <p>Usuario</p>
+        <input type="text"   tabindex="1" name="usuario" autofocus>
+
+        <p>Correo electronico</p>
+        <input type="email" name="correoelectronico">
+
+        <p>Contraseña</p>
+        <input type="password" name="contraseña">
+    </fieldset>
+
+
+    <fieldset>
+        <legend>Nivel academico</legend>
+    
+
+
+        <input type="checkbox" name="primarios" value="primarios"> Estudios primarios </br>
+        <input type="checkbox" name="secundarios" value="secundarios"> Estudios secundarios </br>
+        <input type="checkbox" name="PAU" value="PAU"> PAU</br>
+        <input type="checkbox" name="FP" value="fp"> Ciclos formativos</br>
+        <input type="checkbox" name="EstudiosGrado" value="grado"> Estudios Universitarios grado</br>
+        <input type="checkbox" name="EstudiosMaster" value="master"> Estudios Universitarios Master</br>
+        <input type="checkbox" name="EstudiosDoctorado" value="doctorado"> Estudios Universitarios Doctorado</br>
+    </fieldset>
+
+        <!-- <h2>Curso a matricular</h2> -->
+
+        <fieldset>
+            <legend>Curso a matricular</legend>
+        
+        <!-- <input type="radio" name="curso" value="iniciacion" checked> Curso Iniciación </br>
+        <input type="radio" name="curso" value="intermedio" > Curso Initermedio </br>
+        <input type="radio" name="curso" value="avanzado" > Curso Avanzado </br> -->
+
+    <select size ="1" name="contrato">
+
+    <option selected>--Selecciona una opción--</option>
+    <optgroup label="Contratos telefonía" >
+
+        <option value="delfin">Delfin</option>
+        <option value="oso">Oso</option>
+        <option value="girafa">Girafa</option>
+        
+    </optgroup >   
+
+    <optgroup label="Contratos TV">
+
+        <option value="solofutbol">Solo futbol</option>
+        <option value="cineseries">Cine y Series</option>
+        <option value="documentales">Documentales</option>
+        <option value="Infantil">Infantil</option>
+
+
+    </optgroup>
+
+
+    </select>
+
+
+        <p>Fecha Inicio curso</p>
+        <input type="date" name="fechacurso">
+
+    
+        <p><input type="submit" value="Enviar"></p>
+        <p><input type="reset" name="resetear" value="borrar datos"/> </p>
+
+        <p><input type="button" onclick="alert('Esto es un mensaje de advertencia')"  value="Haz click aqui." ></p>
+
+
+        <p>Foto DNI</p>
+        <p><input type="file" name="foto"></p>
+
+        </fieldset>
+
+
+        <fieldset>
+
+        <h2>Información adicional</h2>
+        <p>Color favorito <input type="color" name="colorfav"></p>
+        </form>fieldset>
+
+
+</form>
+
+
+</body>
+
+</html>

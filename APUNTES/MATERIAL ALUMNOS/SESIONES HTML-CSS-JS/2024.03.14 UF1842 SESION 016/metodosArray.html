@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Métodos Array</title>
+    <link rel="stylesheet" href="css/metodosArray.css">
+
+</head>
+
+<body>
+
+    <h1>Métodos Array</h1>
+
+    <div id="contenedor">
+
+        <div class="elemento" id="metodostexto">
+            <div class="titulos">
+                <h2>Arrays de textos</h2>
+                <button onclick="anadir()">Añadir</button>
+                <input type="text" id="text" placeholder="Introduce textos"/>
+                <br><br><br>
+            </div>
+
+            <button onclick="buscar()">Buscar Indice</button>
+            <input type="text" id="textobusco" placeholder="Introduce palabra a buscar"/>
+            <span>  Indice del elemento buscado: <span id="indice"> No tengo </span> </span> 
+            <br><br>
+
+            <button onclick="lista()">Listar</button>
+            <span> Lista: <span id="lista"> Vacia </span> </span> 
+            <br><br>
+
+            <button onclick="ordenar()">Ordenar</button>
+            <span> Lista ordenada: <span id="listaordenada"> Vacia </span> </span> 
+            <br><br>
+
+
+            <button onclick="concatenar()">Concatenar</button>
+            <span> Lista concatenada: <span id="listaconcatenada"> Vacia </span> </span> 
+            <br><br>
+
+
+            <button onclick="invertir()">Invertir</button>
+            <span> Lista invertida: <span id="listainvertida"> Vacia </span> </span> 
+            <br><br>
+
+
+        </div>
+
+        <div class="elemento" id="metodosnumero">
+
+            <div class="titulos">
+                <h2>Arrays de números</h2>
+                <button onclick="anadirNum()">Añadir</button>
+                <input type="number" id="number" placeholder="Introduce números"/>
+                <br><br><br>
+            </div>
+
+            <button onclick="pares()">Par</button>
+            <span> Cuantos números pares hay : <span id="cantidadpares"> Vacia </span> </span> 
+            <br><br>
+
+
+        </div>
+
+        
+    </div>
+
+    <script src="js/metodosArray.js"></script>
+</body>
+
+</html>
