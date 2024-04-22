@@ -1,6 +1,6 @@
 <?php
 
-include("../funciones/crear_tablas.php");
+include("../funciones/tablas.php");
 
 table(6, 10);
 

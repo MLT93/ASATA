@@ -1,12 +1,12 @@
 <?php
 include("../funciones/api.php");
-include("../funciones/crear_tablas.php");
+include("../funciones/tablas.php");
 
 $URL1 = "https://www.freetogame.com/api/games?platform=pc";
-$jsonPlaceHolder = GET($URL1);
+$freeToGameData = GET($URL1);
 
 // `print_r()` sirve para leer el `return` de una función
-// print_r($jsonPlaceHolder);
+// print_r($freeToGameData);
 
 /**
  * * ESTO ES LO QUE DEVUELVE:
@@ -30,31 +30,31 @@ $jsonPlaceHolder = GET($URL1);
  */
 
 $matrix = [];
-for ($i = 0; $i < count($jsonPlaceHolder); $i++) {
+for ($i = 0; $i < count($freeToGameData); $i++) {
   // `array_push()` recibe 2 parámetros
   // 1 el array donde guardo 
   // 2 lo que deseo guardar
   array_push(
     $matrix,
     [
-      $jsonPlaceHolder[$i]["id"],
-      $jsonPlaceHolder[$i]["title"],
-      $jsonPlaceHolder[$i]["thumbnail"],
-      $jsonPlaceHolder[$i]["short_description"],
-      $jsonPlaceHolder[$i]["game_url"],
-      $jsonPlaceHolder[$i]["genre"],
-      $jsonPlaceHolder[$i]["platform"],
-      $jsonPlaceHolder[$i]["publisher"],
-      $jsonPlaceHolder[$i]["developer"],
-      $jsonPlaceHolder[$i]["release_date"],
-      $jsonPlaceHolder[$i]["freetogame_profile_url"],
+      $freeToGameData[$i]["id"],
+      $freeToGameData[$i]["title"],
+      $freeToGameData[$i]["thumbnail"],
+      $freeToGameData[$i]["short_description"],
+      $freeToGameData[$i]["game_url"],
+      $freeToGameData[$i]["genre"],
+      $freeToGameData[$i]["platform"],
+      $freeToGameData[$i]["publisher"],
+      $freeToGameData[$i]["developer"],
+      $freeToGameData[$i]["release_date"],
+      $freeToGameData[$i]["freetogame_profile_url"],
     ]
   );
 };
 
 // `array_keys()` recibe 1 parámetro
 // 1 el array donde saco las "claves" del array en el parámetro
-$titles = array_keys($jsonPlaceHolder[0]);
+$titles = array_keys($freeToGameData[0]);
 
 tableWithTitlesAndMatrixData($titles, $matrix);
 

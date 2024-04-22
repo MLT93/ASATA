@@ -40,6 +40,7 @@ echo "<hr/>";
 // Si se omite el tercer argumento, recorta desde el índice de entrada hasta el final del array
 $integers = [1, 21, 3, 7];
 $slicedIntegers = array_slice($integers, 2, 3); //=> [3, 7]
+print_r($slicedIntegers);
 
 echo "<hr/>";
 
