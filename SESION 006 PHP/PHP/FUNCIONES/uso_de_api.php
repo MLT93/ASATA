@@ -188,7 +188,7 @@ foreach ($sectionOfApiSurveys as $clave => $valor) {
   // `implode()` convierte a `string` y realiza una especie de `join()` como en JavaScript. Recibe 2 parámetros
   // 1 El tipo de separación con el que deseo juntar los valores del array
   // 2 Array
-  $VariouslyResults = implode(", ", $sectionOfApiSurveys[$clave]["Results"]);
+  $variouslyResults = implode(", ", $sectionOfApiSurveys[$clave]["Results"]);
 
   // `array_push()` recibe 2 parámetros
   // 1 el array donde guardo 
@@ -204,8 +204,7 @@ foreach ($sectionOfApiSurveys as $clave => $valor) {
       $sectionOfApiSurveys[$clave]["Institute_ID"],
       $sectionOfApiSurveys[$clave]["Tasker_ID"],
       $sectionOfApiSurveys[$clave]["Method_ID"],
-      $VariouslyResults
-
+      $variouslyResults
     ]
   );
 }
