@@ -1,5 +1,5 @@
 <?php
-include("../funciones/tablas.php");
+include("../funciones/funciones_de_tablas.php");
 
 
 // tabla(10,6);

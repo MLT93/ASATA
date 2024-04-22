@@ -1,6 +1,6 @@
 <?php
 
-// ? SIGUE EL MÉTODO DE JavaScript PARA FUNCS NORMALES
+// ? SIGUE EL MÉTODO DE JavaScript PARAd CREAR FUNCIONES NORMALES
 
 function cuadrado($num)
 {

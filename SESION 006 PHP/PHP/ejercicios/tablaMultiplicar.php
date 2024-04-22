@@ -41,7 +41,7 @@
   </footer>
 
   <?php
-  include("../funciones/tablas.php");
+  include("../funciones/funciones_de_tablas.php");
 
   tablaMultiplicarHastaDiez();
   ?>

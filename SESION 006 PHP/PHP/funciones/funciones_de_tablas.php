@@ -2,7 +2,7 @@
 
 // ? CREAR UNA FUNCIÓN QUE PERMITE CREAR TABLAS HTML
 
-include("fechas.php");
+include("funciones_de_fechas.php");
 
 function table($rows, $cols)
 {

@@ -1,6 +1,6 @@
 <?php
 include("../funciones/api.php");
-include("../funciones/tablas.php");
+include("../funciones/funciones_de_tablas.php");
 
 $URL1 = "https://www.freetogame.com/api/games?platform=pc";
 $freeToGameData = GET($URL1);
