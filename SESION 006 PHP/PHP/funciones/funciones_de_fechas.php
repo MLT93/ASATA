@@ -27,7 +27,7 @@ print_r($fecha) . "<br/>"; //=> Array ( [seconds] => 37 [minutes] => 45 [hours] 
 echo "<br/>";
 
 // `strtotime()` obtiene el "timestamp" en segundos 
-echo strtotime("20 May 1993") . "<br/>"; //=> 737848800
+echo strtotime("20 May 1993") . "<br/>"; //=> 73784880
 echo $now = strtotime("now") . "<br/>"; //=> 1713786385
 echo $tomorrow = strtotime("+1 day") . "<br/>"; //=> 1713872785
 echo ((intval($tomorrow) - intval($now)) / (60 * 60 * 24)) . "<br/>"; //=> 1
@@ -162,4 +162,11 @@ function miFechaTxt($fecha)
 
 $result2 = getdate();
 print_r(miFechaTxt($result2));
+echo "<hr/>";
+
+// * Time-Stamp de la fecha actual
+$currentTimeStamp = strtotime("now");
+// * Formateo de la fecha
+$formattedDate = date("d-m-y", intval($currentTimeStamp));
+
 echo "<hr/>";

@@ -2,7 +2,11 @@
 
 // ? MÉTODOS ARRAY parecidos a JavaScript
 
-// * TRANSFORMAN EL ARRAY
+/**
+ * 
+ * * TRANSFORMAN EL ARRAY
+ * 
+ */
 
 // Añadir al final. Añade todo el grupo tal y como se escribió
 $frutas = ["plátano", " fresas", "naranjas"];
@@ -32,7 +36,47 @@ echo "<hr/>";
 $chemicalElements = ["Hydrogen", "Oxygen", "Helium"];
 array_splice($chemicalElements, 1, 2, "Carbon"); //=> ["Hydrogen", "Carbon"]
 
-// * NO TRANSFORMAN EL ARRAY
+echo "<hr/>";
+
+// Ordena el array en orden creciente
+$nums = [5, 8, 8, 1, 2, 3];
+sort($nums);
+
+echo "<hr/>";
+
+// Ordena el array en orden decreciente
+$nums2 = [15, 8, 5, 89, 2, 3];
+rsort($nums2);
+
+echo "<hr/>";
+
+// Ordena las `values` del array asociativo en orden creciente y mantiene la relación `key => value`
+$edades = [
+  "Pedro" => 32,
+  "María" => 22,
+  "John" => 31,
+  "Lucas" => 12,
+];
+asort($edades);
+
+echo "<hr/>";
+
+// Ordena las `values` del array asociativo en orden decreciente y mantiene la relación `key => value`
+$edades = [
+  "Pedro" => 32,
+  "María" => 22,
+  "John" => 31,
+  "Lucas" => 12,
+];
+arsort($edades);
+
+echo "<hr/>";
+
+/**
+ * 
+ * * NO TRANSFORMAN EL ARRAY
+ * 
+ */
 
 echo "<hr/>";
 
@@ -94,7 +138,7 @@ $reversedPrices = array_reverse($prices); //=> [99, 66, 52, 23]
 echo "<hr/>";
 
 // Saber si una clave (key) existe en un índice asociativo. Devuelve true (1) o false (0)
-$userDetails = ["id" => "89", "nickname" => "pon23", "age" => 34] ;
+$userDetails = ["id" => "89", "nickname" => "pon23", "age" => 34];
 
 $keyExist = array_key_exists("age", $userDetails); //=> 1
 $keyNoExist = array_key_exists("aged", $userDetails); //=> 0
@@ -111,4 +155,6 @@ echo "<hr/>";
 $apellidos = ["Dal Col", "Benigni", "Suárez", "Gómez"];
 $existInArray = in_array("Benigni", $apellidos); //=> 1
 $existInArray = in_array("Gentile", $apellidos); //=> 0
-$existInArray ? "Está" : "No está" ;
+$existInArray ? "Está" : "No está";
+
+echo "<hr/>";

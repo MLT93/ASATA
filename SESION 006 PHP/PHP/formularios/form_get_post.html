@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="Marcos Lambir Torres" />
+  <meta name="description" content="JavaScript" />
+  <meta name="keywords" content="Curso, Formación, Examen" />
+  <link rel="stylesheet" href="./src/css/formulario.css" />
+  <title>Curso ASATA - PHP</title>
+  </head>
+
+  <body>
+    <h1>FORMULARIO</h1>
+
+    <!-- El `action=""` envía los datos a esa página -->
+    <!-- El `method=""` es el método que realiza la operación -->
+    <form action="resp_get_post.php" method="post" target="_blank">
+      <label for="nameID">USER</label>
+      <input type="text" id="nameID" name="name" required />
+
+      <label for="passwordID">PASSWORD</label>
+      <input type="password" id="passwordID" name="password" required />
+
+      <label for="userTypeID">USER TYPE</label>
+      <input type="text" id="userTypeID" name="userType" required />
+
+      <button type="submit" id="submitID" name="submit" value="Submit">
+        SUBMIT
+      </button>
+    </form>
+
+    <!-- Enviar información a través de las `Query Params` -->
+    <!-- Esto se recibe a través del método GET -->
+    <a href="http://localhost/PHPcurso/ASATA/SESION%20006%20PHP/php/formularios/form_get_post.html?key=Pedro&type=Admin">Envío de información con method GET</a>
+
+  </body>
+</html>
