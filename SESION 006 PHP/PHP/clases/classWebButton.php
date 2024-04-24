@@ -13,6 +13,7 @@ class WebButton
   var $text;
 
   // Método constructor. Sirve para darle unos valores por defecto a la instancia que cree con esta clase
+  // Cada constructor es único para cada clase, si hay un `extends` lo hereda, pero si creas uno en el nuevo instancia (obj), lo sobrescribe
   function __construct($width = "100px", $height = "35px", $color = "lightskyblue", $styleCSS = "primary-button", $isDisable = true, $text = "Haz Click Aquí")
   {
     // Igual que en JavaScript se accede con `this` a las propiedades y métodos de la clase, y se les asignan los parámetros de la función para poder proporcionárselos desde afuera
@@ -79,6 +80,6 @@ echo "(nuevo) Clase CSS btn: $secondaryButton->CSS" . "<br/>"; //=> (nuevo) Clas
 echo "(nuevo) ¿Está deshabilitado?: $secondaryButton->disable" . "<br/>"; //=> (nuevo) ¿Está deshabilitado?: 0
 echo "(nuevo) Texto btn: $secondaryButton->text" . "<br/>"; //=> (nuevo) Texto btn: Pincha Aquí
 
+// ToDo: acabar esta parte
 echo "<hr/>";
 echo "<h3>Modifico los valores por defecto con los métodos disponibles en la clase WebButton</h3>";
-// ToDo: acabar esta parte

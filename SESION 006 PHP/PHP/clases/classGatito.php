@@ -10,6 +10,7 @@ class Gatito
   var $rayado;
 
   // Método constructor. Sirve para darle unos valores por defecto a la instancia que cree con esta clase
+  // Cada constructor es único para cada clase, si hay un `extends` lo hereda, pero si creas uno en el nuevo instancia (obj), lo sobrescribe
   function __construct($name = "Minino", $col = "gray", $esRayado = true)
   {
     // Igual que en JavaScript se accede con `this` a las propiedades y métodos de la clase, y se les asignan los parámetros de la función para poder proporcionárselos desde afuera

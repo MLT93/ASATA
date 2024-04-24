@@ -15,7 +15,8 @@ class Gatito
   public $rayado;
 
   // Método constructor. Sirve para darle unos valores por defecto a la instancia que cree con esta clase
-  public function __construct($name = "Minino", $col = "gray", $esRayado = true)
+  // Cada constructor es único para cada clase, si hay un `extends` lo hereda, pero si creas uno en el nuevo instancia (obj), lo sobrescribe
+  function __construct($name = "Minino", $col = "gray", $esRayado = true)
   {
     // Igual que en JavaScript se accede con `this` a las propiedades y métodos de la clase, y se les asignan los parámetros de la función para poder proporcionárselos desde afuera
     // Si no le damos un valor por defecto, al crear una instancia sin parámetros me dará un error
@@ -47,9 +48,9 @@ class GatoSphynx extends Gatito
 {
   public $pelo;
 
-  public function setNameSphynx($newSphynxName)
+  public function setNameSphynx($newSphynxName,)
   {
-    $this->setName($newSphynxName); // PROTECTED
+    $this->setName($newSphynxName); // PUBLIC //=> Accessible from everywhere
   }
 };
 
@@ -62,5 +63,5 @@ $minino->getName(); // PUBLIC //=> Minino (default value) `getName()` is accessi
 echo "<br/>";
 
 $gatoEgipcio = new GatoSphynx();
-$gatoEgipcio->setNameSphynx("Gato Pelón"); // PUBLIC //=> Gato Pelón
+$gatoEgipcio->setNameSphynx("Axy"); // PUBLIC //=> Axy es un gato egipciano pelón
 $gatoEgipcio->getName();

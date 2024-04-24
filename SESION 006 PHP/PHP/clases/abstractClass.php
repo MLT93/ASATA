@@ -27,10 +27,8 @@ abstract class ChargeOperation
   }
 }
 
-
 // ? `EXTENDS` SIRVE PARA EXTENDER (CLONAR) UNA CLASE Y CREAR OTRA
-// `extends` clona una nueva instancia. La nueva clase hereda todas sus propiedades y métodos, pudiendo agregar más funcionalidades. Atento! Lo que se hereda no se puede modificar
-
+// `extends` clona una nueva clase. La nueva clase hereda todas sus propiedades y métodos, pudiendo agregar más funcionalidades. Atento! Lo que se hereda no se puede modificar
 class Sum extends ChargeOperation
 {
   function sum()
@@ -96,7 +94,7 @@ $myDivision->getResult(); //=> 33
 
 echo "<hr/>";
 
-// ? `GET_PARENT_CLASS` SIRVE PARA SABER CUÁL ES EL PADRE Y SABER A LO QUE PUEDO ACCEDER
+// ? `GET_PARENT_CLASS()` SIRVE PARA SABER CUÁL ES EL PADRE Y SABER A LO QUE PUEDO ACCEDER
 // `get_parent_class()` nos dice quién es el padre de la class que ha sido extendida
 echo get_parent_class("Sum") . "<br/>"; //=> ChargeOperation
 echo get_parent_class("Sub") . "<br/>"; //=> ChargeOperation
@@ -105,7 +103,7 @@ echo get_parent_class("Div") . "<br/>"; //=> ChargeOperation
 
 echo "<hr/>";
 
-// ? `IS_SUBCLASS_OF` SIRVE PARA SABER CUÁL ES EL PADRE Y SABER A LO QUE PUEDO ACCEDER
+// ? `IS_SUBCLASS_OF()` SIRVE PARA SABER CUÁL ES EL PADRE Y SABER A LO QUE PUEDO ACCEDER
 // `is_subclass_of()` Comprueba si el objeto tiene esta clase como uno de sus padres o si la implementa. Devuelve true (1) si el objeto object pertenece a una clase que sea subclase de class_name, false (0) en caso contrario.
 echo is_subclass_of("Div", "ChargeOperation");
 echo is_subclass_of($myMultiplication, "Div");
