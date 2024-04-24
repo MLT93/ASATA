@@ -73,7 +73,7 @@
     // ? `FOPEN()` ES EL MANEJADOR DE ARCHIVOS DE PHP
     // `fopen()` sirve para acceder a los archivos. Tiene 2 parámetros
     // 1 El archivo al que voy a acceder
-    // 2 El método con el que voy a interactuar en el archivo (escribir al final: "a+", leer desde el principio: "r", escribir ascendente: "c")
+    // 2 El método con el que voy a interactuar en el archivo (escribir al final: "a+", leer desde el principio: "r",  escribir al inicio: "c+")
 
     // ? `FWRITE()` ES EL QUE ESCRIBE EN LOS ARCHIVOS
     // `fwrite()` sirve para escribir en los archivos cuando he accedido a ellos. Tiene 2 parámetros
@@ -84,7 +84,7 @@
     // `fclose()` sirve para cerrar los archivos. Tiene 1 parámetro
     // 1 El archivo con el que estaba interactuando
     // Voy a dejar de escribir
-// ToDo: acabar en casa este ejercicio
+
     for ($i = 0; $i < count($dbUsers); $i++) {
       if ($user == $dbUsers[$i][0] && $password == $dbUsers[$i][1]) {
         $logOK = fopen("log_ok.log", "a+");
@@ -95,8 +95,9 @@
         fwrite($logOK, "\r\n $linea2 \r\n");
         fwrite($logOK, "\r\n $linea3 \r\n");
         fclose($logOK);
+        break;
       } else {
-        $logKO = fopen("log_ko.log", "x");
+        $logKO = fopen("log_ko.log", "c+");
         $linea1 = "USUARIO INCORRECTO";
         $linea2 = "Nombre: $user.";
         $linea3 = "Password: $password.";

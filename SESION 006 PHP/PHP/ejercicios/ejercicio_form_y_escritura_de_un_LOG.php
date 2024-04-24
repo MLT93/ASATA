@@ -70,15 +70,13 @@
     $formattedDate = date("d-m-y H:i:s", intval($currentTimeStamp));
 
     // ? `FOPEN()` ES EL MANEJADOR DE ARCHIVOS DE PHP
-
     // `fopen()` sirve para acceder a los archivos. Tiene 2 parámetros
     // 1 El archivo al que voy a acceder
-    // 2 El método con el que voy a interactuar en el archivo (escribir al final: "a+", leer desde el principio: "r", )
+    // 2 El método con el que voy a interactuar en el archivo (escribir al final: "a+", leer desde el principio: "r",  escribir al inicio: "c+")
     // Voy a abrir un archivo (.log, .txt, ...) para escribir en él
     $writeDoc = fopen("ejercicio_form_y_escritura_de_un_LOG.log", "a+");
 
     // ? `FWRITE()` ES EL QUE ESCRIBE EN LOS ARCHIVOS
-
     // `fwrite()` sirve para escribir en los archivos cuando he accedido a ellos. Tiene 2 parámetros
     // 1 El archivo con el método con el que voy a interactuar
     // 2 Lo que voy a escribir. Atento que en los archivos de texto los saltos de línea se realizan con `\r\n`
@@ -93,30 +91,40 @@
     fwrite($writeDoc, $linea4 . "\r\n");
 
     // ? `FCLOSE()` ES EL QUE CIERRA EL PROCESO DE ESCRITURA
-
     // `fclose()` sirve para cerrar los archivos. Tiene 1 parámetro
     // 1 El archivo con el que estaba interactuando
     // Voy a dejar de escribir
     fclose($writeDoc);
 
     // ? AHORA LEEREMOS UN ARCHIVO
-
     echo "<h2>Información del archivo LOG</h2>";
 
-    $readDoc = fopen("ejercicio_form_y_escritura_de_un_LOG.log", "r");
+    $readDocWithR = fopen("ejercicio_form_y_escritura_de_un_LOG.log", "r");
 
     // ? `FEOF()` NOS DICE SI ESTAMOS AL FINAL DEL ARCHIVO O NO
-
     // `feof()` devuelve true (1) cuando hemos llegado al final de archivo y false (0) si no lo hemos alcanzado todavía
-    while (!feof($readDoc)) {
+    while (!feof($readDocWithR)) {
 
       // ? `FGETS()` TOMA UNA LINEA DEL ARCHIVO
-
       // `fgets()` obtiene una cadena . Tiene 2 parámetros
       // 1 El archivo de lectura
       // 2 Longitud de caracteres para leer. Si se omite, leerá hasta 1024 caracteres
-      echo fgets($readDoc) . "<br/>";
+      echo fgets($readDocWithR) . "<br/>";
     }
+    // ToDo: ver el archivo subido en el Drive de Dario. Acabar la info correspondiente a fread y filesize. Escribir y copiar las cosas en el archivo "manejar_archivos"
+    // ? `FREAD()` LEE DIRECTAMENTE UN ARCHIVO EXISTENTE
+    // `fread()` lee un archivo existente en modo binario seguro. Tiene 2 parámetros
+    // 1 El archivo a leer
+    // 2 La longitud en caracteres que vamos a leer
+    // ? `FILESIZE()` NOS DEVUELVE EL TAMAÑO DEL ARCHIVO
+    // `filesize()` devuelve el tamaño del archivo. Tener cuidado con archivos mayores de 2Gb
+    // 1 El archivo a leer
+    // 2 La longitud en caracteres que vamos a leer
+    $readDocWithCPlus = fopen("ejercicio_form_y_escritura_de_un_LOG.log", "c+");
+
+    fread($readDocWithCPlus, filesize($readDocWithCPlus));
+
+    fclose($readDocWithCPlus);
   }
   // Si hay comentario y hay submit, el archivo ha sido registrado
   if (isset($comments) && isset($submit)) {

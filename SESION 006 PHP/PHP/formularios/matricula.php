@@ -185,15 +185,13 @@
 
 
     // ? `FOPEN()` ES EL MANEJADOR DE ARCHIVOS DE PHP
-
     // `fopen()` sirve para acceder a los archivos. Tiene 2 parámetros
     // 1 El archivo al que voy a acceder
-    // 2 El método con el que voy a interactuar en el archivo (escribir al final: "a+", leer desde el principio: "r", )
+    // 2 El método con el que voy a interactuar en el archivo (escribir al final: "a+", leer desde el principio: "r", escribir al inicio: "c+")
     // Voy a abrir un archivo (.log, .txt, ...) para escribir en él
     $fichero = fopen("matricula.log", "a+");
 
     // ? `FWRITE()` ES EL QUE ESCRIBE EN LOS ARCHIVOS
-
     // `fwrite()` sirve para escribir en los archivos cuando he accedido a ellos. Tiene 2 parámetros
     // 1 El archivo con el método con el que voy a interactuar
     // 2 Lo que voy a escribir. Atento que en los archivos de texto los saltos de línea se realizan con `\r\n`
@@ -206,7 +204,6 @@
     fwrite($fichero, $linea3 . "\r\n");
 
     // ? `FCLOSE()` ES EL QUE CIERRA EL PROCESO DE ESCRITURA
-
     // `fclose()` sirve para cerrar los archivos. Tiene 1 parámetro
     // 1 El archivo con el que estaba interactuando
     // Voy a dejar de escribir
@@ -214,18 +211,15 @@
 
 
     // ? AHORA LEEREMOS UN ARCHIVO
-
     echo "<h2>Información del archivo LOG</h2>";
 
     $doc = fopen("matricula.log", "r");
 
     // ? `FEOF()` NOS DICE SI ESTAMOS AL FINAL DEL ARCHIVO O NO
-
     // `feof()` devuelve true (1) cuando hemos llegado al final de archivo y false (0) si no lo hemos alcanzado todavía
     while (!feof($doc)) {
 
       // ? `FGETS()` TOMA UNA LINEA DEL ARCHIVO
-
       // `fgets()` obtiene una cadena . Tiene 2 parámetros
       // 1 El archivo de lectura
       // 2 Longitud de caracteres para leer. Si se omite, leerá hasta 1024 caracteres
