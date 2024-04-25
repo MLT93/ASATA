@@ -9,12 +9,13 @@ class Gatito
   // `protected` Solo accesible desde la propia clase y desde sus hijas, pero no desde una instancia (obj)
   // `public` Accesible por todos los lados
 
-  // Variables de la class o `propiedades`
+  // Variables o `propiedades` de la class. Normalmente son siempre `protected` o `private`
   private $nombre;
   protected $color;
   public $rayado;
 
-  // Método constructor. Sirve para darle unos valores por defecto a la instancia que cree con esta clase
+  // Método constructor. Es siempre público y se ejecuta inmediatamente al instanciar. Debemos pasarle unos valores al crear una instancia (obj) o ponérselos por defecto a los parámetros, así cuando creamos la instancia (obj) recibe esos valores
+  // Nos facilita la vida al crear una nueva instancia (obj) sin acceder a cada método individualmente, proporcionando la información necesaria para que esa instancia (obj) exista
   // Cada constructor es único para cada clase, si hay un `extends` lo hereda, pero si creas uno en el nuevo instancia (obj), lo sobrescribe
   function __construct($name = "Minino", $col = "gray", $esRayado = true)
   {
@@ -25,7 +26,7 @@ class Gatito
     $this->rayado = $esRayado;
   }
 
-  // Métodos de la class `getters` y `setters`
+  // `MÉTODOS` de la class, `GETTERS` (devuelve la información) y `SETTERS` (transforma la información)
   protected function setName($newName)
   {
     $this->nombre = $newName; // PROTECTED //=> Accessible from original class and extended classes

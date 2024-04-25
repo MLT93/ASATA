@@ -4,12 +4,13 @@
 // Las clases siempre van en Upper Camel Case
 class Gato
 {
-  // Variables de la class o `propiedades`
+  // Variables o `propiedades` de la class. Normalmente son siempre `protected` o `private`
   var $nombre;
   var $color;
   var $rayado = true;
 
-  // Método constructor. Sirve para darle unos valores por defecto a la instancia que cree con esta clase
+  // Método constructor. Es siempre público y se ejecuta inmediatamente al instanciar. Debemos pasarle unos valores al crear una instancia (obj) o ponérselos por defecto a los parámetros, así cuando creamos la instancia (obj) recibe esos valores
+  // Nos facilita la vida al crear una nueva instancia (obj) sin acceder a cada método individualmente, proporcionando la información necesaria para que esa instancia (obj) exista
   // Cada constructor es único para cada clase, si hay un `extends` lo hereda, pero si creas uno en el nuevo instancia (obj), lo sobrescribe
   function __construct($name = "Félix", $col = "rgb(0,0,0)", $esRayado = false)
   {
@@ -20,7 +21,7 @@ class Gato
     $this->rayado = $esRayado;
   }
 
-  // Métodos de la class `getters` y `setters`
+  // `MÉTODOS` de la class, `GETTERS` (devuelve la información) y `SETTERS` (transforma la información)
   function maullar()
   {
     echo "Miau!" . "<br/>";

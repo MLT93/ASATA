@@ -5,12 +5,12 @@
 // Esto es útil para crear una clase con métodos y propiedades comunes para otras clases que, posteriormente, se particularizarán
 abstract class ChargeOperation
 {
-  // Variables de la class o `propiedades`
+  // Variables o `propiedades` de la class. Normalmente son siempre `protected` o `private`
   var $number1;
   var $number2;
   var $result;
 
-  // Métodos de la class `getters` y `setters`
+  // `MÉTODOS` de la class, `GETTERS` (devuelve la información) y `SETTERS` (transforma la información)
   function setNumber1($num)
   {
     $this->number1 = $num;
