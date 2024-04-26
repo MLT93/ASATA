@@ -41,10 +41,9 @@ abstract class Trabajador
     echo "Sueldo: " . $this->getSueldo() . "<br/>";
   }
 
-  // `MÉTODOS ABSTRACTOS` permite crear diferentes métodos en las clases hijas
+  // `MÉTODOS ABSTRACTOS` crea un método que debe implementarse en las clases hijas
   abstract function calcularSueldo();
 }
-
 
 class Empleado extends Trabajador
 {

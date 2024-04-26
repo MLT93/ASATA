@@ -1,7 +1,7 @@
 <?php
 
 // ? `INTERFACE` SIRVE PARA DEFINIR UNA CLASS Y OBLIGA A QUE SE RESPETE UNA ESTRUCTURA DEFINIDA
-// `interface` es una plantilla (template) para crear una class. 
+// `interface` es una plantilla (template) para crear una class predeterminada que deberá poseer todas las características definidas en su declaración
 // Tiene métodos y propiedades que son obligatorias en las clases que implementan la plantilla
 interface Humano
 {

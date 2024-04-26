@@ -1,7 +1,7 @@
 <?php
 
-// ? MÉTODO QUE NO DEPENDE DE NINGUNA PROPIEDAD O MÉTODO DE LA CLASE DEFINIDA PERO TIENE RELACIÓN CON ELLA Y PUEDE SER UTILIZADA EN SUS INSTANCIAS
-// Sólo puede ser estático si no tiene relación con las propiedades o métodos de la clase establecida pero sí tiene que ver con ella y puede ser utilizada por sus instancias
+// ? `STATIC` NO DEPENDE DE NINGUNA PROPIEDAD O MÉTODO DE LA INSTANCIA O CLASE DEFINIDA, PERO TIENE RELACIÓN CON ELLA Y PUEDE SER UTILIZADA A TRAVÉS DE LAS INSTANCIAS
+// Sólo puede ser estático si no tiene relación con las propiedades o métodos de la clase o instancia establecida, pero sí tiene que ver con ella y puede ser utilizada a través de las instancias
 /* Ejemplo: una clase `Agente` nos informará sobre el agente con su grado, especialidad, el cuerpo al cual pertenece, etc... Pero también poseerá un método `estático` que será `comprobar documentación` que no utiliza sus métodos o sus propiedades pero sí tiene que ver con la clase y puede ser utilizada por cada agente [instancia (obj)] */
 class SerHumano
 {
@@ -77,6 +77,6 @@ class SerHumano
 
 $martina = new SerHumano("Martina", "Mujer", "Rubia", 65);
 
-// ? `$INSTANCIA::STATIC_FUNCION()` PARA LLAMAR UNA FUNCIÓN ESTÁTICA
+// ? `$INSTANCE_OR_CLASS::STATIC_FUNCION()` PARA LLAMAR UNA FUNCIÓN ESTÁTICA
 // `$martina::genoma()` llama a la función estática desde la instancia creada
 $martina::genoma("humano");
