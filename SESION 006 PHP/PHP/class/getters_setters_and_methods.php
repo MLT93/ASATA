@@ -1,18 +1,16 @@
 <?php
 
-// ? `GETTERS` AND `SETTERS` 
-//
+// ? `GETTERS` AND `SETTERS` SON MÉTODOS SINGULARES RELACIONADOS CON LAS PROPIEDADES PARA OBTENER VALORES Y ASIGNARLES VALORES
+// `getters` su función es permitir obtener el valor (protegido o privado) de una propiedad de la clase y así poder utilizar dicho valor en diferentes métodos y desde afuera de la clase
+// `setters` su función permite brindar acceso a propiedades especificas para poder asignar un valor desde afuera de la clase
 class Person
 {
-  // Variables o `propiedades` de la class. Normalmente son siempre `protected` o `private`
+  // `PROPIEDADES` o variables de la class. Normalmente son siempre `protected` o `private`
   protected $name;
   protected $lastName;
   protected $tall; // Supongamos que deseamos la estatura estará en cm
   protected $birthday;  // Supongamos que deseamos la fecha de nacimiento la conseguimos en timestamp
 
-  // Método constructor. Es siempre público y se ejecuta inmediatamente al instanciar. Debemos pasarle unos valores al crear una instancia (obj) o ponérselos por defecto a los parámetros, así cuando creamos la instancia (obj) recibe esos valores
-  // Nos facilita la vida al crear una nueva instancia (obj) sin acceder a cada método individualmente, proporcionando la información necesaria para que esa instancia (obj) exista
-  // Cada constructor es único para cada clase, si hay un `extends` lo hereda, pero si creas uno en el nuevo instancia (obj), lo sobrescribe
   function __construct($nombre, $apellido, $estatura, $fechaNacimiento)
   {
     $this->name = $nombre;
@@ -21,7 +19,7 @@ class Person
     $this->birthday = strtotime($fechaNacimiento); // timestamp
   }
 
-  // `MÉTODOS` de la class, `GETTERS` (devuelve la información) y `SETTERS` (transforma la información)
+  // `SETTERS` (transforma la información de una propiedad desde afuera de la clase)
   public function setName($newName)
   {
     $this->name = $newName;
@@ -42,6 +40,7 @@ class Person
     $this->birthday = strtotime($newBirthday);
   }
 
+  // `GETTERS` (devuelve la información de una propiedad para usarla en un método y desde afuera de la class)
   public function getName()
   {
     return $this->name;
@@ -66,6 +65,7 @@ class Person
     return $formattedBirthday;
   }
 
+  // `MÉTODOS` de la class (utilizan los setters y getters para acceder a la información)
   function showPersonalData()
   {
     $born = $this->birthday; // Timestamp de nacimiento
@@ -110,9 +110,6 @@ class Ciudadano extends Person
   protected $married;
   protected $age;
 
-  // Método constructor. Es siempre público y se ejecuta inmediatamente al instanciar. Debemos pasarle unos valores al crear una instancia (obj) o ponérselos por defecto a los parámetros, así cuando creamos la instancia (obj) recibe esos valores
-  // Nos facilita la vida al crear una nueva instancia (obj) sin acceder a cada método individualmente, proporcionando la información necesaria para que esa instancia (obj) exista
-  // Cada constructor es único para cada clase, si hay un `extends` lo hereda, pero si creas uno en el nuevo instancia (obj), lo sobrescribe
   function __construct($nacionalidad, $tipoId, $numeroId, $residencia, $estadoCivil, $nombre, $apellido, $estatura, $fechaNacimiento)
   {
     $this->nationality = $nacionalidad;
@@ -126,7 +123,6 @@ class Ciudadano extends Person
     Person::__construct($nombre, $apellido, $estatura, $fechaNacimiento);
   }
 
-  // `MÉTODOS` de la class, `GETTERS` (devuelve la información) y `SETTERS` (transforma la información)
   public function setNationality($newNationality)
   {
     $this->nationality = $newNationality;
@@ -218,9 +214,6 @@ class CiudadanoEuropeo extends Ciudadano
   protected $antecedentesPoliciales;
   protected $segundaNacionalidad;
 
-  // Método constructor. Es siempre público y se ejecuta inmediatamente al instanciar. Debemos pasarle unos valores al crear una instancia (obj) o ponérselos por defecto a los parámetros, así cuando creamos la instancia (obj) recibe esos valores
-  // Nos facilita la vida al crear una nueva instancia (obj) sin acceder a cada método individualmente, proporcionando la información necesaria para que esa instancia (obj) exista
-  // Cada constructor es único para cada clase, si hay un `extends` lo hereda, pero si creas uno en el nuevo instancia (obj), lo sobrescribe
   function __construct($antecedentesPoliciales, $segundaNacionalidad, $nacionalidad, $tipoId, $numeroId, $residencia, $estadoCivil, $nombre, $apellido, $estatura, $fechaNacimiento)
   {
     $this->antecedentesPoliciales = $antecedentesPoliciales;
@@ -231,7 +224,6 @@ class CiudadanoEuropeo extends Ciudadano
     Ciudadano::__construct($nacionalidad, $tipoId, $numeroId, $residencia, $estadoCivil, $nombre, $apellido, $estatura, $fechaNacimiento);
   }
 
-  // `MÉTODOS` de la class, `GETTERS` (devuelve la información) y `SETTERS` (transforma la información)
   function getFechaExpirationTSE()
   {
     return $this->fechaExpirationTSE;

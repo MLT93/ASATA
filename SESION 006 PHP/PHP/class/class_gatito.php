@@ -4,12 +4,17 @@
 // Las clases siempre van en Upper Camel Case
 class Gatito
 {
-  // Variables o `propiedades` de la class. Normalmente son siempre `protected` o `private`
-  var $nombre;
-  var $color;
-  var $rayado;
+  // ? `PUBLIC`, `PRIVATE` Y `PROTECTED`
+  // `private` es unicamente accesible desde la propia clase
+  // `protected` es accesible desde la propia clase y desde las clases hijas, pero no desde una instancia (obj)
+  // `public` es accesible desde todos los lados
 
-  // Método constructor. Es siempre público y se ejecuta inmediatamente al instanciar. Debemos pasarle unos valores al crear una instancia (obj) o ponérselos por defecto a los parámetros, así cuando creamos la instancia (obj) recibe esos valores
+  // `PROPIEDADES` o variables de la class. Normalmente son siempre `protected` o `private`
+  public $nombre;
+  public $color;
+  public $rayado;
+
+  // `MÉTODO CONSTRUCTOR` es siempre público y se ejecuta inmediatamente al instanciar. Debemos pasarle unos valores al crear una instancia (obj) o ponérselos por defecto a los parámetros, así cuando creamos la instancia (obj) recibe esos valores
   // Nos facilita la vida al crear una nueva instancia (obj) sin acceder a cada método individualmente, proporcionando la información necesaria para que esa instancia (obj) exista
   // Cada constructor es único para cada clase, si hay un `extends` lo hereda, pero si creas uno en el nuevo instancia (obj), lo sobrescribe
   function __construct($name = "Minino", $col = "gray", $esRayado = true)

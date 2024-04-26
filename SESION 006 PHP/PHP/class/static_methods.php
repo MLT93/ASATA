@@ -19,7 +19,7 @@ class SerHumano
     $this->hairColor = $hairColor;
   }
 
-  // Getters
+  // `GETTERS` (devuelve la información de una propiedad para usarla en un método y desde afuera de la class)
   public function getName(): string
   {
     return $this->name;
@@ -40,7 +40,7 @@ class SerHumano
     return $this->hairColor;
   }
 
-  // Setters
+  // `SETTERS` (transforma la información de una propiedad desde afuera de la clase)
   public function setName(string $name)
   {
     $this->name = strval($name);
@@ -62,6 +62,7 @@ class SerHumano
   }
 
   // Métodos
+  /* ... */
 
   // Métodos estáticos
   public static function genoma($DNA)

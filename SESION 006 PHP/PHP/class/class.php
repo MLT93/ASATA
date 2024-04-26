@@ -4,24 +4,47 @@
 // Las clases siempre van en Upper Camel Case
 class Gato
 {
-  // Variables o `propiedades` de la class. Normalmente son siempre `protected` o `private`
-  var $nombre;
-  var $color;
-  var $rayado = true;
+  // ? `PUBLIC`, `PRIVATE` Y `PROTECTED`
+  // `private` es unicamente accesible desde la propia clase
+  // `protected` es accesible desde la propia clase y desde las clases hijas, pero no desde una instancia (obj)
+  // `public` es accesible desde todos los lados
 
-  // Método constructor. Es siempre público y se ejecuta inmediatamente al instanciar. Debemos pasarle unos valores al crear una instancia (obj) o ponérselos por defecto a los parámetros, así cuando creamos la instancia (obj) recibe esos valores
+  // `PROPIEDADES` o variables de la class. Normalmente son siempre `protected` o `private`
+  public $propiedad;
+  public $nombre;
+  public $color;
+  public $rayado = true;
+
+  // `MÉTODO CONSTRUCTOR` es siempre público y se ejecuta inmediatamente al instanciar. Debemos pasarle unos valores al crear una instancia (obj) o ponérselos por defecto a los parámetros, así cuando creamos la instancia (obj) recibe esos valores
   // Nos facilita la vida al crear una nueva instancia (obj) sin acceder a cada método individualmente, proporcionando la información necesaria para que esa instancia (obj) exista
   // Cada constructor es único para cada clase, si hay un `extends` lo hereda, pero si creas uno en el nuevo instancia (obj), lo sobrescribe
-  function __construct($name = "Félix", $col = "rgb(0,0,0)", $esRayado = false)
+  function __construct($parametro = "parametro del constructor", $name = "Félix", $col = "rgb(0,0,0)", $esRayado = false)
   {
     // Igual que en JavaScript se accede con `this` a las propiedades y métodos de la clase, y se les asignan los parámetros de la función para poder proporcionárselos desde afuera
     // Si no le damos un valor por defecto, al crear una instancia sin parámetros me dará un error
+    $this->propiedad = $parametro;
     $this->nombre = $name;
     $this->color = $col;
     $this->rayado = $esRayado;
   }
 
-  // `MÉTODOS` de la class, `GETTERS` (devuelve la información) y `SETTERS` (transforma la información)
+  // ? `GETTERS` AND `SETTERS` SON MÉTODOS SINGULARES RELACIONADOS CON LAS PROPIEDADES PARA OBTENER VALORES Y ASIGNARLES VALORES
+  // `getters` su función es permitir obtener el valor (protegido o privado) de una propiedad de la clase y así poder utilizar dicho valor en diferentes métodos y desde afuera de la clase
+  // `setters` su función permite brindar acceso a propiedades especificas para poder asignar un valor desde afuera de la clase
+
+  // `GETTERS` (devuelve la información de una propiedad para usarla en un método y desde afuera de la class)
+  public function getPropiedad()
+  {
+    return $this->propiedad;
+  }
+
+  // `SETTERS` (transforma la información de una propiedad desde afuera de la clase)
+  public function setPropiedad($parametro)
+  {
+    $this->propiedad = $parametro;
+  }
+
+  // `MÉTODOS` de la class (utilizan los setters y getters para acceder a la información)
   function maullar()
   {
     echo "Miau!" . "<br/>";
@@ -32,7 +55,7 @@ class Gato
     echo "$nombreGato dice: \"Miau!\" Tiene hambre." . "<br/>";
   }
 
-  // Método destructor. Sirve para destruir las instancias creadas con esta clase una vez haya realizado y completado todos los procesos
+  // `MÉTODO DESTRUCTOR`. Sirve para destruir las instancias creadas con esta clase una vez haya realizado y completado todos los procesos
   function __destruct()
   {
     $this->nombre = "dice: Adiós." . "<br/>";
@@ -43,7 +66,6 @@ echo "<hr />";
 
 // ? `NEW` INSTANCIA DE UNA CLASS
 // `new` es una palabra clave para crear una instancia de una clase. Un "nuevo" objeto al fin y al cabo
-
 new Gato(); // Esta instancia no está asociada a una variable, por lo tanto no es accesible
 $gatoBaldomero = new Gato(); // Nueva instancia de la class `Gato`. Ahora tenemos un objeto con las propiedades accesibles de la clase
 
@@ -110,6 +132,9 @@ echo "Baldomero pertenece a la clase " . get_class($gatoBaldomero) . "<br/>";
 echo "<hr/>";
 
 // ToDo: crear un `extends` para adaptar get_parent_class() y is_subclass_of()
+// ? `EXTENDS` SIRVE PARA EXTENDER (CLONAR) UNA CLASE Y CREAR OTRA
+// `extends` clona una nueva clase. La nueva clase hereda todas sus propiedades y métodos, pudiendo agregar más funcionalidades. Atento! Lo que se hereda no se puede modificar
+
 // ? `GET_PARENT_CLASS` SIRVE PARA SABER CUÁL ES EL PADRE Y SABER A LO QUE PUEDO ACCEDER
 // `get_parent_class()` nos dice quién es el padre de la class que ha sido extendida
 echo get_parent_class("Sum") . "<br/>"; //=> ChargeOperation
@@ -145,4 +170,3 @@ echo "$gatoBaldomero->nombre tiene el color: $gatoBaldomero->color" . "<br/>";
 $garfield->nombre = "Garfield";
 $garfield->color = "naranja";
 echo "$garfield->nombre tiene el color: $garfield->color" . "<br/>";
-

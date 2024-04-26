@@ -4,15 +4,20 @@
 // Las clases siempre van en Upper Camel Case
 class WebButton
 {
-  // Variables o `propiedades` de la class. Normalmente son siempre `protected` o `private`
-  var $width;
-  var $height;
-  var $color;
-  var $CSS;
-  var $disable;
-  var $text;
+  // ? `PUBLIC`, `PRIVATE` Y `PROTECTED`
+  // `private` es unicamente accesible desde la propia clase
+  // `protected` es accesible desde la propia clase y desde las clases hijas, pero no desde una instancia (obj)
+  // `public` es accesible desde todos los lados
 
-  // Método constructor. Es siempre público y se ejecuta inmediatamente al instanciar. Debemos pasarle unos valores al crear una instancia (obj) o ponérselos por defecto a los parámetros, así cuando creamos la instancia (obj) recibe esos valores
+  // `PROPIEDADES` o variables de la class. Normalmente son siempre `protected` o `private`
+  public $width;
+  public $height;
+  public $color;
+  public $CSS;
+  public $disable;
+  public $text;
+
+  // `MÉTODO CONSTRUCTOR` es siempre público y se ejecuta inmediatamente al instanciar. Debemos pasarle unos valores al crear una instancia (obj) o ponérselos por defecto a los parámetros, así cuando creamos la instancia (obj) recibe esos valores
   // Nos facilita la vida al crear una nueva instancia (obj) sin acceder a cada método individualmente, proporcionando la información necesaria para que esa instancia (obj) exista
   // Cada constructor es único para cada clase, si hay un `extends` lo hereda, pero si creas uno en el nuevo instancia (obj), lo sobrescribe
   function __construct($width = "100px", $height = "35px", $color = "lightskyblue", $styleCSS = "primary-button", $isDisable = true, $text = "Haz Click Aquí")
@@ -27,7 +32,7 @@ class WebButton
     $this->text = $text;
   }
 
-  // `MÉTODOS` de la class, `GETTERS` (devuelve la información) y `SETTERS` (transforma la información)
+  // `SETTERS` (transforma la información de una propiedad desde afuera de la clase)
   function setDimension($ancho, $alto)
   {
     echo "El botón tendrá el tamaño de:" .  $this->width = $ancho . " " . $this->height = $alto . "<br/>";
@@ -43,6 +48,24 @@ class WebButton
     echo "El estilo del botón será: " . $this->CSS = $classNameCSS . "<br/>";
   }
 
+  function setText($text)
+  {
+    echo "El texto del botón será: " . $this->text = $text . "<br/>";
+  }
+
+  // `GETTERS` (devuelve la información de una propiedad para usarla en un método y desde afuera de la class)
+  function getDimensions()
+  {
+    echo "Ancho: " . $this->width . "<br/>";
+    echo "Alto: " . $this->height . "<br/>";
+  }
+
+  function getColor()
+  {
+    return $this->color;
+  }
+
+  // `MÉTODOS` de la class (utilizan los setters y getters para acceder a la información)
   function toggleDisable($isDisable)
   {
     $this->disable = $isDisable;
@@ -52,11 +75,6 @@ class WebButton
     } else {
       echo "El botón está deshabilitado. Controla si has puesto correctamente el booleano." . "<br/>";
     };
-  }
-
-  function setText($text)
-  {
-    echo "El texto del botón será: " . $this->text = $text . "<br/>";
   }
 }
 

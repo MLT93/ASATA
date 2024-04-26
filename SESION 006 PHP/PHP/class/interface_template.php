@@ -1,8 +1,8 @@
 <?php
 
 // ? `INTERFACE` SIRVE PARA DEFINIR UNA CLASS Y OBLIGA A QUE SE RESPETE UNA ESTRUCTURA DEFINIDA
-// `interface` es una plantilla (template) para crear una class
-
+// `interface` es una plantilla (template) para crear una class. 
+// Tiene métodos y propiedades que son obligatorias en las clases que implementan la plantilla
 interface Humano
 {
 
@@ -17,9 +17,7 @@ interface Humano
   public function setWeight(int $weight);
 }
 
-// ?
-// ``
-
+// ToDo: escribir características de implements
 // ? `IMPLEMENTS`
 // `implements`
 class HomoSapiens implements Humano
@@ -29,7 +27,6 @@ class HomoSapiens implements Humano
   protected $weight;
   protected $hairColor;
 
-  // Getters
   public function getName(): string
   {
     return $this->name;
@@ -50,7 +47,6 @@ class HomoSapiens implements Humano
     return $this->hairColor;
   }
 
-  // Setters
   public function setName(string $name)
   {
     $this->name = strval($name);
