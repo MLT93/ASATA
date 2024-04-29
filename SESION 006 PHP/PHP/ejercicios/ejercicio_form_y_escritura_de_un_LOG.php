@@ -43,7 +43,7 @@
     <label for="commentsID">COMENTARIO</label>
     <textarea name="comments" id="commentsID" cols="30" rows="10" placeholder="Write here..." required></textarea>
 
-    <button type="submit" id="submitID" name="submit" value="Submit">
+    <button type="submit" id="submitID" name="submit" value="send">
       SUBMIT
     </button>
   </form>

@@ -40,7 +40,7 @@
     <label for="passwordID">PASSWORD</label>
     <input type="password" id="passwordID" name="password" placeholder="Your password here..." required />
 
-    <button type="submit" id="submitID" name="submit" value="Submit">
+    <button type="submit" id="submitID" name="submit" value="send">
       SUBMIT
     </button>
   </form>

@@ -1,6 +1,6 @@
   <?php
   // Compruebo existencia
-  if (isset($_REQUEST["user"]) && isset($_REQUEST["password"])) {
+  if (isset($_REQUEST["user"]) && isset($_REQUEST["password"]) && isset($_REQUEST["enviar"])) {
     // Borro
     unset($user, $password);
     // Veo la información del formulario

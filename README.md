@@ -4,4 +4,4 @@
 
 - MF0491_3: Programación web entorno cliente: `HTML`, `CSS`, `JavaScript`, `UI/UX`, `Vue.js`
 
-- MF0492_3: Programación web entorno servidor: `PHP`, `SQL`, `NoSQL`, `XAMPP`, `LAMP`
+- MF0492_3: Programación web entorno servidor: `PHP`, `SQL`, `NoSQL`, `XAMPP`, `LAMP`, `Postman`, `Apache`

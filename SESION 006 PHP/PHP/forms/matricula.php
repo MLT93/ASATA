@@ -106,11 +106,12 @@
 
     </select>
 
-    <button type="submit" id="submitID" name="submit" value="Submit">
+    <button type="submit" id="submitID" name="submit" value="send">
       SUBMIT
     </button>
   </form>
 
+  // ! LA COMPROBACIÓN LA ESTOY REALIZANDO EN LA MISMA PÁGINA PORQUE LA RESPUESTA IRÁ EN LA MISMA PÁGINA
   <?php
   // Database
 

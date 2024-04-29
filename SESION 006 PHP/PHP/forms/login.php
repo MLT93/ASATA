@@ -14,6 +14,7 @@
 <body>
   <h1>RESPUESTA LOGIN</h1>
 
+  // ! LA COMPROBACIÓN LA ESTOY REALIZANDO EN LA MISMA PÁGINA PORQUE LA RESPUESTA IRÁ EN LA MISMA PÁGINA
   <?php
   // `$_REQUEST` es para obtener la respuesta enviada, se escribe el valor del atributo `name=""` del input HTML correspondiente. Devuelve un array
   $user = $_REQUEST["user"];

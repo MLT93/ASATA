@@ -17,7 +17,7 @@
   /* ... */
 
   // Compruebo si las variables están definidas o no
-  if (isset($_REQUEST["name"]) && isset($_REQUEST["password"]) && isset($_REQUEST["userType"])) {
+  if (isset($_REQUEST["name"]) && isset($_REQUEST["password"]) && isset($_REQUEST["userType"]) && isset($_REQUEST["submit"])) {
     // Primero borro
     unset($user, $passwordUser, $userType);
 

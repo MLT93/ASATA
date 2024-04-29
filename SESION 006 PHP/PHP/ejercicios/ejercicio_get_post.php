@@ -30,7 +30,7 @@
       <input type="radio" name="lvl" value="Bachiller" /> Bachiller
     </label>
 
-    <button type="submit" id="submitID" name="submit" value="Submit">
+    <button type="submit" id="submitID" name="submit" value="send">
       SUBMIT
     </button>
   </form>

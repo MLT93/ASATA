@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="Marcos Lambir Torres" />
+  <meta name="description" content="JavaScript" />
+  <meta name="keywords" content="Curso, Formación, Examen" />
+  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="shortcut icon" href="public/favicon.ico" type="image/x-icon" />
+  <title>Cookies</title>
+</head>
+
+<body>
+  <header class="background-1">
+    <section class="flex-col-cnt section-container">
+      <div class="flex-row-cnt gap-s max-width">
+        <h1>Header</h1>
+      </div>
+    </section>
+  </header>
+
+  <nav class="background-2">
+    <section class="flex-col-cnt section-container">
+      <div class="flex-row-cnt gap-m max-width">
+        <h2>Nav</h2>
+      </div>
+    </section>
+  </nav>
+
+  <main class="background-3">
+    <section class="flex-col-cnt section-container">
+      <div class="flex-col-cnt gap-s max-width">
+        <h2>Main</h2>
+        <form action="./fin_encuesta.php" method="post" target="_self" autocomplete="on" id="formulario">
+          <fieldset>
+            <legend>
+              <h3>LOG IN</h3>
+            </legend>
+            <div class="flex-row-spb">
+              <label for="nameID">NOMBRE</label>
+              <input type="text" name="name" id="nameID" placeholder="Nombre aquí..." required />
+            </div>
+            <div class="flex-row-spb">
+              <label for="preg01ID">¿Qué le gusta ver en TV?</label>
+              <input type="text" name="preg01" id="preg01ID" placeholder="Escriba aquí..." required />
+            </div>
+            <div class="flex-row-spb">
+              <label for="preg02ID">¿Qué le gusta escuchar en la radio?</label>
+              <input type="text" name="preg02" id="preg02ID" placeholder="Escriba aquí..." required />
+            </div>
+            <div class="flex-row-spb">
+              <label for="preg03ID">¿Qué contenido ve en internet más habitualmente?</label>
+              <input type="text" name="preg03" id="preg03ID" placeholder="Escriba aquí..." required />
+            </div>
+            <div class="flex-row-spb">
+              <label for="preg04ID">Escriba sus 3 sitios más visitados</label>
+              <input type="text" name="preg04" id="preg04ID" placeholder="Escriba aquí..." required />
+            </div>
+            <div class="flex-col-cnt">
+              <button type="submit" name="submit" id="submitBtnID" value="send">
+                Enviar Formulario
+              </button>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <aside class="background-4">
+    <section class="flex-col-cnt section-container">
+      <div class="flex-row-cnt gap-s max-width">
+        <h2>Aside</h2>
+      </div>
+    </section>
+  </aside>
+
+  <footer class="background-5">
+    <section class="flex-col-cnt section-container">
+      <div class="flex-row-cnt gap-m max-width">
+        <h2>&copy;Footer</h2>
+        <ul>
+          <li><a href="#" title="Footer link">Footer link</a></li>
+        </ul>
+      </div>
+    </section>
+  </footer>
+
+  <script type="module" src="./js/script.js"></script>
+</body>
+
+</html>

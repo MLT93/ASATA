@@ -25,11 +25,14 @@
     <section class="flex-col-cnt section-container">
       <div class="flex-row-cnt gap-m max-width">
         <ul>
-          <li><a href="./_home.php" title="Página Principal">Home</a></li>
+          <li><a href="./home.php" title="Página Principal">Home</a></li>
         </ul>
         <h2>Nav</h2>
         <ul>
-          <li><a href="./_login.php" title="Página Login">LogIn</a></li>
+          <li><a href="./login.php" title="Página Login">LogIn</a></li>
+        </ul>
+        <ul>
+          <li><a href="./contact.php" title="Página Login">Contact</a></li>
         </ul>
       </div>
     </section>
@@ -58,7 +61,7 @@
             </div>
             <div class="flex-col-cnt">
               <img src="../src/assets/captcha/img_captcha.php" alt="Captcha Image" />
-              <button type="submit" name="submit" id="submitBtnID">
+              <button type="submit" name="submit" id="submitBtnID" value="send">
                 Enviar Formulario
               </button>
             </div>
@@ -89,7 +92,6 @@
 
   <?php
   // Database
-
   $dbUsers = [
     ["migCD", "1234"],
     ["pedro36", "1234"],
@@ -114,7 +116,15 @@
     // Compruebo que los datos de la db coinciden con los datos introducidos por el usuario
     for ($i = 0; $i < count($dbUsers); $i++) {
       if ($user === $dbUsers[$i][0] && $userPass === $dbUsers[$i][1]) {
-        // Faltaría comprobar si el usuario ha realizado correctamente el captcha
+        // Comprobar si el usuario ha realizado correctamente el captcha
+        // ? `SETCOOKIE()` CREA UNA COOKIE
+        // `setcookie()` recibe 4 parámetros
+        // 1 Nombre de la cookie. Para obtener su valor se utiliza `$_COOKIE[""]`
+        // 2 Valor de la cookie. Se almacena en el PC del cliente
+        // 3 El tiempo en que la cookie expira. Si se establece a 0, o es omitido, la cookie expirará al final de la sesión (cuando el navegador es cerrado). Lo más probable es que se haga con la función time() más el número de segundos antes de que quiera que expire. O se podría usar `mktime()`. `time()+60*60*24*30` hará que la cookie establecida expire en 30 días
+        // 4 Path. La ruta dentro del servidor en la que la cookie estará disponible. Si se utiliza '/', la cookie estará disponible en la totalidad del domain. Si se configura como '/foo/', la cookie sólo estará disponible dentro del directorio /foo/ y todos sus sub-directorios en el domain, tales como /foo/bar/. El valor por defecto es el directorio actual en donde se está configurando la cookie.
+        // 5 Subdominio donde está disponible la cookie. Para que la cookie esté disponible para todo el dominio (incluyendo todos sus subdominios), simplemente establezca el nombre de dominio ('example.com', en este caso)
+        setcookie("login", $user, time() + 3600 * 24, "/", "example.com");
         echo "<h3>CORRECT</h3>" . "<br/>";
         break;
       } elseif ($i === count($dbUsers) - 1) {

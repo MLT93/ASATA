@@ -20,9 +20,10 @@
     <label for="num">INTRODUCE UN NÚMERO</label>
     <input type="number" id="num" name="num">
 
-    <button type="submit" id="enviar" name="enviar">ENVIAR</button>
+    <button type="submit" id="enviar" name="enviar" value="send">ENVIAR</button>
   </form>
 
+  // ! LA COMPROBACIÓN LA ESTOY REALIZANDO EN LA MISMA PÁGINA PORQUE LA RESPUESTA IRÁ EN LA MISMA PÁGINA
   <?php
   // Compruebo existencia
   if (isset($_REQUEST["num"])) {

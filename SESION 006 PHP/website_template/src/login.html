@@ -7,7 +7,7 @@
   <meta name="author" content="Marcos Lambir Torres" />
   <meta name="description" content="JavaScript" />
   <meta name="keywords" content="Curso, Formación, Examen" />
-  <link rel="stylesheet" href="./css/home.css" />
+  <link rel="stylesheet" href="./css/login.css" />
   <link rel="shortcut icon" href="public/favicon.ico" type="image/x-icon" />
   <title>Home</title>
 </head>
@@ -25,11 +25,11 @@
     <section class="flex-col-cnt section-container">
       <div class="flex-row-cnt gap-m max-width">
         <ul>
-          <li><a href="./_home.php" title="Página Principal">Home</a></li>
+          <li><a href="./home.php" title="Página Principal">Home</a></li>
         </ul>
         <h2>Nav</h2>
         <ul>
-          <li><a href="./_login.php" title="Página Login">LogIn</a></li>
+          <li><a href="./login.html" title="Página Login">LogIn</a></li>
         </ul>
       </div>
     </section>
@@ -37,8 +37,33 @@
 
   <main class="background-3">
     <section class="flex-col-cnt section-container">
-      <div class="flex-row-cnt gap-s max-width">
+      <div class="flex-col-cnt gap-s max-width">
         <h2>Main</h2>
+        <form action="./home.php" method="post" target="_self" autocomplete="on" id="formulario">
+          <fieldset>
+            <legend>
+              <h3>LOG IN</h3>
+            </legend>
+            <div class="flex-row-spb">
+              <label for="userID">USER</label>
+              <input type="text" name="user" id="userID" placeholder="Usuario aquí..." required />
+            </div>
+            <div class="flex-row-spb">
+              <label for="passwordID">PASSWORD</label>
+              <input type="password" name="password" id="passwordID" placeholder="Password aquí..." required />
+            </div>
+            <div class="flex-row-spb">
+              <label for="captchaID">CAPTCHA</label>
+              <input type="text" name="captcha" id="captchaID" placeholder="Captcha aquí..." required />
+            </div>
+            <div class="flex-col-cnt">
+              <img src="../src/assets/captcha/img_captcha.php" alt="Captcha Image" />
+              <button type="submit" name="submit" id="submitBtnID" value="send">
+                Enviar Formulario
+              </button>
+            </div>
+          </fieldset>
+        </form>
       </div>
     </section>
   </main>
@@ -62,7 +87,7 @@
     </section>
   </footer>
 
-  <script type="module" src="./js/home.js"></script>
+  <script type="module" src="./js/login.js"></script>
 </body>
 
 </html>
