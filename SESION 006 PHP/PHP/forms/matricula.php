@@ -112,7 +112,9 @@
   </form>
 
   <?php
+  // Database
 
+  /* ... */
 
   // Compruebo si las variables están definidas o no
   if (

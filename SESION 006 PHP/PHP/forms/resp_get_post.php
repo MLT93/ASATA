@@ -12,11 +12,15 @@
 
   <?php
 
+  // Database
+
+  /* ... */
+
   // Compruebo si las variables están definidas o no
   if (isset($_REQUEST["name"]) && isset($_REQUEST["password"]) && isset($_REQUEST["userType"])) {
     // Primero borro
     unset($user, $passwordUser, $userType);
-    
+
     // Luego escribo
     // ? `$_REQUEST`
     // `$_REQUEST` devuelve un array con toda la info del formulario, por eso se identifican individualmente
@@ -43,8 +47,6 @@
     echo '$_REQUEST ' . "Hola $user. Eres un usuario de tipo $userType" . "<br/>";
     echo '$_POST ' . "Hola $user2. Eres un usuario de tipo $userType2" . "<br/>";
     echo '$_GET ' . "Hola $clave. Eres un usuario de tipo $type" . "<br/>";
-  } else {
-    echo "404 - Not Found" . "<br/>";
   }
 
   ?>

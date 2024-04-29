@@ -26,9 +26,11 @@
   <?php
   // Compruebo existencia
   if (isset($_REQUEST["num"])) {
-    unset($num); // Primero borro
+    // Primero borro
+    unset($num);
+    // Luego escribo
     // `$_REQUEST` es para obtener la respuesta enviada, se escribe el valor del atributo `name=""` del input HTML correspondiente. Devuelve un array
-    $num = $_REQUEST["num"]; // Luego escribo
+    $num = $_REQUEST["num"];
     define("numOfForm", $num);
     echo "<br/>";
     echo "La variable guardada es 'numOfForm' y vale: " . numOfForm;

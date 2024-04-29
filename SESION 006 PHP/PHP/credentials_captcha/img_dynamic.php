@@ -93,7 +93,7 @@ imageellipse($myImg, 100, 50, 10, 20, $YellowBackgroundColor);
 // 6 Color
 imageline($myImg, 20, 20, 150, 150, $YellowBackgroundColor);
 
-// ? `IMAGETTFTEXT()` MUESTRA LA IMAGEN
+// ? `IMAGETTFTEXT()` MUESTRA UN TEXTO IMAGEN
 // `imagettftext()` Recibe 8 parámetros
 // 1 La imagen
 // 2 Tamaño
