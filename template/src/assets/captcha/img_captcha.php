@@ -45,8 +45,8 @@ imagettftext($boxCaptcha, 21, 0, 28, 33, $red, "../../../fonts/Jersey25-Regular.
 
 // ? `AÑADIR RUIDO AL CAPTCHA` PARA EVITAR QUE LOS BOTS NO PUEDAN ENTRAR
 // `añadir ruido al captcha` nos sirve para crear distorsión en la imagen
-$lines = 21;
-for ($i = 0; $i < $lines; $i++) {
+$quantityOfLines = 21;
+for ($i = 0; $i < $quantityOfLines; $i++) {
   // ? `RAND()` CREA VALORES ALEATORIOS ENTRE UN NÚMERO Y OTRO
   // `rand()` viene utilizado para crear valores aleatorios desde un inicio, hasta un fin
   // Creo variables aleatorias para obtener una coordenada desde el inicio del box donde voy a dibujar hasta su fin (que será el máximo ancho o alto de ese mismo box)
