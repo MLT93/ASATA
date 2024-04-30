@@ -6,18 +6,19 @@
 // 2 Payload: donde aparecen los datos de usuario y privilegios, así como toda la información que queramos añadir, todos los datos que creamos convenientes.
 // 3 Signature: una firma que nos permite verificar si el token es válido, y aquí es donde radica el quid de la cuestión, ya que si estamos tratando de hacer una comunicación segura entre partes y hemos visto que podemos coger cualquier token y ver su contenido con una herramienta sencilla, ¿dónde reside entonces la potencia de todo esto?
 
-// Call de package
+// Call de package JWT
 require_once("../../vendor/autoload.php");
 
-// Call namespaces
+// Call namespaces JWT
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
-// Clave
+// Secret key (the same value of encrypted key)
 $secret_key = "clave_muy_secreta";
 
 // Comprobar que exista
 if (isset($_COOKIE["JWT"])) {
+  // Enviar otro error si el token es inválido a través de un try-catch
   try {
     // Decrypting (descodificar la clave)
     JWT::decode($_COOKIE["JWT"], new Key($secret_key, "HS256"));

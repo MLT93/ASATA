@@ -31,6 +31,9 @@
         <ul>
           <li><a href="./login.html" title="Página Login">LogIn</a></li>
         </ul>
+        <ul>
+          <li><a href="./user_data.php" title="Página Info Usuario">Info Usuario</a></li>
+        </ul>
       </div>
     </section>
   </nav>

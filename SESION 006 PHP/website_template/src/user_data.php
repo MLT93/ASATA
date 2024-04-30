@@ -66,21 +66,43 @@
   </footer>
 
   <?php
+  // Call de package JWT
+  require_once("../../vendor/autoload.php");
+
+  // Call namespaces JWT
+  use Firebase\JWT\JWT;
+  use Firebase\JWT\Key;
+
+  // Secret key (debe tener el mismo valor que la clave previamente encriptada en JWT)
+  $secret_key = "clave_muy_secreta";
+
+  if (isset($_COOKIE["JWT"])) {
+    // Enviar otro error si el token es inválido a través de un try-catch
+    try {
+      // Descodificar la clave
+      JWT::decode($_COOKIE["JWT"], new Key($secret_key, "HS256"));
+      echo "<h3>El usuario tiene acceso a esta página</h3>" . "<br/>";
+    } catch (Exception $e) {
+      http_response_code(401);
+      echo "<h3>El token es inválido</h3>" . $e->getMessage() . "<br/>";
+    }
+  } else {
+    http_response_code(401);
+    echo "<h3>Acceso denegado. No se ha proporcionado un token</h3>" . "<br/>";
+  }
+
   // Compruebo si las variables están definidas o no
-  if (isset($_COOKIE["login"])) {
+  if (isset($_COOKIE["LOGIN"])) {
     // Primero borro
     unset($loginCookie);
 
     // Luego escribo
-    // ? `$_COOKIE`
-    // `$_COOKIE` devuelve el valor que posee la cookie
-    $loginCookie = $_COOKIE["login"];
+    $loginCookie = $_COOKIE["LOGIN"];
 
-    echo "<h3>COOKIE USUARIO:</h3>";
-    echo "$loginCookie";
+    echo "<h3>INFO USUARIO LOGUEADO</h3>";
 
     // Borro cookies dejando el parámetro 2 vacío y el parámetro 3 en negativo
-    setcookie("login", "", time() - 1000, "/");
+    setcookie("LOGIN", "", time() - 1000, "/");
   }
   ?>
   <script type="module" src="./js/login.js"></script>
