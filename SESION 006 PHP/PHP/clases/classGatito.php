@@ -35,7 +35,7 @@ class Gatito
 // Instancia (new Obj) sin parámetros
 $gatoX = new Gatito(); //=> Minino Color Boolean
 
-// Instancia (new Obj) con parámetros
+// Instancia (new Obj) utilizando los parámetros del constructor
 $minino = new Gatito("Arturito", "Gris", true);
 echo $minino; //=> Arturito Gris true
 

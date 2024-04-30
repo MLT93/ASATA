@@ -52,9 +52,15 @@ echo "$gatoX->nombre $gatoX->color $gatoX->rayado" . "<br/>"; //=> setNombreGato
 $garfield = new Gato();
 $gatito = new Gato();
 
-// Instancia (new Obj) con parámetros
+// Instancia (new Obj) utilizando los parámetros del constructor
 $minino = new Gato("Arturito", "Gris", true);
 echo "$minino->nombre $minino->color $minino->rayado" . "<br/>"; //=> Arturito Gris 1
+
+echo "<hr/>";
+
+// ? `EXTENDS` SIRVE PARA EXTENDER (CLONAR) UNA CLASE Y CREAR OTRA
+// `extends` clona una nueva clase. La nueva clase hereda todas sus propiedades y métodos, pudiendo agregar más funcionalidades. Atento! Lo que se hereda no se puede modificar
+
 
 echo "<hr/>";
 
@@ -144,4 +150,3 @@ echo "$gatoBaldomero->nombre tiene el color: $gatoBaldomero->color" . "<br/>";
 $garfield->nombre = "Garfield";
 $garfield->color = "naranja";
 echo "$garfield->nombre tiene el color: $garfield->color" . "<br/>";
-
