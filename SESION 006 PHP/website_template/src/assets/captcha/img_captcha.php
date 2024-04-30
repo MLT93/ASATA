@@ -35,7 +35,7 @@ $textCharts = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789012
 $aleatoryTextCaptcha = substr(str_shuffle($textCharts), 0, 7);
 
 // ? `$_SESSION` ES LA VARIABLE GLOBAL PROPORCIONADA POR EL INICIO DE SESIÓN
-// `$_SESSION` almacena la información de la sesión, accesible por cualquier lugar que reanude o cree esa sesión
+// `$_SESSION` almacena la información de la sesión `["clave"]=valor`, accesible por cualquier lugar que reanude o cree esa sesión
 // Igualo al valor del texto del captcha que deberá introducir el usuario, así podré acceder a esa información desde otras partes
 $_SESSION["captcha"] = $aleatoryTextCaptcha;
 

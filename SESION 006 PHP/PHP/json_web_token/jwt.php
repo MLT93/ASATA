@@ -13,7 +13,7 @@ require_once("../../vendor/autoload.php");
 use Firebase\JWT\JWT;
 
 // Call ENV environment
-// El parámetro que recibe la función estática en el namespace `Dotenv` recibe 1 parámetro
+// La función estática en el namespace `Dotenv` recibe 1 parámetro
 // El directorio donde encontrar el archivo `.env`. No hace falta poner el nombre del archivo oculto, solo ponemos el directorio donde está, porque lo busca automáticamente
 $dotenv = Dotenv\Dotenv::createImmutable("../../");
 $dotenv->load();
