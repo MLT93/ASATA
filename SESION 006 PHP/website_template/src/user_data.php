@@ -24,12 +24,12 @@
   <nav class="background-2">
     <section class="flex-col-cnt section-container">
       <div class="flex-row-cnt gap-m max-width">
+        <h2>Nav</h2>
         <ul>
           <li><a href="./home.php" title="Página Principal">Home</a></li>
         </ul>
-        <h2>Nav</h2>
         <ul>
-          <li><a href="./login.php" title="Página Login">LogIn</a></li>
+          <li><a href="./login.html" title="Página Login">LogIn</a></li>
         </ul>
         <ul>
           <li><a href="./contact.php" title="Página Login">Contact</a></li>
@@ -73,8 +73,14 @@
   use Firebase\JWT\JWT;
   use Firebase\JWT\Key;
 
+  // Llamar archivo `.env` para utilizarlo
+  // El parámetro que recibe la función estática en el namespace `Dotenv` recibe 1 parámetro
+  // El directorio donde encontrar el archivo `.env`. No hace falta poner el nombre del archivo. Hay que poner solo el directorio porque lo busca automáticamente
+  $dotenv = Dotenv\Dotenv::createImmutable("../../");
+  $dotenv->load();
+
   // Secret key (debe tener el mismo valor que la clave previamente encriptada en JWT)
-  $secret_key = "clave_muy_secreta";
+  $secret_key = $_ENV["SECRET_KEY"];
 
   if (isset($_COOKIE["JWT"])) {
     // Enviar otro error si el token es inválido a través de un try-catch

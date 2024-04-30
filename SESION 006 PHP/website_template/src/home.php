@@ -24,10 +24,10 @@
   <nav class="background-2">
     <section class="flex-col-cnt section-container">
       <div class="flex-row-cnt gap-m max-width">
+        <h2>Nav</h2>
         <ul>
           <li><a href="./home.php" title="Página Principal">Home</a></li>
         </ul>
-        <h2>Nav</h2>
         <ul>
           <li><a href="./login.html" title="Página Login">LogIn</a></li>
         </ul>
@@ -72,6 +72,12 @@
   // namespace JWT
   use Firebase\JWT\JWT;
 
+  // Llamar archivo `.env` para utilizarlo
+  // El parámetro que recibe la función estática en el namespace `Dotenv` recibe 1 parámetro
+  // El directorio donde encontrar el archivo `.env`. No hace falta poner el nombre del archivo. Hay que poner solo el directorio porque lo busca automáticamente
+  $dotenv = Dotenv\Dotenv::createImmutable("../../");
+  $dotenv->load();
+
   // Database con la info de usuarios
   $dbUsers = [
     ["migCD", "1234"],
@@ -109,7 +115,7 @@
         echo "<h3>WELCOME $user</h3>" . "<br/>";
 
         // Creo pass muy secreta para encriptar JWT
-        $secret_key = "clave_muy_secreta";
+        $secret_key = $_ENV["SECRET_KEY"];
 
         // Crear Payload JWT con la info del usuario a encriptar JWT. La password no hace falta a no ser que se encripte por separado
         $iat = time();

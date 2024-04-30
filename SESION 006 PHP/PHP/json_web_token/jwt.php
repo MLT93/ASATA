@@ -12,8 +12,16 @@ require_once("../../vendor/autoload.php");
 // Call namespaces
 use Firebase\JWT\JWT;
 
+// Call ENV environment
+// El parámetro que recibe la función estática en el namespace `Dotenv` recibe 1 parámetro
+// El directorio donde encontrar el archivo `.env`. No hace falta poner el nombre del archivo. Hay que poner solo el directorio porque lo busca automáticamente
+$dotenv = Dotenv\Dotenv::createImmutable("../../");
+$dotenv->load();
+
 // Private key
-$secret_key = "clave_muy_secreta";
+// ? `$_ENV` PERMITE EL ACCESO A LAS VARIABLES DE ENTORNO (archivo .env)
+// `$_ENV` nos da acceso a las variables dentro del archivo `.env`. Agrega siempre ese archivo al archivo `.gitignore` para que quede privado
+$secret_key = $_ENV["SECRET_KEY"];
 
 // Info user from database
 $userData = [
