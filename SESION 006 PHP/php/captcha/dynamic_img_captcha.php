@@ -1,15 +1,14 @@
 <?php
-// ToDo: Acabar las explicaciones
 // ? `SESSION_START()` INICIA UNA SESIÓN PARA ALMACENAR EL TEXTO DEL CAPTCHA Y PODERLO COMPARAR POSTERIORMENTE CON EL TEXTO INTRODUCIDO POR EL USUARIO
-// `session_start()`  crea una sesión o reanuda la actual basada en un identificador de sesión pasado mediante una petición GET o POST, o pasado mediante una cookie. PHP llamará a los gestores de almacenamiento de sesiones open y read. La llamada de retorno read recuperará cualquier información se de sesión existente (almacenada en un formato serializado especial) y será deserializada y usada para rellenar automáticamente la variable superglobal `$_SESSION` cuando la llamada de retorno read devuelva la información de sesión guardada a la gestión de sesiones de PHP
+// `session_start()` crea una sesión o reanuda la actual basada en un identificador de sesión pasado mediante una petición GET o POST, o pasado mediante una cookie. PHP llamará a los gestores de almacenamiento de sesiones open y read. La llamada de retorno read recuperará cualquier información se de sesión existente (almacenada en un formato serializado especial) y será deserializada y usada para rellenar automáticamente la variable superglobal `$_SESSION` cuando la llamada de retorno read devuelva la información de sesión guardada a la gestión de sesiones de PHP
 session_start();
 
 // ? `HEADER()` ESTABLECE EL FORMATO DE LA IMAGEN EN EL ENCABEZADO
 // `header("Content-type:image/jpeg")` establece el formato de imagen
 header("Content-type: image/jpeg");
 
-// ? `IMAGECREATE()` CREA UNA IMAGEN. PUEDE SER UTILIZADO COMO UN BOX
-// `` establece las dimensiones de la imagen. Recibe 2 parámetros
+// ? `IMAGECREATE()` CREA UNA IMAGEN. PUEDE SER UTILIZADA COMO UN BOX
+// `imageCreate()` establece las dimensiones de la imagen. Recibe 2 parámetros
 // 1 width
 // 2 height
 $widthBox = 150;
@@ -17,7 +16,7 @@ $heightBox = 50;
 $boxCaptcha = imageCreate($widthBox, $heightBox);
 
 // ? `IMAGECOLORALLOCATE()` PERMITE DAR UN COLOR DE FONDO A LA IMAGEN CREADA
-// `` permite dar un color de fondo a la imagen que creamos
+// `imagecolorallocate()` permite dar un color de fondo a la imagen que creamos
 $gray = imagecolorallocate($boxCaptcha, 200, 200, 200);
 $yellow = imagecolorallocate($boxCaptcha, 255, 255, 0);
 $red = imagecolorallocate($boxCaptcha, 200, 50, 0);
@@ -32,6 +31,11 @@ imagefill($boxCaptcha, 0, 0, $gray);
 
 // ? `SUBSTR(STR_SHUFFLE($characters), start, end)` CON ESTO TOMAMOS UN RECORTE DE NUESTROS CARACTERES CON UNA LONGITUD DEFINIDA
 // `substr(str_shuffle($textCharts), 0, 7)`
+// `substr()` recorta una cadena. Recibe 3 parámetros
+// 1 La cadena de texto principal
+// 2 El índice del donde empieza el recorte (inclusive)
+// 3 El fin del recorte (inclusive)
+// `str_shuffle()` reordena aleatoriamente una cadena. Recibe 1 parámetro, la cadena de texto
 $textCharts = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890123456789";
 $aleatoryTextCaptcha = substr(str_shuffle($textCharts), 0, 7);
 
@@ -76,9 +80,12 @@ for ($i = 0; $i < $quantityOfLines; $i++) {
 }
 
 // ? `IMAGEJPEG()` MUESTRA LA IMAGEN EN EL FORMATO JPEG
-// ``
+// `imagejpeg()` crea un archivo JPEG desde la imagen. Exporta la imagen al navegador o a un fichero. Recibe 3 parámetros
+// 1 La imagen a crear
+// 2 La ruta donde guardar el fichero
+// 3 Número del 0 al 100 que determina la calidad de la imagen. Por defecto es 75
 imagejpeg($boxCaptcha);
 
 // ? `IMAGEDESTROY()` ELIMINA DE LA MEMORIA DESPUÉS DE MOSTRAR LA IMG
-// `` elimina la información de la memoria
+// `imagedestroy()` elimina la información guardada en la memoria
 imagedestroy($boxCaptcha);
