@@ -19,7 +19,7 @@
     <label for="passwordID">Password</label>
     <input type="password" id="passwordID" name="pass">
 
-    <button type="submit">Enviar</button>
+    <button type="submit" name="submit" id="submitBtnID" value="send">Enviar</button>
   </form>
 
   <?php

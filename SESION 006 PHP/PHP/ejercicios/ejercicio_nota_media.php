@@ -33,7 +33,7 @@
     <label for="exa2ID">EXAMEN 2</label>
     <input type="number" id="exa2ID" name="exa2" required />
 
-    <button type="submit" id="submitID" name="submit" value="Submit">
+    <button type="submit" id="submitID" name="submit" value="send">
       SUBMIT
     </button>
   </form>

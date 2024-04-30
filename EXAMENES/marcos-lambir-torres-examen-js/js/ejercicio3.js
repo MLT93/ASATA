@@ -72,7 +72,7 @@ function validarCampo(id, mensajeError) {
 function validarEmail(id, mensajeError) {
   //INTRODUCIR EL CÓDIGO NECESARIO
   const email = document.getElementById(id);
-  if (!email.value.match(/^[\w-.]+@([\w-]+.)+[\w-]{2,4}$/)) {
+  if (!email.value.match(/[\w._%+-]+@[\w.-]+\.[a-zA-Z]{2,4}/)) {
     throw {
       msg: mensajeError,
       element: email,
