@@ -1,4 +1,5 @@
 <?php
+// ToDo: Acabar las explicaciones
 // ? `SESSION_START()` INICIA UNA SESIÓN PARA ALMACENAR EL TEXTO DEL CAPTCHA Y PODERLO COMPARAR POSTERIORMENTE CON EL TEXTO INTRODUCIDO POR EL USUARIO
 // `session_start()`  crea una sesión o reanuda la actual basada en un identificador de sesión pasado mediante una petición GET o POST, o pasado mediante una cookie. PHP llamará a los gestores de almacenamiento de sesiones open y read. La llamada de retorno read recuperará cualquier información se de sesión existente (almacenada en un formato serializado especial) y será deserializada y usada para rellenar automáticamente la variable superglobal `$_SESSION` cuando la llamada de retorno read devuelva la información de sesión guardada a la gestión de sesiones de PHP
 session_start();
