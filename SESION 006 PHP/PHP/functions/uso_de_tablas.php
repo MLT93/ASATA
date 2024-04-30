@@ -1,6 +1,6 @@
 <?php
 
-include("../funciones/funciones_de_tablas.php");
+include("../functions/funciones_de_tablas.php");
 
 table(6, 10);
 

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Marcos Lambir Torres" />
+    <meta name="description" content="JavaScript" />
+    <meta name="keywords" content="Curso, Formación, Examen" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css" />
+    <link rel="shortcut icon" href="public/favicon.ico" type="image/x-icon" />
+    <title>Registros</title>
+  </head>
+
+  <body>
+    <header>
+      <section>
+        <div>
+          <h1>ENVIAR INFORMACIÓN AL REGISTRO PHP</h1>
+        </div>
+      </section>
+    </header>
+
+    <main>
+      <section>
+        <div>
+          <form
+            action="./register_form.php"
+            method="post"
+            target="_self"
+            autocomplete="on"
+            id="formulario"
+            enctype="multipart/form-data">
+            <fieldset>
+              <legend>
+                <h3>REGISTER</h3>
+              </legend>
+              <div>
+                <label for="userID"></label>
+                <input type="text" name="user" id="userID" />
+              </div>
+              <div>
+                <label for="#priority"
+                  >PRIORITY
+                  <input type="radio" name="priority" value="Hight" checked />
+                  Alta
+                  <input type="radio" name="priority" value="Middle" /> Media
+                  <input type="radio" name="priority" value="Lower" /> Baja
+                </label>
+              </div>
+              <div>
+                <label for="archiveID"></label>
+                <input type="file" name="archive" id="archiveID" />
+              </div>
+              <div>
+                <button
+                  type="submit"
+                  name="submit"
+                  id="submitBtnID"
+                  value="send">
+                  Enviar Formulario
+                </button>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="./js/script.js"></script>
+  </body>
+</html>

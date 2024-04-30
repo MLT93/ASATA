@@ -6,7 +6,7 @@
 // ? TRANSFORMA NÚMEROS DE 1 DÍGITO A NÚMEROS DE DOS DÍGITOS
 // NOS PUEDE SERVIR PARA ESCRIBIR UN FORMATO DE HORAS, SEGUNDOS Y MINUTOS QUE OCUPE SIEMPRE EL MISMO ESPACIO.
 
-function twoDigit($num)
+function twoDigit(int $num)
 {
   if (!is_nan($num)) {
     $msg = "";
@@ -39,9 +39,9 @@ echo strtotime("+1 week 2 days 4 hours 2 seconds") . "<br/>"; //=> 1713132000
 // `date()` permite definir el formato. Tiene 2 argumentos
 // 1 formato
 // 2 timestamp de la fecha requerida en formato de integer
-echo date("d-m-y", intval($nextWeek)) . "<br/>";
+echo date("d-m-y H:i:s", intval($nextWeek)) . "<br/>";
 echo $timeStamp1 = strtotime("22 September 2024") . "<br/>";
-echo $date = date("d/m/y", intval($timeStamp1)) . "<br/>";
+echo $date = date("d/m/y  H:i:s", intval($timeStamp1)) . "<br/>";
 
 // `checkdate()` valida una fecha y me dice si es correcta. Devuelve true (1) o false (0)
 // la fecha se pasa como DD-MM-AAAA
