@@ -14,13 +14,13 @@ use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
 // Clave
-$clave_muy_secreta = "clave_muy_secreta";
+$secret_key = "clave_muy_secreta";
 
 // Comprobar que exista
 if (isset($_COOKIE["JWT"])) {
   try {
     // Decrypting (descodificar la clave)
-    JWT::decode($_COOKIE["JWT"], new Key($clave_muy_secreta, "HS256"));
+    JWT::decode($_COOKIE["JWT"], new Key($secret_key, "HS256"));
     echo "El usuario tiene acceso a esta página";
   } catch (Exception $exception) {
     http_response_code(401);

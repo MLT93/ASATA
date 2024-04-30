@@ -23,6 +23,7 @@ $userData = [
 ];
 
 // Payload with data to encrypt (donde aparecen los datos de usuario y privilegios, así como toda la información que queramos añadir y los datos que creamos convenientes)
+// The password is not necessary. If you want to introduce it, you need encrypt it before
 $iat = time();
 $exp = $iat + 3600; /* Token expire in 1 hour */
 $sub = $userData["id"];

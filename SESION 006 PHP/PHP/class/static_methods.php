@@ -78,5 +78,5 @@ class SerHumano
 $martina = new SerHumano("Martina", "Mujer", "Rubia", 65);
 
 // ? `$INSTANCE_OR_CLASS::STATIC_FUNCION()` PARA LLAMAR UNA FUNCIÓN ESTÁTICA
-// `$martina::genoma()` llama a la función estática desde la instancia creada
+// `$martina::genoma()` llama a la función estática desde la instancia creada. Se utilizan 4 puntitos en vez de una flecha porque es un método sin relación con los métodos o las propiedades de la clase
 $martina::genoma("humano");
