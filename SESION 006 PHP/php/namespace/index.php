@@ -9,6 +9,7 @@ require("./lib/database2.php");
 // ? `USE`
 // `use`
 // Utilizar los namespace
+// use Namespace\Class as NombreCualquieraPseudonimo
 use Core\Database as CoreDatabase;
 use Lib\Database as LibDatabase;
 

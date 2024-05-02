@@ -174,9 +174,13 @@
   // * REGISTRO
   // Importar package para JWT
   // require_once("../../vendor/autoload.php"); /* Already been declared */
+  // Importar package de Usuario
+  require("./classes/Usuario.php");
 
   // namespace JWT
   // use Firebase\JWT\JWT; /* Duplicate symbol declaration 'JWT' */
+  // namespace Class Usuario
+  use Usuario\Usuario as CrearUsuario;
 
   // Llamar archivo `.env` para utilizarlo
   // La función estática en el namespace `Dotenv` recibe 1 parámetro
@@ -259,8 +263,109 @@
             setcookie("JWT", $tokenJWT, $exp, "/"); /* Expira en 1 hora */
             echo "TOKEN enviado al usuario $newUser";
 
-            setcookie("LOGIN", "$user", time() + 3600 * 24, "/"); /* Expira en 1 hora */
+            setcookie("LOGIN", "$newUser", time() + 3600 * 24, "/"); /* Expira en 1 hora */
+
+            // Creo el nuevo usuario
+            $usuario1 = new CrearUsuario($newUser, $pass1NewUser, $emailNewUser);
+            $usuario1->showInfo();
+
+  ?>
+
+            <section>
+              <div>
+                <form action="./register_form.php" method="post" target="_self" autocomplete="on" id="formulario" enctype="multipart/form-data">
+                  <fieldset>
+                    <legend>
+                      <h3>REGISTER</h3>
+                    </legend>
+                    <div>
+                      <label for="userID">USUARIO</label>
+                      <input type="text" name="user" id="userID" placeholder="¿Quién sube el archivo?..." required />
+                    </div>
+                    <div>
+                      <label for="fileID"></label>
+                      <input type="file" name="file" id="fileID" />
+                    </div>
+                    <div>
+                      <button type="submit" name="submitFileBtn" id="submitFileBtnID" value="send_file">
+                        Enviar Formulario
+                      </button>
+                    </div>
+                  </fieldset>
+                </form>
+              </div>
+            </section>
+
+            <?php
             break;
+          }
+          // Compruebo si las variables están definidas o no. Es para ver si el usuario ha escrito algo en los inputs
+          if (isset($_REQUEST["user"]) && isset($_REQUEST["submitFileBtn"])) {
+            // Primero borro
+            unset($user, $passwordUser, $captcha, $submitFileBtn);
+
+            // Luego escribo
+            $user = $_REQUEST["user"];
+            $submitFileBtn = $_REQUEST["submitFileBtn"];
+
+            // Asigno el archivo subido a una variable para poderlo manejar más facilmente
+            $file = $_FILES["file"];
+
+            // ? `$_FILES`
+            if ($_FILES["file"]["error"] !== 0) {
+              // Compruebo si el archivo se ha subido correctamente al servidor
+              echo "Ha ocurrido un error al subir el archivo " . $file["name"] . "<br/>";
+            } else {
+              // Ahora compruebo si el archivo es válido
+              $fileExtension = $file["type"];
+
+              if (
+                strstr($fileExtension, "jpg") == "jpg" ||
+                strstr($fileExtension, "jpeg") == "jpeg" ||
+                strstr($fileExtension, "png") == "png" ||
+                strstr($fileExtension, "gif") == "gif"
+              ) {
+                $fileTemporalOriginLocation = $file["tmp_name"];
+                $fileDestinyLocation = "./uploaded_img/" . date("d.m.y", intval(strtotime("now"))) . "_" . $file["name"];
+
+                // Copio desde el archivo temporal al de destino
+                copy($fileTemporalOriginLocation, $fileDestinyLocation);
+
+                echo "Has subido la imagen al servidor" . "<br/>";
+                
+
+
+                // ToDo: revisar esto de abajo
+            ?>
+
+                <section>
+                  <div>
+                    <img src="./assets/img/" alt="Imagen cargada en el servidor">
+                  </div>
+                </section>
+
+  <?php
+
+                // Ahora escribo un `.log` para ver las acciones (subida/registro) realizadas
+                $fichero = fopen("registro.log", "a+");
+
+                $linea1 = "Usuario: " . $user;
+                $linea2 = "Fecha: " . date("d/m/y", intval(strtotime("now")));
+                $linea3 = "Archivo cargado: " .  $file["name"];
+                $linea4 = "Archivo origen: " .  $file["tmp_name"];
+                $linea5 = "Archivo destino: " . "./assets/img/";
+                $linea6 = "*******************************************************************";
+
+                fwrite($fichero, "$linea1 \r\n");
+                fwrite($fichero, "$linea2 \r\n");
+                fwrite($fichero, "$linea3 \r\n");
+                fwrite($fichero, "$linea4 \r\n");
+                fwrite($fichero, "$linea5 \r\n");
+                fwrite($fichero, "$linea6 \r\n");
+
+                fclose($fichero);
+              }
+            }
           }
         } else {
           echo "El captcha no es correcto" . "<br/>";

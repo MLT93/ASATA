@@ -103,7 +103,7 @@ imageline($myImg, 20, 20, 150, 150, $YellowBackgroundColor);
 // 6 Color
 // 7 Acceso a un archivo con extensión .ttf
 // 8 El texto
-$text = "Captcha";
+$text = "Example";
 imagettftext($myImg, 40, 0, 50, 50, $GreenBackgroundColor, "./fonts/Jersey_25", $text);
 
 // ? `IMAGEJPEG()` MUESTRA LA IMAGEN EN EL FORMATO JPEG
