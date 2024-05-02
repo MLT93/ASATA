@@ -53,7 +53,7 @@ imagettftext($boxCaptcha, 21, 0, 28, 33, $red, "../../../fonts/Jersey25-Regular.
 
 // ? `AÑADIR RUIDO AL CAPTCHA` PARA EVITAR QUE LOS BOTS NO PUEDAN ENTRAR
 // `añadir ruido al captcha` nos sirve para crear distorsión en la imagen
-$quantityOfLines = 21;
+$quantityOfLines = 7;
 for ($i = 0; $i < $quantityOfLines; $i++) {
   // ? `RAND()` CREA VALORES ALEATORIOS ENTRE UN NÚMERO Y OTRO
   // `rand()` viene utilizado para crear valores aleatorios desde un inicio, hasta un fin

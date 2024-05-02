@@ -51,21 +51,39 @@
                 <h3>LOG IN</h3>
               </legend>
               <div class="flex-row-spb">
-                <label for="userID">USER</label>
+                <label for="nameID">NOMBRE</label>
                 <input
                   type="text"
-                  name="user"
-                  id="userID"
+                  name="name"
+                  id="nameID"
                   placeholder="Usuario aquí..."
                   required />
               </div>
               <div class="flex-row-spb">
-                <label for="passwordID">PASSWORD</label>
+                <label for="emailID">EMAIL</label>
+                <input
+                  type="email"
+                  name="email"
+                  id="emailID"
+                  placeholder="Password aquí..."
+                  required />
+              </div>
+              <div class="flex-row-spb">
+                <label for="pass1ID">PASSWORD</label>
                 <input
                   type="password"
-                  name="password"
-                  id="passwordID"
-                  placeholder="Password aquí..."
+                  name="pass1"
+                  id="pass1ID"
+                  placeholder="Password 1 aquí..."
+                  required />
+              </div>
+              <div class="flex-row-spb">
+                <label for="pass2ID">REPETIR PASSWORD</label>
+                <input
+                  type="password"
+                  name="pass2"
+                  id="pass2ID"
+                  placeholder="Password 2 aquí..."
                   required />
               </div>
               <div class="flex-row-spb">
@@ -83,9 +101,9 @@
                   alt="Captcha Image" />
                 <button
                   type="submit"
-                  name="submit"
-                  id="submitBtnID"
-                  value="send">
+                  name="register"
+                  id="registerBtnID"
+                  value="send_register">
                   Enviar Formulario
                 </button>
               </div>

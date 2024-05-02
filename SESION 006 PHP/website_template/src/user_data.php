@@ -85,9 +85,14 @@
   if (isset($_COOKIE["JWT"])) {
     // Enviar otro error si el token es inválido a través de un try-catch
     try {
-      // Descodificar la clave
-      JWT::decode($_COOKIE["JWT"], new Key($secret_key, "HS256"));
+      // ToDo: Resolver errores
+
+      // Descodificar la clave JWT
+      $decodedJWT = JWT::decode($_COOKIE["JWT"], new Key($secret_key, "HS256"));
       echo "<h3>El usuario tiene acceso a esta página</h3>" . "<br/>";
+      // Decodifico el Payload del JWT
+      $cipherMethod = "AES-128-CBC";
+      $payloadDecrypted = openssl_decrypt($decodedJWT->data, $cipherMethod, $_ENV["CIPHER_KEY"], OPENSSL_RAW_DATA, base64_decode($decodedJWT->iv));
     } catch (Exception $e) {
       http_response_code(401);
       echo "<h3>El token es inválido</h3>" . $e->getMessage() . "<br/>";

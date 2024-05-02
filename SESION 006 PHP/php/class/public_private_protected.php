@@ -18,6 +18,12 @@ class Gatito
     $this->rayado = $esRayado;
   }
 
+  // `GETTERS` (devuelve la información de una propiedad para usarla en un método y desde afuera de la class)
+  public function getName()
+  {
+    echo $this->nombre;
+  }
+
   // `SETTERS` (transforma la información de una propiedad desde afuera de la clase)
   protected function setName($newName)
   {
@@ -29,12 +35,6 @@ class Gatito
   private function setMaullar($nombreGato)
   {
     echo "$nombreGato dice: \"Miau!\" Tiene hambre." . "<br/>"; // PRIVATE //=> Only accessible from original class
-  }
-
-  // `GETTERS` (devuelve la información de una propiedad para usarla en un método y desde afuera de la class)
-  public function getName()
-  {
-    echo $this->nombre;
   }
 }
 
