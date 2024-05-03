@@ -5,7 +5,7 @@
 // `setters` su función permite brindar acceso a propiedades especificas para poder asignar un valor desde afuera de la clase
 class Person
 {
-  // `PROPIEDADES` o variables de la class. Normalmente son siempre `protected` o `private`
+  // `PROPIEDADES` o variables de la class. Normalmente son siempre `private`
   protected $name;
   protected $lastName;
   protected $tall; // Supongamos que deseamos la estatura estará en cm
@@ -19,7 +19,7 @@ class Person
     $this->birthday = strtotime($fechaNacimiento); // timestamp
   }
 
-  // `SETTERS` (transforma la información de una propiedad desde afuera de la clase)
+  // `SETTERS` (transforma la información de una propiedad desde afuera de la clase). Normalmente son siempre `protected`
   public function setName($newName)
   {
     $this->name = $newName;
@@ -40,7 +40,7 @@ class Person
     $this->birthday = strtotime($newBirthday);
   }
 
-  // `GETTERS` (devuelve la información de una propiedad para usarla en un método y desde afuera de la class)
+  // `GETTERS` (devuelve la información de una propiedad para usarla en un método y desde afuera de la class). Normalmente son siempre `protected`
   public function getName()
   {
     return $this->name;

@@ -19,7 +19,7 @@ class SerHumano
     $this->hairColor = $hairColor;
   }
 
-  // `GETTERS` (devuelve la información de una propiedad para usarla en un método y desde afuera de la class)
+  // `GETTERS` (devuelve la información de una propiedad para usarla en un método y desde afuera de la class). Normalmente son siempre `protected`
   public function getName(): string
   {
     return $this->name;
@@ -40,7 +40,7 @@ class SerHumano
     return $this->hairColor;
   }
 
-  // `SETTERS` (transforma la información de una propiedad desde afuera de la clase)
+  // `SETTERS` (transforma la información de una propiedad desde afuera de la clase). Normalmente son siempre `protected`
   public function setName(string $name)
   {
     $this->name = strval($name);

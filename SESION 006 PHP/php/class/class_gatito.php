@@ -9,7 +9,7 @@ class Gatito
   // `protected` es accesible desde la propia clase y desde las clases hijas, pero no desde una instancia (obj)
   // `public` es accesible desde todos los lados
 
-  // `PROPIEDADES` o variables de la class. Normalmente son siempre `protected` o `private`
+  // `PROPIEDADES` o variables de la class. Normalmente son siempre `private`
   public $nombre;
   public $color;
   public $rayado;

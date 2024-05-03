@@ -5,7 +5,7 @@
 // Esto es útil para crear una clase con métodos y propiedades comunes para otras clases que, posteriormente, se particularizarán
 abstract class ChargeOperation
 {
-  // `PROPIEDADES` o variables de la class. Normalmente son siempre `protected` o `private`
+  // `PROPIEDADES` o variables de la class. Normalmente son siempre `private`
   public $number1;
   public $number2;
   public $result;

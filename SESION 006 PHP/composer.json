@@ -2,6 +2,9 @@
     "require": {
         "paragonie/sodium_compat": "^2.0",
         "firebase/php-jwt": "^6.10",
-        "vlucas/phpdotenv": "^5.6"
+        "vlucas/phpdotenv": "^5.6",
+        "mpdf/mpdf": "^8.2",
+        "dompdf/dompdf": "^2.0",
+        "fakerphp/faker": "^1.23"
     }
 }

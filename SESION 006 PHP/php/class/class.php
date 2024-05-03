@@ -9,7 +9,7 @@ class Gato
   // `protected` es accesible desde la propia clase y desde las clases hijas, pero no desde una instancia (obj)
   // `public` es accesible desde todos los lados
 
-  // `PROPIEDADES` o variables de la class. Normalmente son siempre `protected` o `private`
+  // `PROPIEDADES` o variables de la class. Normalmente son siempre `private`
   public $propiedad;
   public $nombre;
   public $color;
@@ -32,13 +32,13 @@ class Gato
   // `getters` su función es permitir obtener el valor (protegido o privado) de una propiedad de la clase y así poder utilizar dicho valor en diferentes métodos y desde afuera de la clase
   // `setters` su función permite brindar acceso a propiedades especificas para poder asignar un valor desde afuera de la clase
 
-  // `GETTERS` (devuelve la información de una propiedad para usarla en un método y desde afuera de la class)
+  // `GETTERS` (devuelve la información de una propiedad para usarla en un método y desde afuera de la class). Normalmente son siempre `protected`
   public function getPropiedad()
   {
     return $this->propiedad;
   }
 
-  // `SETTERS` (transforma la información de una propiedad desde afuera de la clase)
+  // `SETTERS` (transforma la información de una propiedad desde afuera de la clase). Normalmente son siempre `protected`
   public function setPropiedad($parametro)
   {
     $this->propiedad = $parametro;

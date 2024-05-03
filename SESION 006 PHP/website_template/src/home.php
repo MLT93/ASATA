@@ -84,7 +84,7 @@
   $dotenv = Dotenv\Dotenv::createImmutable("../../");
   $dotenv->load();
 
-  // Inicio una sesión para recuperar la información de la super-variable `$_SESSION` correspondiente al captcha
+  // Inicio una sesión para poder trabajar con la información de la super-variable `$_SESSION` correspondiente al captcha
   session_start();
 
   // Llamada a la Database. En este caso usaremos una ficticia con la info de usuarios
@@ -189,7 +189,7 @@
   // $dotenv = Dotenv\Dotenv::createImmutable("../../"); /* Already been declared */
   // $dotenv->load(); /* Already been declared */
 
-  // Inicio una sesión para recuperar la información de la super-variable `$_SESSION` correspondiente al captcha
+  // Inicio una sesión para poder trabajar con la información de la super-variable `$_SESSION` correspondiente al captcha
   // session_start();  /* Already been declared */
 
   // Llamada a la Database. En este caso usaremos una ficticia con la info de usuarios
@@ -332,7 +332,7 @@
                 copy($fileTemporalOriginLocation, $fileDestinyLocation);
 
                 echo "Has subido la imagen al servidor" . "<br/>";
-                
+
 
 
                 // ToDo: revisar esto de abajo

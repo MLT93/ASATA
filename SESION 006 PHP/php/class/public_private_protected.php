@@ -6,7 +6,7 @@
 // `public` es accesible desde todos los lados
 class Gatito
 {
-  // `PROPIEDADES` o variables de la class. Normalmente son siempre `protected` o `private`
+  // `PROPIEDADES` o variables de la class. Normalmente son siempre `private`
   private $nombre;
   protected $color;
   public $rayado;
@@ -18,13 +18,13 @@ class Gatito
     $this->rayado = $esRayado;
   }
 
-  // `GETTERS` (devuelve la información de una propiedad para usarla en un método y desde afuera de la class)
+  // `GETTERS` (devuelve la información de una propiedad para usarla en un método y desde afuera de la class). Normalmente son siempre `protected`
   public function getName()
   {
     echo $this->nombre;
   }
 
-  // `SETTERS` (transforma la información de una propiedad desde afuera de la clase)
+  // `SETTERS` (transforma la información de una propiedad desde afuera de la clase). Normalmente son siempre `protected`
   protected function setName($newName)
   {
     $this->nombre = $newName; // PROTECTED //=> Accessible from original class and extended classes

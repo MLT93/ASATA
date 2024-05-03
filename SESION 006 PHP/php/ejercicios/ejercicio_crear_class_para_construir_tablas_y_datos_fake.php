@@ -1,12 +1,21 @@
 <?php
+
+namespace Table;
+
+require_once("../../vendor/autoload.php");
+
+use Faker\Factory;
+
+$faker = Factory::create();
+
 class Table
 {
-  // `PROPIEDADES` o variables de la class. Normalmente son siempre `protected` o `private`
-  protected $rows;
-  protected $cols;
-  protected $titles; // Array
-  protected $matrixData; // Matriz
-  protected $creationDate;
+  // `PROPIEDADES` o variables de la class. Normalmente son siempre `private`
+  private int $rows;
+  private int $cols;
+  private array $titles; // Array
+  private array $matrixData; // Matriz
+  private string $creationDate;
 
   /**
    * Summary of __construct
@@ -14,66 +23,65 @@ class Table
    * @param int $cols 3
    * @param array $titles ["title1, title2, title3]
    * @param array $data ["1", "Pedro", "Martinez", "Lopez", "Perú", 22]
-   * @param string $creationDate 20 May 1993 | now
    * 
    */
-  function __construct(int $rows, int $cols, array $titles, array $data, string $creationDate)
+  function __construct(int $rows, int $cols, array $titles, array $data)
   {
     $this->rows = $rows;
     $this->cols = $cols;
     $this->titles = $titles;
-    $this->matrixData = array($data);
-    $this->creationDate = strtotime($creationDate); // timestamp
+    $this->matrixData = $data;
+    $this->creationDate = date("d-m-y_His", intval(strtotime("now")));
   }
 
-  // `SETTERS` (transforma la información de una propiedad desde afuera de la clase)
-  public function setRows(int $newRows)
+  // `SETTERS` (transforma la información de una propiedad desde afuera de la clase). Normalmente son siempre `protected`
+  protected function setRows(int $newRows)
   {
     $this->rows = $newRows;
   }
 
-  public function setCols(int $newCols)
+  protected function setCols(int $newCols)
   {
     $this->cols = $newCols;
   }
 
-  public function setTitles(array $newTitles)
+  protected function setTitles(array $newTitles)
   {
     $this->titles = array($newTitles);
   }
 
-  public function setData(array $newData)
+  protected function setData(array $newData)
   {
     $this->matrixData = array($newData);
   }
 
-  public function setCreationDate(string $newCreationDate)
+  protected function setCreationDate(string $newCreationDate)
   {
     $this->creationDate = strtotime($newCreationDate);
   }
 
-  // `GETTERS` (devuelve la información de una propiedad para usarla en un método y desde afuera de la class)
-  public function getRows()
+  // `GETTERS` (devuelve la información de una propiedad para usarla en un método y desde afuera de la class). Normalmente son siempre `protected`
+  protected function getRows()
   {
     return $this->rows;
   }
 
-  public function getCols()
+  protected function getCols()
   {
     return $this->cols;
   }
 
-  public function getTitles()
+  protected function getTitles()
   {
     return $this->titles;
   }
 
-  public function getData()
+  protected function getData()
   {
     return $this->matrixData;
   }
 
-  public function getCreationDate()
+  protected function getCreationDate()
   {
     $formattedDate = date("d-m-y  H:i:s", intval(strtotime($this->creationDate)));
     return $formattedDate;
@@ -102,7 +110,7 @@ class Table
     echo "</table>";
   }
 
-  function tableWithTitlesAndMatrixData()
+  public function tableWithTitlesAndMatrixData()
   {
     echo "
     <table border=1 cellspacing=0>";
@@ -110,8 +118,8 @@ class Table
     echo
     "<tr>";
     // Creo títulos
-    for ($i = 0; $i < count($this->titles); $i++) {
-      echo "<th>" . $this->titles[$i] . "</th>";
+    for ($i = 0; $i < count($this->getTitles()); $i++) {
+      echo "<th>" . $this->getTitles()[$i] . "</th>";
     }
     echo "</tr>";
     // Contenido
@@ -133,7 +141,7 @@ class Table
     }
   }
 
-  public function contentTableData($matrix)
+  public function contentTableData(array $matrix)
   {
     // Itero el primer array de la Matriz para generar las filas
     for ($i = 0; $i < count($matrix); $i++) {
@@ -147,4 +155,15 @@ class Table
   }
 }
 
-$miTabla = new Table(10,6, [], []);
+$data = [
+  ["Pedro", 24, "prueba@123.com"],
+  [$faker->name(), $faker->passthrough(rand(1, 99)), $faker->email()],
+  [$faker->name(), $faker->passthrough(rand(1, 99)), $faker->email()],
+  [$faker->name(), $faker->passthrough(rand(1, 99)), $faker->email()],
+  [$faker->name(), $faker->passthrough(rand(1, 99)), $faker->email()],
+  [$faker->name(), $faker->passthrough(rand(1, 99)), $faker->email()]
+];
+
+$myTable = new Table(5, 3, ["Nombre", "Edad", "Email"], $data);
+
+$myTable->tableWithTitlesAndMatrixData();

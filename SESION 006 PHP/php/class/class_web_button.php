@@ -9,7 +9,7 @@ class WebButton
   // `protected` es accesible desde la propia clase y desde las clases hijas, pero no desde una instancia (obj)
   // `public` es accesible desde todos los lados
 
-  // `PROPIEDADES` o variables de la class. Normalmente son siempre `protected` o `private`
+  // `PROPIEDADES` o variables de la class. Normalmente son siempre `private`
   public $width;
   public $height;
   public $color;
@@ -32,7 +32,7 @@ class WebButton
     $this->text = $text;
   }
 
-  // `SETTERS` (transforma la información de una propiedad desde afuera de la clase)
+  // `SETTERS` (transforma la información de una propiedad desde afuera de la clase). Normalmente son siempre `protected`
   function setDimension($ancho, $alto)
   {
     echo "El botón tendrá el tamaño de:" .  $this->width = $ancho . " " . $this->height = $alto . "<br/>";
@@ -53,7 +53,7 @@ class WebButton
     echo "El texto del botón será: " . $this->text = $text . "<br/>";
   }
 
-  // `GETTERS` (devuelve la información de una propiedad para usarla en un método y desde afuera de la class)
+  // `GETTERS` (devuelve la información de una propiedad para usarla en un método y desde afuera de la class). Normalmente son siempre `protected`
   function getDimensions()
   {
     echo "Ancho: " . $this->width . "<br/>";
