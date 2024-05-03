@@ -65,7 +65,7 @@ class WebButton
     return $this->color;
   }
 
-  // `MÉTODOS` de la class (utilizan los setters y getters para acceder a la información)
+  // `MÉTODOS` (utilizan los setters y getters para acceder a la información)
   function toggleDisable($isDisable)
   {
     $this->disable = $isDisable;

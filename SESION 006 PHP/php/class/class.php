@@ -44,7 +44,7 @@ class Gato
     $this->propiedad = $parametro;
   }
 
-  // `MÉTODOS` de la class (utilizan los setters y getters para acceder a la información)
+  // `MÉTODOS` (utilizan los setters y getters para acceder a la información)
   function maullar()
   {
     echo "Miau!" . "<br/>";
@@ -64,7 +64,7 @@ class Gato
 
 echo "<hr />";
 
-// ? `NEW` INSTANCIA DE UNA CLASS
+// ? `NEW` CREA UNA INSTANCIA DE UNA CLASS. UNA INSTANCIA ES LA MATERIALIZACIÓN DE UNA CLASE
 // `new` es una palabra clave para crear una instancia de una clase. Un "nuevo" objeto al fin y al cabo
 new Gato(); // Esta instancia no está asociada a una variable, por lo tanto no es accesible
 $gatoBaldomero = new Gato(); // Nueva instancia de la class `Gato`. Ahora tenemos un objeto con las propiedades accesibles de la clase

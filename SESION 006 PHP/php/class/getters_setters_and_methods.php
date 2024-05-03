@@ -65,7 +65,7 @@ class Person
     return $formattedBirthday;
   }
 
-  // `MÉTODOS` de la class (utilizan los setters y getters para acceder a la información)
+  // `MÉTODOS` (utilizan los setters y getters para acceder a la información)
   function showPersonalData()
   {
     $born = $this->birthday; // Timestamp de nacimiento

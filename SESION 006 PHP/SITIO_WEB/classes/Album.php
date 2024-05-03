@@ -1,5 +1,5 @@
 <?php
-// ! PROPIEDADES `PRIVATE`, GETTERS Y SETTERS `PROTECTED` Y MÉTODOS `PUBLIC` o `STATIC` (serán estáticos siempre que no estén relacionados directamente con las propiedades y los métodos de la clase. Un método estático debe recibir algún parámetro desde afuera de la clase para trabajar con la información, como una instancia (obj) o un )
+// ! PROPIEDADES `PRIVATE`, GETTERS Y SETTERS `PROTECTED` Y MÉTODOS `PUBLIC` o `STATIC` (serán estáticos siempre que no estén relacionados directamente con las propiedades y los métodos de la clase. Un método estático debe recibir algún parámetro desde afuera de la clase para trabajar con la información, como una instancia (obj) de la clase)
 
 namespace Album;
 

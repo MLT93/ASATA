@@ -87,8 +87,8 @@ class Table
     return $formattedDate;
   }
 
-  // `MÉTODOS` de la class (utilizan los setters y getters para acceder a la información)
-  function table()
+  // `MÉTODOS` (utilizan los setters y getters para acceder a la información)
+  public function table()
   {
     echo "<table border=1 cellspacing=0>";
     // Creo tantas filas como el número de $rows
@@ -127,7 +127,24 @@ class Table
     echo "</table>";
   }
 
-  // `MÉTODOS ESTÁTICOS`
+  public function contentTableData(array $matrix)
+  {
+    // Itero el primer array de la Matriz para generar las filas
+    for (
+      $i = 0;
+      $i < count($matrix);
+      $i++
+    ) {
+      echo "<tr>";
+      // Itero los demás arrays para generar el contenido
+      for ($j = 0; $j < count($matrix[$i]); $j++) {
+        echo "<td>" . $matrix[$i][$j] . "</td>";
+      }
+      echo "</tr>";
+    }
+  }
+
+  // `MÉTODOS ESTÁTICOS` (serán estáticos siempre que no estén relacionados directamente con las propiedades y los métodos de la clase. Un método estático debe recibir algún parámetro desde afuera de la clase para trabajar con la información, como una instancia (obj) de la clase)
   public static function twoDigit(int $num)
   {
     if (!is_nan($num)) {
@@ -140,21 +157,9 @@ class Table
       echo "Tiene que escribir un número";
     }
   }
-
-  public function contentTableData(array $matrix)
-  {
-    // Itero el primer array de la Matriz para generar las filas
-    for ($i = 0; $i < count($matrix); $i++) {
-      echo "<tr>";
-      // Itero los demás arrays para generar el contenido
-      for ($j = 0; $j < count($matrix[$i]); $j++) {
-        echo "<td>" . $matrix[$i][$j] . "</td>";
-      }
-      echo "</tr>";
-    }
-  }
 }
 
+// `INSTANCIAS` (materialización de una clase. Una instancia puede tener o va a tener estado, comportamiento e identidad. El estado va a representar los valores de cada característica o atributo del objeto. El comportamiento son las acciones o métodos que va a poder realizar la instancia. La identidad es el nombre único que permite reconocer al objeto y diferenciarlo de otros)
 $data = [
   ["Pedro", 24, "prueba@123.com"],
   [$faker->name(), $faker->passthrough(rand(1, 99)), $faker->email()],
