@@ -34,61 +34,60 @@ class Table
     $this->creationDate = date("d-m-y_His", intval(strtotime("now")));
   }
 
-  // `SETTERS` (transforma la información de una propiedad desde afuera de la clase). Normalmente son siempre `protected`
-  protected function setRows(int $newRows)
-  {
-    $this->rows = $newRows;
-  }
-
-  protected function setCols(int $newCols)
-  {
-    $this->cols = $newCols;
-  }
-
-  protected function setTitles(array $newTitles)
-  {
-    $this->titles = array($newTitles);
-  }
-
-  protected function setData(array $newData)
-  {
-    $this->matrixData = array($newData);
-  }
-
-  protected function setCreationDate(string $newCreationDate)
-  {
-    $this->creationDate = strtotime($newCreationDate);
-  }
-
   // `GETTERS` (devuelve la información de una propiedad para usarla en un método y desde afuera de la class). Normalmente son siempre `protected`
-  protected function getRows()
+  protected function getRows(): int
   {
     return $this->rows;
   }
 
-  protected function getCols()
+  protected function getCols(): int
   {
     return $this->cols;
   }
 
-  protected function getTitles()
+  protected function getTitles(): array
   {
     return $this->titles;
   }
 
-  protected function getData()
+  protected function getData(): array
   {
     return $this->matrixData;
   }
 
-  protected function getCreationDate()
+  protected function getCreationDate(): string
   {
-    $formattedDate = date("d-m-y  H:i:s", intval(strtotime($this->creationDate)));
-    return $formattedDate;
+    return $this->creationDate;
+  }
+
+  // `SETTERS` (transforma la información de una propiedad desde afuera de la clase). Normalmente son siempre `protected`
+  protected function setRows(int $newRows): void
+  {
+    $this->rows = $newRows;
+  }
+
+  protected function setCols(int $newCols): void
+  {
+    $this->cols = $newCols;
+  }
+
+  protected function setTitles(array $newTitles): void
+  {
+    $this->titles = array($newTitles);
+  }
+
+  protected function setData(array $newData): void
+  {
+    $this->matrixData = array($newData);
+  }
+
+  protected function setCreationDate(string $newCreationDate): void
+  {
+    $this->creationDate = strtotime($newCreationDate);
   }
 
   // `MÉTODOS` (utilizan los setters y getters para acceder a la información)
-  public function table()
+  public function table(): void
   {
     echo "<table border=1 cellspacing=0>";
     // Creo tantas filas como el número de $rows
@@ -110,7 +109,7 @@ class Table
     echo "</table>";
   }
 
-  public function tableWithTitlesAndMatrixData()
+  public function tableWithTitlesAndMatrixData(): void
   {
     echo "
     <table border=1 cellspacing=0>";
@@ -127,7 +126,7 @@ class Table
     echo "</table>";
   }
 
-  public function contentTableData(array $matrix)
+  public function contentTableData(array $matrix): void
   {
     // Itero el primer array de la Matriz para generar las filas
     for (
@@ -144,18 +143,32 @@ class Table
     }
   }
 
-  // `MÉTODOS ESTÁTICOS` (serán estáticos siempre que no estén relacionados directamente con las propiedades y los métodos de la clase. Un método estático debe recibir algún parámetro desde afuera de la clase para trabajar con la información, como una instancia (obj) de la clase)
-  public static function twoDigit(int $num)
+  public function showInfo(): void
   {
+    $titlesToString = implode(", ", $this->getTitles());
+    $dataToString = "";
+    for ($i=0; $i < count($this->getData()); $i++) {
+      $dataToString = implode(", ", $this->getData()[$i]);
+    }
+
+    echo "<h3>Info Tabla: </h3>" . "<br/>";
+    echo "Cantidad de rows: " . $this->getRows() . "<br/>";
+    echo "Cantidad de cols: " . $this->getCols() . "<br/>";
+    echo "Títulos de la tabla: " . $titlesToString . "<br/>";
+    echo "Información de las celdas: " . $dataToString . "<br/>";
+    echo "Fecha de creación: " . $this->getCreationDate() . "<br/>";
+  }
+
+  // `MÉTODOS ESTÁTICOS` (serán estáticos siempre que no estén relacionados directamente con las propiedades y los métodos de la clase. Un método estático debe recibir algún parámetro desde afuera de la clase para trabajar con la información, como una instancia (obj) de la clase)
+  public static function twoDigit(int $num): string
+  {
+    $msg = "";
     if (!is_nan($num)) {
-      $msg = "";
-
       $num < 10 ? $msg = "0$num" : $msg = "$num";
-
-      return $msg;
     } else {
       echo "Tiene que escribir un número";
     }
+    return $msg;
   }
 }
 
@@ -171,4 +184,5 @@ $data = [
 
 $myTable = new Table(5, 3, ["Nombre", "Edad", "Email"], $data);
 
+$myTable->showInfo();
 $myTable->tableWithTitlesAndMatrixData();
