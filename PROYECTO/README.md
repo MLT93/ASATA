@@ -1,6 +1,6 @@
 ## IFCD0210 - DESARROLLO DE APLICACIONES CON TECNOLOGÍAS WEB
 
-### Creación de un proyecto `e-commerce de moda` individual `web 2.0` con entorno servidor y cliente
+### Creación de un proyecto `e-commerce de moda` (`web 2.0`) individual con entorno servidor y cliente
 
 - **Tecnologías entorno cliente**:
 
@@ -14,7 +14,7 @@
 
 **FIGMA:**
 
-* **Link:** [Figma Hippo Clothes](https://www.figma.com/file/U90ms31SCVuV1A8h2PJIEd/Hippo-team-library?type=design&node-id=0-1&mode=design&t=gQuLPR2zLPomfjVM-0)
+* **Link:** [Figma Hippo Clothes](https://www.figma.com/file/U90ms31SCVuV1A8h2PJIEd/Hippo-team-library?type=design&node-id=0%3A1&mode=design&t=vQuu9nWeXwGsDgbE-1)
 
 **ENCABEZADO:**
 
