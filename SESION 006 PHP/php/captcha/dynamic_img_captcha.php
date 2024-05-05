@@ -29,13 +29,13 @@ $red = imagecolorallocate($boxCaptcha, 200, 50, 0);
 // 4 Color
 imagefill($boxCaptcha, 0, 0, $gray);
 
-// ? `SUBSTR(STR_SHUFFLE($characters), start, end)` CON ESTO TOMAMOS UN RECORTE DE NUESTROS CARACTERES CON UNA LONGITUD DEFINIDA
+// ? `SUBSTR(STR_SHUFFLE($characters), start, end)` CON ESTO TOMAMOS UN RECORTE DE NUESTROS CARACTERES CON UNA LONGITUD DEFINIDA Y HACEMOS QUE ESOS CARACTERES TENGAN UN ORDEN ALEATORIO
 // `substr(str_shuffle($textCharts), 0, 7)`
 // `substr()` recorta una cadena. Recibe 3 parámetros
 // 1 La cadena de texto principal
-// 2 El índice del donde empieza el recorte (inclusive)
-// 3 El fin del recorte (inclusive)
-// `str_shuffle()` reordena aleatoriamente una cadena. Recibe 1 parámetro, la cadena de texto
+// 2 El índice del donde empieza el recorte (offset) inclusive
+// 3 El fin del recorte (length) inclusive
+// `str_shuffle()` reordena aleatoriamente una cadena. Recibe 1 parámetro, la cadena de texto a reordenar
 $textCharts = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890123456789";
 $aleatoryTextCaptcha = substr(str_shuffle($textCharts), 0, 7);
 
@@ -56,20 +56,22 @@ $_SESSION["captcha"] = $aleatoryTextCaptcha;
 // 8 El texto
 imagettftext($boxCaptcha, 21, 0, 28, 33, $red, "../../../fonts/Jersey25-Regular.ttf", $aleatoryTextCaptcha);
 
-// ? `AÑADIR RUIDO AL CAPTCHA` PARA EVITAR QUE LOS BOTS NO PUEDAN ENTRAR
+// ? `AÑADIR RUIDO AL CAPTCHA` PARA EVITAR QUE LOS BOTS PUEDAN ENTRAR
 // `añadir ruido al captcha` nos sirve para crear distorsión en la imagen
 $quantityOfLines = 21;
 for ($i = 0; $i < $quantityOfLines; $i++) {
   // ? `RAND()` CREA VALORES ALEATORIOS ENTRE UN NÚMERO Y OTRO
-  // `rand()` viene utilizado para crear valores aleatorios desde un inicio, hasta un fin
-  // Creo variables aleatorias para obtener una coordenada desde el inicio del box donde voy a dibujar hasta su fin (que será el máximo ancho o alto de ese mismo box)
+  // `rand()` viene utilizado para crear valores aleatorios desde un mínimo, hasta un máximo. Tiene dos parámetros
+  // 1 Número mínimo
+  // 2 Número máximo
+  // Creo variables aleatorias para obtener una coordenada desde el inicio del box donde voy a dibujar hasta su fin (que será el ancho o el alto máximo de ese mismo box)
   $x1 = rand(0, $widthBox);
   $y1 = rand(0, $heightBox);
   $x2 = rand(0, $widthBox);
   $y2 = rand(0, $heightBox);
 
   // ? `IMAGELINE()` CREA UNA LINEA
-  // `imageline()`
+  // `imageline()` dibuja una línea entre dos puntos dados
   // 1 La imagen
   // 2 Coordenada X 1
   // 3 Coordenada Y 1

@@ -10,9 +10,9 @@ class Gatito
   // `public` es accesible desde todos los lados
 
   // `PROPIEDADES` o variables de la class. Normalmente son siempre `private`
-  public $nombre;
-  public $color;
-  public $rayado;
+  var $nombre;
+  var $color;
+  var $rayado;
 
   // `MÉTODO CONSTRUCTOR` es siempre público y se ejecuta inmediatamente al instanciar. Debemos pasarle unos valores al crear una instancia (obj) o ponérselos por defecto a los parámetros, así cuando creamos la instancia (obj) recibe esos valores
   // Nos facilita la vida al crear una nueva instancia (obj) sin acceder a cada método individualmente, proporcionando la información necesaria para que esa instancia (obj) exista
@@ -26,23 +26,47 @@ class Gatito
     $this->rayado = $esRayado;
   }
 
-  // `MÉTODOS` de la class, `GETTERS` (devuelve la información) y `SETTERS` (transforma la información)
-  function getMaullar()
+  // `GETTERS` (devuelve la información de una propiedad para usarla en un método y desde afuera de la class). Normalmente son siempre `protected`
+  function getNombre(){
+    return $this->nombre;
+  }
+  function getColor()
+  {
+    return $this->color;
+  }
+  function getRayado(){
+    return $this->rayado;
+  }
+
+  // `SETTERS` (transforma la información de una propiedad desde afuera de la clase). Normalmente son siempre `protected`
+  function setNombre($nombre){
+    $this->nombre = $nombre;
+  }
+  function setColor($color)
+  {
+    $this->color = $color;
+  }
+  function setRayado($rayado)
+  {
+    $this->rayado = $rayado;
+  }
+
+  // `MÉTODOS` (utilizan los setters y getters para acceder a la información)
+  function maullar()
   {
     echo "Miau!" . "<br/>";
   }
-
-  function setMaullar2($nombreGato)
+  function maullar2($nombreGato)
   {
     echo "$nombreGato dice: \"Miau!\" Tiene hambre." . "<br/>";
   }
 }
 
 // Instancia (new Obj) sin parámetros
-$gatoX = new Gatito(); //=> Minino Color Boolean
+$gatoX = new Gatito(); //=> Minino gray 1
 
 // Instancia (new Obj) utilizando los parámetros del constructor
 $minino = new Gatito("Arturito", "Gris", true);
-print $minino; //=> Arturito Gris true
+print $minino; //=> Arturito Gris 1
 
-$minino->setMaullar2("Pancho");
+$minino->maullar2("Pancho");

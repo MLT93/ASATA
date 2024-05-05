@@ -2,11 +2,13 @@
 
 abstract class Trabajador
 {
-
+  // `PROPIEDADES` o variables de la class. Normalmente son siempre `private`
   protected $nombre;
   protected $sueldo;
 
-
+  // `MÉTODO CONSTRUCTOR` es siempre público y se ejecuta inmediatamente al instanciar. Debemos pasarle unos valores al crear una instancia (obj) o ponérselos por defecto a los parámetros, así cuando creamos la instancia (obj) recibe esos valores
+  // Nos facilita la vida al crear una nueva instancia (obj) sin acceder a cada método individualmente, proporcionando la información necesaria para que esa instancia (obj) exista
+  // Cada constructor es único para cada clase, si hay un `extends` lo hereda, pero si creas uno en el nuevo instancia (obj), lo sobrescribe
   function __construct($nombre)
   {
     $this->nombre = $nombre;
@@ -17,7 +19,6 @@ abstract class Trabajador
   {
     return $this->nombre;
   }
-
   public function getSueldo()
   {
     return $this->sueldo;
@@ -28,13 +29,12 @@ abstract class Trabajador
   {
     $this->nombre = $newNombre;
   }
-
   public function setSueldo($newSueldo)
   {
     $this->sueldo = $newSueldo;
   }
 
-  // `MÉTODOS` de la class
+  // `MÉTODOS` (utilizan los setters y getters para acceder a la información)
   function mostrarDatos()
   {
     echo "Nombre: " . $this->getNombre() . "<br/>";
@@ -58,7 +58,6 @@ class Empleado extends Trabajador
 
     Trabajador::__construct($nombreTrabajador);
   }
-
   public function getHorasTrabajadas()
   {
     return $this->horasTrabajadas;

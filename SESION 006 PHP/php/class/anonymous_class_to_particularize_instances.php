@@ -1,8 +1,8 @@
 <?php
 
-// ? `NEW CLASS` CREA UNA CLASE ANÓNIMA
-// `new class` crea una class personalizada para una instancia definida. Es útil para agregar métodos y propiedades sencillas asociadas a una instancia en particular
-// Es una class pasada como argumento de un `setter` o método que setea algo, dentro de la instancia (obj)
+// ? `NEW CLASS` SIRVE PARA CREAR UNA CLASE ANÓNIMA DENTRO DE UN MÉTODO EN UNA INSTANCIA (OBJ)
+// `new class` crea una class personalizada para un método de una instancia definida. Es útil para agregar métodos y propiedades sencillos y únicos asociadas a una instancia en particular
+// Se crea pasando una class como argumento de un `setter` o de un método que establece algo dentro de esa instancia (obj). Esto particulariza la misma instancia
 class Car
 {
   private $statusEngine;

@@ -11,6 +11,9 @@ class Person
   protected $tall; // Supongamos que deseamos la estatura estará en cm
   protected $birthday;  // Supongamos que deseamos la fecha de nacimiento la conseguimos en timestamp
 
+  // `MÉTODO CONSTRUCTOR` es siempre público y se ejecuta inmediatamente al instanciar. Debemos pasarle unos valores al crear una instancia (obj) o ponérselos por defecto a los parámetros, así cuando creamos la instancia (obj) recibe esos valores
+  // Nos facilita la vida al crear una nueva instancia (obj) sin acceder a cada método individualmente, proporcionando la información necesaria para que esa instancia (obj) exista
+  // Cada constructor es único para cada clase, si hay un `extends` lo hereda, pero si creas uno en el nuevo instancia (obj), lo sobrescribe
   function __construct($nombre, $apellido, $estatura, $fechaNacimiento)
   {
     $this->name = $nombre;
@@ -24,17 +27,14 @@ class Person
   {
     $this->name = $newName;
   }
-
   public function setLastName($newLastName)
   {
     $this->lastName = $newLastName;
   }
-
   public function setTall($newTall)
   {
     $this->tall = $newTall;
   }
-
   public function setTimeStampBirthday($newBirthday)
   {
     $this->birthday = strtotime($newBirthday);
@@ -45,17 +45,14 @@ class Person
   {
     return $this->name;
   }
-
   public function getLastName()
   {
     return $this->lastName;
   }
-
   public function getTall()
   {
     echo $this->tall . "cm";
   }
-
   public function getBirthday()
   {
     $bornTimeStamp = $this->birthday; // timestamp de nacimiento
@@ -79,7 +76,6 @@ class Person
     echo "Años: $years" . "<br/>";
     echo "Estatura: " . $this->tall . "cm" . "<br/>";
   }
-
   function isCorrectTall()
   {
     $minTall = 165;
@@ -118,7 +114,7 @@ class Ciudadano extends Person
     $this->residence = $residencia;
     $this->married = $estadoCivil;
 
-    // ? `NAME_FATHER_CLASS::__CONSTRUCT()` LLAMA AL CONSTRUCTOR PADRE PARA FUSIONAR LOS DOS CONSTRUCTORES Y OBTENER LA INFORMACIÓN DE UNO Y EL
+    // ? `NAME_FATHER_CLASS::__CONSTRUCT()` LLAMA AL CONSTRUCTOR PADRE PARA FUSIONAR LOS DOS CONSTRUCTORES. RECUERDA PASAR LOS PARÁMETROS DEL CONSTRUCTOR PADRE EN EL CONSTRUCTOR HIJO TAMBIÉN
     // `Person::__construct()` nos ayuda a utilizar el constructor de la class padre dentro del constructor de la class hija
     Person::__construct($nombre, $apellido, $estatura, $fechaNacimiento);
   }
@@ -219,7 +215,7 @@ class CiudadanoEuropeo extends Ciudadano
     $this->antecedentesPoliciales = $antecedentesPoliciales;
     $this->segundaNacionalidad = $segundaNacionalidad;
 
-    // ? `NAME_FATHER_CLASS::__CONSTRUCT()` LLAMA AL CONSTRUCTOR PADRE PARA FUSIONAR LOS DOS CONSTRUCTORES Y OBTENER LA INFORMACIÓN DE UNO Y EL
+    // ? `NAME_FATHER_CLASS::__CONSTRUCT()` LLAMA AL CONSTRUCTOR PADRE PARA FUSIONAR LOS DOS CONSTRUCTORES. RECUERDA PASAR LOS PARÁMETROS DEL CONSTRUCTOR PADRE EN EL CONSTRUCTOR HIJO TAMBIÉN
     // `Ciudadano::__construct()` nos ayuda a utilizar el constructor de la class padre dentro del constructor de la class hija
     Ciudadano::__construct($nacionalidad, $tipoId, $numeroId, $residencia, $estadoCivil, $nombre, $apellido, $estatura, $fechaNacimiento);
   }
@@ -276,7 +272,7 @@ class User extends Person
     $this->password = $password;
     $this->role = $role;
 
-    // ? `NAME_FATHER_CLASS::__CONSTRUCT()` LLAMA AL CONSTRUCTOR PADRE PARA FUSIONAR LOS DOS CONSTRUCTORES Y OBTENER LA INFORMACIÓN DE UNO Y EL
+    // ? `NAME_FATHER_CLASS::__CONSTRUCT()` LLAMA AL CONSTRUCTOR PADRE PARA FUSIONAR LOS DOS CONSTRUCTORES. RECUERDA PASAR LOS PARÁMETROS DEL CONSTRUCTOR PADRE EN EL CONSTRUCTOR HIJO TAMBIÉN
     // `Person::__construct()` nos ayuda a utilizar el constructor de la class padre dentro del constructor de la class hija
     Person::__construct($nombre, $apellido, $estatura, $fechaNacimiento);
   }

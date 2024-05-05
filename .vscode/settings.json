@@ -1,5 +1,12 @@
 {
   "breadcrumbs.enabled": false,
   "liveServer.settings.port": 5501,
-  "cSpell.words": ["Arturito", "garfield", "instanciado", "XAMPP"]
+  "cSpell.words": [
+    "Arturito",
+    "garfield",
+    "instanciado",
+    "instanciar",
+    "reimplementar",
+    "XAMPP"
+  ]
 }

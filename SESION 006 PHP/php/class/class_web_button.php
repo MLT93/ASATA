@@ -98,7 +98,3 @@ echo "(nuevo) Color btn: $secondaryButton->color" . "<br/>"; //=> (nuevo) Color 
 echo "(nuevo) Clase CSS btn: $secondaryButton->CSS" . "<br/>"; //=> (nuevo) Clase CSS btn: secondary-button
 echo "(nuevo) ¿Está deshabilitado?: $secondaryButton->disable" . "<br/>"; //=> (nuevo) ¿Está deshabilitado?: 0
 echo "(nuevo) Texto btn: $secondaryButton->text" . "<br/>"; //=> (nuevo) Texto btn: Pincha Aquí
-
-// ToDo: acabar esta parte
-echo "<hr/>";
-echo "<h3>Modifico los valores por defecto con los métodos disponibles en la clase WebButton</h3>";

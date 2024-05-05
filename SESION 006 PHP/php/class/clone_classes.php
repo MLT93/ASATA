@@ -138,7 +138,7 @@ echo "<br/>";
 $deliveryPizza = clone $pizza;
 $deliveryPizza->showIngredients();
 
-// ? `$INSTANCE_OR_CLASS::STATIC_FUNCION()` PARA LLAMAR UNA FUNCIÓN ESTÁTICA
+// ? `$INSTANCE_OR_CLASS::STATIC_FUNCTION()` PARA LLAMAR UNA FUNCIÓN ESTÁTICA
 // `$PizzaBase::deliveryState()` llama a la función estática desde la instancia creada
 echo "<h3>Estado de los pedidos</h3>";
 PizzaBase::deliveryState();
