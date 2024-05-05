@@ -90,7 +90,7 @@
     fwrite($writeDoc, $linea3 . "\r\n");
     fwrite($writeDoc, $linea4 . "\r\n");
 
-    // ? `FCLOSE()` ES EL QUE CIERRA EL PROCESO DE ESCRITURA
+    // ? `FCLOSE()` ES EL QUE CIERRA EL PROCESO
     // `fclose()` sirve para cerrar los archivos. Tiene 1 parámetro
     // 1 El archivo con el que estaba interactuando
     // Voy a dejar de escribir
@@ -105,7 +105,7 @@
     // `feof()` devuelve true (1) cuando hemos llegado al final de archivo y false (0) si no lo hemos alcanzado todavía
     while (!feof($readDocWithR)) {
 
-      // ? `FGETS()` TOMA UNA LINEA DEL ARCHIVO
+      // ? `FGETS()` TOMA UN TROZO DEL ARCHIVO
       // `fgets()` obtiene una cadena . Tiene 2 parámetros
       // 1 El archivo de lectura
       // 2 Longitud de caracteres para leer. Si se omite, leerá hasta 1024 caracteres

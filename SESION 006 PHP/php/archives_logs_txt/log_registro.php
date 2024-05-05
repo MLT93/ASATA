@@ -60,7 +60,8 @@
   // Compruebo si las variables están definidas o no
   if (
     isset($_REQUEST["name"]) &&
-    isset($_REQUEST["password"])
+    isset($_REQUEST["password"]) &&
+    isset($_REQUEST["submit"])
   ) {
     // Primero borro
     unset($user, $password);
@@ -70,6 +71,7 @@
     $password = $_REQUEST["password"];
     $submit = $_REQUEST["submit"];
 
+    // Escribimos los archivos `.log`
     // ? `FOPEN()` ES EL MANEJADOR DE ARCHIVOS DE PHP
     // `fopen()` sirve para acceder a los archivos. Tiene 2 parámetros
     // 1 El archivo al que voy a acceder
@@ -80,7 +82,7 @@
     // 1 El archivo con el método con el que voy a interactuar
     // 2 Lo que voy a escribir. Atento que en los archivos de texto los saltos de línea se realizan con `\r\n`
 
-    // ? `FCLOSE()` ES EL QUE CIERRA EL PROCESO DE ESCRITURA
+    // ? `FCLOSE()` ES EL QUE CIERRA EL PROCESO
     // `fclose()` sirve para cerrar los archivos. Tiene 1 parámetro
     // 1 El archivo con el que estaba interactuando
     // Voy a dejar de escribir
@@ -108,7 +110,7 @@
       }
     }
 
-    // ? AHORA LEEREMOS UN ARCHIVO
+    // Leemos el archivo `.log`
     echo "<h2>Información del archivo con LOG correcto</h2>";
 
     $readLogOk = fopen("log_ok.log", "r");
@@ -117,13 +119,14 @@
     // `feof()` devuelve true (1) cuando hemos llegado al final de archivo y false (0) si no lo hemos alcanzado todavía
     while (!feof($readLogOk)) {
 
-      // ? `FGETS()` TOMA UNA LINEA DEL ARCHIVO
-      // `fgets()` obtiene una cadena . Tiene 2 parámetros
+      // ? `FGETS()` TOMA UN TROZO DEL ARCHIVO
+      // `fgets()` obtiene una cadena del archivo. Tiene 2 parámetros
       // 1 El archivo de lectura
-      // 2 Longitud de caracteres para leer. Si se omite, leerá hasta 1024 caracteres
+      // 2 Longitud de caracteres a leer. Si se omite, leerá hasta 1024 caracteres
       echo fgets($readLogOk) . "<br/>";
     }
 
+    // Leemos el otro archivo `.log`
     echo "<h2>Información del archivo con LOG incorrecto</h2>";
 
     $readLogKo = fopen("log_ko.log", "r");
@@ -132,10 +135,10 @@
     // `feof()` devuelve true (1) cuando hemos llegado al final de archivo y false (0) si no lo hemos alcanzado todavía
     while (!feof($readLogKo)) {
 
-      // ? `FGETS()` TOMA UNA LINEA DEL ARCHIVO
-      // `fgets()` obtiene una cadena . Tiene 2 parámetros
+      // ? `FGETS()` TOMA UN TROZO DEL ARCHIVO
+      // `fgets()` obtiene una cadena del archivo. Tiene 2 parámetros
       // 1 El archivo de lectura
-      // 2 Longitud de caracteres para leer. Si se omite, leerá hasta 1024 caracteres
+      // 2 Longitud de caracteres a leer. Si se omite, leerá hasta 1024 caracteres
       echo fgets($readLogKo) . "<br/>";
     };
   }
