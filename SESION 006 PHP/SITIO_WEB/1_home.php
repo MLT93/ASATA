@@ -82,7 +82,7 @@
         $info["nombre"] = $_REQUEST["nombre"];
         $info["password"] = $_REQUEST["pass"];
         //creo JWT
-        $jwtArray = JWTCreation($info);
+        $jwtArray = JWTCreation($info, "./");
         //CREO COOKIE CON JWT
         setcookie("jwt", $jwtArray['jwt'], $jwtArray['exp'], "/");
 
@@ -134,7 +134,7 @@
           $info["nombre"] = $_REQUEST["nombre"];
           $info["password"] = $_REQUEST["pass"];
           //creo JWT
-          $jwtArray = JWTCreation($info);
+          $jwtArray = JWTCreation($info, "./");
           //CREO COOKIE CON JWT
           setcookie("jwt", $jwtArray['jwt'],  $jwtArray['exp'], "/");
           //CREO USUARIO

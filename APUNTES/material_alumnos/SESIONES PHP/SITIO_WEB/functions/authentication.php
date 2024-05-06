@@ -4,10 +4,10 @@ use Firebase\JWT\JWT as JWT;
 use Dotenv\Dotenv    as Dotenv;
 
 //genera un token encriptado y firmado
-function JWTCreation($info){
+function JWTCreation($info, $path){
 
  //las 2 siguientes lineas cargan el archivo .env para poder acceder a sus variables
- $dotenv = Dotenv::createImmutable("./");
+ $dotenv = Dotenv::createImmutable($path);
  $dotenv->load();
  //clave secreta utilizo la variable de mia rchivo de entorno.
  $key_secreta = $_ENV['SIGNATURE_KEY'];
