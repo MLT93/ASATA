@@ -28,7 +28,7 @@ function JWTCreation($info, $path){
  $iv_longitud = openssl_cipher_iv_length($metodoCifrado);
  //creo el vector de inicialización como un string de bytes random 
  $iv = openssl_random_pseudo_bytes($iv_longitud);
- //encripto la informacion
+ //encripto la información
  $payload_encriptado = openssl_encrypt(json_encode($payload),$metodoCifrado,$_ENV['CIPHER_KEY'],0,$iv);
 
  //tenemos el nuevo payload encriptado

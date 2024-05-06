@@ -36,7 +36,7 @@
   use User\Usuario as Usuario;
   //primer  elemento es el namespace
   //segundo elemento es la clase 
-  //tercer  elemento el seudonimo de la clase
+  //tercer  elemento el pseudonimo de la clase
 
   //INFO DE USUARIOS DE MI BASE DE DATOS
   $usuariosBD = [
@@ -53,8 +53,6 @@
     isset($_REQUEST['captcha']) &&
     isset($_REQUEST['loguear'])
   ) {
-    // && $_REQUEST['captcha'] == $_SESSION['captcha']
-
     $existeUsuario = false;
 
     //COMPRUEBO QUE LOS DATOS DE MI USUARIO ESTAN EN MI BD
@@ -107,7 +105,7 @@
   ) {
 
 
-    //COMPRUEBO QUE LOS DATOS DE MI USUARIO ESTAN EN MI BD
+    //COMPRUEBO QUE LOS DATOS DE MI USUARIO ESTÁN EN MI BD
     $existeUsuario = false;
 
     for ($i = 0; $i < count($usuariosBD); $i++) {

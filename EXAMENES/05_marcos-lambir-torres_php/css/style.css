@@ -1,0 +1,5 @@
+
+nav{
+ display: flex; /* Usar flexbox para la distribución de los elementos */
+ justify-content: space-around; /* Centrar los elementos horizontalmente */
+}
