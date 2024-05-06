@@ -1,0 +1,93 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: gray;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 7px black;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+  }
+}
+
+:root {
+  font-size: 16px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+
+  --variable: ;
+}
+
+a,
+ul,
+li {
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  display: flex;
+  flex-flow: column wrap;
+
+  width: 100%;
+  height: 100%;
+
+  margin: 0px;
+  padding: 0px 20px;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+}
+
+hr {
+  margin: 3rem;
+  padding: 1px 0px;
+}
+
+img {
+  width: 20rem;
+  height: auto;
+}
+
+table td {
+  border: 1px solid black;
+  padding: 0.5rem 1rem;
+  text-align: center;
+}
+
+.asdf {
+  background-color: red;
+}
+
+.vdo {
+  width: 300px;
+}

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="MLT" />
+    <meta name="description" content="Forms" />
+    <meta name="keywords" content="Curso, Formación" />
+    <title>Curso ASATA - Formularios</title>
+    <style>
+      .form {
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: left;
+        max-width: 500px;
+        gap: 1rem;
+      }
+      .field {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 1rem;
+      }
+    </style>
+  </head>
+  <!-- El atributo "for=''" se enlaza únicamente al atributo "id=''" del tag "input" -->
+  <!-- Existe otra forma: envolver el tag "input" dentro del tag "label". Ideal para "input type='checkbox'" o "input type='radio'" -->
+  <body>
+    <header>
+      <h1>FORMULARIOS</h1>
+    </header>
+    <hr />
+    <main>
+      <section>
+        <form
+          action="./server-saving-form.php"
+          method="post"
+          class="form"
+          target="_self"
+          autocomplete="on">
+          <fieldset class="field">
+            <legend>
+              <h3>INFORMACIÓN PERSONAL</h3>
+            </legend>
+            <div>
+              <label for="nombreID">Nombre usuario</label>
+              <input type="text" id="nombreID" name="nombre" placeholder="Nombre" required />
+            </div>
+            <div>
+              <label for="apellidosID">Apellidos usuario</label>
+              <input type="text" id="apellidosID" name="apellidos" placeholder="Apellidos" required />
+            </div>
+            <div>
+              <label for="dateID">Fecha de nacimiento</label>
+              <input type="date" id="dateID" name="date" required />
+            </div>
+            <div>
+              <label for="edadID">Edad</label>
+              <input
+                type="number"
+                name="edad"
+                id="edadID"
+                placeholder="Introduce tu edad" required />
+            </div>
+            <div style="display: flex; flex-direction: column">
+              <label for="descripcionID">Descripción personal</label>
+              <textarea
+                name="descripcion"
+                id="descripcionID"
+                cols="30"
+                rows="10"
+                placeholder="Cuéntanos algo sobre ti"></textarea>
+            </div>
+            <div>
+              <label for="webID">Página web personal</label>
+              <input type="url" name="web" id="webID" />
+            </div>
+            <div>
+              <label for="coloresID">Color favorito</label>
+              <input type="color" id="coloresID" name="colores" />
+            </div>
+            <div>
+              <label for="phoneID">Número de contacto</label>
+              <input
+                type="tel"
+                name="phone"
+                id="phoneID"
+                placeholder="Número de teléfono"
+                required
+                min="0"
+                max="9" />
+            </div>
+          </fieldset>
+          <fieldset class="field">
+            <legend>
+              <h3>DATOS DE ACCESO</h3>
+            </legend>
+            <div>
+              <label for="usuarioID">Usuario</label>
+              <input
+                type="text"
+                id="usuarioID"
+                name="usuario"
+                placeholder="Usuario"
+                autofocus />
+            </div>
+            <div>
+              <label for="passowrdID">Contraseña</label>
+              <input type="password" id="passowrdID" name="password" placeholder="Password" />
+            </div>
+            <div>
+              <label for="emailID">Email</label>
+              <input type="email" id="emailID" name="email" placeholder="Email" />
+            </div>
+          </fieldset>
+          <fieldset class="field">
+            <legend>
+              <h3>NIVEL ACADÉMICO</h3>
+            </legend>
+            <div>
+              <input type="checkbox" name="primarios" id="primariosID" checked />
+              <label for="primariosID">Estudios primarios</label>
+            </div>
+            <div>
+              <input type="checkbox" name="secundarios" id="secundariosID" />
+              <label for="primariosID">Estudios secundarios</label>
+            </div>
+            <div>
+              <input type="checkbox" name="pau" id="pauID" />
+              <label for="pauID">PAU</label>
+            </div>
+            <div>
+              <input type="checkbox" name="ciclo" id="cicloID" />
+              <label for="cicloID">Ciclos formativos</label>
+            </div>
+            <div>
+              <input type="checkbox" name="universidad" id="universidadID" />
+              <label for="universidadID">Estudio universitario - Grado</label>
+            </div>
+            <div>
+              <input type="checkbox" name="masters" id="mastersID" />
+              <label for="mastersID">Estudio universitario - Máster</label>
+            </div>
+            <div>
+              <input type="checkbox" name="doctorados" id="doctoradosID" />
+              <label el for="doctoradosID"
+                >Estudio universitario - Doctorado</label
+              >
+            </div>
+          </fieldset>
+          <fieldset class="field">
+            <legend>
+              <h3>CURSO A MATRICULAR</h3>
+            </legend>
+            <div>
+              <input type="radio" name="curso-init" id="cursoInitID" value="Iniciación" />
+              <label for="cursoInitID">Curso de iniciación</label>
+            </div>
+            <div>
+              <input type="radio" name="curso-med" id="cursoMediID" value="Intermedio" />
+              <label for="cursoMediID">Curso medio</label>
+            </div>
+            <div>
+              <input type="radio" name="curso-av" id="cursoAvID" value="Avanzado" />
+              <label for="cursoAvID">Curso avanzado</label>
+            </div>
+            <div>
+              <label for="fechaInicioID">Fecha y hora de inicio curso</label>
+              <input type="datetime-local" id="fechaInicioID" name="fecha-inicio" />
+            </div>
+          </fieldset>
+
+          <fieldset class="field">
+            <legend>
+              <h3>ALERTA</h3>
+            </legend>
+            <div>
+              <label for="alertID">Alerta</label>
+              <input
+                type="button"
+                id="alertID"
+                name="alert"
+                value="Haz click aquí"
+                onclick="alert(`Esto es un mensaje de alerta`)" />
+            </div>
+          </fieldset>
+
+          <fieldset class="field">
+            <legend>
+              <h3>DOCUMENTOS</h3>
+            </legend>
+            <div>
+              <label for="fotoID">Foto DNI</label>
+              <input type="file" id="fotoID" name="foto" value="Elegir archivo" />
+            </div>
+          </fieldset>
+
+          <div>
+            <input type="button" value="Botón" />
+            <input type="submit" value="Enviar" />
+            <input type="reset" value="Reset" />
+            <input
+              type="image"
+              src="./img/arrow_right.png"
+              alt="Submit"
+              width="30"
+              height="30" />
+          </div>
+        </form>
+      </section>
+    </main>
+    <footer></footer>
+
+    <!-- El tag del archivo `./script.js` hace la conexión al archivo JavaScript y SIEMPRE debe ponerse antes del cierre del cuerpo 'body' -->
+    <script src="./script.js"></script>
+  </body>
+</html>

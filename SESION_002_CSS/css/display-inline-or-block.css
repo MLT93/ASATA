@@ -1,0 +1,96 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: gray;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 7px black;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+  }
+}
+
+:root {
+  /* El `font-size` va siempre en el `:root` para que la medida `rem` pueda tomar efecto. Ponerlo en esta parte del CSS es como ponerlo en el tag `html{}` sin afectar a todos los elementos el documento (si lo ponemos en `*{}` afectaremos a todos los elementos del documento) */
+  font-size: 16px;
+
+  --variables: ;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+
+  background-color: lightseagreen;
+
+  line-height: 1.5;
+}
+
+p,
+a,
+ul,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: unset;
+  padding: unset;
+  list-style-type: none;
+  text-decoration: none;
+}
+
+.caja {
+  padding: 50px;
+
+  margin: 10px;
+
+  border: 2px solid black;
+
+  width: 200px;
+
+  text-align: center;
+}
+
+#caja-1 {
+  background-color: aqua;
+
+  display: block; /* Trata los elementos como bloques, ocupando toda la fila o línea en blanco, como un tag P */
+}
+
+#caja-2 {
+  background-color: yellow;
+
+  display: inline;
+}
+
+#caja-3 {
+  background-color: orchid;
+
+  display: block;
+}
+
+#caja-4 {
+  background-color: chocolate;
+
+  display: inline-block;
+}

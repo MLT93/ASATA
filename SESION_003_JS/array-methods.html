@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Marcos Lambir Torres" />
+    <meta name="description" content="JavaScript" />
+    <meta name="keywords" content="Curso, Formación, Examen" />
+    <link rel="stylesheet" href="./src/css/array-methods.css" />
+    <title>Curso ASATA - JavaScript</title>
+  </head>
+  <body>
+    <header>
+      <section>
+        <h1>Script - Métodos Array</h1>
+      </section>
+    </header>
+
+    <nav><section></section></nav>
+
+    <main>
+      <p>Ver el archivo JavaScript linkeado</p>
+      <article class="order-containers">
+        <!-- INPUT TEXTO PARA ALMACENAR INFO Y ORDENAR -->
+        <section class="section-container background-1">
+          <form action="">
+            <div class="label-input-container">
+              <label for="text" class="text-label">Array<b>.sort()</b></label>
+              <input
+                type="text"
+                name="text"
+                id="myInputText"
+                placeholder="Introduce un texto"
+              />
+              <button type="submit" id="buttonAdd">Añadir</button>
+              <button type="submit" id="buttonSort">Ordenar</button>
+            </div>
+
+            <div>
+              <h4>Palabras añadidas:</h4>
+              <p id="textShowWords" class="text-words"></p>
+              <h4>Palabras ordenadas:</h4>
+              <p id="textSortWords" class="text-words"></p>
+            </div>
+          </form>
+        </section>
+        <!-- BUSCAR A TRAVÉS DE FIND -->
+        <section class="section-container background-2">
+          <form action="">
+            <div class="label-input-container">
+              <label for="text" class="text-label">Array<b>.find()</b></label>
+              <input
+                type="text"
+                name="text"
+                id="myInputSearchingText"
+                placeholder="Buscar"
+              />
+              <button type="submit" id="buttonSearchByFind">Buscar</button>
+            </div>
+            <div>
+              <h4>Palabras encontradas:</h4>
+              <p id="textShowSearchedWords" class="text-words"></p>
+            </div>
+          </form>
+        </section>
+        <!-- BUSCAR A TRAVÉS DE INDEXOF -->
+        <section class="section-container background-3">
+          <form action="">
+            <div class="label-input-container">
+              <label for="text" class="text-label"
+                >Array<b>.indexOf()</b></label
+              >
+              <input
+                type="text"
+                name="text"
+                id="myInputSearchingTextByIndex"
+                placeholder="Buscar"
+              />
+              <button type="submit" id="buttonSearchByIndex">Buscar</button>
+            </div>
+            <div>
+              <h4>Índice de la palabra buscada:</h4>
+              <p id="textShowSearchedWordsByIndex" class="text-words"></p>
+            </div>
+          </form>
+        </section>
+        <!-- INVERTIR EL ARRAY -->
+        <section class="section-container background-4">
+          <form action="">
+            <div class="label-input-container">
+              <label for="myInputInvert" class="text-label">Array<b>.invert()</b></label>
+              <button type="submit" id="buttonInvert">Invertir Array</button>
+            </div>
+            <div>
+              <h4>Array invertido:</h4>
+              <p id="textShowInvertedWords" class="text-words"></p>
+            </div>
+          </form>
+        </section>
+        <!-- INPUT NUMBER PARA ALMACENAR INFO Y ORDENAR POR PARES E IMPARES -->
+        <section class="section-container background-5">
+          <form action="">
+            <div class="label-input-container">
+              <label for="myInputNumber" class="text-label"
+                >Operador<b> rest %</b></label
+              >
+              <input type="number" name="number" id="myInputNumber" />
+              <button type="submit" id="buttonNumber">Agregar Números</button>
+              <button type="submit" id="buttonPairsNoPairs">
+                Ordenar Pares e Impares
+              </button>
+            </div>
+            <div>
+              <h4>Números agregados:</h4>
+              <p id="numberShow" class="text-words"></p>
+              <h4>Números pares o impares:</h4>
+              <p id="textSortPairsNoPairs" class="text-words"></p>
+            </div>
+          </form>
+        </section>
+      </article>
+    </main>
+
+    <aside><section></section></aside>
+
+    <footer><section></section></footer>
+
+    <!-- El `type=""` nos indica la forma en JavaScript para importar o exportar funciones entre archivos -->
+    <script type="module" src="./src/js/arrayMethods.js"></script>
+  </body>
+</html>

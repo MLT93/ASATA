@@ -1,0 +1,234 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: gray;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 7px black;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+  }
+}
+
+:root {
+  /* El `font-size` va siempre en el `:root` para que la medida `rem` pueda tomar efecto. Ponerlo en esta parte del CSS es como ponerlo en el tag `html{}` sin afectar a todos los elementos el documento (si lo ponemos en `*{}` afectaremos a todos los elementos del documento) */
+  font-size: 16px;
+
+  --variables: ;
+}
+
+p,
+a,
+ul,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 10px;
+  padding: unset;
+  list-style-type: none;
+  text-decoration: none;
+}
+
+body {
+  min-width: 100%;
+  min-height: 100vh;
+
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+
+  background-color: lightseagreen;
+
+  line-height: 1.5;
+
+  margin: unset;
+  padding: unset;
+}
+
+#container {
+  padding: 50px;
+
+  margin: 10px;
+
+  border: 2px solid black;
+
+  width: 1000px;
+
+  text-align: center;
+
+  display: flex; /* Posiciona los elementos hijos respetando las condiciones de formato, ocupando el emnor espacio posible y alineándolos a la izq. */
+
+  display: inline-flex; /* Posiciona los elementos hijos y el el padre respetando las condiciones de formato, ocupando el menor espacio posible y alineando todo a la izq. */
+
+  flex-direction: row; /* Valor por defecto. Toma como punto de referencia el eje X para alinear los hijos. Va con `justify-content` para el eje X y `align-items` para el eje Y */
+
+  /* flex-direction: column; Toma como punto de referencia el eje Y para alinear los hijos. Va con `justify-content` para el eje Y y `align-items` para el eje X */
+
+  /* flex-direction: row-reverse; Lo mismo pero como indica el nombre, lo hace al revés */
+
+  /* flex-direction: column-reverse; Lo mismo pero al revés */
+
+  /* flex-wrap: nowrap; Valor por defecto. No encierra los elementos hijos dentro de sí mismo */
+
+  flex-wrap: wrap; /* Intenta encerrar todos los elementos hijos dentro de sí mismo */
+
+  /* flex-wrap: wrap-reverse; Hace lo mismo pero además modifica el orden de los elementos hijos */
+
+  align-items: center; /* Alineación de contenido. Depende de la dirección `flex-direction` que se use */
+
+  justify-content: end; /* Alineación de contenido. Depende de la dirección que se utilice `flex-direction` */
+}
+
+.item {
+  border: 2px solid black;
+  margin: 10px;
+  padding: 20px;
+}
+
+#item-1 {
+  background-color: aqua;
+}
+
+#item-2 {
+  background-color: yellow;
+
+  display: none; /* No pinta la estructura html del elemento */
+  visibility: hidden; /* `Visibility: hidden;` pinta la estructura del html en pantalla pero no te lo hace ver */
+}
+
+#item-3 {
+  background-color: orchid;
+}
+
+#item-4 {
+  background-color: chocolate;
+}
+
+.container-tabla-periodica {
+  max-width: 1482px;
+  height: auto;
+
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+
+  margin: 10px;
+  padding: 20px;
+  border: 1px solid red;
+}
+
+.celd {
+  background-color: aqua;
+  border: 1px solid black;
+
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 5rem;
+  height: 5.5rem;
+  padding: 3px;
+}
+
+.direction-row {
+  display: flex;
+  align-items: center;
+}
+
+.row-alineation-X-sp-bt {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.color-metal {
+  background-color: mediumpurple;
+}
+.color-alcaline {
+  background-color: cornflowerblue;
+}
+.color-alcaline-terr {
+  background-color: lightsalmon;
+}
+.color-metal-transition {
+  background-color: skyblue;
+}
+.color-halogen {
+  background-color: violet;
+}
+
+.color-gass-nobel {
+  background-color: mediumseagreen;
+}
+
+.color-other-metal {
+  background-color: lightgreen;
+}
+
+.color-metaloide {
+  background-color: gold;
+}
+
+.color-lantanide {
+  background-color: khaki;
+}
+
+.color-actinide {
+  background-color: sandybrown;
+}
+
+.element-number {
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+
+  font-size: 12px;
+}
+
+.element-simbol {
+  text-align: center;
+  text-transform: capitalize;
+  font-size: 18px;
+
+  margin: unset;
+}
+
+.element-name {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 10px;
+}
+
+.border-top {
+  border-top: 2px solid black;
+}
+
+.border-right {
+  border-right: 2px solid black;
+}
+
+.border-left {
+  border-left: 2px solid black;
+}
+
+.border-bottom {
+  border-bottom: 2px solid black;
+}

@@ -1,0 +1,129 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: gray;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 7px black;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+  }
+}
+
+:root {
+  /* El `font-size` va siempre en el `:root` para que la medida `rem` pueda tomar efecto. Ponerlo en esta parte del CSS es como ponerlo en el tag `html{}` sin afectar a todos los elementos el documento (si lo ponemos en `*{}` afectaremos a todos los elementos del documento) */
+  font-size: 16px;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-family: cursive;
+
+  line-height: 1.5;
+
+  --color-1: #c92bceda;
+  --color-2: #28ffffce;
+  --color-3: #ff7f08e7;
+  --color-4: #08ff08b0;
+  --color-5: #ff4208d7;
+
+  --color-contrast-1: #ffffff;
+  --color-contrast-2: #000000;
+
+  --color-shadow: #505050;
+}
+
+p,
+a,
+ol,
+ul,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span {
+  margin: unset;
+  padding: unset;
+  list-style-type: none;
+  text-decoration: none;
+}
+
+body {
+  min-width: 100%;
+  min-height: 100vh;
+
+  margin: unset;
+  padding: unset;
+
+  color: var(--color-contrast-1);
+  color: var(--color-contrast-2);
+
+  display: grid;
+  grid-template-areas:
+    "cabecera       cabecera      cabecera"
+    "navegacion     navegacion    navegacion"
+    "principal      principal     principal"
+    "publi          publi         publi"
+    "pie            pie           pie";
+  grid-template-rows: 5rem 3rem auto 3rem 5rem;
+  /* grid-template-columns: 10rem auto auto; */
+}
+
+header {
+  grid-area: cabecera;
+}
+
+nav {
+  grid-area: navegacion;
+}
+
+main {
+  grid-area: principal;
+}
+
+aside {
+  grid-area: publi;
+}
+
+footer {
+  grid-area: pie;
+}
+
+.bucle {
+  background-color: var(--color-4);
+
+  padding: 20px;
+
+  width: max-content;
+  height: 100%;
+}
+
+@media (width >= 1080px) {
+  body {
+    grid-template-areas:
+      "cabecera       cabecera      cabecera"
+      "navegacion     navegacion    navegacion"
+      "publi          principal     principal"
+      "pie            pie           pie";
+    grid-template-rows: 5rem 3rem auto 5rem;
+    grid-template-columns: 10rem auto auto;
+    gap: 0.3rem;
+  }
+}

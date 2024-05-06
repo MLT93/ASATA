@@ -1,0 +1,67 @@
+[
+  {
+    "nombre": "Marcos",
+    "apellidos": "Lambir",
+    "edad": "31",
+    "direccion": {
+      "ciudad": "Madrid",
+      "calle": "Gran Vía",
+      "numero": "25",
+      "piso": "Segundo",
+      "puerta": "A"
+    },
+    "hobbies": ["esquiar", "nadar", "leer"],
+    "formacion": [
+      {
+        "centro": "Universidad Computense",
+        "titulo": "Periodismo"
+      },
+      {
+        "centro": "Universidad de Granada",
+        "titulo": "Master en investigación periodística"
+      }
+    ]
+  },
+  {
+    "nombre": "María",
+    "apellidos": "Martinez",
+    "edad": "21",
+    "direccion": {
+      "ciudad": "Barcelona",
+      "calle": "La diagonal",
+      "numero": "45",
+      "piso": "Tercero",
+      "puerta": "J"
+    },
+    "hobbies": ["bailar", "netflix"],
+    "formacion": [
+      {
+        "centro": "MIT",
+        "titulo": "Físico de partículas"
+      }
+    ]
+  },
+  {
+    "nombre": "Juan",
+    "apellidos": "Pérez",
+    "edad": "48",
+    "direccion": {
+      "ciudad": "Gijón",
+      "calle": "Martinez Primero",
+      "numero": "3",
+      "piso": "Bajo",
+      "puerta": "dcha"
+    },
+    "hobbies": ["salir de fiesta", "paddel", "lucha libre"],
+    "formacion": [
+      {
+        "centro": "Universidad médica de Logroño",
+        "titulo": "Medicina"
+      },
+      {
+        "centro": "FP en veterinaria",
+        "titulo": "Técnico asistente de veterinaria"
+      }
+    ]
+  }
+]

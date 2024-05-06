@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="MLT" />
+    <meta name="description" content="Frames" />
+    <meta name="keywords" content="Curso, Formación" />
+    <title>Curso ASATA - Frames</title>
+  </head>
+  <!-- DEPRECATED -->
+  <!-- https://www.tutorialspoint.com/html/html_frames.htm -->
+  <frameset rows="25%, 55%, 20%" framespacing="0" frameborder="0">
+    <frame
+      name="encabezado"
+      src="./frames-pagina-1-header.html"
+      scrolling="no"
+    />
+    <frameset cols="15%,,15%">
+      <frame
+        name="navegacion"
+        src="./frames-pagina-2-table.html"
+        scrolling="auto"
+      />
+      <frame name="articulos" src="./frames-pagina-3-paragraf.html" />
+      <frame name="secundario" src="./frames-pagina-4-img.html" />
+    </frameset>
+    <frame name="pie" src="frames-pagina-5-pie.html" />
+    <noframes>
+      <body>
+        <header>
+          <h1>ENLACES A OTRAS PÁGINAS DENTRO DE NUESTRA PÁGINA</h1>
+        </header>
+        <hr />
+        <main>
+          <section>
+            <p>Esta página usa frames pero su navegador no los admite.</p>
+
+            <!-- NO DEPRECATED -->
+            <!-- Recuerda que si estás usando `frame`, el `iframe` no funcionará -->
+            <!-- https://www.tutorialspoint.com/html/html_iframes.htm -->
+            <iframe
+              width="100%"
+              height="100%"
+              title="Iframe página 1"
+              style="border: none"
+              allowfullscreen
+              src="https://www.tutorialspoint.com/html/html_iframes.htm"
+              name="encabezado"
+            ></iframe>
+          </section>
+        </main>
+        <footer></footer>
+
+        <!-- El tag del archivo `./script.js` hace la conexión al archivo JavaScript y SIEMPRE debe ponerse antes del cierre del cuerpo 'body' -->
+        <script src="./script.js"></script>
+      </body>
+    </noframes>
+  </frameset>
+</html>

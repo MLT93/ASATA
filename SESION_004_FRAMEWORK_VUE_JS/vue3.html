@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Marcos Lambir Torres" />
+    <meta name="description" content="JavaScript" />
+    <meta name="keywords" content="Curso, Formación, Examen" />
+    <link rel="stylesheet" href="./src/css/vue3.css" />
+    <!-- Este `script` sí va en la cabecera del HTML -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Curso ASATA - JavaScript</title>
+  </head>
+  <body>
+    <header>
+      <section>
+        <h1>Framework - Vue.js</h1>
+      </section>
+    </header>
+
+    <nav><section></section></nav>
+
+    <main>
+      <p>Ver el archivo JavaScript linkeado</p>
+      <article class="order-containers">
+        <section class="section-container background-3">
+          <div id="app">
+            <input v-model="message" />
+            <p>El mensaje es: {{message}}</p>
+          </div>
+        </section>
+      </article>
+    </main>
+
+    <aside><section></section></aside>
+
+    <footer><section></section></footer>
+
+    <!-- El `type=""` nos indica la forma en JavaScript para importar o exportar funciones entre archivos -->
+    <script type="module" src="./src/js/vue3.js"></script>
+  </body>
+</html>

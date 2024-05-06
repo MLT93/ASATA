@@ -1,0 +1,110 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: gray;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 7px black;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+  }
+}
+
+:root {
+  /* El `font-size` va siempre en el `:root` para que la medida `rem` pueda tomar efecto. Ponerlo en esta parte del CSS es como ponerlo en el tag `html{}` sin afectar a todos los elementos el documento (si lo ponemos en `*{}` afectaremos a todos los elementos del documento) */
+  font-size: 16px;
+
+  --variables: ;
+}
+
+#container-1 {
+  background-color: aqua;
+  position: absolute;
+  top: 100px;
+  left: 50px;
+}
+
+#container-2 {
+  background-color: darkgoldenrod;
+  position: absolute;
+  top: 150px;
+  left: 50px;
+}
+
+#container-3 {
+  background-color: darkcyan;
+  position: absolute;
+  top: 200px;
+  left: 50px;
+}
+
+#container-4 {
+  background-color: pink;
+  position: absolute;
+  top: 250px;
+  left: 50px;
+}
+
+#container-5 {
+  background-color: orange;
+  position: absolute;
+  top: 300px;
+  left: 50px;
+}
+
+#container-6 {
+  background-color: lightgreen;
+  position: absolute; /* Posicionamiento en relación al padre sin respetar los demás elementos hermanos. Buscará siempre un `position: relative;` dentro de la escala jerárquica de anidamientos. Si no lo encuentra, será en relación del viewport (la ventana del navegador). Atención al uso de este posicionamiento porque se lleva el contenedor padre al posicionamiento que le hemos impuesto. Este posicionamiento no respetará las colocaciones `display: flex;` o `display: float; */
+  top: 350px;
+  left: 50px;
+}
+
+#container-7 {
+  background-color: violet;
+  position: relative; /* Posicionamiento en relación a sí mismo, respetando los demás elementos hermanos. Tendrá como punto de referencia la posición que tendría en el flujo normal, eso quiere decir que si le ponemos una posición impuesta, tomará como punto de partida la posición que tendría por defecto. Este posicionamiento respetará las colocaciones `display: flex;` o `display: float;` */
+  top: 400px;
+  left: 50px;
+
+  z-index: 3; /* Controla las capas (por encima o por debajo) de los elementos. Esto ayuda a superponer otros elementos. Funciona con los `position: relative;` y `position: absolute;` */
+}
+
+#imagen-del-contenedor-6 {
+  width: 200px;
+  height: auto;
+
+  position: relative;
+  /* margin: 20px; */
+  top: 20px;
+  left: 20px;
+}
+
+#imagen-del-contenedor-7 {
+  width: 200px;
+  height: auto;
+
+  position: absolute;
+  /* margin: 20px; */
+  top: 20px;
+  left: 20px;
+}
+
+/* .elementos {
+}
+
+.bloques {
+} */

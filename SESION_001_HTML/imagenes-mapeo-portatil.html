@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="MLT" />
+    <meta name="description" content="Ejercicio titulos" />
+    <meta name="keywords" content="HTML5, títulos y subtítulos" />
+    <link rel="stylesheet" href="./css/style.css" />
+
+    <title>Curso ASATA - Imágenes Mapeo</title>
+  </head>
+  <body>
+    <header>
+      <h1>IMÁGENES MAPEADAS - PORTÁTIL</h1>
+    </header>
+    <hr />
+    <main>
+      <section>
+        <h2>Compra tu nuevo portátil!</h2>
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt neque
+          error ullam optio iure, minima omnis molestias provident architecto
+          animi, sapiente quos odit assumenda illo cupiditate doloribus totam
+          ipsum? Quia.
+        </p>
+
+        <!-- Para editar imágenes utiliza: https://www.photopea.com/ -->
+        <!-- Más info en: https://www.w3schools.com/html/html_images_imagemap.asp -->
+        <img src="./img/portatil.jpeg" alt="Portátil" usemap="#map-portatil" />
+        <map name="map-portatil">
+          <!-- Con `shape="rect"` hay que usar 2 coordenadas para recortar la imagen -->
+          <!-- Debes utilizar 2 puntos de coordenadas (X, Y) para recortar de la imagen y crear el link (desde la esquina superior izq. en sentido oblicuo, y la esquina inferior dcha.) -->
+          <!-- MAP GENERATOR: https://www.fla-shop.com/image-map/ -->
+          <area
+            shape="rect"
+            coords="37,5,274,228"
+            href="https://www.backmarket.es/es-es/p/macbook-pro-15-retina-2014-core-i7-25-ghz-ssd-512-gb-16gb-teclado-frances/1953e26a-5a67-4d9a-9f22-f485c6b24ff9?shopping=gmc&msclkid=c033e2d4e3641ee7498d8708a84d5cd4&utm_source=bing&utm_medium=cpc&utm_campaign=ES_SA_SHOP_M_GEN_Apple%20Other&utm_term=4583108108549112&utm_content=Mac%20%26%20Mac%20Book#l=12"
+            alt="Portátil"
+            target="_blank"
+          />
+        </map>
+
+        <h3>Características</h3>
+        <table>
+          <tbody>
+            <tr>
+              <th>Precio</th>
+              <td>500$</td>
+            </tr>
+            <tr>
+              <th>Almacenamiento</th>
+              <td>512Gb</td>
+            </tr>
+            <tr>
+              <th>Color</th>
+              <td>Aluminio</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+    <footer></footer>
+
+    <!-- El tag del archivo `./script.js` hace la conexión al archivo JavaScript y SIEMPRE debe ponerse antes del cierre del cuerpo 'body' -->
+    <script src="./script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+  <!-- Lenguaje de la página. Normativa 9.3.1.1 -->
+  <head>
+    <meta charset="UTF-8" />
+    <title>Web Accesible</title>
+    <link rel="stylesheet" href="./css/guiaEJC.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Marcos Lambir Torres" />
+    <meta name="description" content="Accesibilidad" />
+    <meta name="keywords" content="Curso, Formación, Examen" />
+  </head>
+  <!-- Estructura semántica. Normativa 9.1.3.1 -->
+  <body>
+    <header>
+      <h1>Sitio Web</h1>
+    </header>
+    <nav class="nav">
+      <ul>
+        <li><a tabindex="0" class="letters" href="#">Inicio</a></li>
+        <li><a tabindex="0" class="letters" href="##">Acerca de</a></li>
+        <li><a tabindex="0" class="letters" href="###">Servicios</a></li>
+        <li><a tabindex="0" class="letters" href="####">Contacto</a></li>
+      </ul>
+    </nav>
+    <main>
+      <!-- `aria-labelledby` referencia el elemento de la sección para la accesibilidad como un link interno -->
+      <article aria-labelledby="about">
+        <h2 id="about">Acerca de Nosotros</h2>
+        <p>Este es un texto de ejemplo sobre la accesibilidad web.</p>
+        <img
+          src="https://picsum.photos/300"
+          alt="Imagen decorativa y aleatoria"
+        />
+      </article>
+      <section aria-labelledby="service">
+        <h2 id="service">Nuestros Servicios</h2>
+        <p>Ofrecemos desarrollo y auditoría de sitios web.</p>
+        <button id="buttonMoreInfo" class="letters">Más información</button>
+      </section>
+    </main>
+    <footer>
+      <span>&copy; 2024 Web Accesible</span>
+    </footer>
+    <script src="./js/guiaEJC.js"></script>
+  </body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="MLT" />
+    <meta name="description" content="Ejercicio titulos" />
+    <meta name="keywords" content="HTML5, títulos y subtítulos" />
+    <link rel="stylesheet" href="./css/style.css" />
+
+    <title>Curso ASATA - Imágenes Mapeo</title>
+  </head>
+  <body>
+    <header>
+      <h1>IMÁGENES MAPEADAS - MÓVIL</h1>
+    </header>
+    <hr />
+    <main>
+      <section>
+        <h2>Compra tu Iphone 15!</h2>
+        <p>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat
+          beatae qui repellat exercitationem pariatur ut modi vel harum
+          molestiae placeat natus sed, sequi incidunt recusandae neque nesciunt
+          cupiditate, enim nemo.
+        </p>
+
+        <!-- Para editar imágenes utiliza: https://www.photopea.com/ -->
+        <!-- Más info en: https://www.w3schools.com/html/html_images_imagemap.asp -->
+        <img src="./img/iphone15.jpeg" alt="Móvil" usemap="#map-movil" />
+        <map name="map-movil">
+          <!-- Con `shape="poly"` hay que usar todas las coordenadas necesarias para recortar la imagen -->
+          <!-- Debes utilizar todas las coordenadas (X, Y) para recortar de la imagen y crear el link (desde la esquina superior izq. en sentido horario hasta la esquina inferior izq.) -->
+          <!-- MAP GENERATOR: https://www.fla-shop.com/image-map/ -->
+          <area
+            shape="poly"
+            coords="57,32,258,34,275,229,264,440,68,443,62,241"
+            href="https://www.backmarket.es/es-es/p/gb/c5bf14e0-7818-48a0-9001-368d2f04b997?shopping=gmc&msclkid=b42427c8bcdd10d42d2f4214f2ae82a8&utm_source=bing&utm_medium=cpc&utm_campaign=ES_SA_SHOP_G_GEN_iPhone_PMAX&utm_term=2331583126622563&utm_content=iPhone#l=12"
+            alt="Iphone-15"
+            target="_blank"
+          />
+        </map>
+
+        <h3>Características</h3>
+        <table>
+          <tbody>
+            <tr>
+              <th>Precio</th>
+              <td>898,06$</td>
+            </tr>
+            <tr>
+              <th>Almacenamiento</th>
+              <td>128Gb</td>
+              <td>256Gb</td>
+              <td>512Gb</td>
+            </tr>
+            <tr>
+              <th>Color</th>
+              <td>Negro</td>
+              <td>Amarillo</td>
+              <td>Azul</td>
+              <td>Rosa</td>
+              <td>Verde</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+    <footer></footer>
+
+    <!-- El tag del archivo `./script.js` hace la conexión al archivo JavaScript y SIEMPRE debe ponerse antes del cierre del cuerpo 'body' -->
+    <script src="./script.js"></script>
+  </body>
+</html>

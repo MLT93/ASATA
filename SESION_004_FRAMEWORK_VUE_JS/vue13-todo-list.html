@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Marcos Lambir Torres" />
+    <meta name="description" content="JavaScript" />
+    <meta name="keywords" content="Curso, Formación, Examen" />
+    <link rel="stylesheet" href="./src/css/vue13-todo-list.css" />
+    <!-- Este `script` sí va en la cabecera del HTML -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Curso ASATA - JavaScript</title>
+  </head>
+  <body>
+    <header>
+      <section>
+        <h1>Framework - Vue.js - ToDo List</h1>
+      </section>
+    </header>
+
+    <nav><section></section></nav>
+
+    <main>
+      <p>Ver el archivo JavaScript linkeado</p>
+      <article class="order-containers">
+        <section class="section-container background-6">
+          <div id="vm">
+            <h2>TODO LIST:</h2>
+            <div>
+              <button @click="setVisibilidad('todas')">LISTA ENTERA</button>
+              <button @click="setVisibilidad('pendientes')">
+                LISTA PENDIENTES
+              </button>
+              <button @click="setVisibilidad('completadas')">
+                LISTA COMPLETADAS
+              </button>
+              <br /><br />
+              <input
+                type="text"
+                v-model="nuevaTarea"
+                @keyup.enter="agregarTarea"
+              />
+              <button @click="agregarTarea">AGREGAR TAREA</button>
+            </div>
+            <div>
+              <h3>Listado</h3>
+              <!-- la función `tareasFiltradas` guarda (gracias a la prop `computed` de Vue y el método `filter` de los arrays) los nuevos valores. Eso significa que debemos iterar esa función -->
+              <div
+                v-for="tarea of tareasFiltradas"
+                :key="tarea.id"
+                @click="toggleCompletada(tarea.id)"
+                :class="{completada: tarea.completada === true}"
+                class="element"
+              >
+                {{tarea.descripcion}}
+              </div>
+
+              <h3>Número de tareas {{numTareas.tareasTotales}}</h3>
+              <h3>Tareas completadas {{numTareas.tareasCompletadas}}</h3>
+              <h3>Tareas pendientes {{numTareas.tareasPendientes}}</h3>
+            </div>
+          </div>
+        </section>
+      </article>
+    </main>
+
+    <aside><section></section></aside>
+
+    <footer><section></section></footer>
+
+    <!-- El `type=""` nos indica la forma en JavaScript para importar o exportar funciones entre archivos -->
+    <script type="module" src="./src/js/vue13TodoList.js"></script>
+  </body>
+</html>
