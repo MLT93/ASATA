@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Función</title>
+<script>
+
+function fechahoy(){
+    var hoy = new Date();
+    console.log(hoy);
+    return hoy; //esto es el OUTPUT de la función.
+}
+
+</script>
+
+
+</head>
+<body>
+    <div class="container">
+        <h1>Función</h1>
+    </div>
+    <script >
+        //asigno el OUTPUT de la función a una variable
+        var fecha = fechahoy();
+
+        document.write("<br/>    MES    ");
+        document.write(fecha.getMonth() + 1); //DEVUELVE EL MES   Enero = 0, Febrero = 1, Marzo =2, ...
+        document.write("<br/>    DIA  SEMANA  ");
+        document.write(fecha.getDay()); //DEVUELVE EL DIA DE LA SEMANA   Lunes = 1, Martes = 2, ...
+
+        
+        document.write("<br/>    HORA    ");
+        document.write(fecha.getHours());
+        document.write("<br/>    MINUTO    ");
+        document.write(fecha.getMinutes());
+        document.write("<br/>    SEGUNDOS     ");
+        document.write(fecha.getSeconds());
+        document.write("<br/>    FECHA    ");
+        document.write(fecha);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+[
+ { "id": 1,  "name": "Juan Pérez",       "notas": [85, 90, 78], "dni": "12345678A" },
+ { "id": 2,  "name": "María García",     "notas": [92, 88, 86], "dni": "23456789B" },
+ { "id": 3,  "name": "Pedro López",      "notas": [75, 80, 72], "dni": "34567890C" },
+ { "id": 4,  "name": "Ana Martínez",     "notas": [79, 85, 81], "dni": "45678901D" },
+ { "id": 5,  "name": "Javier Rodríguez", "notas": [88, 90, 87], "dni": "56789012E" },
+ { "id": 6,  "name": "Lucía Sánchez",    "notas": [83, 86, 78], "dni": "67890123F" },
+ { "id": 7,  "name": "Carlos Gómez",     "notas": [91, 94, 89], "dni": "78901234G" },
+ { "id": 8,  "name": "Sofía Pérez",      "notas": [84, 87, 90], "dni": "89012345H" },
+ { "id": 9,  "name": "Elena Rodríguez",  "notas": [76, 82, 75], "dni": "90123456I" },
+ { "id": 10, "name": "Miguel López",     "notas": [90, 88, 92], "dni": "01234567J" },
+ { "id": 11, "name": "Laura García",     "notas": [82, 85, 80], "dni": "12345678K" },
+ { "id": 12, "name": "David Martínez",   "notas": [86, 83, 88], "dni": "23456789L" },
+ { "id": 13, "name": "Sara Sánchez",     "notas": [89, 91, 90], "dni": "34567890M" },
+ { "id": 14, "name": "Pablo Gómez",      "notas": [84, 79, 86], "dni": "45678901N" },
+ { "id": 15, "name": "Marina Pérez",     "notas": [91, 93, 88], "dni": "56789012O" }
+]

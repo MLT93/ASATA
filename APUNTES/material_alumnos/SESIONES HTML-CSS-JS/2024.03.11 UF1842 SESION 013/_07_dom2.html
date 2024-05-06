@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+    <!-- <link rel="stylesheet" href="css/dom.css"> -->
+</head>
+
+
+
+<body>
+
+
+    <P><a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/DOMContentLoaded_event"> ENLACE 1</a></P>
+    <P><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/load_event"> ENLACE 2</a></P>
+    <P><a href="https://www.youtube.com/watch?v=n61ULEU7CO0&t=14s"> ENLACE 3</a></P>
+    <P><a href="https://www.youtube.com/watch?v=n61ULEU7CO0&t=14s"> ENLACE 4</a></P>
+
+    <!-- <p class="parrafo" id="parrafo1">parrafo 1  dolor sit amet consectetur, adipisicing elit. Maxime exercitationem officia recusandae molestiae nostrum mollitia ab! Eum consequuntur, rerum quibusdam iste quia iusto maxime recusandae ab officia nam inventore voluptatum!</p>
+    <p class="parrafo" id="parrafo2">parrafo 2 nem officia recusandae molestiae nostrum mollitia ab! Eum consequuntur, rerum quibusdam iste quia iusto maxime recusandae ab officia nam inventore voluptatum!</p>
+    <p class="parrafo" > <span >Aqui</span>  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime exercitationem officia recusandae molestiae nostrum mollitia ab! Eum consequuntur, rerum quibusdam iste quia iusto maxime recusandae ab officia nam inventore voluptatum!</p>
+    
+     -->
+    <button onclick="mostrarinfo()">BOTÓN</button>
+
+
+
+
+    <script >
+
+        function mostrarinfo(){
+
+            var numEnlaces = document.getElementsByTagName("a");
+
+            // console.log(numEnlaces);
+
+            console.log( "El número de enlaces de mi página es "        + numEnlaces.length );
+            console.log( "La URL del penultimo enlace de mi página es " + numEnlaces[ numEnlaces.length - 2 ].getAttribute("href"));
+
+
+            var URLs = [];
+            var numeroEnlacesYT = 0;
+
+            for(var i = 0; i < numEnlaces.length; i++){
+
+                var enlace = numEnlaces[i].getAttribute("href");
+
+                console.log(enlace.slice(0,23)); //recorto la href para obtener solo el trozo que quiero comparar.
+
+                if( enlace.slice(0,23) == "https://www.youtube.com" ){
+                    numeroEnlacesYT++;
+                }
+            }
+
+            console.log("El número de enlaces de youtube de mi página es de " + numeroEnlacesYT );
+
+        }
+
+    </script>
+</body>
+
+</html>

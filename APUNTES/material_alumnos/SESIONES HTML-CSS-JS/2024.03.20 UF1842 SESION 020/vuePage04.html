@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html lang="es">
+    <head>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CALIFICACIONES</title>
+        <!-- <link rel="stylesheet" href="css/vuePage04.css"> -->
+        <!-- versión de desarrollo, con advertencias de ayuda por consola -->
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    </head>
+
+    <body>
+
+        <div id="reviews">
+            <h1> Formulario para ingresar un Opinión de un producto</h1>
+
+            <form @submit.prevent="submitForm">
+
+                <div>
+                    <label for="puntuacion">Puntuación:</label>
+                    <select id="puntuacion" name="puntuacion"  v-model.number="form.puntuacion" >
+                        <option value="0" disabled> Seleccione una puntuación</option>
+                        <option v-for="number in 5" :key="number" :value="number"> {{number}} </option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label for="comentarios">Comentario:</label>
+                    <textarea id="comentarios" v-model="form.comentarios" ></textarea>
+                </div>
+
+
+                <button type="submit" @click="submitForm"  :disabled="!formularioValido" >ENVIAR OPINIÓN</button>
+
+                <div  v-if="mensajeSubmit">{{mensajeSubmit}}</div>
+
+            </form>
+        </div>
+
+        <script src="js/vuePage04.js"></script>
+        
+    </body>
+
+</html>

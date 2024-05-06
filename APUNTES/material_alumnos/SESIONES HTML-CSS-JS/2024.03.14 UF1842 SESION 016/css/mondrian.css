@@ -1,0 +1,92 @@
+*{
+ padding: 0;
+ margin: 0;
+}
+:root {
+ --blanco: white;
+ --negro: black;
+ --rojo: red;
+ --azul: blue;
+ --amarillo: yellow;
+
+ --oscuro:#222;
+ --claro:#ddd;
+}
+
+
+body{
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ height: 100vh; 
+ background-color: var(--claro);
+}
+.cuadro {
+ display: grid;
+ grid-template-columns: 3fr 2fr 3fr 1fr 1fr;
+ /* grid-template-columns: repeat(3, 1fr); */
+ grid-template-rows: 2fr 2fr 3fr 1fr 1fr;
+ grid-gap: 0px;/*separacion entre elementos*/
+ width: 500px; 
+ height: 600px;
+ border: 5px solid var(--negro);
+ background-color: var(--blanco);
+
+ justify-content: stretch;
+}
+.grid-item {
+ border: 5px solid black;
+  /* box-sizing: border-box; */
+}
+.rojo { background-color: var(--rojo); }
+.azul { background-color: var(--azul); }
+.amarillo { background-color: var(--amarillo); }
+
+/* AREAS */
+
+/* Rojo */
+/* .z { grid-area: 2 / 2 / 5/ 5; }  */
+
+.a { grid-area: 1 / 1 / 2 / 4; } /* Rojo */
+.b { grid-area: 1 / 4 / 2/ 6 ; } /* amarillo*/
+.c { grid-area: 2 / 1 / 4 / 2; } /* Blanco */
+.d { grid-area: 2 / 2 / 3 / 3; } /* Amarillo */
+.e { grid-area: 2 / 3 / 3 / 6; } /* Blanco */
+.f { grid-area: 3 / 2 / 4 / 3; } /* Azul*/
+.g { /* Blanco*/
+ /* grid-area: 3 / 3 / 4 / 4;  */
+ grid-row-start:3; 
+ grid-column-start: 3; 
+ grid-row-end:4;
+ grid-column-end:4
+} 
+.h { grid-area: 3 / 4 / 5 / 6; } /* Amarillo*/
+.i { grid-area: 4 / 1 / 6 / 2; } /* Amarillo*/
+.j { grid-area: 4 / 2 / 6 / 3; } /* Blanco*/
+.k { grid-area: 4 / 3 / 6 / 4; } /* Rojo*/
+.l { grid-area: 5 / 4 / 6 / 6; } /* Blanco*/
+
+.flip-item {
+ transition: transform 0.6s; /* Suaviza el efecto de flip */
+ /* transform-style: preserve-3d; */
+  /* Mantiene la perspectiva 3D al animar */
+}
+.flip-item:hover {
+ transform: rotateY(180deg);
+ background-color: var(--azul);
+  /* Rota el elemento 180 grados en el eje Y al pasar el mouse */
+}
+
+/*********************************************************/
+
+/* 
+
+Contenedor: El elemento padre contenedor que definirá la cuadrícula o rejilla.  (cuadro)
+Ítem: Cada uno de los hijos que contiene la cuadrícula (elemento contenedor). 
+Celda (grid cell): Cada uno de los cuadritos (unidad mínima) de la cuadrícula.
+Area (grid area): Región o conjunto de celdas de la cuadrícula.
+Banda (grid track): Banda horizontal o vertical de celdas de la cuadrícula.
+Línea (grid line): Separador horizontal o vertical de las celdas de la cuadrícula. 
+
+*/
+

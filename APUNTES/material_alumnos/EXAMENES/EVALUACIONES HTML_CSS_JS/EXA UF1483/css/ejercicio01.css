@@ -1,0 +1,64 @@
+body {
+ font-family: Arial, sans-serif;
+ font-size: 16px; /* Mejora la legibilidad */
+ background-color: #fff;
+ color: #333;
+}
+
+form {
+ max-width: 600px;
+ margin: auto;
+ padding: 1em;
+ background-color: #f4f4f4;
+ border-radius: 10px;
+}
+
+legend{
+ font-size: xx-large;
+ margin-bottom: 10px;
+}
+
+
+fieldset {
+ border: none;
+}
+
+label {
+ display: inline-block; /* O `inline`, dependiendo de tus necesidades */
+ vertical-align: middle; /* Alinea verticalmente para una apariencia uniforme */
+ margin: 0.5em 0;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+select {
+ width: 100%;
+ padding: 0.5em;
+ margin-bottom: 1em;
+ border: 1px solid #ccc;
+}
+
+button {
+ font-size: 1em;
+ padding: 0.5em 1em;
+ background-color: #007bff;
+ color: white;
+ border: none;
+ cursor: pointer;
+}
+
+a {
+ color: #007bff;
+ display: inline;
+}
+
+#condiciones{
+ margin: 10px;
+
+}
+#tyc{
+ margin: 10px;
+}
+

@@ -1,0 +1,36 @@
+FECHA: 2024.04.30
+USUARIO: dario
+NOMBRE IMAGEN: libroAntiguo.jpg
+ORIGEN: C:\SW\_01_XAMPP\tmp\php2A6C.tmp
+DESTINO: ../uploaded_img/2024.04.30-libroAntiguo.jpg
+****************************************************************
+FECHA: 2024.04.30
+USUARIO: dario
+NOMBRE IMAGEN: libroAntiguo.jpg
+ORIGEN: C:\SW\_01_XAMPP\tmp\php6C8F.tmp
+DESTINO: ../uploaded_img/2024.04.30-libroAntiguo.jpg
+****************************************************************
+FECHA: 2024.05.02
+USUARIO: cvv
+NOMBRE IMAGEN: 
+ORIGEN: 
+DESTINO: ../uploaded_img/2024.05.02-
+****************************************************************
+FECHA: 2024.05.02
+USUARIO: cvv
+NOMBRE IMAGEN: libroAntiguo.jpg
+ORIGEN: C:\SW\_01_XAMPP\tmp\phpC9C1.tmp
+DESTINO: ../uploaded_img/2024.05.02-libroAntiguo.jpg
+****************************************************************
+FECHA: 2024.05.02
+USUARIO: cvv
+NOMBRE IMAGEN: libroAntiguo.jpg
+ORIGEN: C:\SW\_01_XAMPP\tmp\php39EC.tmp
+DESTINO: ../uploaded_img/2024.05.02-libroAntiguo.jpg
+****************************************************************
+FECHA: 2024.05.02
+USUARIO: cvv
+NOMBRE IMAGEN: libroAntiguo.jpg
+ORIGEN: C:\SW\_01_XAMPP\tmp\phpE640.tmp
+DESTINO: ../uploaded_img/2024.05.02-libroAntiguo.jpg
+****************************************************************

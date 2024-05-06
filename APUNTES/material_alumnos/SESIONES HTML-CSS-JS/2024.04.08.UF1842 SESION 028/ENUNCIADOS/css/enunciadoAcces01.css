@@ -1,0 +1,59 @@
+body {
+ /* font-size: 12px;  */
+ /* Tamaño de fuente pequeño */
+}
+
+div {
+ /* color: #000; */
+ /* background-color: #444;  */
+ /* Contraste insuficiente */
+ /* cursor: pointer;  */
+ /* No indica claramente que es clickeable */
+}
+
+a {
+ /* text-decoration: none;  */
+ /* No hay indicación visual de que es un enlace */
+}
+
+input[type="text"] {
+ /* border: 1px solid #ccc;  */
+ /* Bordes poco contrastados */
+}
+
+
+/* Este ejemplo muestra varios problemas comunes de accesibilidad:
+
+Imágenes sin texto alternativo: las imágenes deben tener un atributo alt para describir su contenido.
+Contraste insuficiente: los colores utilizados no proporcionan suficiente contraste entre el texto y su fondo.
+Contenido activable que no es accesible desde el teclado: el uso de div con onclick para acciones interactivas puede ser inaccesible para usuarios que dependen del teclado.
+Uso incorrecto de atributos para la funcionalidad de los formularios: el uso del atributo title en inputs sin una etiqueta (label) clara.
+Enlaces con href="javascript:void(0);": pueden ser confusos para los lectores de pantalla y no funcionan si JavaScript está deshabilitado. */
+
+
+
+/* ************************************************ */
+
+
+body {
+ font-size: 16px; /* Tamaño de fuente más grande y legible */
+}
+
+button {
+ color: #FFF;
+ background-color: #007BFF; /* Alto contraste y estilo claro para elementos interactivos */
+ padding: 10px;
+ border: none;
+ border-radius: 5px;
+ cursor: pointer;
+}
+
+a {
+ color: #007BFF; /* Color distintivo para enlaces */
+ text-decoration: underline; /* Subrayado para mejorar la identificación como enlace */
+}
+
+input[type="text"] {
+ border: 2px solid #000; /* Bordes más contrastados para mejor visibilidad */
+ padding: 5px;
+}

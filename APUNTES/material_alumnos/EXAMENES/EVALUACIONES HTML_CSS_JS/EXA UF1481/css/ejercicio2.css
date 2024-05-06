@@ -1,0 +1,212 @@
+
+
+body{
+font-family: "Montserrat";
+}
+
+a{
+text-decoration: none;
+}
+
+header, main{
+width: 80%;
+margin: auto;
+}
+
+header{
+border-bottom: 3px solid black;
+margin-bottom: 25px;
+}
+
+
+h1{
+display: inline-block;
+font-size: 3em;
+font-weight: 800;
+text-align: center;
+width: 33%;
+}
+
+nav{
+display: inline-block;
+width: 33%;
+}
+
+nav:nth-child(3){
+/* text-align: right; */
+}
+
+ul {
+list-style-type: none;
+margin: 0;
+padding: 0;
+overflow: hidden;
+display: inline-block;
+}
+
+li {
+float: left;
+}
+
+li a {
+color: black;
+padding: 14px 16px;
+text-decoration: none;
+}
+
+main > a{
+display: inline-block;
+width: 33%;
+text-align: center;
+color: black;
+}
+
+nav a:hover{
+color: #616161;
+}
+
+#show{
+font-family: "Roboto Mono", monospace;
+}
+
+#recetas{
+display: grid;
+grid-template-columns: 24% 24% 24% 24%;
+gap: 10px;
+justify-content: center;
+}
+
+figcaption{
+display: flex;
+flex-direction: row;
+justify-content: center;
+text-align: center;
+font-size: 15px;
+font-weight: bold;
+}
+
+section span{
+
+ display: flex; /* Activamos Flexbox */
+ justify-content: center; /* Centra el contenido horizontalmente */
+ align-items: center; /* Centra el contenido verticalmente */
+ margin: 5px;
+ border-radius: 100%;
+ width: 30px;
+ height: 30px;
+}
+
+
+
+img{
+width: 95%;
+}
+.info{
+ display: block; /* Usa flexbox para centrar el contenido */
+ justify-content: center; /* Centra horizontalmente */
+ align-items: center; /* Centra verticalmente */
+
+ padding: 5px;
+ text-align: center;
+}
+
+.gf{
+background-color: #FFDED2;
+}
+
+.vg{
+background-color: #F14842;
+color: white;
+}
+
+.v{
+background-color: #D1663A;
+color: white;
+}
+
+.df{
+background-color: #00390D;
+color: white;
+}
+
+.ns{
+background-color: #2B2B2B;
+color: white;
+}
+
+section p,  section a{
+text-align: center;
+font-weight: bold;
+}
+
+section p{
+height: 40px;
+padding: 10px;
+}
+
+section a{
+display: inline-block;
+color: white;
+width: 90%;
+padding: 5px;
+}
+
+
+.boton{
+ border-radius: 2px;
+ padding: 10px;
+}
+#uno{
+background-color: #FFDED2;
+}
+
+#dos{
+background-color: #F14842;
+}
+
+#tres{
+background-color: #D1663A;
+}
+
+#cuatro{
+background-color: #00390D;
+}
+
+/*****************************************/
+#pag2{
+
+ /* margin-left: 35%; */
+
+}
+
+
+h2{
+ display: inline-block;
+ width: 33%;
+ /* text-align: center; */
+ color: black;
+ }
+ #part1{
+  padding-left: 30%;
+  margin-left: -25px;
+  background-color: antiquewhite;
+  padding-bottom: 8%;
+ }
+ #part2{
+  padding-left: 30%;
+  padding-top: 2%;
+ }
+
+.destacado{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-top: 10px;
+  font-size: 20px;
+ }
+ 
+ #foto5{
+  width: 20%;
+  float: left;
+  margin-left: 10%;
+  margin-top: 2%;
+ }

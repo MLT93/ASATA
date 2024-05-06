@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>VUE</title>
+ <link rel="stylesheet" href="css/kanban.css">
+ <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+
+    <div id="vm">
+        <button id="nbloque" @click="agregarBloque" >AGREGAR BLOQUE</button>
+        <input id="titulobloque" type="text" v-model="nuevoTitulo">
+
+        <!--  TABLERO   -->
+        <div class="tablero">
+
+            <div class="bloque" v-for="(bloque,indexBloque) in bloques">
+
+                <!-- titulo -->
+                <h3 class="titulo" :style="{backgroundColor: bloque.color}">{{bloque.id}}  {{bloque.titulo}}</h3>
+                <!-- lineas -->
+                <ul>
+                    <li v-for="(linea,indexLinea) in bloque.lineas" >
+                        {{linea}}
+                        <button @click="eliminarLinea(indexBloque,indexLinea)" >BORRAR</button>
+                    </li>
+
+                </ul>
+
+                <!-- controles -->
+                <div class="nuevo-elemento">
+                    <input v-model="nuevaLinea[indexBloque]" type="text" placeholder="Nueva linea...">
+                    <button @click="insertarLinea(indexBloque)">INSERTAR LINEA</button>
+                </div>
+                <button @click="eliminarBloque(indexBloque)">ELIMINAR BLOQUE</button>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <script src="js/kanban.js"></script>
+
+</body>
+
+</html>
