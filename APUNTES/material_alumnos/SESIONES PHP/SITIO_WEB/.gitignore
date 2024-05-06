@@ -1,0 +1,22 @@
+# Logs
+logs
+*.log
+
+# Packages
+vendor
+*.local
+
+# Env
+*_example.env
+_example.env
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
