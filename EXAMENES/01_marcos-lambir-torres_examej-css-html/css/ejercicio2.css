@@ -1,0 +1,188 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: "Monserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+
+  line-height: 1.5;
+
+  --color-background-1: #d8764c;
+  --color-background-2: #f94439;
+  --color-background-3: #ff8b71;
+  --color-background-4: #003811;
+
+  --color-text-placeholder-text-1: #4b5a88;
+
+  --color-text-contrast-1: #bfc6df;
+  --color-text-contrast-2: #979fbb;
+
+  --color-shadow: #464646;
+}
+
+p,
+a,
+ol,
+ul,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span {
+  margin: unset;
+  padding: unset;
+  list-style-type: none;
+  text-decoration: none;
+}
+
+body {
+  min-width: 100%;
+  min-height: 100vh;
+
+  margin: unset;
+  padding: unset;
+
+  background-color: #ffffff;
+  color: black;
+
+  display: grid;
+  grid-template-areas:
+    "cabecera"
+    "navegacion"
+    "principal"
+    "pie";
+  grid-template-rows: 5rem 3rem auto 3rem 5rem;
+}
+
+header {
+  background-color: #c82bce;
+
+  grid-area: cabecera;
+}
+
+nav {
+  background-color: #28ffffce;
+
+  grid-area: navegacion;
+}
+
+main {
+  background-color: #ff7f08;
+
+  grid-area: principal;
+}
+
+footer {
+  grid-area: pie;
+}
+
+div h1 {
+  font-size: 3rem;
+}
+
+.m-width {
+  max-width: 1080px;
+  width: 100%;
+}
+
+
+.box-col-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.box-row-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.box-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 25%;
+  margin: 0px 10px;
+}
+
+.card-img {
+  width: 280px;
+}
+
+.card-button {
+  width: 100%;
+
+  padding: 10px 0px;
+
+  border-radius: 5px;
+  border: none;
+}
+
+.color1 {
+  background: var(--color-background-1);
+}
+
+.color2 {
+  background: var(--color-background-2);
+}
+
+.color3 {
+  background: var(--color-background-3);
+}
+
+.color4 {
+  background: var(--color-background-4);
+}
+
+.welcomer {
+  margin: 0px 10px;
+
+  width: 100%;
+
+  align-content: right;
+  text-align: left;
+}
+
+@media (width > 1000px) {
+  body {
+    grid-template-areas:
+      "cabecera   cabecera   cabecera"
+      "navegacion navegacion navegacion"
+      "principal      principal  principal"
+      "pie        pie        pie";
+    grid-template-columns: 10rem auto auto;
+    grid-template-rows: 11rem 7rem auto 3.5rem;
+    gap: 0.3rem;
+  }
+
+  .box-col-center {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+}

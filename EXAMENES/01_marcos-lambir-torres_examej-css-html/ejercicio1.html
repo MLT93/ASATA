@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Marcos Lambir Torres" />
+    <meta name="description" content="Test HTML-CSS" />
+    <meta name="keywords" content="Curso, Formación, Exámen" />
+    <link rel="stylesheet" href="./css/ejercicio1.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Exámen HTML-CSS - ASATA - Ejercicio 1</title>
+  </head>
+  <body>
+    <header>
+      <section></section>
+    </header>
+
+    <nav>
+      <section></section>
+    </nav>
+
+    <main>
+      <!-- <aside></aside> -->
+
+      <section>
+          <div class="card">
+              <div class="padding-X margin-Y">
+                  LOGO
+              </div>
+          <form
+            action="./server-saving-form.php"
+            method="post"
+            class="form"
+            target="_self"
+            autocomplete="on"
+          >
+            <fieldset class="field">
+              <legend class="padding-X margin-Y">
+                <h3>LOGIN</h3>
+              </legend>
+              <div class="box-col padding-X margin-Y">
+                <label for="email">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  value="chrisn.knight@email.com"
+                  required
+                  class="border-bottom"
+                />
+              </div>
+              <div class="box-col padding-X margin-Y">
+                <label for="passowrd">Contraseña</label>
+                <input
+                  type="password"
+                  name="password"
+                  value="**************"
+                  required
+                  class="border-bottom"
+                />
+                <div class="span-container margin-Y">
+                  <span>
+                    <a href="#"> Forgot Password? </a>
+                  </span>
+                </div>
+                <div class="box-row-center button-login">
+                  <button type="submit">LOGIN</button>
+                </div>
+              </div>
+              <div class="box-row-right padding-X margin-Y">
+                <a href="#signup">
+                  <span class="signup-button">+</span>
+                </a>
+              </div>
+
+              <div class="box-row-left padding-X margin-Y terms-conditions">
+                <h5>Terms & Conditions</h5>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer></footer>
+
+    <!-- <script src="./js/script.js"></script> -->
+  </body>
+</html>
