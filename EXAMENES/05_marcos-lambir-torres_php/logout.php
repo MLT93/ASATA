@@ -12,15 +12,16 @@
 
     <?php
     ob_start();
+
     require("./html_modules/header.html");
     require("./classes/Sesion.php");
 
     use Session\Session;
-    
+
     session_start();
 
     // LOG OUT
-    Session::cerrarSession($mySession);
+    Session::cerrarSession($_SESSION["usuario"]);
     ?>
 
 </body>

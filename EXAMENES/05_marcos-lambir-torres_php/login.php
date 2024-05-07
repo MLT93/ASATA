@@ -77,9 +77,6 @@
                 echo "<br/>";
                 $existeUsuario = true;
                 break;
-            } elseif ($i == count($usuariosDB) - 1) {
-                echo "<h2 class='card' >EL USUARIO Y/O LAS CREDENCIALES NO ESTÁN EN LA BD</h2>";
-                echo "<br/>";
             }
         }
 
@@ -87,13 +84,6 @@
         if ($existeUsuario) {
             $mySession = new Session();
             $mySession->inicioLogin($nombre);
-
-            // JWT
-            $info = [];
-            $info["nombre"] = $nombre;
-            $info["password"] = $password;
-            $jwtArray = JWTCreation($info, "./");
-            setcookie("jwt", $jwtArray['jwt'], $jwtArray['exp'], "/");
         }
     }
 

@@ -69,14 +69,14 @@ class Session
   static function cerrarSession($instancia)
   {
     unset($_SESSION["usuario"]);
-    $instancia->setUser("");
+    unset($instancia->getUser());
     $instancia->setLogin(false);
     echo "La sesión se ha cerrado." . "<br/>";
   }
 }
 
-$mySession = new Session();
-$mySession->inicioLogin("Alberto");
-$mySession->verificarLogin();
-Session::estaLogueado($mySession, "Alberto");
-Session::cerrarSession($mySession);
+// $mySession = new Session();
+// $mySession->inicioLogin("Alberto");
+// $mySession->verificarLogin();
+// Session::estaLogueado($mySession, "Alberto");
+// Session::cerrarSession($mySession);

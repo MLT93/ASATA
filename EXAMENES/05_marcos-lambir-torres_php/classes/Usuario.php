@@ -165,10 +165,9 @@ class Usuario
     }
 }
 
-$usuario6 = new Usuario("Pepe", "pepe@example.com", "123");
-$idUsuario6 = Usuario::mostrarIdUsuario("Pepe");
-$idUsuario5 = Usuario::mostrarIdUsuario("Usuario Cinco");
-echo $idUsuario5;
-echo $idUsuario6;
-Usuario::verificarUsuario("pepe@example.com", "123");
-// Usuario::verificarUsuario("usuario5@example.com", "pass11");
+// $usuario6 = new Usuario("Pepe", "pepe@example.com", "123");
+// $idUsuario6 = Usuario::mostrarIdUsuario("Pepe");
+// $idUsuario5 = Usuario::mostrarIdUsuario("Usuario Cinco");
+// echo $idUsuario5;
+// echo $idUsuario6;
+// Usuario::verificarUsuario("pepe@example.com", "123");

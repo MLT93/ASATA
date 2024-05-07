@@ -28,15 +28,13 @@
   //añado la pagina de la clase usuario
   require_once("./classes/Usuario.php");
   //incluir funciones
-  require("functions/authentication.php");
-
-  //  use Firebase\JWT\JWT;
+  require("./functions/authentication.php");
 
   //llamo a la clase usuario
-  use User\Usuario as Usuario;
   //primer  elemento es el namespace
   //segundo elemento es la clase 
   //tercer  elemento el pseudonimo de la clase
+  use User\Usuario as Usuario;
 
   //INFO DE USUARIOS DE MI BASE DE DATOS
   $usuariosBD = [
@@ -55,7 +53,7 @@
   ) {
     $existeUsuario = false;
 
-    //COMPRUEBO QUE LOS DATOS DE MI USUARIO ESTAN EN MI BD
+    //COMPRUEBO QUE LOS DATOS DE MI USUARIO ESTÁN EN MI BD
     for ($i = 0; $i < count($usuariosBD); $i++) {
 
       if ($_REQUEST['nombre'] == $usuariosBD[$i][0] &&  $_REQUEST['pass'] == $usuariosBD[$i][1]) {
@@ -64,7 +62,7 @@
         $existeUsuario = true;
         break; //salgo del bucle
       } elseif ($i == count($usuariosBD) - 1) {
-        echo "<h2 class='card' >EL USUARIO Y/O LAS CREDENCIALES NO ESTAN EN LA BD</h2>";
+        echo "<h2 class='card' >EL USUARIO Y/O LAS CREDENCIALES NO ESTÁN EN LA BD</h2>";
         echo "<br/>";
       }
     }
@@ -93,7 +91,6 @@
     }
   }
 
-
   //PARA EL FORMULARIO DEL REGISTRO
   if (
     isset($_REQUEST['nombre'])  &&
@@ -103,7 +100,6 @@
     isset($_REQUEST['captcha']) &&
     isset($_REQUEST['registrar'])
   ) {
-
 
     //COMPRUEBO QUE LOS DATOS DE MI USUARIO ESTÁN EN MI BD
     $existeUsuario = false;
@@ -126,7 +122,6 @@
         if ($_REQUEST['captcha'] == $_SESSION['captcha']) {
           echo "<p>El captcha es correcto</p>";
           echo "<br/>";
-
 
           $info = [];
           $info["nombre"] = $_REQUEST["nombre"];
@@ -153,11 +148,7 @@
     }
   }
 
-
-
-
   require("./html_modules/footer.php");
-
   ?>
 
 </body>
