@@ -136,6 +136,64 @@ class DB
   {
     $this->getConnection()->close();
   }
+
+  public function insertInto(string $tableName, array $campos, array $data)
+  {
+    $sqlQuery = "INSERT INTO " . $tableName . " (";
+    $stringCampos = "";
+    for ($i = 0; $i < count($campos); $i++) {
+      if ($i < count($campos) - 1) {
+        $stringCampos .= $campos[$i] . ",";
+      } else {
+        $stringCampos .= $campos[$i];
+      }
+    }
+    $sqlQuery .= $stringCampos . ") VALUES";
+    $stringRegistros = "";
+    for ($i = 0; $i < count($data); $i++) { //=> RECORRE FILAS
+      $stringRegistros .= "(";
+      if ($i < count($data) - 1) {
+        for ($j = 0; $j < count($data[$i]); $j++) { //=> RECORRE COLUMNAS DENTRO DE UNA FILA
+          if ($i < count($campos) - 1) {
+            // Si es de tipo string, le agrego las comillas para que tome ese valor en la base de datos
+            if (is_string($data[$i][$j])) {
+              $stringRegistros .= "'" . $campos[$i][$j] . "', ";
+            } else {
+              // De lo contrario, agrego el elemento sin las comillas
+              $stringRegistros .= $campos[$i][$j] . ",";
+            }
+          } else {
+            if (is_string($data[$i][$j])) {
+              $stringRegistros .= "'" . $data[$i][$j] . "'";
+            } else {
+              $stringRegistros .= $data[$i][$j];
+            }
+          }
+          $stringRegistros .= "),";
+        }
+      } else {
+        for ($k = 0; $k < count($data[$i]); $k++) { //=> RECORRE LAS COLUMNAS
+          if ($k < count($data[$i]) - 1) {
+            if (is_string($data[$i][$k])) {
+              $stringRegistros .= "'" . $data[$i][$k] . "', ";
+            } else {
+              $stringRegistros .= $data[$i][$k] . ", ";
+            }
+          } else {
+            if (is_string($data[$i][$k])) {
+              $stringRegistros .= "'" . $data[$i][$k] . "'";
+            } else {
+              $stringRegistros .= $data[$i][$k];
+            }
+          }
+        }
+        $stringRegistros = $stringRegistros . " );";
+      }
+    }
+    $sqlQuery .= $stringRegistros;
+
+    $this->execute($sqlQuery);
+  }
 }
 /* // Instance
 $myConnection = new DB();

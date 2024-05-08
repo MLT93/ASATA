@@ -117,7 +117,7 @@ ALTER TABLE table_name DROP COLUMN column_name;
 # Borra tabla si existe
 DROP TABLE IF EXISTS clients;
 
-# Crear tabla con clave primaria (primary key)
+# Crear tabla con clave primaria (primary key) y codificación Unicode utf8
 CREATE TABLE `test`.`clients` (
     `id` INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL ,
     `nombre` VARCHAR(200) NOT NULL , 
@@ -128,10 +128,7 @@ CREATE TABLE `test`.`clients` (
     `email` VARCHAR(20) NOT NULL,
     `direction` VARCHAR(20) NOT NULL,
     `phone` VARCHAR(50) NOT NULL
-) ENGINE = InnoDB;
-
-# Realizo una codificación de los caracteres en utf8 para toda la tabla
-ALTER TABLE clients CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+) ENGINE = InnoDB CHARSET = utf8 COLLATE utf8_unicode_ci;
 
 # Agregar valores a los campos de la tabla
 INSERT INTO clients (

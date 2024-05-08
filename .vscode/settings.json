@@ -408,5 +408,8 @@
   "[dotenv]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
   },
-  "cSpell.words": ["Narvaez", "unicode", "VARCHAR"]
+  "cSpell.words": ["Kelm", "Narvaez", "Pelaez", "unicode", "VARCHAR"],
+  "[sql]": {
+    "editor.defaultFormatter": "inferrinizzard.prettier-sql-vscode"
+  }
 }

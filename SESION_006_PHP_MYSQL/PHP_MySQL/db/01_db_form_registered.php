@@ -34,10 +34,10 @@ if (
   $submit = $_REQUEST["submit"];
 
   // Creo conexión a la base de datos
-  $myConnection = new DB("localhost", "root", "", "test");
+  $myConnection = new DB("localhost", "root", "", "tienda");
 
   // Aplico el código SQL para crear la tabla
-  $mySQLCode = "INSERT INTO clients (
+  $mySQLCode2 = "INSERT INTO clientes (
       nombre,
       apellido1,
       apellido2,
@@ -49,7 +49,7 @@ if (
     ) VALUES
     ('$nombre', '$apellido1', '$apellido2', '$dni', '$birthday', '$email', '$direction', '$phone');";
 
-  $myConnection->execute($mySQLCode);
+  $myConnection->execute($mySQLCode2);
 
   // Al recargar la página no vuelve a realizar el registro del usuario
   header("Location: db_form_registered.php");
