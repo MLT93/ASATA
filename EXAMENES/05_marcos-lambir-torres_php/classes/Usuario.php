@@ -171,3 +171,4 @@ class Usuario
 // echo $idUsuario5;
 // echo $idUsuario6;
 // Usuario::verificarUsuario("pepe@example.com", "123");
+// Usuario::verificarUsuario("usuario5@example.com", "pass11");

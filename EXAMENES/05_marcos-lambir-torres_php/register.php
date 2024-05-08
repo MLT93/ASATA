@@ -11,17 +11,24 @@
 
 <body>
     <?php
+    // Activar almacenamiento en el búfer de salida. Esto recoge toda la salida del script hasta que decidas enviarla al navegador, permitiendo modificar las cabeceras en cualquier momento del script
     ob_start();
-
+    // Inicio de sesión
+    session_start();
+    // Importa HTML
     require("./html_modules/header.html");
     require("./html_modules/form_registro.html");
+    // Importa la ruta de la clase
     require("./classes/Usuario.php");
+    // Importa el cargador automático de Composer
+    // require_once("./vendor/autoload.php");
 
     use User\Usuario;
+    use Firebase\JWT\JWT;
 
     session_start();
 
-    // REGISTRAR
+    // REGISTRO USUARIO
     if (
         isset($_REQUEST['nombre']) &&
         isset($_REQUEST['email']) &&
@@ -36,7 +43,6 @@
         $email = $_REQUEST['email'];
         $pass1NewUser = $_REQUEST['pass'];
         $pass2NewUser = $_REQUEST['pass2'];
-        $registrarBtn = $_REQUEST['registrar'];
 
         $usuariosDB =
             [
@@ -72,32 +78,87 @@
                 ]
             ];
 
+
+
+        // VERIFICO SI EL USUARIO YA EXISTE EN LA DB
         $existeUsuario = false;
 
-        //COMPRUEBO QUE LOS DATOS DE MI USUARIO ESTÁN EN MI DB
+        // VERIFICO SI EL USUARIO YA EXISTE EN LA DB
         for ($i = 0; $i < count($usuariosDB); $i++) {
-            if ($nombre == $usuariosDB[$i]["nombre"] || $email == $usuariosDB[$i]["mail"]) {
-                echo "<p>Usuario en la DB</p>";
-                echo "<br/>";
+            if ($nombre == $usuariosDB[$i]["nombre"] && $email == $usuariosDB[$i]["mail"]) {
+                echo "<p>EL USUARIO YA EXISTE EN LA BD</p><br/>";
                 $existeUsuario = true;
+                break;
             }
         }
 
         if (!$existeUsuario) {
-
-            if ($pass1NewUser === $pass2NewUser) {
-                echo "<p>Password correcto</p>";
-                //CREO USUARIO
+            if ($pass1NewUser == $pass2NewUser) {
+                echo "<h2 class='card'>EL USUARIO SE HA REGISTRADO EN LA BASE DE DATOS</h2>" . "<br/>";
+                $info = [
+                    "nombre" => "$nombre",
+                    "hashedPassword" => password_hash($pass1NewUser, PASSWORD_DEFAULT)
+                ];
+                // CREO CODIFICACIÓN JWT
+                $jwtArray = JWTCreation($info, /* "./" */);
+                // CREO COOKIE CON JWT
+                setcookie("jwt", $jwtArray['jwt'],  $jwtArray['exp'], "/");
+                // CREO USUARIO
                 $usuario = new Usuario($nombre, $email, $pass1NewUser);
+                echo $usuario->getNombre();
                 $indexOfNewUser = Usuario::mostrarIdUsuario($nombre);
-                echo $indexOfNewUser;
-                echo "<br/>";
+                echo "El index del nuevo usuario es: " . $indexOfNewUser . "<br/>";
             } else {
                 echo "<p>El password NO es correcto</p>";
-                echo "<br/>";
             }
         }
     }
+
+    ?>
+
+    <?php
+    // FUNCIÓN PARA CREAR EL JWT
+    function JWTCreation($info)
+    {
+        try {
+            $key_secreta = "super_secreta";
+
+            $iat = time();
+            $exp = $iat + 3600;
+            $sub = 1;
+            $payload = [
+                "iat" => $iat,
+                "exp" => $exp,
+                "sub" => $sub,
+                "username" => $info['nombre'],
+                "password" => $info['pass']
+            ];
+
+            $metodoCifrado = "AES-128-CBC";
+            $iv_longitud = openssl_cipher_iv_length($metodoCifrado);
+            $iv = openssl_random_pseudo_bytes($iv_longitud);
+            $payload_encriptado = openssl_encrypt(json_encode($payload), $metodoCifrado, '$_ENV["CIPHER_KEY"]', OPENSSL_RAW_DATA, $iv);
+
+            $nuevoPayload = [
+                "data" => $payload_encriptado,
+                "iv" => base64_encode($iv)
+            ];
+
+            $jwt = JWT::encode($nuevoPayload, $key_secreta, "HS256");
+
+            $jwtArray = [
+                "jwt" => $jwt,
+                "exp" => $exp
+            ];
+
+            return $jwtArray;
+        } catch (Exception $exception) {
+            // Manejo de errores
+            echo "<p>Error al crear el JWT: </p>" . $exception->getMessage();
+            return null;
+        }
+    }
+
     ?>
 </body>
 

@@ -115,9 +115,7 @@ session_start();
    }
   }
 
-  if(!$existeUsuario 
-  // && !isset($_REQUEST['subir'])
-  ){
+  if(!$existeUsuario){
 
    if($_REQUEST['pass']===$_REQUEST['pass2']){
     echo "<p>Password correcto</p>";

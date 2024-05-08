@@ -72,7 +72,7 @@
 
         //COMPRUEBO QUE LOS DATOS DE MI USUARIO ESTÁN EN MI BD
         for ($i = 0; $i < count($usuariosDB); $i++) {
-            if ($nombre == $usuariosDB[$i]["nombre"] &&  $password == $usuariosDB[$i]["hashedPassword"]) {
+            if ($nombre == $usuariosDB[$i]["nombre"] && $password == $usuariosDB[$i]["hashedPassword"]) {
                 echo "<p>Usuario en la BD</p>";
                 echo "<br/>";
                 $existeUsuario = true;

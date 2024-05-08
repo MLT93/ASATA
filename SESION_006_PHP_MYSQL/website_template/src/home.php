@@ -72,7 +72,7 @@
   // * LOGIN
 
   // Importar package para JWT
-  require_once("../src/v");
+  require_once("../../vendor/autoload.php");
 
   // namespace JWT
   use Firebase\JWT\JWT;
