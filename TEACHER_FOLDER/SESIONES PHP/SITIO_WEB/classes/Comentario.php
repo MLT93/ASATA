@@ -121,11 +121,11 @@ class Comentario
     public function editarComentario($newComentario)
     {
 
-        $this->setContenido($newComentario);
-        $comentarioEditado = $this->getContenido();
+
+        $comentarioEditado = $this->setContenido($newComentario);
         $ahora = new DateTime();
-        $this->setFechaEdicion( $ahora->format("Y-m-d_Hisv"));
-        $fechaEdicion = $this->getFechaEdicion();
+        $fechaEdicion = $this->fechaEdicion = $ahora->format("Y-m-d_Hisv");
+
         return "{$comentarioEditado} - {$fechaEdicion}";
     }
 
@@ -145,6 +145,3 @@ class Comentario
         return  $fechaModeracion;
     }
 }
-
-$micoment = new Comentario("hola que ",2);
-echo $micoment->editarComentario("nuevo comenta");

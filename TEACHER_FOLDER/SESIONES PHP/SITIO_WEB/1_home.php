@@ -23,7 +23,7 @@ session_start();
  require_once("./html_modules/nav.php");
 
  //incluir el autoloader del composer
- require_once("../../../SESION_006_PHP/vendor/autoload.php");
+ require_once("../vendor/autoload.php");
  //añado la pagina de la clase usuario
  require_once("./classes/Usuario.php");
  //incluir funciones
@@ -79,7 +79,7 @@ session_start();
     $info['nombre']=$_REQUEST['nombre'];
     $info['password']=$_REQUEST['pass'];
     //creo JWT
-    $jwtArray = JWTCreation($info, "./_example.env");
+    $jwtArray = JWTCreation($info,"./");
     //CREO COOKIE CON JWT
     setcookie("jwt",$jwtArray['jwt'], $jwtArray['exp'],"/");
   
@@ -115,7 +115,9 @@ session_start();
    }
   }
 
-  if(!$existeUsuario){
+  if(!$existeUsuario 
+  // && !isset($_REQUEST['subir'])
+  ){
 
    if($_REQUEST['pass']===$_REQUEST['pass2']){
     echo "<p>Password correcto</p>";
@@ -127,7 +129,7 @@ session_start();
      $info['nombre']=$_REQUEST['nombre'];
      $info['password']=$_REQUEST['pass'];
      //creo JWT
-     $jwtArray = JWTCreation($info, "./");
+     $jwtArray = JWTCreation($info,"./");
      //CREO COOKIE CON JWT
      setcookie("jwt",$jwtArray['jwt'],  $jwtArray['exp'],"/");
      //CREO USUARIO
