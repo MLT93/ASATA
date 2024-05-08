@@ -43,7 +43,7 @@ DROP TABLE IF EXISTS asignaturas;
 CREATE TABLE `test`.`asignaturas` (
     `asignatura_id` INT(10) UNSIGNED AUTO_INCREMENT NOT NULL ,
     `asignatura_nombre` VARCHAR(200) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL , 
-    `n_creditos` INT(10) UNSIGNED NOT NULL , 
+    `n_credits` INT(10) UNSIGNED NOT NULL , 
     `tutor` VARCHAR(200) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL , 
     UNIQUE `id` (`asignatura_id`)
 ) ENGINE = InnoDB;
@@ -54,7 +54,7 @@ ALTER TABLE asignaturas ADD escuela VARCHAR(200) CHARACTER SET utf8 COLLATE utf8
 # Crear elementos en la tabla respetando el orden establecido en ella
 INSERT INTO asignaturas ( 
     asignatura_nombre,
-    n_creditos,
+    n_credits,
     tutor
 ) VALUES
 ("Matemáticas", 15, "Pedro López"),
@@ -64,7 +64,7 @@ INSERT INTO asignaturas (
 ("Filosofía", 22, "Laura Gutiérrez");
 
 # Modifica valores en la tabla según un id específico
-UPDATE asignaturas SET asignatura_nombre = "Cambio 1", n_creditos = "22", tutor = "Cambio 2" WHERE asignatura_id = 1; 
+UPDATE asignaturas SET asignatura_nombre = "Cambio 1", n_credits = "22", tutor = "Cambio 2" WHERE asignatura_id = 1; 
 
 # Muestra la tabla entera
 SELECT * FROM asignaturas; 
@@ -94,7 +94,7 @@ INSERT INTO tutores (
     curso,
     materia
 ) VALUES
-("Darío", "Martínez", "ASATA", "Desarrollo Web"),
+("Dario", "Martínez", "ASATA", "Desarrollo Web"),
 ("Pepe", "Suárez", "4 ESO", "Matemáticas"),
 ("Juan", "Álvarez", "3 ESO", "Plástica"),
 ("Jose", "Fernández", "BACHILLER", "Filosofía");
@@ -102,7 +102,7 @@ INSERT INTO tutores (
 # Agrupa los elementos de la tabla por edad y nos dice cuántos elementos hay con esa edad
 SELECT estudiante_edad, COUNT(*) FROM alumnos GROUP BY estudiante_edad;
 
-# Selecciona la edad y cuenta los registros que hay en alumnos. Agrúpalos por edad y devuélve el grupo que tenga más de 1 elemento
+# Selecciona la edad y cuenta los registros que hay en alumnos. Agrúpalos por edad y devuelve el grupo que tenga más de 1 elemento
 SELECT estudiante_edad, COUNT(*) FROM alumnos GROUP BY estudiante_edad HAVING COUNT(*) > 1;
 
 # Modifica el formato de codificación de caracteres Unicode de la base de datos
@@ -144,4 +144,4 @@ INSERT INTO clients (
     direction,
     phone
 ) VALUES
-("Darío", "Martínez", "Fernández", "34156896-Y", "1980-07-21", "dario.example@gmail.com", "C/ la Algarroba, 3", "679245312");
+("Dario", "Martínez", "Fernández", "34156896-Y", "1980-07-21", "dario.example@gmail.com", "C/ la Algarroba, 3", "679245312");

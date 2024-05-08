@@ -407,5 +407,6 @@
   },
   "[dotenv]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
-  }
+  },
+  "cSpell.words": ["Narvaez", "unicode", "VARCHAR"]
 }
