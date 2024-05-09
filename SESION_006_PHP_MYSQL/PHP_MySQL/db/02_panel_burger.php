@@ -41,14 +41,16 @@ if (
   isset($_POST["submitIngredient"])
 ) {
   $cnx = new DB("localhost", "root", "", "burger");
-  $campos = ["nombreIngrediente", "stock", "costeUnitario"];
+
   $ingrediente = $_POST["ingrediente"];
   $stock = intval($_POST["stock"]);
   $coste = floatval($_POST["coste"]);
-  $data = [
-    [$ingrediente, $stock, $coste]
-  ];
 
-  $cnx->insertInto("ingredientes", $campos, $data);
+  $campos = ["nombreIngrediente", "stock", "costeUnitario"];
+  $data = [$ingrediente, $stock, $coste];
+
+  $cnx->insertSingleRegister("ingredientes", $campos, $data);
+
+  header("Location: 02_panel_burger.php");
 }
 ?>
