@@ -1,6 +1,6 @@
 <?php
 // Requerir la ruta del archivo
-require("../class/db_class.php");
+require("../../class/db_class.php");
 
 // Uso los paquetes en el archivo llamando primero el namespace y después la clase a usar
 use Database\DB;

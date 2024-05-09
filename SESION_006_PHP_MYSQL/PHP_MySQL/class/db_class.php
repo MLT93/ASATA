@@ -109,14 +109,13 @@ class DB
       // Código SQL
       $resp = $this->getConnection()->query($SQLQueryCode);
       if ($isAssociativeArray) {
-
-        while ($resp->fetch_assoc()) {
+        while ($row = $resp->fetch_assoc()) {
           // Devuelve toda la respuesta usando la estructura de un array asociativo y lo guarda en el array de registros
-          array_push($regs, $resp->fetch_assoc());
+          array_push($regs, $row);
         }
       } else {
-        while ($resp->fetch_row()) {
-          array_push($regs, $resp->fetch_row());
+        while ($row = $resp->fetch_row()) {
+          array_push($regs, $row);
         }
       }
     }
@@ -201,7 +200,7 @@ class DB
 
     $stringCampos = "(";
     for ($i = 0; $i < count($campos); $i++) {
-      if ($i < count($campos[$i]) - 1) {
+      if ($i < count($campos) - 1) {
         $stringCampos .= $campos[$i] . ", ";
       } else {
         $stringCampos .= $campos[$i] . ") ";
@@ -210,21 +209,21 @@ class DB
 
     $sqlQuery .= $stringCampos . "VALUES ";
 
-    $stringData = "";
+    $stringData = " (";
     for ($i = 0; $i < count($data); $i++) {
       // Si no estoy al final del array hago esto
-      if ($i < count($data[$i]) - 1) {
+      if ($i < count($data) - 1) {
         if (is_string($data[$i])) {
           $stringData .= "'" . $data[$i] . "',";
         } else {
-          $stringData .= "'" . $data[$i] . ",";
+          $stringData .= $data[$i] . ",";
         }
       } else {
         // De lo contrario, hago esto otro
-        if (is_string($data[$i])) {
+        if (is_string($data)) {
           $stringData .= "'" . $data[$i] . "');";
         } else {
-          $stringData .= "'" . $data[$i] . ");";
+          $stringData .=  $data[$i] . ");";
         }
       }
     }

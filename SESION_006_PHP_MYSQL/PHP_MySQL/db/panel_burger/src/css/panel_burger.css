@@ -1,0 +1,20 @@
+body {
+  min-width: 100%;
+  min-height: 100vh;
+
+  margin: unset;
+  padding: unset;
+}
+
+main {
+  margin: 1rem 5rem;
+
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px
+}
+
+h1 {
+  margin-left: 5rem;
+}
