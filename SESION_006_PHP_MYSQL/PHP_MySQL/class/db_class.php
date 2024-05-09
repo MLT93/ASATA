@@ -200,7 +200,7 @@ class DB
     $sqlQuery = "INSERT INTO $tableName ";
 
     $stringCampos = "(";
-    for ($i=0; $i < count($campos); $i++) { 
+    for ($i = 0; $i < count($campos); $i++) {
       if ($i < count($campos[$i]) - 1) {
         $stringCampos .= $campos[$i] . ", ";
       } else {
@@ -211,13 +211,13 @@ class DB
     $sqlQuery .= $stringCampos . "VALUES ";
 
     $stringData = "";
-    for ($i=0; $i < count($data); $i++) {
+    for ($i = 0; $i < count($data); $i++) {
       // Si no estoy al final del array hago esto
       if ($i < count($data[$i]) - 1) {
         if (is_string($data[$i])) {
           $stringData .= "'" . $data[$i] . "',";
-        }else {
-          $stringData .= "'". $data[$i] . ",";
+        } else {
+          $stringData .= "'" . $data[$i] . ",";
         }
       } else {
         // De lo contrario, hago esto otro
@@ -228,6 +228,9 @@ class DB
         }
       }
     }
+    $sqlQuery .= $stringData;
+
+    $this->execute($sqlQuery);
   }
 }
 /* // Instance
