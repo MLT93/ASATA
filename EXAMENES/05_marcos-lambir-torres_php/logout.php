@@ -15,13 +15,19 @@
 
     require("./html_modules/header.html");
     require("./classes/Sesion.php");
+    require("./classes/Usuario.php");
 
     use Session\Session;
+    use User\Usuario;
 
-    session_start();
+    // Accedo a la base de datos
+    Usuario::init();
 
     // LOG OUT
-    Session::cerrarSession($_SESSION["usuario"]);
+    Session::cerrarSession();
+
+    // Redirige a la página de login
+    header("Location: login.html");
     ?>
 
 </body>

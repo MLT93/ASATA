@@ -16,21 +16,27 @@
     require("./html_modules/header.html");
     require("./html_modules/form_login.html");
     require("./classes/Usuario.php");
+    require("./classes/Sesion.php");
 
     use Session\Session;
+    use User\Usuario;
+
+    /* Accedo a la base de datos */
+
+    Usuario::init();
 
     session_start();
 
     // LOG IN
     if (
-        isset($_REQUEST['nombre']) &&
+        isset($_REQUEST['email']) &&
         isset($_REQUEST['pass']) &&
         isset($_REQUEST['loguear'])
     ) {
 
-        unset($nombre, $email, $pass1NewUser, $pass2NewUser, $registrarBtn);
+        unset($email, $password, $loguearBtn);
 
-        $nombre = $_REQUEST['nombre'];
+        $email = $_REQUEST['mail'];
         $password = $_REQUEST['pass'];
         $loguearBtn = $_REQUEST['loguear'];
 
@@ -68,25 +74,24 @@
                 ]
             ];
 
-        $existeUsuario = false;
 
         //COMPRUEBO QUE LOS DATOS DE MI USUARIO ESTÁN EN MI BD
-        for ($i = 0; $i < count($usuariosDB); $i++) {
-            if ($nombre == $usuariosDB[$i]["nombre"] && $password == $usuariosDB[$i]["hashedPassword"]) {
-                echo "<p>Usuario en la BD</p>";
-                echo "<br/>";
-                $existeUsuario = true;
-                break;
-            }
-        }
+        $existeUsuario = false;
 
+        if (Usuario::verificarUsuario($email, $password == "OK")) {
+            $existeUsuario = true;
+        } else {
+            // Redirige a la página de registro
+            header("Location: register.html");
+        }
 
         if ($existeUsuario) {
             $mySession = new Session();
-            $mySession->inicioLogin($nombre);
+            $mySession->inicioLogin($email);
+            header("Location: dashboard.php"); /* Redirige al dashboard */
         }
     }
-
+    /* ToDo: resolver el warning y comparar con el examen resuelto de Dario */
     ?>
 </body>
 

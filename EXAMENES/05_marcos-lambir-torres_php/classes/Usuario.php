@@ -143,23 +143,41 @@ class Usuario
 
     public static function mostrarIdUsuario(string $nombreUsuario)
     {
-        for ($i = 0; $i < count(self::$usuarios); $i++) {
+        // for ($i = 0; $i < count(self::$usuarios); $i++) {
+        //     if (isset(self::$usuarios[$i]["mail"]) && self::$usuarios[$i]["nombre"] == $nombreUsuario) {
+        //         return "El usuario tiene el siguiente id: " . self::$usuarios[$i]["id"] . "<br/>";
+        //     }
+        // }
+
+        foreach (self::$usuarios as $i => $element) {
             if (isset(self::$usuarios[$i]["mail"]) && self::$usuarios[$i]["nombre"] == $nombreUsuario) {
                 return "El usuario tiene el siguiente id: " . self::$usuarios[$i]["id"] . "<br/>";
+            } elseif ($i == count(self::$usuarios) - 1) {
+                return false;
             }
         }
     }
 
     public static function verificarUsuario(string $email, string $password)
     {
-        for ($i = 0; $i < count(self::$usuarios); $i++) {
-            if (password_verify($password, self::$usuarios[$i]["hashedPassword"])) {
-                echo "Password correcta." . "<br/>";
-                break;
-            } elseif ($email == self::$usuarios[$i]["mail"]) {
-                return "La email es correcta." . "<br/>";
-            } elseif ($i == count(self::$usuarios) - 1) {
-                echo "Email o password incorrectos." . "<br/>";
+        // for ($i = 0; $i < count(self::$usuarios); $i++) {
+        //     if (password_verify($password, self::$usuarios[$i]["hashedPassword"])) {
+        //         echo "Password correcta." . "<br/>";
+        //         break;
+        //     } elseif ($email == self::$usuarios[$i]["mail"]) {
+        //         return "La email es correcta." . "<br/>";
+        //     } elseif ($i == count(self::$usuarios) - 1) {
+        //         echo "Email o password incorrectos." . "<br/>";
+        //     }
+        // }
+
+        foreach (self::$usuarios as $key => $value) {
+            if (self::$usuarios[$key]["email"] == $email) {
+                $msg = "";
+                password_verify($password, self::$usuarios[$key]["hashedPassword"]) ? $msg = "OK" : $msg = "None";
+                return $msg;
+            } elseif ($key == count(self::$usuarios) - 1) {
+                echo "<h3>Email o password incorrectos</h3>" . "<br/>";
             }
         }
     }

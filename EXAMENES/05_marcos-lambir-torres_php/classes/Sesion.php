@@ -12,6 +12,7 @@ class Session
   function __construct()
   {
     session_start();
+    $this->verificarLogin();
   }
 
   // getters y setters
@@ -35,12 +36,13 @@ class Session
   // métodos
   function inicioLogin(string $nombreUsuario)
   {
-    if ($nombreUsuario != "") {
+    if ($nombreUsuario != "" || strlen($nombreUsuario) > 0) {
       $_SESSION["usuario"] = $nombreUsuario;
       $this->setUser($nombreUsuario);
       $this->setLogin(true);
     }
   }
+
   function verificarLogin()
   { {
       if (isset($_SESSION["usuario"])) {
@@ -66,12 +68,11 @@ class Session
     }
   }
 
-  static function cerrarSession($instancia)
+  static function cerrarSession()
   {
-    unset($_SESSION["usuario"]);
-    unset($instancia->getUser());
-    $instancia->setLogin(false);
-    echo "La sesión se ha cerrado." . "<br/>";
+    session_unset();
+    session_destroy();
+    echo "<h3>La sesión se ha cerrado</h3>" . "<br/>";
   }
 }
 
