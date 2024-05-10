@@ -21,7 +21,7 @@ CREATE TABLE `gameclub`.`videogame` (
     `description` TEXT,
     `developer_id` INT (10) UNSIGNED,
     `platform_id` INT (10) UNSIGNED,
-    `peghi_id` INT (10) UNSIGNED,
+    `pegi_id` INT (10) UNSIGNED,
     `releaseDate` DATE,
     `ISOCode` INT (10) UNSIGNED UNIQUE
 ) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_unicode_ci;
@@ -47,9 +47,9 @@ CREATE TABLE `gameclub`.`platform` (
     `version` VARCHAR (255)
 ) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
-CREATE TABLE `gameclub`.`peghi` (
-    `peghi_id` INT (10) UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
-    `peghi` VARCHAR (200) NOT NULL, 
+CREATE TABLE `gameclub`.`pegi` (
+    `pegi_id` INT (10) UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    `pegi` VARCHAR (200) NOT NULL, 
     `description` TEXT
 ) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
@@ -58,9 +58,9 @@ CREATE TABLE `gameclub`.`peghi` (
 /* Recuerda: en una tabla puede haber un solo PRIMARY KEY y un solo AUTO_INCREMENT */
 /* FOREIGN KEY relaciona un campo con otro campo de una tabla. Normalmente se utiliza para los ID de las tablas */
 /**
- * ALTER TABLE nombre_tabla
- * ADD KEY key_asociativo (campo_de_la_tabla)
- * ADD CONSTRAINT key_asociativo FOREIGN KEY (campo_de_la_tabla) REFERENCES tabla_a_relacionar (primary_key_de_la_tabla_a_relacionar) ON DELETE CASCADE ON UPDATE CASCADE;
+ ** ALTER TABLE nombre_tabla
+ ** ADD KEY key_asociativo (campo_de_la_tabla)
+ ** ADD CONSTRAINT key_asociativo FOREIGN KEY (campo_de_la_tabla) REFERENCES tabla_a_relacionar (primary_key_de_la_tabla_a_relacionar) ON DELETE CASCADE ON UPDATE CASCADE;
  *
  */
 ALTER TABLE table_name
@@ -70,4 +70,9 @@ ALTER TABLE table_name
 ALTER TABLE videogame 
   ADD KEY genreID (genre_id),
   ADD CONSTRAINT genreID FOREIGN KEY (genre_id) REFERENCES genre (id) ON DELETE CASCADE ON UPDATE CASCADE;
-
+  ADD KEY developerID (developer_id),
+  ADD CONSTRAINT developerID FOREIGN KEY (developer_id) REFERENCES developer (id) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD KEY platformID (platform_id),
+  ADD CONSTRAINT platformID FOREIGN KEY (platform_id) REFERENCES platform (id) ON DELETE CASCADE ON UPDATE CASCADE;
+ ADD KEY pegiID (pegi_id),
+  ADD CONSTRAINT pegiID FOREIGN KEY (pegi_id) REFERENCES pegi (id) ON DELETE CASCADE ON UPDATE CASCADE;
