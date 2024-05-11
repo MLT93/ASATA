@@ -2,20 +2,18 @@
 // Requerir la ruta del archivo
 require("../../class/db_class.php");
 
+// Permite modificar las cabeceras en cualquier momento
+ob_start();
+
 // Uso los paquetes en el archivo llamando primero el namespace y después la clase a usar
 use Database\DB;
 
-if (
-  isset($_REQUEST['nombre']) &&
-  isset($_REQUEST['apellido1']) &&
-  isset($_REQUEST['apellido2']) &&
-  isset($_REQUEST['dni']) &&
-  isset($_REQUEST['birthday']) &&
-  isset($_REQUEST['email']) &&
-  isset($_REQUEST['direction']) &&
-  isset($_REQUEST['phone']) &&
-  isset($_REQUEST['submit'])
-) {
+// Creo conexión a la base de datos
+$myConnection = new DB("localhost", "root", "", "tienda");
+
+// Si existe submit, es que se ha enviado el formulario y hay información enviada al formulario
+if (isset($_REQUEST['submit'])) {
+
   // Veo que me devuelve el formulario
   var_dump($_REQUEST);
 
@@ -33,9 +31,6 @@ if (
   $phone = $_REQUEST["phone"];
   $submit = $_REQUEST["submit"];
 
-  // Creo conexión a la base de datos
-  $myConnection = new DB("localhost", "root", "", "tienda");
-
   // Aplico el código SQL para crear la tabla
   $mySQLCode2 = "INSERT INTO clientes (
       nombre,
@@ -49,8 +44,9 @@ if (
     ) VALUES
     ('$nombre', '$apellido1', '$apellido2', '$dni', '$birthday', '$email', '$direction', '$phone');";
 
+  // Ejecuto el código SQL en la DB
   $myConnection->execute($mySQLCode2);
 
-  // Al recargar la página no vuelve a realizar el registro del usuario
+  // Envío el cliente a otra página o la recargo
   header("Location: db_form_registered.php");
 }

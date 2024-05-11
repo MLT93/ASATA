@@ -13,18 +13,18 @@
 </head>
 
 <?php
-// Requerir la ruta del archivo
-require_once("../../../class/db_class.php");
-// Uso los paquetes en el archivo llamando primero el namespace y después la clase a usar
+// Requerir la ruta archivos
+require_once("../../class/db_class.php");
+// Uso los paquetes del archivo llamando primero el namespace y después la clase a usar
 use Database\DB;
-// Permite modificar las cabeceras en cualquier momento
+// Permite modificar las cabeceras en cualquier parte del código
 ob_start();
 // Creo una conexión a una base de datos con la clase que creé
 $connection = new DB("localhost", "root", "", "burger");
 ?>
 
 <header>
-  <h1>FORMULARIO</h1>
+  <h1>FORMULARIO PARA AGREGAR INFORMACIÓN A UNA DATABASE</h1>
 </header>
 
 <body>
@@ -199,12 +199,8 @@ $connection = new DB("localhost", "root", "", "burger");
 
 <?php
 // Ingredientes
-if (
-  isset($_POST["ingrediente"]) &&
-  isset($_POST["stock"]) &&
-  isset($_POST["coste"]) &&
-  isset($_POST["submitIngredient"])
-) {
+if (isset($_POST["submitIngredient"])) {
+
   $ingrediente = $_POST["ingrediente"];
   $stock = intval($_POST["stock"]);
   $coste = floatval($_POST["coste"]);
@@ -218,15 +214,8 @@ if (
 }
 
 // Empleados
-if (
-  isset($_POST["nombreEmpleado"])  &&
-  isset($_POST["apellido1"])  &&
-  isset($_POST["apellido2"]) &&
-  isset($_POST["rol"]) &&
-  isset($_POST["fechaContrata"]) &&
-  isset($_POST["salario"]) &&
-  isset($_POST["submitEmpleado"])
-) {
+if (isset($_POST["submitEmpleado"])) {
+
   $nombre = $_POST["nombreEmpleado"];
   $apellido1 = $_POST["apellido1"];
   $apellido2 = $_POST["apellido2"];
@@ -243,11 +232,8 @@ if (
 }
 
 // Categorías menú
-if (
-  isset($_POST["nombreCategoria"])  &&
-  isset($_POST["descripcion"])  &&
-  isset($_POST["submitCategoria"])
-) {
+if (isset($_POST["submitCategoria"])) {
+
   $nombreCategory = $_POST["nombreCategoria"];
   $description = $_POST["descripcion"];
 
@@ -260,14 +246,8 @@ if (
 }
 
 // Items menú
-if (
-  isset($_POST["categoriaId"])  &&
-  isset($_POST["nombreItem"])  &&
-  isset($_POST["precio"])  &&
-  isset($_POST["descripcion"]) &&
-  isset($_POST["disponible"]) &&
-  isset($_POST["submitItem"])
-) {
+if (isset($_POST["submitItem"])) {
+
   $categoriaId = $_POST["categoriaId"];
   $nombreItem = $_POST["nombreItem"];
   $precio = intval($_POST["precio"]);
@@ -283,12 +263,8 @@ if (
 }
 
 // Pedidos
-if (
-  isset($_POST["empleadoId"])  &&
-  isset($_POST["fechaPedido"])  &&
-  isset($_POST["total"])  &&
-  isset($_POST["submitPedido"])
-) {
+if (isset($_POST["submitPedido"])) {
+
   $empleadoId = $_POST["empleadoId"];
   $fechaPedido = $_POST["fechaPedido"];
   $total = $_POST["total"];
@@ -302,12 +278,8 @@ if (
 }
 
 // Recetas
-if (
-  isset($_POST["itemId"])  &&
-  isset($_POST["ingredienteId"])  &&
-  isset($_POST["cantidad"])  &&
-  isset($_POST["submitReceta"])
-) {
+if (isset($_POST["submitReceta"])) {
+
   $itemId = $_POST["itemId"];
   $ingredienteId = $_POST["ingredienteId"];
   $cantidad = $_POST["cantidad"];
@@ -319,5 +291,4 @@ if (
 
   header("Location: panel_burger.php");
 }
-
 ?>
