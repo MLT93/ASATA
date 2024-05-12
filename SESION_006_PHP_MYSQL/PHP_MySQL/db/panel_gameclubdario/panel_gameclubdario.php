@@ -38,7 +38,7 @@ $connection = new DB("localhost", "root", "mysql", "gameclubdario");
       <fieldset>
         <legend>ALQUILERES</legend>
 
-        <!-- ToDo: Modificar las conexiones en los `$sqlQuery` para que creen las conexiones en una sola tabla (alquileres) -->
+        <!-- ToDo: Hay que modificar el código SQL en los `$sqlQuery` para que devuelvan las conexiones existentes entre las tablas, porque donde hay un FOREIGN KEY las consultas se realizan con JOINS -->
 
         <label for="fechaAlquilerID">FECHA ALQUILER</label>
         <input type="date" name="fechaAlquiler" id="fechaAlquilerID" />
@@ -47,7 +47,7 @@ $connection = new DB("localhost", "root", "mysql", "gameclubdario");
         <!-- <input type="text" name="idCliente" id="idClienteID" /> -->
         <select name="idCliente" id="idClienteID">
           <?php
-          $sqlQuery = "SELECT id, nombre FROM clientes";
+          $sqlQuery = "SELECT alquileres.id_cliente, clientes.nombre FROM alquileres INNER JOIN clientes ON alquileres.id_cliente = clientes.id";
           $arrIdCliente = $connection->myQueryCodeMultiple($sqlQuery, false);
           foreach ($arrIdCliente as $key => $value) { ?>
             <option value="<?= $value[0] ?>"> <?= $value[1] ?> </option>
