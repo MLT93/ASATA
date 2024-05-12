@@ -1,7 +1,7 @@
 /* Creación de database */
 CREATE DATABASE IF NOT EXISTS gameclub;
 
-ALTER DATABASE gameclub CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+ALTER DATABASE gameclub DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_unicode_ci;
 
 USE gameclub;
 

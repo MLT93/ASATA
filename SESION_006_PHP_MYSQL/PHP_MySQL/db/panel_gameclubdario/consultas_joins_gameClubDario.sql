@@ -4,12 +4,12 @@
 # 2. Todos los campos de empleados manager
 # 3. Devolver nombre, apellido1, de empleados junior
 # 4. Me devuelva todos los campos de alquiler más todos los campos de tarifas
-# 5. Consulta que me devuelva los videojuegos que han sido alquilados y su fecha de alquiler
+# 5. Realiza una consulta que devuelva los videojuegos que han sido alquilados y su fecha de alquiler
 
 # Sintaxis
-`SELECCIONA (devuélveme)` tabla_donde_busco.campo/s `DESDE` tabla_donde_busco `METODO JOIN` tabla_comparación `DONDE LOS ID ESTÉN RELACIONADOS (hay que ponerlo siempre)` tabla_donde_busco.campoID = tabla_comparación.campoID `+ CONDICIONES (opcional)` (se usa `AND`, `OR` para agregar condiciones);
+`SELECCIONA(devuelve)` tabla_donde_busco.campo_buscado `DESDE` tabla_donde_busco `METODO JOIN` tabla_comparación `DONDE LOS ID ESTÉN RELACIONADOS(hay que ponerlo siempre)` tabla_donde_busco.campoID = tabla_comparación.campoID `+ CONDICIONES (opcional)` (se usa `AND`, `OR` para agregar condiciones);
 
-SELECT tabla_donde_busco.campo/s FROM tabla_donde_busco INNER JOIN tabla_comparación ON tabla_donde_busco.campoID = tabla_comparación.campoID WHERE tabla_comparación.campo_a_comprobar = "asdf";
+SELECT tabla_donde_busco.campo_buscado1, tabla_donde_busco.campo_buscado2 FROM tabla_donde_busco INNER JOIN tabla_comparación ON tabla_donde_busco.campo_buscado1 = tabla_comparación.campo.ID WHERE tabla_comparación.campo_buscado2 = "asdf";
 
 # Ejemplos
 SELECT videojuegos.* FROM videojuegos INNER JOIN genero ON videojuegos.id_genero = genero.id;
@@ -17,6 +17,8 @@ SELECT videojuegos.* FROM videojuegos INNER JOIN genero ON videojuegos.id_genero
 SELECT videojuegos.id, videojuegos.nombre, videojuegos.descripcion, videojuegos.id_genero, videojuegos.id_desarrollador, videojuegos.id_plataforma, videojuegos.id_pegui, videojuegos.fechaPublicacion, videojuegos.isoCode, genero.nombre, genero.descripcion FROM videojuegos LEFT JOIN genero ON videojuegos.id_genero = genero.id;
 
 SELECT videojuegos.* FROM videojuegos RIGHT JOIN genero ON videojuegos.id_genero = genero.id;
+
+SELECT alquileres.id_cliente, clientes.nombre FROM alquileres INNER JOIN clientes ON alquileres.id_cliente = clientes.id
 
 # Ejercicio 1
 SELECT alquileres.* FROM alquileres INNER JOIN clientes ON alquileres.id_cliente = clientes.id AND clientes.socio = 1;

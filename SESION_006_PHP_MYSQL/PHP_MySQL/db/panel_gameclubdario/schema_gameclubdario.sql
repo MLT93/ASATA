@@ -21,6 +21,12 @@ SET time_zone = "+00:00";
 -- Base de datos: `gameclubdario`
 --
 
+CREATE DATABASE IF NOT EXISTS gameclubdario;
+
+ALTER DATABASE gameclubdario DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_unicode_ci;
+
+USE gameclubdario;
+
 -- --------------------------------------------------------
 
 --

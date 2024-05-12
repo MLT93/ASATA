@@ -2,7 +2,7 @@ DROP DATABASE IF EXISTS biblioteca;
 
 CREATE DATABASE biblioteca;
 
-ALTER DATABASE biblioteca CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+ALTER DATABASE biblioteca DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_unicode_ci;
 
 USE biblioteca;
 

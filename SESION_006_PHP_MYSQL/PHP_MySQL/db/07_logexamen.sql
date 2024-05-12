@@ -21,6 +21,12 @@ SET time_zone = "+00:00";
 -- Base de datos: `logexamen`
 --
 
+CREATE DATABASE IF NOT EXISTS logexamen;
+
+ALTER DATABASE logexamen DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_unicode_ci;
+
+USE logexamen;
+
 -- --------------------------------------------------------
 
 --
