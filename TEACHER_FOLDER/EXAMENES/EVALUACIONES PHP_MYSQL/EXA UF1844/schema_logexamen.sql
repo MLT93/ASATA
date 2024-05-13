@@ -54,6 +54,21 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
+-- Volcado de datos para la tabla `videojuegos`
+--
+
+INSERT INTO `usuarios` (
+  `name`, `email`, `hashedPassword`
+) VALUES
+("Usuario1", "usuario1@example.com", "pass11"),
+("Usuario2", "usuario2@example.com", "pass11"),
+("Usuario3", "usuario3@example.com", "pass11"),
+("Usuario4", "usuario4@example.com", "pass11"),
+("Usuario5", "usuario5@example.com", "pass11"),
+("Usuario6", "usuario6@example.com", "pass11"),
+("Usuario6", "usuario7@example.com", "pass11");
+
+--
 -- Índices para tablas volcadas
 --
 
@@ -95,7 +110,14 @@ ALTER TABLE `usuarios`
 --
 ALTER TABLE `sesiones`
   ADD CONSTRAINT `usuarioID` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
 
+--
+-- Consultas `usuarios`
+--
+SELECT id FROM usuarios WHERE email = "usuario3@example.com"; /* => 3 */
+UPDATE usuarios SET hashedPassword = "444" WHERE email = "usuario3@example.com"; /* Modifico la password del usuario */
+SELECT hashedPassword FROM `usuarios` WHERE id = 3; /* Veo la modificación de la password realizada */
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

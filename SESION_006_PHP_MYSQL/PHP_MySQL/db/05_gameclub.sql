@@ -183,7 +183,7 @@ CREATE TABLE `gameclub`.`employee` (
     `nSS` VARCHAR (200) NOT NULL,
     `telephone` VARCHAR (50) NOT NULL,
     `direction` VARCHAR (200) NOT NULL,
-    `category_id` INT (10) UNSIGNED,
+    `category_id` INT (10) UNSIGNED, /* `UNSIGNED` se usa para que no se acepten signos en el texto escrito */
     `dateOfEntry` VARCHAR (200) NOT NULL
 ) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
@@ -253,6 +253,21 @@ INSERT INTO payment (
 ("Transferencia bancaria"),
 ("Crypto");
 
+# Points
+CREATE TABLE `gameclub`.`points` (
+    `points_id` INT (10) UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    `rent_id` INT (10) UNSIGNED,
+    `points` VARCHAR (255) NOT NULL
+) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
+INSERT INTO points (
+    `rent_id`, `points`
+) VALUES
+(1, "Very nice game"),
+(3, "Simply game"),
+(4, "For family"),
+(2, "So easy for everyone");
+
 /* Relación entre tablas */
 # Altero la tabla para agregar una clave foránea después de crear todas las demás tablas. La relación debe ser entre valores `UNIQUE` o `PRIMARY KEY` y los campos de las otras tablas que se deseen conectar. Los datos que se relacionan deben tener la misma estructura, si el id principal de una tabla es `UNSIGNED`, también lo será en el campo que se relacionará en la otra tabla
 # RECUERDA: en una tabla puede haber un solo `PRIMARY KEY` y un solo `AUTO_INCREMENT`, pero pueden existir varios `UNIQUE`
@@ -291,6 +306,10 @@ ALTER TABLE rent
 ALTER TABLE employee
   ADD KEY categoryID (category_id),
   ADD CONSTRAINT categoryID FOREIGN KEY (category_id) REFERENCES category (category_id) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE points
+  ADD KEY rentID (rent_id),
+  ADD CONSTRAINT rentID FOREIGN KEY (rent_id) REFERENCES rent (rent_id) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*ToDo: hacer Joins */
 SELECT employee.*, category.category FROM employee INNER JOIN employee ON employee.employee_id = category_id;
