@@ -59,7 +59,7 @@ class User
     $cnx = new Database("localhost", "root", "", "logexamen");
     $sqlQuery = "SELECT id FROM usuarios WHERE email = '$email';"; /* => id */
     $res = $cnx->myQuerySimple($sqlQuery);
-    return $res;
+    return $res["id"];
   }
 
   /* En las bases de datos SIEMPRE se guardan las password encriptadas */
@@ -76,8 +76,10 @@ class User
     // Conexión base de datos
     $cnx = new Database("localhost", "root", "", "logexamen");
     // Sentencia para que me devuelva la password encriptada para verificarla
-    $sqlQuery = "SELECT hashedPassword WHERE email = '$email';";
+    $sqlQuery = "SELECT hashedPassword FROM usuarios WHERE email = '$email';";
+
     $res = $cnx->myQuerySimple($sqlQuery);
+    // var_dump($res);
     $hashedPasswordFromDB = $res["hashedPassword"];
     $isVerifiedPassword = password_verify($password, $hashedPasswordFromDB);
     return $isVerifiedPassword;
@@ -86,13 +88,13 @@ class User
 
 print_r(User::mostrarIdUsuario("usuario3@example.com")); //=> 3
 
-User::actualizarPassword("usuario1@example.com", "1234");
-User::actualizarPassword("usuario2@example.com", "1234");
-User::actualizarPassword("usuario3@example.com", "1234");
-User::actualizarPassword("usuario4@example.com", "1234");
-User::actualizarPassword("usuario5@example.com", "1234");
-User::actualizarPassword("usuario6@example.com", "1234");
-User::actualizarPassword("usuario7@example.com", "1234");
+// User::actualizarPassword("usuario1@example.com", "1234");
+// User::actualizarPassword("usuario2@example.com", "1234");
+// User::actualizarPassword("usuario3@example.com", "1234");
+// User::actualizarPassword("usuario4@example.com", "1234");
+// User::actualizarPassword("usuario5@example.com", "1234");
+// User::actualizarPassword("usuario6@example.com", "1234");
+// User::actualizarPassword("usuario7@example.com", "1234");
 
-User::verificarUsuario("usuario3@example.com","1234"); //=> 1
-User::verificarUsuario("usuario3@example.com", "1222"); //=> 0
+echo User::verificarUsuario("usuario3@example.com","1234"); //=> 1
+echo User::verificarUsuario("usuario3@example.com", "1222"); //=> 0

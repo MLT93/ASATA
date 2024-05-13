@@ -94,9 +94,9 @@ class Database
       $response = $this->getConnection()->query($SQLQueryCode);
       if ($isAssociativeArray) {
         // Devuelve una línea de la respuesta usando la estructura de un array asociativo y lo guarda en el array de registros
-        array_push($registers, $response->fetch_assoc());
+        $registers =  $response->fetch_assoc();
       } else {
-        array_push($registers, $response->fetch_row());
+        $registers = $response->fetch_row();
       }
     }
     return $registers;
