@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-05-2024 a las 08:32:58
+-- Tiempo de generación: 14-05-2024 a las 12:22:41
 -- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.2.12
+-- Versión de PHP: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -21,12 +21,6 @@ SET time_zone = "+00:00";
 -- Base de datos: `logexamen`
 --
 
-CREATE DATABASE IF NOT EXISTS logexamen;
-
-ALTER DATABASE logexamen DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_unicode_ci;
-
-USE logexamen;
-
 -- --------------------------------------------------------
 
 --
@@ -36,9 +30,19 @@ USE logexamen;
 CREATE TABLE `sesiones` (
   `id` int(10) NOT NULL,
   `id_usuario` int(10) NOT NULL,
-  `fecha` date NOT NULL,
+  `fecha` datetime NOT NULL,
   `interaccion` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL COMMENT 'log in / log out'
 ) ENGINE=InnoDB DEFAULT CHARSET=ucs2 COLLATE=ucs2_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `sesiones`
+--
+
+INSERT INTO `sesiones` (`id`, `id_usuario`, `fecha`, `interaccion`) VALUES
+(1, 1, '2024-05-14 11:49:36', 'LOG IN'),
+(2, 1, '2024-05-14 11:50:02', 'LOG IN'),
+(3, 1, '2024-05-14 11:50:17', 'LOG IN'),
+(4, 1, '2024-05-14 11:50:17', 'LOG IN');
 
 -- --------------------------------------------------------
 
@@ -52,6 +56,19 @@ CREATE TABLE `usuarios` (
   `email` varchar(255) NOT NULL,
   `hashedPassword` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id`, `name`, `email`, `hashedPassword`) VALUES
+(1, 'Usuario1', 'usuario1@example.com', 'pass11'),
+(2, 'Usuario2', 'usuario2@example.com', 'pass11'),
+(3, 'Usuario3', 'usuario3@example.com', 'pass11'),
+(4, 'Usuario4', 'usuario4@example.com', 'pass11'),
+(5, 'Usuario5', 'usuario5@example.com', 'pass11'),
+(6, 'Usuario6', 'usuario6@example.com', 'pass11'),
+(7, 'Usuario6', 'usuario7@example.com', 'pass11');
 
 --
 -- Índices para tablas volcadas
@@ -78,13 +95,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `sesiones`
 --
 ALTER TABLE `sesiones`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Restricciones para tablas volcadas
@@ -95,7 +112,7 @@ ALTER TABLE `usuarios`
 --
 ALTER TABLE `sesiones`
   ADD CONSTRAINT `usuarioID` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

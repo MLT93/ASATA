@@ -88,7 +88,7 @@ class DB
   // Methods
   public function myQueryCodeUnique($SQLQueryCode, $isAssociativeArray = true)
   {
-    $registers = [];
+    $registers = []; // Esto será una matriz porque `fetch_assoc` o `fetch_row` devuelven un array
     if ($SQLQueryCode != "") {
       // Código SQL
       $response = $this->getConnection()->query($SQLQueryCode);
@@ -104,7 +104,7 @@ class DB
 
   public function myQueryCodeMultiple($SQLQueryCode, $isAssociativeArray = true)
   {
-    $regs = [];
+    $regs = []; // Esto será una matriz porque `fetch_assoc` o `fetch_row` devuelven un array
     if ($SQLQueryCode != "") {
       // Código SQL
       $resp = $this->getConnection()->query($SQLQueryCode);

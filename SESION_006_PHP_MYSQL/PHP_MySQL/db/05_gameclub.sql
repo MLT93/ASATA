@@ -311,5 +311,5 @@ ALTER TABLE points
   ADD KEY rentID (rent_id),
   ADD CONSTRAINT rentID FOREIGN KEY (rent_id) REFERENCES rent (rent_id) ON DELETE CASCADE ON UPDATE CASCADE;
 
-/*ToDo: hacer Joins */
+/* Consultas */
 SELECT employee.*, category.category FROM employee INNER JOIN employee ON employee.employee_id = category_id;

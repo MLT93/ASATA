@@ -306,3 +306,26 @@ FROM valoraciones;
 /* Actualización del registro del campo */
 # En estas consultas es muy importante que figure el WHERE porque de lo contrario cambiará todos los campos de la tabla
 UPDATE metodospago SET metodo='Cuenta bancaria' WHERE id=3;
+
+/* LIMIT & OFFSET */
+# Las cláusulas LIMIT y `OFFSET` se usan para restringir los registros que se retornan en una consulta SELECT.
+# La cláusula LIMIT recibe un argumento numérico positivo que indica el número máximo de registros a retornar; la cláusula offset indica el número del primer registro a retornar. El número de registro inicial es 0 (no 1).
+# Si el LIMIT supera la cantidad de registros de la tabla, se limita hasta el último registro.
+
+SELECT * FROM videojuegos LIMIT 3;
+
+-- Desplazamiento desde el primer registro
+SELECT * FROM videojuegos LIMIT 3 OFFSET 5;
+
+/* CLAVES UNIQUE */
+# La restricción UNIQUE en SQL se utiliza para evitar que se inserten valores duplicados en una columna o combinación de columnas que participen en la restricción UNIQUE. Nunca formará parte de una PRIMARY KEY (estas claves normalmente se asignan únicamente a los id principales de una tabla)
+
+ALTER TABLE tarifas ADD UNIQUE KEY `tarifaID` (`tipo`);
+
+
+/* UNION ALL */
+# Devuelve los campos de dos o más tablas en una sola. Deben tener la misma cantidad de campos
+
+SELECT id, nombre FROM videojuegos
+UNION ALL
+SELECT id, nombre FROM desarrolladores;

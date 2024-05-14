@@ -8,7 +8,7 @@
   <meta name="description" content="JavaScript" />
   <meta name="keywords" content="Curso, Formación, Examen" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css" />
-  <link rel="stylesheet" href="./css/panel_gameclubdario.css">
+  <link rel="stylesheet" href="../03_panel_gameclubdario/css/style_gameclubdario.css" />
   <title>Curso ASATA - MYSQL</title>
 </head>
 
@@ -23,7 +23,7 @@ use Database\DB;
 ob_start();
 
 // Conexión a la base de datos
-$connection = new DB("localhost", "root", "mysql", "gameclubdario");
+$connection = new DB("localhost", "root", "", "gameclubdario");
 ?>
 
 <header>
@@ -38,8 +38,6 @@ $connection = new DB("localhost", "root", "mysql", "gameclubdario");
       <fieldset>
         <legend>ALQUILERES</legend>
 
-        <!-- ToDo: Hay que modificar el código SQL en los `$sqlQuery` para que devuelvan las conexiones existentes entre las tablas, porque donde hay un FOREIGN KEY las consultas se realizan con JOINS -->
-
         <label for="fechaAlquilerID">FECHA ALQUILER</label>
         <input type="date" name="fechaAlquiler" id="fechaAlquilerID" />
 
@@ -47,7 +45,7 @@ $connection = new DB("localhost", "root", "mysql", "gameclubdario");
         <!-- <input type="text" name="idCliente" id="idClienteID" /> -->
         <select name="idCliente" id="idClienteID">
           <?php
-          $sqlQuery = "SELECT alquileres.id_cliente, clientes.nombre FROM alquileres INNER JOIN clientes ON alquileres.id_cliente = clientes.id";
+          $sqlQuery = "SELECT clientes.id, clientes.nombre FROM clientes;";
           $arrIdCliente = $connection->myQueryCodeMultiple($sqlQuery, false);
           foreach ($arrIdCliente as $key => $value) { ?>
             <option value="<?= $value[0] ?>"> <?= $value[1] ?> </option>
@@ -139,29 +137,29 @@ $connection = new DB("localhost", "root", "mysql", "gameclubdario");
       <fieldset>
         <legend>CLIENTES</legend>
 
-        <label for="nombreID">NOMBRE</label>
-        <input type="text" name="nombre" id="nombreID" />
+        <label for="nombreClienteID">NOMBRE</label>
+        <input type="text" name="nombre" id="nombreClienteID" />
 
-        <label for="apellido1ID">PRIMER APELLIDO</label>
-        <input type="text" name="apellido1" id="apellido1ID" />
+        <label for="apellido1ClienteID">PRIMER APELLIDO</label>
+        <input type="text" name="apellido1" id="apellido1ClienteID" />
 
-        <label for="apellido2ID">SEGUNDO APELLIDO</label>
-        <input type="text" name="apellido2" id="apellido2ID" />
+        <label for="apellido2ClienteID">SEGUNDO APELLIDO</label>
+        <input type="text" name="apellido2" id="apellido2ClienteID" />
 
-        <label for="emailID">E-MAIL</label>
-        <input type="email" name="email" id="emailID" />
+        <label for="emailClienteID">E-MAIL</label>
+        <input type="email" name="email" id="emailClienteID" />
 
         <label for="passwordID">PASSWORD</label>
         <input type="password" name="password" id="passwordID" />
 
-        <label for="tlfID">TELÉFONO</label>
-        <input type="text" name="tlf" id="tlfID" />
+        <label for="tlfClienteID">TELÉFONO</label>
+        <input type="text" name="tlf" id="tlfClienteID" />
 
-        <label for="direccionID">DIRECCIÓN</label>
-        <input type="text" name="direccion" id="direccionID" />
+        <label for="direccionClienteID">DIRECCIÓN</label>
+        <input type="text" name="direccion" id="direccionClienteID" />
 
-        <label for="dniID">DNI</label>
-        <input type="text" name="dni" id="dniID" />
+        <label for="dniClienteID">DNI</label>
+        <input type="text" name="dni" id="dniClienteID" />
 
         <label for="numTarjetaID">NÚMERO DE LA TARJETA</label>
         <input type="text" name="numTarjeta" id="numTarjetaID" />
@@ -169,8 +167,9 @@ $connection = new DB("localhost", "root", "mysql", "gameclubdario");
         <label for="fechaNacimientoID">FECHA DE NACIMIENTO</label>
         <input type="date" name="fechaNacimiento" id="fechaNacimientoID" />
 
-        <label for="isSocioID">ES SOCIO¿?</label>
-        <input type="checkbox" name="isSocio" id="isSocioID" />
+        <label>ES SOCIO¿?
+          <input type="checkbox" name="isSocio" />
+        </label>
       </fieldset>
 
       <button type="submit" name="submitCliente" id="submitClienteID">Enviar Nuevo Cliente</button>
@@ -183,8 +182,8 @@ $connection = new DB("localhost", "root", "mysql", "gameclubdario");
       <fieldset>
         <legend>DESARROLLADORES</legend>
 
-        <label for="nombreID">NOMBRE</label>
-        <input type="text" name="nombre" id="nombreID" />
+        <label for="nombreDesarrolladorID">NOMBRE</label>
+        <input type="text" name="nombre" id="nombreDesarrolladorID" />
 
         <label for="indieID">INDIE</label>
         <input type="text" name="indie" id="indieID" />
@@ -198,8 +197,8 @@ $connection = new DB("localhost", "root", "mysql", "gameclubdario");
         <label for="codPostalID">CÓDIGO POSTAL</label>
         <input type="text" name="codPostal" id="codPostalID" />
 
-        <label for="emailID">E-MAIL</label>
-        <input type="email" name="email" id="emailID" />
+        <label for="emailDesarrolladorID">E-MAIL</label>
+        <input type="email" name="email" id="emailDesarrolladorID" />
       </fieldset>
 
       <button type="submit" name="submitDesarrollador" id="submitDesarrolladorID">Enviar Nuevo Desarrollador</button>
@@ -212,26 +211,26 @@ $connection = new DB("localhost", "root", "mysql", "gameclubdario");
       <fieldset>
         <legend>EMPLEADOS</legend>
 
-        <label for="nombreID">NOMBRE</label>
-        <input type="text" name="nombre" id="nombreID" />
+        <label for="nombreEmpleadoID">NOMBRE</label>
+        <input type="text" name="nombre" id="nombreEmpleadoID" />
 
-        <label for="apellido1ID">PRIMER APELLIDO</label>
-        <input type="text" name="apellido1" id="apellido1ID" />
+        <label for="apellidoEmpleado1ID">PRIMER APELLIDO</label>
+        <input type="text" name="apellido1" id="apellido1EmpleadoID" />
 
-        <label for="apellido2ID">SEGUNDO APELLIDO</label>
-        <input type="text" name="apellido2" id="apellido2ID" />
+        <label for="apellido2EmpleadoID">SEGUNDO APELLIDO</label>
+        <input type="text" name="apellido2" id="apellido2EmpleadoID" />
 
-        <label for="dniID">DNI</label>
-        <input type="text" name="dni" id="dniID" />
+        <label for="dniEmpleadoID">DNI</label>
+        <input type="text" name="dni" id="dniEmpleadoID" />
 
         <label for="nSSID">NÚMERO SEG. SOCIAL</label>
         <input type="text" name="nSS" id="nSSID" />
 
-        <label for="tlfID">TELÉFONO</label>
-        <input type="text" name="tlf" id="tlfID" />
+        <label for="tlfEmpleadoID">TELÉFONO</label>
+        <input type="text" name="tlf" id="tlfEmpleadoID" />
 
-        <label for="direccionID">DIRECCIÓN</label>
-        <input type="text" name="direccion" id="direccionID" />
+        <label for="direccionEmpleadoID">DIRECCIÓN</label>
+        <input type="text" name="direccion" id="direccionEmpleadoID" />
 
         <label for="idCategoriaID">CATEGORÍA</label>
         <input type="text" name="idCategoria" id="idCategoriaID" />
@@ -250,11 +249,11 @@ $connection = new DB("localhost", "root", "mysql", "gameclubdario");
       <fieldset>
         <legend>GÉNERO</legend>
 
-        <label for="nombreID">NOMBRE</label>
-        <input type="text" name="nombre" id="nombreID" />
+        <label for="nombreGeneroID">TIPO</label>
+        <input type="text" name="nombre" id="nombreGeneroID" />
 
-        <label for="descripcionID">DESCRIPCIÓN</label>
-        <input type="text" name="descripcion" id="descripcionID" />
+        <label for="descripcionGeneroID">DESCRIPCIÓN</label>
+        <textarea name="descripcion" id="descripcionGeneroID"></textarea>
       </fieldset>
 
       <button type="submit" name="submitGenero" id="submitGeneroID">Enviar Nuevo Género</button>
@@ -284,8 +283,8 @@ $connection = new DB("localhost", "root", "mysql", "gameclubdario");
         <label for="peguiID">PEGI</label>
         <input type="text" name="pegui" id="peguiID" />
 
-        <label for="descripcionID">DESCRIPCIÓN</label>
-        <input type="text" name="descripcion" id="descripcionID" />
+        <label for="descripcionPeguiID">DESCRIPCIÓN</label>
+        <textarea name="descripcion" id="descripcionPeguiID"></textarea>
       </fieldset>
 
       <button type="submit" name="submitPegui" id="submitPeguiID">Enviar Nuevo Pegi</button>
@@ -298,8 +297,8 @@ $connection = new DB("localhost", "root", "mysql", "gameclubdario");
       <fieldset>
         <legend>PLATAFORMAS</legend>
 
-        <label for="nombreID">NOMBRE</label>
-        <input type="text" name="nombre" id="nombreID" />
+        <label for="nombrePlataformaID">NOMBRE</label>
+        <input type="text" name="nombre" id="nombrePlataformaID" />
 
         <label for="empresaMatrizID">EMPRESA MATRIZ</label>
         <input type="text" name="empresaMatriz" id="empresaMatrizID" />
@@ -310,8 +309,9 @@ $connection = new DB("localhost", "root", "mysql", "gameclubdario");
         <label for="fechaLanzamientoID">FECHA DE LANZAMIENTO</label>
         <input type="text" name="fechaLanzamiento" id="fechaLanzamientoID" />
 
-        <label for="isColeccionistaID">ES DE COLECCIONISTA¿?</label>
-        <input type="text" name="isColeccionista" id="isColeccionistaID" />
+        <label>ES DE COLECCIONISTA¿?
+          <input type="checkbox" name="isColeccionista" />
+        </label>
 
         <label for="versionID">VERSIÓN</label>
         <input type="text" name="version" id="versionID" />
@@ -333,11 +333,13 @@ $connection = new DB("localhost", "root", "mysql", "gameclubdario");
         <label for="costeID">COSTE</label>
         <input type="text" name="coste" id="costeID" />
 
-        <label for="paraSociosID">ES TARIFA DE SOCIO¿?</label>
-        <input type="text" name="paraSocios" id="paraSociosID" />
+        <label>ES TARIFA DE SOCIO¿?
+          <input type="checkbox" name="paraSocios" />
+        </label>
 
-        <label for="activaID">ESTÁ ACTIVA¿?</label>
-        <input type="text" name="activa" id="activaID" />
+        <label>ESTÁ ACTIVA¿?
+          <input type="checkbox" name="activa" />
+        </label>
 
         <label for="descuentoSociosID">DESCUENTO APLICABLE</label>
         <input type="text" name="descuentoSocios" id="descuentoSociosID" />
@@ -353,23 +355,63 @@ $connection = new DB("localhost", "root", "mysql", "gameclubdario");
       <fieldset>
         <legend>VIDEOJUEGOS</legend>
 
-        <label for="nombreID">NOMBRE</label>
-        <input type="text" name="nombre" id="nombreID" />
+        <label for="nombreVideojuegoID">NOMBRE</label>
+        <input type="text" name="nombre" id="nombreVideojuegoID" />
 
-        <label for="descripcionID">DESCRIPCIÓN</label>
-        <input type="text" name="descripcion" id="descripcionID" />
+        <label for="descripcionVideojuegoID">DESCRIPCIÓN</label>
+        <textarea name="descripcion" id="descripcionVideojuegoID"></textarea>
 
         <label for="idGeneroID">GÉNERO</label>
-        <input type="text" name="idGenero" id="idGeneroID" />
+        <!-- <input type="text" name="idGenero" id="idGeneroID" /> -->
+        <select name="idGenero" id="idGeneroID">
+          <?php
+          $sqlQuery = "SELECT id, nombre FROM genero";
+          $arrIdGenero = $connection->myQueryCodeMultiple($sqlQuery, false);
+          foreach ($arrIdGenero as $key => $value) { ?>
+            <option value="<?= $value[0] ?>"> <?= $value[1] ?> </option>
+          <?php
+          }
+          ?>
+        </select>
 
         <label for="idDesarrolladorID">DESARROLLADOR</label>
-        <input type="text" name="idDesarrollador" id="idDesarrolladorID" />
+        <!-- <input type="text" name="idDesarrollador" id="idDesarrolladorID" /> -->
+        <select name="idDesarrollador" id="idDesarrolladorID">
+          <?php
+          $sqlQuery = "SELECT id, nombre FROM desarrolladores";
+          $arrIdDesarrolladores = $connection->myQueryCodeMultiple($sqlQuery, false);
+          foreach ($arrIdDesarrolladores as $key => $value) { ?>
+            <option value="<?= $value[0] ?>"> <?= $value[1] ?> </option>
+          <?php
+          }
+          ?>
+        </select>
 
         <label for="idPlataformaID">PLATAFORMA</label>
-        <input type="text" name="idPlataforma" id="idPlataformaID" />
+        <!-- <input type="text" name="idPlataforma" id="idPlataformaID" /> -->
+        <select name="idPlataforma" id="idPlataformaID">
+          <?php
+          $sqlQuery = "SELECT id, nombre FROM plataformas";
+          $arrIdPlataformas = $connection->myQueryCodeMultiple($sqlQuery, false);
+          foreach ($arrIdPlataformas as $key => $value) { ?>
+            <option value="<?= $value[0] ?>"> <?= $value[1] ?> </option>
+          <?php
+          }
+          ?>
+        </select>
 
         <label for="idPeguiID">PEGI</label>
-        <input type="text" name="idPegui" id="idPeguiID" />
+        <!-- <input type="text" name="idPegui" id="idPeguiID" /> -->
+        <select name="idPegui" id="idPeguiID">
+          <?php
+          $sqlQuery = "SELECT id, descripcion FROM pegui";
+          $arrIdPegui = $connection->myQueryCodeMultiple($sqlQuery, false);
+          foreach ($arrIdPegui as $key => $value) { ?>
+            <option value="<?= $value[0] ?>"> <?= $value[1] ?> </option>
+          <?php
+          }
+          ?>
+        </select>
 
         <label for="fechaPublicacionID">FECHA PUBLICACIÓN</label>
         <input type="text" name="fechaPublicacion" id="fechaPublicacionID" />
@@ -396,12 +438,12 @@ if (isset($_POST["submitAlquiler"])) {
 
   // Variables formulario
   $fechaAlquiler = $_POST["fechaAlquiler"];
-  $idCliente = $_POST["idCliente"];
-  $idVideojuego = $_POST["idVideojuego"];
-  $idTarifa = $_POST["idTarifa"];
+  $idCliente = intval($_POST["idCliente"]);
+  $idVideojuego = intval($_POST["idVideojuego"]);
+  $idTarifa = intval($_POST["idTarifa"]);
   $fechaDevo = $_POST["fechaDevo"];
-  $idEmpleado = $_POST["idEmpleado"];
-  $idMetodoPago = $_POST["idMetodoPago"];
+  $idEmpleado = intval($_POST["idEmpleado"]);
+  $idMetodoPago = intval($_POST["idMetodoPago"]);
 
   // Variables database
   $camposDB = ["fechaAlquiler", "id_cliente", "id_videojuego", "id_tarifas", "fechaDevolucion", "id_empleado", "id_metodoPago"];
@@ -439,7 +481,7 @@ if (isset($_POST["submitClientes"])) {
   $dni = $_POST["dni"];
   $numTarjeta = $_POST["numTarjeta"];
   $fechaNacimiento = $_POST["fechaNacimiento"];
-  $isSocio = $_POST["isSocio"];
+  $isSocio = boolval($_POST["isSocio"]);
 
   $camposDB = ["nombre", "apellido1", "apellido2", "email", "password", "telefono", "direccion", "dni", "numTarjeta", "fechaNacimiento", "socio"];
   $dataDB = [$nombre, $apellido1, $apellido2, $email, $password, $telefono, $direccion, $dni, $numTarjeta, $fechaNacimiento, $isSocio];
@@ -477,7 +519,7 @@ if (isset($_POST["submitEmpleado"])) {
   $nSS = $_POST["nSS"];
   $tlf = $_POST["tlf"];
   $direccion = $_POST["direccion"];
-  $idCategoria = $_POST["idCategoria"];
+  $idCategoria = intval($_POST["idCategoria"]);
   $fechaAlta = $_POST["fechaAlta"];
 
   $camposDB = ["nombre", "apellido1", "apellido2", "dni", "nSS", "telefono", "direccion", "id_categoria", "fechaAlta"];
@@ -536,7 +578,7 @@ if (isset($_POST["submitPlataforma"])) {
   $empresaMatriz = $_POST["empresaMatriz"];
   $tipoLector = $_POST["tipoLector"];
   $fechaLanzamiento = $_POST["fechaLanzamiento"];
-  $isColeccionista = $_POST["isColeccionista"];
+  $isColeccionista = boolval($_POST["isColeccionista"]);
   $version = $_POST["version"];
 
   $camposDB = ["nombre", "empresaMatriz", "tipoLector", "fechaLanzamiento", "coleccionista", "version"];
@@ -552,12 +594,12 @@ if (isset($_POST["submitTarifa"])) {
 
   $tipo = $_POST["tipo"];
   $coste = $_POST["coste"];
-  $paraSocios = $_POST["paraSocios"];
-  $activa = $_POST["activa"];
+  $isParaSocios = intval($_POST["paraSocios"]);
+  $isActiva = boolval($_POST["activa"]);
   $descuentoSocios = $_POST["descuentoSocios"];
 
   $camposDB = ["tipo", "coste", "paraSocios", "activa", "descuentoSocios"];
-  $dataDB = [$tipo, $coste, $paraSocios, $activa, $descuentoSocios];
+  $dataDB = [$tipo, $coste, $isParaSocios, $isActiva, $descuentoSocios];
 
   $connection->insertSingleRegister("tarifas", $camposDB, $dataDB);
 
@@ -569,10 +611,10 @@ if (isset($_POST["submitVideojuego"])) {
 
   $nombre = $_POST["nombre"];
   $descripcion = $_POST["descripcion"];
-  $idGenero = $_POST["idGenero"];
-  $idDesarrollador = $_POST["idDesarrollador"];
-  $idPlataforma = $_POST["idPlataforma"];
-  $idPegui = $_POST["idPegui"];
+  $idGenero = intval($_POST["idGenero"]);
+  $idDesarrollador = intval($_POST["idDesarrollador"]);
+  $idPlataforma = intval($_POST["idPlataforma"]);
+  $idPegui = intval($_POST["idPegui"]);
   $fechaPublicacion = $_POST["fechaPublicacion"];
   $isoCode = $_POST["isoCode"];
 
