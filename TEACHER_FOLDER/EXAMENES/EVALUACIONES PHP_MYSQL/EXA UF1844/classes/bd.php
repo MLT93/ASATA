@@ -1,10 +1,9 @@
 <?php
 
-namespace Db;
+namespace DataB;
 
-class Database
+class DataB
 {
-
   /**
    * Summary of Properties
    * @var string $db_host Host name
@@ -14,22 +13,22 @@ class Database
    * @var \mysqli $connection La conexión realizada 
    */
 
+  // PROPERTIES
   private string $db_host;
   private string $db_user;
   private string $db_password;
   private string $db_name;
   private \mysqli $connection;
 
-
-  // Defino los valores por defecto del usuario `root` y el `localhost` en conexión con la base de datos `test`
-  public function __construct(string $db_host = "127.0.0.1", string $db_user = "root", string $db_password = "", string $db_name = "test")
+  // CONSTRUCTOR
+  public function __construct(string $db_host = "127.0.0.1", string $db_user = "root", string $db_password = "", string $db_name = "test") // Defino los valores por defecto del usuario `root` y el `localhost` en conexión con la base de datos `test`
   {
     $this->db_host = $db_host;
     $this->db_user = $db_user;
     $this->db_password = $db_password;
     $this->db_name = $db_name;
 
-    // Aquí tengo una instancia de una clase (APIs o Interfaz de programación de aplicaciones) de la cual heredaré todas sus funcionalidades que representa una conexión entre PHP y una base de datos MySQL
+    // Aquí tengo una instancia de una clase (API o Interfaz de programación de aplicaciones) de la cual heredaré todas sus funcionalidades que representa una conexión entre PHP y una base de datos MySQL
     $newConnection = new \mysqli($this->db_host, $this->db_user, $this->db_password, $this->db_name, /* Port */ /* Socket */);
 
     if ($newConnection->connect_error) {
@@ -43,7 +42,7 @@ class Database
     }
   }
 
-  // Getters & Setters
+  // GETTERS & SETTERS
   protected function getHost(): string
   {
     return $this->db_host;
@@ -85,7 +84,7 @@ class Database
     $this->connection = $connection;
   }
 
-  // Methods
+  // METHODS
   public function myQuerySimple($SQLQueryCode, $isAssociativeArray = true)
   {
     $registers = [];
@@ -131,7 +130,7 @@ class Database
     }
   }
 
-  public function closeConnection()
+  public function closeConnectionDb()
   {
     $this->getConnection()->close();
   }
@@ -233,17 +232,17 @@ class Database
   }
 }
 /* // Instance
-$myConnection = new DB();
+$myConnection = new DataB();
 
 // Arrays asociativos
-print_r($myConnection->myQueryCodeUnique("SELECT * FROM alumnos")) . "<br/>";
-print_r($myConnection->myQueryCodeMultiple("SELECT * FROM alumnos")) . "<br/>";
+print_r($myConnection->myQuerySimple("SELECT * FROM alumnos")) . "<br/>";
+print_r($myConnection->myQueryMultiple("SELECT * FROM alumnos")) . "<br/>";
 
 echo "<hr/>";
 
 // Arrays normales
-print_r($myConnection->myQueryCodeUnique("SELECT * FROM alumnos", false)) . "<br/>";
-print_r($myConnection->myQueryCodeMultiple("SELECT * FROM alumnos", false)) . "<br/>";
+print_r($myConnection->myQuerySimple("SELECT * FROM alumnos", false)) . "<br/>";
+print_r($myConnection->myQueryMultiple("SELECT * FROM alumnos", false)) . "<br/>";
 
 echo "<hr/>";
 
@@ -251,4 +250,4 @@ echo "<hr/>";
 print_r($myConnection->execute("ALTER TABLE alumnos DROP COLUMN estudiante_edad")) . "<br/>";
 
 // Cerrar la conexión a la base de datos
-$myConnection->closeConnection(); */
+$myConnection->closeConnectionDb(); */

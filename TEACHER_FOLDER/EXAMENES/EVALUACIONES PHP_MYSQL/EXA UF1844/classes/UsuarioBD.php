@@ -1,12 +1,12 @@
 <?php
 
-namespace Usr;
+namespace UsuarioBD;
 
-require("./db.php");
+require("./bd.php");
 
-use Db\Database;
+use DataB\DataB;
 
-class User
+class UsuarioBD
 {
   // PROPERTIES
   private string $name;
@@ -26,46 +26,46 @@ class User
   {
     return $this->name;
   }
-
   protected function getEmail(): string
   {
     return $this->email;
   }
-
   protected function getHashedPassword(): string
   {
     return $this->hashedPassword;
   }
-
   protected function setName($name)
   {
     $this->name = $name;
   }
-
   protected function setEmail($email)
   {
     $this->email = $email;
   }
-
   protected function setHashedPassword($hashedPassword)
   {
     $this->hashedPassword = $hashedPassword;
   }
 
 
-  // MÉTODOS ESTÁTICOS
+  // STATIC METHODS
   public static function mostrarIdUsuario(string $email)
   {
-    $cnx = new Database("localhost", "root", "", "logexamen");
+    $cnx = new DataB("localhost", "root", "", "logexamen");
     $sqlQuery = "SELECT id FROM usuarios WHERE email = '$email';"; /* => id */
     $res = $cnx->myQuerySimple($sqlQuery);
-    return $res["id"];
+    if (isset($res["id"])) {
+      return $res["id"];
+    } else {
+      echo "No se ha encontrado el usuario";
+      return 0;
+    }
   }
 
   /* En las bases de datos SIEMPRE se guardan las password encriptadas */
   public static function actualizarPassword(string $email, string $password)
   {
-    $cnx = new Database("localhost", "root", "", "logexamen");
+    $cnx = new DataB("localhost", "root", "", "logexamen");
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
     $sqlQuery = "UPDATE usuarios SET hashedPassword = '$hashedPassword' WHERE email = '$email';"; /* Modifico la password del usuario */
     $cnx->execute($sqlQuery);
@@ -74,7 +74,7 @@ class User
   public static function verificarUsuario(string $email, string $password)
   {
     // Conexión base de datos
-    $cnx = new Database("localhost", "root", "", "logexamen");
+    $cnx = new DataB("localhost", "root", "", "logexamen");
     // Sentencia para que me devuelva la password encriptada para verificarla
     $sqlQuery = "SELECT hashedPassword FROM usuarios WHERE email = '$email';";
 
@@ -84,17 +84,24 @@ class User
     $isVerifiedPassword = password_verify($password, $hashedPasswordFromDB);
     return $isVerifiedPassword;
   }
+
+  public static function registrarUsuario(string $name, string $email, string $password){
+    $cnx = new DataB("localhost", "root", "", "logexamen");
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+    $sqlQuery = "INSERT INTO usuarios (name, email, hashedPassword) VALUES ('$name','$email','$hashedPassword');";
+    $cnx->execute($sqlQuery);
+  }
 }
 
-print_r(User::mostrarIdUsuario("usuario3@example.com")); //=> 3
+print_r(UsuarioBD::mostrarIdUsuario("usuario3@example.com")); //=> 3
 
-// User::actualizarPassword("usuario1@example.com", "1234");
-// User::actualizarPassword("usuario2@example.com", "1234");
-// User::actualizarPassword("usuario3@example.com", "1234");
-// User::actualizarPassword("usuario4@example.com", "1234");
-// User::actualizarPassword("usuario5@example.com", "1234");
-// User::actualizarPassword("usuario6@example.com", "1234");
-// User::actualizarPassword("usuario7@example.com", "1234");
+// UsuarioBD::actualizarPassword("usuario1@example.com", "1234");
+// UsuarioBD::actualizarPassword("usuario2@example.com", "1234");
+// UsuarioBD::actualizarPassword("usuario3@example.com", "1234");
+// UsuarioBD::actualizarPassword("usuario4@example.com", "1234");
+// UsuarioBD::actualizarPassword("usuario5@example.com", "1234");
+// UsuarioBD::actualizarPassword("usuario6@example.com", "1234");
+// UsuarioBD::actualizarPassword("usuario7@example.com", "1234");
 
-echo User::verificarUsuario("usuario3@example.com","1234"); //=> 1
-echo User::verificarUsuario("usuario3@example.com", "1222"); //=> 0
+echo UsuarioBD::verificarUsuario("usuario3@example.com","1234"); //=> 1
+echo UsuarioBD::verificarUsuario("usuario3@example.com", "1222"); //=> 0

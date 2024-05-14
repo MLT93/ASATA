@@ -1,8 +1,6 @@
 <?php
 
 namespace User;
-// require_once '../db/usuarios.php';
-// $usuarios = mostrarUsuariosBD();
 
 class Usuario{
 
@@ -71,9 +69,9 @@ function __construct(string $nombre,string $email,string $password){
   $this->email = $email;
   $this->hashedPassword = $hashedPassword;
 
-  return true; // Usuario nuevo
+  echo "Usuario nuevo"; // true
  }else{
-  return false;  // Usuario ya existe
+  echo "Usuario ya existe";  // false
  }
 }
 
