@@ -11,7 +11,7 @@
 <body>
 
   <?php
-  require("./html_modules/header.php");
+  require_once("./html_modules/header.php");
 
   require_once('./classes/sesionBd.php');
   require_once('./classes/usuarioBd.php');

@@ -2,8 +2,8 @@
 
 namespace SesionBD;
 
-require("./bd.php");
-require("./usuarioBd.php");
+require_once("./bd.php");
+require_once("./usuarioBd.php");
 
 use DataB\DataB;
 use UsuarioBD\UsuarioBD;

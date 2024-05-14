@@ -2,7 +2,7 @@
 
 namespace UsuarioBD;
 
-require("./bd.php");
+require_once("./bd.php");
 
 use DataB\DataB;
 
