@@ -12,7 +12,7 @@ Tipos de JOIN en MySQL
 MySQL ofrece varios tipos de JOIN para adaptarse a diferentes escenarios:
 
 INNER JOIN (predeterminado): Devuelve solo las filas donde hay una coincidencia en ambas tablas según la condición de JOIN.
-LEFT JOIN: Incluye todas las filas de la tabla izquierda (la especificada primero en la cláusula JOIN) y las filas coincidentes de la tabla derecha. Si no hay coincidencia en el lado derecho, rellena las columnas correspondientes con valores NULL.
+LEFT JOIN: Incluye todas las filas de la tabla izquierda (la especificada primero en la cláusula JOIN. "FROM videojuegos LEFT JOIN plataforma" en este caso sería "videojuegos") y las filas coincidentes de la tabla derecha. Si no hay coincidencia en el lado derecho, rellena las columnas correspondientes con valores NULL.
 RIGHT JOIN: Similar a LEFT JOIN, pero incluye todas las filas de la tabla derecha y las filas coincidentes de la tabla izquierda, rellenando con valores NULL las filas no coincidentes de la izquierda.
 FULL JOIN: Combina todas las filas de ambas tablas, independientemente de si hay una coincidencia en la otra tabla. Las columnas no coincidentes se rellenan con valores NULL.
 Consejos adicionales para JOINs eficaces
