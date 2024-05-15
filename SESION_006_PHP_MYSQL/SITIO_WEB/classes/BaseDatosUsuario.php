@@ -85,23 +85,23 @@ class BaseDatosUsuario
     return $isVerifiedPassword;
   }
 
-  public static function registrarUsuario(string $name, string $email, string $password){
+  public static function registrarUsuario(string $nombre, string $apellido1, string $apellido2, string $email, string $password, string $telefono, string $direccion, string $dni, string $numTarjeta, string $fechaNacimiento, bool $isSocio){
     $cnx = new BaseDatos("localhost", "root", "", "gameclubdario");
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-    $sqlQuery = "INSERT INTO clientes (nombre, email, hashedPassword) VALUES ('$name','$email','$hashedPassword');";
+    $sqlQuery = "INSERT INTO clientes (nombre, apellido1, apellido2, email, hashedPassword, telefono, direccion, dni, numTarjeta, fechaNacimiento, socio) VALUES ('$nombre', '$apellido1', '$apellido2', '$email','$hashedPassword', '$telefono', '$direccion', '$dni', '$numTarjeta', '$fechaNacimiento', '$isSocio');";
     $cnx->execute($sqlQuery);
   }
 }
 
-print_r(BaseDatosUsuario::mostrarIdUsuario("user3@mail.com")); //=> 3
+// print_r(BaseDatosUsuario::mostrarIdUsuario("user3@mail.com")); //=> 3
 
-BaseDatosUsuario::actualizarPassword("user1@mail.com", "1234");
-BaseDatosUsuario::actualizarPassword("user2@mail.com", "1234");
-BaseDatosUsuario::actualizarPassword("user3@mail.com", "1234");
-BaseDatosUsuario::actualizarPassword("user4@mail.com", "1234");
-BaseDatosUsuario::actualizarPassword("user5@mail.com", "1234");
-BaseDatosUsuario::actualizarPassword("user6@mail.com", "1234");
-BaseDatosUsuario::actualizarPassword("user7@mail.com", "1234");
+// BaseDatosUsuario::actualizarPassword("user1@mail.com", "1234");
+// BaseDatosUsuario::actualizarPassword("user2@mail.com", "1234");
+// BaseDatosUsuario::actualizarPassword("user3@mail.com", "1234");
+// BaseDatosUsuario::actualizarPassword("user4@mail.com", "1234");
+// BaseDatosUsuario::actualizarPassword("user5@mail.com", "1234");
+// BaseDatosUsuario::actualizarPassword("user6@mail.com", "1234");
+// BaseDatosUsuario::actualizarPassword("user7@mail.com", "1234");
 
-echo BaseDatosUsuario::verificarUsuario("user3@mail.com","1234"); //=> 1
-echo BaseDatosUsuario::verificarUsuario("user3@mail.com", "1222"); //=> 0
+// echo BaseDatosUsuario::verificarUsuario("user3@mail.com","1234"); //=> 1
+// echo BaseDatosUsuario::verificarUsuario("user3@mail.com", "1222"); //=> 0

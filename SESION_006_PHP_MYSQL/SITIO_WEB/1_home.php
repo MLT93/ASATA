@@ -81,19 +81,20 @@
   }
 
   // REGISTRO
-  if (
-    isset($_REQUEST['nombre'])  &&
-    isset($_REQUEST['email'])   &&
-    isset($_REQUEST['pass'])    &&
-    isset($_REQUEST['pass2'])   &&
-    isset($_REQUEST['captcha']) &&
-    isset($_REQUEST['registrar'])
-  ) {
+  if (isset($_REQUEST['registrar'])) {
 
     $nombre = $_REQUEST['nombre'];
+    $apellido1 = $_REQUEST['apellido1'];
+    $apellido2 = $_REQUEST['apellido2'];
     $email = $_REQUEST['email'];
     $pass = $_REQUEST['pass'];
     $pass2 = $_REQUEST['pass2'];
+    $tel = $_REQUEST['tel'];
+    $direccion = $_REQUEST['direccion'];
+    $dni = $_REQUEST['dni'];
+    $numTarjeta = $_REQUEST['numTarjeta'];
+    $fNacimiento = $_REQUEST['fNacimiento'];
+    $isSocio = $_REQUEST['isSocio'];
     $captcha = $_REQUEST['captcha'];
 
     // Compruebo que este usuario no exista en la base de datos
@@ -103,7 +104,7 @@
         // Compruebo que el captcha es correcto
         if ($captcha == $_SESSION['captcha']) {
           // Creo usuario
-          Usuario::registrarUsuario($nombre, $email, $pass);
+          Usuario::registrarUsuario($nombre, $apellido1, $apellido2, $email, $pass, $tel, $direccion, $dni, $numTarjeta, $fNacimiento, $isSocio);
           echo "<h3 class='card'>Usuario registrado correctamente</h3>" . "<br/>";
 
           // Creo array para pasar una lista de variables para la función `JWTCreation`
