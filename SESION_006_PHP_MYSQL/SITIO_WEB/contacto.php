@@ -41,7 +41,7 @@
   file_put_contents("./repo/pdf/contacto".date("Y-m-d.His").".pdf", $dompdf->output());
 
 
-  require("./html_modules/footer.php");
+  // require("./html_modules/footer.php");
   ?>
 
 </body>

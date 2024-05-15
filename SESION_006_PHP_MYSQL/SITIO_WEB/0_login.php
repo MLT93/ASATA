@@ -16,7 +16,7 @@
   require("./html_modules/header.php");
   require("./html_modules/nav.php");
   require("./html_modules/form_login.php");
-  require("./html_modules/footer.php");
+  // require("./html_modules/footer.php");
  ?>
 
 </body>

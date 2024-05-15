@@ -3,5 +3,7 @@
   <a href="./0_registro.php"> REGISTRO</a>
   <a href="./user_info.php"> INFO USUARIO</a>
   <a href="../lista.php"> LISTA</a>
+  <a href="../lista_videojuegos.php"> LISTA VIDEOJUEGOS</a>
+  <a href="../lista_alquileres.php"> LISTA ALQUILERES</a>
   <!-- <a href="./contacto.php"> CONTACTO</a> -->
 </nav>

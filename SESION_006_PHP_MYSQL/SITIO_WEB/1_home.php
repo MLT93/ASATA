@@ -25,9 +25,12 @@
 
   // Incluir el autoloader del composer
   require_once("../vendor/autoload.php");
+
   // Añado el archivo de la clase usuario y sesión
+
   require_once("./classes/BaseDatosUsuario.php");
   require_once("./classes/BaseDatosSession.php");
+
   // Incluir funciones
   require("./functions/authentication.php");
 
@@ -52,6 +55,8 @@
 
     // Verifico existencia del usuario en la base de datos
     if (Usuario::verificarUsuario($email, $pass)) {
+
+      // Si existe, inicio una sesión para ese usuario
       $mySession = new Sesion();
       $mySession->inicioLogin($email);
 
@@ -107,6 +112,10 @@
           Usuario::registrarUsuario($nombre, $apellido1, $apellido2, $email, $pass, $tel, $direccion, $dni, $numTarjeta, $fNacimiento, $isSocio);
           echo "<h3 class='card'>Usuario registrado correctamente</h3>" . "<br/>";
 
+          // Si el captcha es correcto, inicio una sesión para el nuevo usuario
+          $mySession = new Sesion();
+          $mySession->inicioLogin($email);
+
           // Creo array para pasar una lista de variables para la función `JWTCreation`
           $info = [];
           $info["usuario"] = $email;
@@ -130,7 +139,7 @@
     };
   }
 
-  require("./html_modules/footer.php");
+  // require("./html_modules/footer.php");
   ?>
 
 </body>

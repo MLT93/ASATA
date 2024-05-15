@@ -1,4 +1,7 @@
 <?php
+
+// ! Si el captcha no se ve en la página, dentro del archivo `php.ini` (en la carpeta php), descomentar esto `extension=gd` para poder verlo en la página web
+
 //iniciar una sesión
 session_start();
 

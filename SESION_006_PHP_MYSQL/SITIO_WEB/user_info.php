@@ -25,12 +25,17 @@
 
   //incluir el autoloader del composer
   require_once("../vendor/autoload.php");
+  require_once("./classes/BaseDatosUsuario.php");
 
   use Firebase\JWT\JWT;
   use Firebase\JWT\Key;
+  use Dotenv\Dotenv;
+  use BaseDatosUsuario\BaseDatosUsuario;
 
-  $dotenv = Dotenv\Dotenv::createImmutable("./");
+  $dotenv = Dotenv::createImmutable("./");
   $dotenv->load();
+
+
   //clave secreta
   $key_secreta = $_ENV['SIGNATURE_KEY'];
 
@@ -45,8 +50,39 @@
       //desencripto el payload del jwt
       $payloadDesencriptado =  openssl_decrypt($jwtDecodificado->data, $metodoCifrado, $_ENV['CIPHER_KEY'], 0, base64_decode($jwtDecodificado->iv));
 
-      http_response_code(200); //OK
-      echo "<p>El usuario tiene acceso a esta página.</p>";
+      // Obtengo el valor del usuario que hay en el token
+      $pay = json_decode($payloadDesencriptado);
+      $userJWT = $pay->{'username'};
+
+      // Hago comprobación en la base de datos
+      if ($_SESSION['usuario'] == $userJWT) {
+
+        http_response_code(200); //OK
+        echo "<p>El usuario tiene acceso a esta página.</p>";
+        
+        $infoUsuario = BaseDatosUsuario::mostrarUsuario($_SESSION['usuario']);
+
+        echo
+        "<table>";
+        echo "<tr>   <td>id</td>   <td>nombre</td>   <td>apellido1</td>   <td>apellido2</td>   <td>email</td>   <td>telefono</td>   <td>direccion</td>   <td>dni</td>   <td>numTarjeta</td>   <td>fechaNacimiento</td>   <td>socio</td>   </tr>";
+
+        echo "<tr>";
+
+        foreach ($infoUsuario as $key => $value) {
+
+          if ($key != "hashedPassword") {
+            echo "<td>" . $value . "</td>";
+          }
+        }
+
+        echo "</tr>";
+        echo"</table>";
+
+      } else {
+        echo '<h3 class="card">Acceso denegado. Toke inválido / Sesión incorrecta</h3>';
+      }
+
+
     } catch (Exception $exception) {
       http_response_code(401); //No autorizado.
       echo "<h2 class='card' >Acceso denegado. El token es inválido</h2>";

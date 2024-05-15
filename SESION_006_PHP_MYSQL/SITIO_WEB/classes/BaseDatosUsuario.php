@@ -91,6 +91,20 @@ class BaseDatosUsuario
     $sqlQuery = "INSERT INTO clientes (nombre, apellido1, apellido2, email, hashedPassword, telefono, direccion, dni, numTarjeta, fechaNacimiento, socio) VALUES ('$nombre', '$apellido1', '$apellido2', '$email','$hashedPassword', '$telefono', '$direccion', '$dni', '$numTarjeta', '$fechaNacimiento', '$isSocio');";
     $cnx->execute($sqlQuery);
   }
+
+  public static function mostrarUsuario(string $email)
+  {
+    $cnx = new BaseDatos("localhost", "root", "", "gameclubdario");
+    $sqlQuery = "SELECT * FROM clientes WHERE email = '$email';"; /* => id */
+    $res = $cnx->myQuerySimple($sqlQuery);
+    if (isset($res["id"])) {
+      return $res;
+    } else {
+      // Aquí entro si no existe ese registro en la base de datos
+      echo "No se ha encontrado el usuario" . "<br/>";
+      return 0;
+    }
+  }
 }
 
 // print_r(BaseDatosUsuario::mostrarIdUsuario("user3@mail.com")); //=> 3
