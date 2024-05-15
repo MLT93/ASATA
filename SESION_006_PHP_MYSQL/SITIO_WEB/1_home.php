@@ -14,84 +14,73 @@
 <body>
 
   <?php
-  //activar el almacenamiento en búfer de salida. Esto recoge toda la salida del script hasta que decidas enviarla al navegador, permitiendo modificar las cabeceras en cualquier momento del script. Permite hacer `require` después de cargar la página
+  // Activar el almacenamiento en búfer de salida. Esto recoge toda la salida del script hasta que decidas enviarla al navegador, permitiendo modificar las cabeceras en cualquier momento del script. Permite hacer `require` después de cargar la página
   ob_start();
-  //inicio una sesion
+  // Inicio una sesion
   session_start();
 
-  //cabecera y nav
+  // Cabecera y nav
   require_once("./html_modules/header.php");
   require_once("./html_modules/nav.php");
 
-  //incluir el autoloader del composer
+  // Incluir el autoloader del composer
   require_once("../vendor/autoload.php");
-  //añado la pagina de la clase usuario
-  require_once("./classes/Usuario.php");
-  //incluir funciones
+  // Añado el archivo de la clase usuario y sesión
+  require_once("./classes/BaseDatosUsuario.php");
+  require_once("./classes/BaseDatosSession.php");
+  // Incluir funciones
   require("./functions/authentication.php");
 
-  //llamo a la clase usuario
-  //primer  elemento es el namespace
-  //segundo elemento es la clase 
-  //tercer  elemento el pseudonimo de la clase
-  use User\Usuario as Usuario;
+  // Llamo a la clase usuario
+  // Primer  elemento es el namespace
+  // Segundo elemento es la clase 
+  // Tercer  elemento el pseudonimo de la clase
+  use BaseDatosUsuario\BaseDatosUsuario as Usuario;
+  use BaseDatosSession\BaseDatosSession as Sesion;
 
-  //INFO DE USUARIOS DE MI BASE DE DATOS
-  $usuariosBD = [
-    ["miguelCD", "1234", "miguel@mail.com"],
-    ["Pedro36",  "1234", "pedro@mail.com"],
-    ["juan_mar", "1234", "juan@mail.com"]
-  ];
-
-
-  //PARA EL FORMULARIO DEL LOGIN
+  // LOGIN
   if (
-    isset($_REQUEST['nombre']) &&
+    isset($_REQUEST['email']) &&
     isset($_REQUEST['pass']) &&
     isset($_REQUEST['captcha']) &&
     isset($_REQUEST['loguear'])
   ) {
-    $existeUsuario = false;
 
-    //COMPRUEBO QUE LOS DATOS DE MI USUARIO ESTÁN EN MI BD
-    for ($i = 0; $i < count($usuariosBD); $i++) {
+    $email = $_REQUEST['email'];
+    $pass = $_REQUEST['pass'];
+    $captcha = $_REQUEST['captcha'];
 
-      if ($_REQUEST['nombre'] == $usuariosBD[$i][0] &&  $_REQUEST['pass'] == $usuariosBD[$i][1]) {
-        echo "<p>Usuario en la BD</p>";
-        echo "<br/>";
-        $existeUsuario = true;
-        break; //salgo del bucle
-      } elseif ($i == count($usuariosBD) - 1) {
-        echo "<h2 class='card' >EL USUARIO Y/O LAS CREDENCIALES NO ESTÁN EN LA BD</h2>";
-        echo "<br/>";
-      }
-    }
+    // Verifico existencia del usuario en la base de datos
+    if (Usuario::verificarUsuario($email, $pass)) {
+      $mySession = new Sesion();
+      $mySession->inicioLogin($email);
 
-
-
-    if ($existeUsuario) {
+      // Compruebo captcha
+      // Si el captcha no se ve en la página, dentro del archivo `php.ini` (en la carpeta php), descomentar esto `extension=gd` para poder verlo en la página web
       if ($_REQUEST['captcha'] == $_SESSION['captcha']) {
-        echo "<p>El captcha es correcto</p>";
-        echo "<br/>";
-
+        echo "<p>El captcha es correcto</p>" . "<br/>";
+        // Creo array para pasar una lista de variables para la función `JWTCreation`
         $info = [];
-        $info["nombre"] = $_REQUEST["nombre"];
+        $info["usuario"] = $_REQUEST["email"];
         $info["password"] = $_REQUEST["pass"];
-        //creo JWT
+        // Creo JWT
         $jwtArray = JWTCreation($info, "./");
-        //CREO COOKIE CON JWT
+        // Creo cookie con la JWT encriptada con la info
         setcookie("jwt", $jwtArray['jwt'], $jwtArray['exp'], "/");
 
-        //inserto el formulario
-        require("./html_modules/form_picture_up.php");
+        // Inserto el formulario otra página
+        // require("./html_modules/form_picture_up.php");
+
       } else {
         echo "<p>El captcha NO es correcto</p>";
         echo "<br/>";
       }
+    } else {
+      echo "<h2 class='card'>Acceso denegado. Credenciales incorrectas</h2>" . "<br/>";
     }
   }
 
-  //PARA EL FORMULARIO DEL REGISTRO
+  // REGISTRO
   if (
     isset($_REQUEST['nombre'])  &&
     isset($_REQUEST['email'])   &&
@@ -101,51 +90,43 @@
     isset($_REQUEST['registrar'])
   ) {
 
-    //COMPRUEBO QUE LOS DATOS DE MI USUARIO ESTÁN EN MI BD
-    $existeUsuario = false;
+    $nombre = $_REQUEST['nombre'];
+    $email = $_REQUEST['email'];
+    $pass = $_REQUEST['pass'];
+    $pass2 = $_REQUEST['pass2'];
+    $captcha = $_REQUEST['captcha'];
 
-    for ($i = 0; $i < count($usuariosBD); $i++) {
-      if ($_REQUEST['nombre'] == $usuariosBD[$i][0] || $_REQUEST['email'] == $usuariosBD[$i][2]) {
-        echo "<h2 class='card' >EL USUARIO Y/O EL CORREO ELECTRONICO YA EXISTEN EN LA BD</h2>";
-        echo "<br/>";
-        $existeUsuario = true;
-      }
-    }
+    // Compruebo que este usuario no exista en la base de datos
+    if (Usuario::mostrarIdUsuario($email) == 0) {
+      // Compruebo que las passwords coinciden
+      if ($pass == $pass2) {
+        // Compruebo que el captcha es correcto
+        if ($captcha == $_SESSION['captcha']) {
+          // Creo usuario
+          Usuario::registrarUsuario($nombre, $email, $pass);
+          echo "<h3 class='card'>Usuario registrado correctamente</h3>" . "<br/>";
 
-    if (
-      !$existeUsuario
-      && !isset($_REQUEST['subir'])
-    ) {
-
-      if ($_REQUEST['pass'] === $_REQUEST['pass2']) {
-        echo "<p>Password correcto</p>";
-        if ($_REQUEST['captcha'] == $_SESSION['captcha']) {
-          echo "<p>El captcha es correcto</p>";
-          echo "<br/>";
-
+          // Creo array para pasar una lista de variables para la función `JWTCreation`
           $info = [];
-          $info["nombre"] = $_REQUEST["nombre"];
-          $info["password"] = $_REQUEST["pass"];
-          //creo JWT
+          $info["usuario"] = $email;
+          $info["password"] = $pass;
+          // Creo JWT
           $jwtArray = JWTCreation($info, "./");
-          //CREO COOKIE CON JWT
+          // Creo cookie con la JWT encriptada con la info
           setcookie("jwt", $jwtArray['jwt'],  $jwtArray['exp'], "/");
-          //CREO USUARIO
-          $usuario = new Usuario($_REQUEST['nombre'], $_REQUEST['email'], $_REQUEST['pass']);
-          echo $usuario->mostrarInfo();
-          echo "<br/>";
 
-          //inserto el formulario
-          require("./html_modules/form_picture_up.php");
+          // Inserto el formulario otra página
+          // require("./html_modules/form_picture_up.php");
+
         } else {
-          echo "<p>El captcha NO es correcto</p>";
-          echo "<br/>";
+          echo "<h3 class='card'>El captcha NO es correcto</h3>" . "<br/>";
         }
       } else {
-        echo "<p>El password NO es correcto</p>";
-        echo "<br/>";
+        echo "<h3 class='card'>La password NO coinciden</h3>" . "<br/>";
       }
-    }
+    } else {
+      echo "<h3 class='card'>El correo electrónico ya existe en la base de datos</h3>" . "<br/>";
+    };
   }
 
   require("./html_modules/footer.php");
