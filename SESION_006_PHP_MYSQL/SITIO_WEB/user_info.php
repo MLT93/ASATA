@@ -35,7 +35,6 @@
   $dotenv = Dotenv::createImmutable("./");
   $dotenv->load();
 
-
   //clave secreta
   $key_secreta = $_ENV['SIGNATURE_KEY'];
 
@@ -90,7 +89,7 @@
     }
   } else {
     http_response_code(401); //No autorizado.
-    echo "<h2 class='card' >Acceso denegado. No se ha proporciOnado un Token.</h2>";
+    echo "<h2 class='card' >Acceso denegado. No se ha proporcionado un Token.</h2>";
     echo "<br/>";
   }
   require("./html_modules/footer.php");

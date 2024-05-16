@@ -2,8 +2,8 @@
 
 namespace BaseDatosSession;
 
-require_once("./BaseDatos.php");
-require_once("./BaseDatosUsuario.php");
+require_once("BaseDatos.php");
+require_once("BaseDatosUsuario.php");
 
 use BaseDatos\BaseDatos;
 use BaseDatosUsuario\BaseDatosUsuario;

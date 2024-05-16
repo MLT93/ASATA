@@ -2,7 +2,7 @@
 
 namespace BaseDatosUsuario;
 
-require_once("./BaseDatos.php");
+require_once("BaseDatos.php");
 
 use BaseDatos\BaseDatos;
 
@@ -116,6 +116,9 @@ class BaseDatosUsuario
 // BaseDatosUsuario::actualizarPassword("user5@mail.com", "1234");
 // BaseDatosUsuario::actualizarPassword("user6@mail.com", "1234");
 // BaseDatosUsuario::actualizarPassword("user7@mail.com", "1234");
+// BaseDatosUsuario::actualizarPassword("user8@mail.com", "1234");
+// BaseDatosUsuario::actualizarPassword("user9@mail.com", "1234");
+// BaseDatosUsuario::actualizarPassword("user10@mail.com", "1234");
 
 // echo BaseDatosUsuario::verificarUsuario("user3@mail.com","1234"); //=> 1
 // echo BaseDatosUsuario::verificarUsuario("user3@mail.com", "1222"); //=> 0
