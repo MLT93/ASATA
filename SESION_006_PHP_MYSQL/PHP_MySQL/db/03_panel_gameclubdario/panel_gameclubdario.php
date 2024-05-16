@@ -19,7 +19,8 @@ require_once("../../class/db_class.php");
 // Uso paquetes del archivo
 use Database\DB;
 
-// Middleware que permite modificar las cabeceras en cualquier parte del código
+// Activar almacenamiento en el búfer de salida. Esto recoge toda la salida del script hasta que decidas enviarla al navegador, permitiendo modificar las cabeceras en cualquier momento del script
+// Permite modificar las cabeceras en cualquier momento
 ob_start();
 
 // Conexión a la base de datos

@@ -56,8 +56,9 @@ class BaseDatosUsuario
     $res = $cnx->myQuerySimple($sqlQuery);
     if (isset($res["id"])) {
       return $res["id"];
+
     } else {
-      echo "No se ha encontrado el usuario" . "<br/>";
+      // echo "No se ha encontrado el usuario" . "<br/>";
       return 0;
     }
   }
@@ -77,9 +78,7 @@ class BaseDatosUsuario
     $cnx = new BaseDatos("localhost", "root", "", "gameclubdario");
     // Sentencia para que me devuelva la password encriptada para verificarla
     $sqlQuery = "SELECT hashedPassword FROM clientes WHERE email = '$email';";
-
     $res = $cnx->myQuerySimple($sqlQuery);
-    // var_dump($res);
     $hashedPasswordFromDB = $res["hashedPassword"];
     $isVerifiedPassword = password_verify($password, $hashedPasswordFromDB);
     return $isVerifiedPassword;
@@ -95,8 +94,9 @@ class BaseDatosUsuario
   public static function mostrarUsuario(string $email)
   {
     $cnx = new BaseDatos("localhost", "root", "", "gameclubdario");
-    $sqlQuery = "SELECT * FROM clientes WHERE email = '$email';"; /* => id */
+    $sqlQuery = "SELECT * FROM clientes WHERE email = '$email';"; /* => devuelve todos los campos de la base de datos */
     $res = $cnx->myQuerySimple($sqlQuery);
+
     if (isset($res["id"])) {
       return $res;
     } else {
@@ -109,16 +109,16 @@ class BaseDatosUsuario
 
 // print_r(BaseDatosUsuario::mostrarIdUsuario("user3@mail.com")); //=> 3
 
-// BaseDatosUsuario::actualizarPassword("user1@mail.com", "1234");
-// BaseDatosUsuario::actualizarPassword("user2@mail.com", "1234");
-// BaseDatosUsuario::actualizarPassword("user3@mail.com", "1234");
-// BaseDatosUsuario::actualizarPassword("user4@mail.com", "1234");
-// BaseDatosUsuario::actualizarPassword("user5@mail.com", "1234");
-// BaseDatosUsuario::actualizarPassword("user6@mail.com", "1234");
-// BaseDatosUsuario::actualizarPassword("user7@mail.com", "1234");
-// BaseDatosUsuario::actualizarPassword("user8@mail.com", "1234");
-// BaseDatosUsuario::actualizarPassword("user9@mail.com", "1234");
-// BaseDatosUsuario::actualizarPassword("user10@mail.com", "1234");
+// BaseDatosUsuario::actualizarPassword("user1@mail.com", "1234"); //=> Encripto la password en la base de datos
+// BaseDatosUsuario::actualizarPassword("user2@mail.com", "1234"); //=> Encripto la password en la base de datos
+// BaseDatosUsuario::actualizarPassword("user3@mail.com", "1234"); //=> Encripto la password en la base de datos
+// BaseDatosUsuario::actualizarPassword("user4@mail.com", "1234"); //=> Encripto la password en la base de datos
+// BaseDatosUsuario::actualizarPassword("user5@mail.com", "1234"); //=> Encripto la password en la base de datos
+// BaseDatosUsuario::actualizarPassword("user6@mail.com", "1234"); //=> Encripto la password en la base de datos
+// BaseDatosUsuario::actualizarPassword("user7@mail.com", "1234"); //=> Encripto la password en la base de datos
+// BaseDatosUsuario::actualizarPassword("user8@mail.com", "1234"); //=> Encripto la password en la base de datos
+// BaseDatosUsuario::actualizarPassword("user9@mail.com", "1234"); //=> Encripto la password en la base de datos
+// BaseDatosUsuario::actualizarPassword("user10@mail.com", "1234"); //=> Encripto la password en la base de datos
 
 // echo BaseDatosUsuario::verificarUsuario("user3@mail.com","1234"); //=> 1
 // echo BaseDatosUsuario::verificarUsuario("user3@mail.com", "1222"); //=> 0

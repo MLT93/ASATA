@@ -14,10 +14,13 @@
 <body>
 
   <?php
-  // Activar el almacenamiento en búfer de salida. Esto recoge toda la salida del script hasta que decidas enviarla al navegador, permitiendo modificar las cabeceras en cualquier momento del script. Permite hacer `require` después de cargar la página
+  // Activar almacenamiento en el búfer de salida. Esto recoge toda la salida del script hasta que decidas enviarla al navegador, permitiendo modificar las cabeceras en cualquier momento del script
+  // Permite modificar las cabeceras en cualquier momento
   ob_start();
-  // Inicio una sesion
-  // session_start();
+
+  // Inicio una sesión para poder trabajar con la información de la super-variable `$_SESSION` correspondiente al captcha
+  // Inicio una sesión. Siempre iniciar una sesión en las páginas que reciben o manejan información del usuario
+  session_start();
 
   // Cabecera y nav
   require_once("./html_modules/header.php");
@@ -37,7 +40,7 @@
   // Primer  elemento es el namespace
   // Segundo elemento es la clase 
   // Tercer  elemento el pseudonimo de la clase
-  use BaseDatosUsuario\BaseDatosUsuario as Usuario;
+  use BaseDatosUsuario\BaseDatosUsuario;
   use BaseDatosSession\BaseDatosSession as Sesion;
 
 
@@ -51,7 +54,8 @@
     $captcha = $_REQUEST['captcha'];
 
     // Verifico existencia del usuario en la base de datos
-    if (Usuario::verificarUsuario($email, $pass)) {
+    if (BaseDatosUsuario::verificarUsuario($email, $pass)) {
+
       // Aquí genero mi instancia de la sesión
       // Equivale a un `session_start`
       $mySession = new Sesion();
@@ -61,7 +65,7 @@
       if ($captcha == $_SESSION['captcha']) {
         echo "<p>El captcha es correcto</p>" . "<br/>";
 
-        // Si el captcha es correcto, Logueo el usuario
+        // Una vez verificado el usuario y comprobado el captcha, logueo el usuario
         $mySession->inicioLogin($email);
 
         // Ahora creo un array para almacenar una lista de variables que pasaré a la función `JWTCreation` para crear el JWT token con la info del usuario
@@ -106,7 +110,7 @@
     $captcha = $_REQUEST['captcha'];
 
     // Compruebo que este usuario no exista en la base de datos
-    if (Usuario::mostrarIdUsuario($email) == 0) {
+    if (BaseDatosUsuario::mostrarIdUsuario($email) == 0) {
 
       // Compruebo que las passwords coinciden
       if ($pass == $pass2) {
@@ -117,12 +121,13 @@
 
         // Compruebo que el captcha es correcto
         if ($captcha == $_SESSION['captcha']) {
-          // Si el captcha es correcto, inicio una sesión para el nuevo usuario
-          $mySession->inicioLogin($email);
 
           // Creo nuevo usuario una vez comprobado todo e iniciado la sesión
-          Usuario::registrarUsuario($nombre, $apellido1, $apellido2, $email, $pass, $tel, $direccion, $dni, $numTarjeta, $fNacimiento, $isSocio);
+          BaseDatosUsuario::registrarUsuario($nombre, $apellido1, $apellido2, $email, $pass, $tel, $direccion, $dni, $numTarjeta, $fNacimiento, $isSocio);
           echo "<h3 class='card'>Usuario registrado correctamente</h3>" . "<br/>";
+
+          // Una vez registrado el usuario, logueo el nuevo usuario para que lo encuentre en la base de datos
+          $mySession->inicioLogin($email);
 
           // Ahora creo un array para almacenar una lista de variables que pasaré a la función `JWTCreation` para crear el JWT token con la info del usuario
           $info = [];

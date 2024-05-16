@@ -61,20 +61,35 @@
       // Creo las sentencias SQL y uso un LEFT JOIN para que me devuelva todos los registros de la tabla videojuegos para que me devuelva el mismo número de registros en todas las consultas (aunque estén vacíos). De esta forma evito errores
       // Además, hago que la búsqueda se relacione con el cliente logueado a través de la información guardada en el token JWT y la variable de sesión
       $sqlQuery = "SELECT * FROM alquileres WHERE id_cliente = $idUsuario ORDER BY alquileres.id";
-      $sqlQueryAlquileresCliente = "SELECT nombre, apellido1 FROM alquileres LEFT JOIN clientes ON alquileres.id_cliente = clientes.id WHERE id_cliente = $idUsuario ORDER BY alquileres.id";
-      $sqlQueryAlquileresVideojuegos = "SELECT nombre FROM alquileres LEFT JOIN videojuegos ON alquileres.id_videojuego = videojuegos.id WHERE id_cliente = $idUsuario ORDER BY alquileres.id";
-      $sqlQueryAlquileresTarifas = "SELECT tipo FROM alquileres LEFT JOIN tarifas ON alquileres.id_tarifas = tarifas.id WHERE id_cliente = $idUsuario ORDER BY tarifas.id";
-      $sqlQueryAlquileresEmpleados = "SELECT nombre, apellido1 FROM alquileres LEFT JOIN empleados ON alquileres.id_empleado = empleados.id WHERE id_cliente = $idUsuario ORDER BY alquileres.id";
-      $sqlQueryAlquileresMetodoPago = "SELECT metodo FROM alquileres LEFT JOIN metodospago ON alquileres.id_metodoPago = metodospago.id WHERE id_cliente = $idUsuario ORDER BY alquileres.id";
+      $sqlQueryValoracionesDevolucion = "SELECT fechaDevolucion FROM alquileres LEFT JOIN valoraciones ON alquileres.id_cliente = valoraciones.id_alquiler WHERE id_cliente = $idUsuario ORDER BY alquileres.id";
+
+      /* Nombre videojuego relacionado con alquileres: (SELECT videojuegos.nombre FROM alquileres LEFT JOIN videojuegos ON alquileres.id_videojuego = videojuegos.id WHERE id_cliente = $idUsuario ORDER BY alquileres.id;)
+      Tabla filtrada por el usuario en relación con las valoraciones (SELECT * FROM valoraciones LEFT JOIN alquileres ON valoraciones.id_alquiler = alquileres.id WHERE id_cliente = $idUsuario ORDER BY alquileres.id;)
+      Con estas dos querySQL puedo ordenar la información a través del ID del alquiler (la tabla que está relacionada con todas las demás) y evitar hacer las siguientes líneas de código */
+      $sqlQueryValoracionesNombre = "SELECT videojuegos.nombre FROM alquileres LEFT JOIN videojuegos ON alquileres.id_videojuego = videojuegos.id WHERE id_cliente = $idUsuario ORDER BY alquileres.id";
+      $sqlQueryValoracionesValoracion = "SELECT valoracion FROM valoraciones LEFT JOIN alquileres ON valoraciones.id_alquiler = alquileres.id WHERE id_cliente = $idUsuario ORDER BY alquileres.id";
+
+
+
+      // Forma de iterar una consulta SQL guardándola en una variable
+      $idAlquilerValoracionCliente = "SELECT id_alquiler FROM valoraciones LEFT JOIN alquileres ON valoraciones.id_alquiler = alquileres.id WHERE id_cliente = $idUsuario ORDER BY valoraciones.id";
+      $registroIds = $cnx->myQueryMultiple($idAlquilerValoracionCliente, false);
+      $arrIds = [];
+      foreach ($registroIds as $key => $value) {
+        array_push($arrIds, $registroIds[$key][0]);
+      }
+      $rango = implode(",", $arrIds);
+      $sqlQueryValoracionesVideojuego = "SELECT * FROM valoraciones WHERE valoraciones.id_alquiler IN ($rango) ORDER BY valoraciones.id_alquiler";
+      $registrosValoracionesVideojuegos = $cnx->myQueryMultiple($idAlquilerValoracionCliente, false); //=> Devuelve un array con índices
+
+
 
       // Creo array
-      $registrosAlquileres = $cnx->myQueryMultiple($sqlQuery, false); //=> Devuelve un array con índices
+      $registrosValoraciones = $cnx->myQueryMultiple($sqlQuery, false); //=> Devuelve un array con índices
       // Creo una matrices de registros
-      $registrosAlquileresClientes = $cnx->myQueryMultiple($sqlQueryAlquileresCliente); //=> Devuelve una matriz asociativa
-      $registrosAlquileresVideojuegos = $cnx->myQueryMultiple($sqlQueryAlquileresVideojuegos); //=> Devuelve una matriz asociativa
-      $registrosAlquileresTarifas = $cnx->myQueryMultiple($sqlQueryAlquileresTarifas); //=> Devuelve una matriz asociativa
-      $registrosAlquileresEmpleados = $cnx->myQueryMultiple($sqlQueryAlquileresEmpleados); //=> Devuelve una matriz asociativa
-      $registrosAlquileresMetodoPago = $cnx->myQueryMultiple($sqlQueryAlquileresMetodoPago); //=> Devuelve una matriz asociativa
+      $registrosValoracionesDevolucion = $cnx->myQueryMultiple($sqlQueryValoracionesDevolucion); //=> Devuelve una matriz asociativa
+      $registrosValoracionesNombre = $cnx->myQueryMultiple($sqlQueryValoracionesNombre); //=> Devuelve una matriz asociativa
+      $registrosValoracionesValoracion = $cnx->myQueryMultiple($sqlQueryValoracionesValoracion); //=> Devuelve una matriz asociativa
 
       /* 
         <table> (esta será una parte fija)
@@ -89,24 +104,16 @@
       */
 
       echo "<table>";
-      echo "<tr>   <th>ID</th>   <th>Fecha Alquiler</th>   <th>Nombre Cliente</th>   <th>Videojuego</th>   <th>Tarifa</th>   <th>Fecha Devolución</th>   <th>Empleado</th>   <th>Método de Pago</th>   </tr>";
+      echo "<tr>   <th>ID</th>   <th>Devolución</th>   <th>Videojuego</th>   <th>Valoración</th>   </tr>";
 
-      foreach ($registrosAlquileres as $key => $value) {
+      foreach ($registrosValoraciones as $key => $value) {
         echo "<tr>" .
           "<td>" . $value[0] . "</td>" .
-          "<td>" . $value[1] . "</td>" .
+          "<td>" . $registrosValoracionesDevolucion[$key]['fechaDevolucion'] . "</td>" .
 
-          "<td>" . $registrosAlquileresClientes[$key]['nombre'] . " " .
-          $registrosAlquileresClientes[$key]['apellido1'] . "</td>" .
+          "<td>" . $registrosValoracionesNombre[$key]['nombre'] . "</td>" .
 
-          "<td>" . $registrosAlquileresVideojuegos[$key]['nombre'] . "</td>" .
-          "<td>" . $registrosAlquileresTarifas[$key]['tipo'] . "</td>" .
-          "<td>" . $value[5] . "</td>" .
-
-          "<td>" . $registrosAlquileresEmpleados[$key]['nombre'] . " " .
-          $registrosAlquileresEmpleados[$key]['apellido1'] . "</td>" .
-
-          "<td>" . $registrosAlquileresMetodoPago[$key]['metodo'] . "</td>" .
+          "<td>" . $registrosValoracionesValoracion[$key]['valoracion'] . "</td>" .
           "</tr>";
       }
 
@@ -114,7 +121,7 @@
     }
   } else {
     http_response_code(401); // No autorizado
-    echo "<h3 class='card' >Acceso denegado. No se ha proporcionado un Token JWT.</h3>" . "<br/>";
+    echo "<h3 class='card' >Acceso denegado. No se ha proporcionado un Token.</h3>" . "<br/>";
   }
 
   // require("./html_modules/footer.php");

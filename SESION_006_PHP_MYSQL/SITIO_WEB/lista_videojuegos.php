@@ -14,9 +14,12 @@
 <body>
 
   <?php
-  // Activar el almacenamiento en búfer de salida. Esto recoge toda la salida del script hasta que decidas enviarla al navegador, permitiendo modificar las cabeceras en cualquier momento del script. Permite hacer `require` después de cargar la página
+  // Activar almacenamiento en el búfer de salida. Esto recoge toda la salida del script hasta que decidas enviarla al navegador, permitiendo modificar las cabeceras en cualquier momento del script
+  // Permite modificar las cabeceras en cualquier momento
   ob_start();
-  // Inicio una sesión
+
+  // Inicio una sesión para poder trabajar con la información de la super-variable `$_SESSION` correspondiente al captcha
+  // Inicio una sesión. Siempre iniciar una sesión en las páginas que reciben o manejan información del usuario
   session_start();
 
   // Cabecera y nav
@@ -32,8 +35,10 @@
   // Tercer  elemento el pseudonimo de la clase
   use BaseDatos\BaseDatos as BD;
 
-  // Creo las sentencias SQL y uso un LEFT JOIN para que me devuelva todos los registros de la tabla videojuegos para que me devuelva el mismo número de registros en todas las consultas (aunque estén vacíos). De esta forma evito errores
+  // Conexión a la base de datos
   $cnx = new BD("localhost", "root", "", "gameclubdario");
+
+  // Creo las sentencias SQL y uso un LEFT JOIN para que me devuelva todos los registros de la tabla videojuegos para que me devuelva el mismo número de registros en todas las consultas (aunque estén vacíos). De esta forma evito errores
   $sqlQuery = "SELECT * FROM videojuegos ORDER BY videojuegos.id";
   $sqlQueryVideojuegosDesarrollador = "SELECT desarrolladores.nombre FROM videojuegos LEFT JOIN desarrolladores ON videojuegos.id_desarrollador = desarrolladores.id ORDER BY videojuegos.id";
   $sqlQueryVideojuegosPlataforma = "SELECT plataformas.nombre FROM videojuegos LEFT JOIN plataformas ON videojuegos.id_plataforma = plataformas.id ORDER BY videojuegos.id";
@@ -61,20 +66,20 @@
   */
 
   echo "<table>";
-  echo "<tr>   <th>id</th>   <th>nombre</th>   <th>descripcion</th>   <th>fechaPublicacion</th>   <th>isoCode</th>   <th>genero</th>   <th>desarrolladores</th>   <th>plataforma</th>   <th>pegui</th>   </tr>";
+  echo "<tr>   <th>ID</th>   <th>Nombre</th>   <th>Descripción</th>   <th>Fecha Publicación</th>   <th>ISO</th>   <th>Género</th>   <th>Desarrolladores</th>   <th>Plataforma</th>   <th>PEGI</th>   </tr>";
 
   foreach ($registrosVideoJuegos as $key => $value) {
     echo "<tr>" .
-     "<td>" . $value[0] . "</td>" . 
-     "<td>" . $value[1] . "</td>" . 
-     "<td>" . $value[2] . "</td>" . 
-     "<td>" . $value[7] . "</td>" . 
-     "<td>" . $value[8] . "</td>" . 
-     "<td>" . $registrosVideoJuegosDesarrolladores[$key]['nombre'] . "</td>" . 
-     "<td>" . $registrosVideoJuegosPlataformas[$key]['nombre'] . "</td>" . 
-     "<td>" . $registrosVideoJuegosGeneros[$key]['nombre'] . "</td>" . 
-     "<td>" . $registrosVideoJuegosPeguis[$key]['pegui'] . "</td>" . 
-     "</tr>";
+      "<td>" . $value[0] . "</td>" .
+      "<td>" . $value[1] . "</td>" .
+      "<td>" . $value[2] . "</td>" .
+      "<td>" . $value[7] . "</td>" .
+      "<td>" . $value[8] . "</td>" .
+      "<td>" . $registrosVideoJuegosDesarrolladores[$key]['nombre'] . "</td>" .
+      "<td>" . $registrosVideoJuegosPlataformas[$key]['nombre'] . "</td>" .
+      "<td>" . $registrosVideoJuegosGeneros[$key]['nombre'] . "</td>" .
+      "<td>" . $registrosVideoJuegosPeguis[$key]['pegui'] . "</td>" .
+      "</tr>";
   }
 
   echo "</table>";

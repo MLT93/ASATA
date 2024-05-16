@@ -15,10 +15,14 @@
 <?php
 // Requerir la ruta archivos
 require_once("../../class/db_class.php");
+
 // Uso los paquetes del archivo llamando primero el namespace y después la clase a usar
 use Database\DB;
-// Permite modificar las cabeceras en cualquier parte del código
+
+// Activar almacenamiento en el búfer de salida. Esto recoge toda la salida del script hasta que decidas enviarla al navegador, permitiendo modificar las cabeceras en cualquier momento del script
+// Permite modificar las cabeceras en cualquier momento
 ob_start();
+
 // Creo una conexión a una base de datos con la clase que creé
 $connection = new DB("localhost", "root", "", "burger");
 ?>

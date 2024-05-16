@@ -2,6 +2,7 @@
 // Requerir la ruta del archivo
 require("../../class/db_class.php");
 
+// Activar almacenamiento en el búfer de salida. Esto recoge toda la salida del script hasta que decidas enviarla al navegador, permitiendo modificar las cabeceras en cualquier momento del script
 // Permite modificar las cabeceras en cualquier momento
 ob_start();
 

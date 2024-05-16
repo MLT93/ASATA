@@ -12,6 +12,7 @@
 <body>
     <?php
     // Activar almacenamiento en el búfer de salida. Esto recoge toda la salida del script hasta que decidas enviarla al navegador, permitiendo modificar las cabeceras en cualquier momento del script
+    // Permite modificar las cabeceras en cualquier momento
     ob_start();
 
     // Importa HTML
@@ -64,7 +65,7 @@
                     "hashedPassword" => password_hash($pass1NewUser, PASSWORD_DEFAULT)
                 ];
                 // CREO CODIFICACIÓN JWT
-                $jwtArray = JWTCreation($info, /* "./" */);
+                $jwtArray = JWTCreation($info, /* "./" */); /* ToDo: Crear codificación sin la función */
                 // CREO COOKIE CON JWT
                 setcookie("jwt", $jwtArray['jwt'],  $jwtArray['exp'], "/");
                 // CREO USUARIO

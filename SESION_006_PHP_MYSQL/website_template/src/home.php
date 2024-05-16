@@ -85,6 +85,7 @@
   $dotenv->load();
 
   // Inicio una sesión para poder trabajar con la información de la super-variable `$_SESSION` correspondiente al captcha
+  // Inicio una sesión. Siempre iniciar una sesión en las páginas que reciben o manejan información del usuario
   session_start();
 
   // Llamada a la Database. En este caso usaremos una ficticia con la info de usuarios
@@ -190,6 +191,7 @@
   // $dotenv->load(); /* Already been declared */
 
   // Inicio una sesión para poder trabajar con la información de la super-variable `$_SESSION` correspondiente al captcha
+  // Inicio una sesión. Siempre iniciar una sesión en las páginas que reciben o manejan información del usuario
   // session_start();  /* Already been declared */
 
   // Llamada a la Database. En este caso usaremos una ficticia con la info de usuarios

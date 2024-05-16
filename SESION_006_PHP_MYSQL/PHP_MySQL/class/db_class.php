@@ -127,7 +127,6 @@ class DB
     if ($SQLQueryCode != "") {
       // Código SQL
       $this->getConnection()->query($SQLQueryCode);
-      echo "<h3>Has ejecutado código SQL en tu base de datos</h3>";
     }
   }
 

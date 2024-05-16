@@ -213,7 +213,7 @@ SELECT valoraciones.valoracion, COUNT(*) AS numVotos FROM valoraciones HAVING va
 # Es un filtro dentro de un filtro, digamos
 
 /* Aquí tomo un subconjunto de registros de la tabla tarifas que cumpla la condición que le doy en la sentencia SQL que hay dentro del FROM */
-SELECT t.tipo, t.descuentoSocios AS descuentoFROM (SELECT * FROM tarifas WHERE tarifas.descuentoSocios > 10) as t;
+SELECT t.tipo, t.descuentoSocios AS descuento FROM (SELECT * FROM tarifas WHERE tarifas.descuentoSocios > 10) as t;
 
 /* Aquí tomo todos los registros de la tabla tarifas */
 SELECT t.tipo, t.descuentos AS descuento
