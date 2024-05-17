@@ -65,7 +65,7 @@
                     "hashedPassword" => password_hash($pass1NewUser, PASSWORD_DEFAULT)
                 ];
                 // CREO CODIFICACIÓN JWT
-                $jwtArray = JWTCreation($info, /* "./" */); /* ToDo: Crear codificación sin la función */
+                $jwtArray = JWTCreation($info, /* "./" */); /* ToDo: Crear codificación del JWT sin la función `JWTCreation` */
                 // CREO COOKIE CON JWT
                 setcookie("jwt", $jwtArray['jwt'],  $jwtArray['exp'], "/");
                 // CREO USUARIO

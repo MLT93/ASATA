@@ -4,10 +4,16 @@
 <head>
   <meta charset="utf8" />
   <meta name="author" content="DMA" />
-  <meta name="description" content="LOGIN " />
+  <meta name="description" content="CONTACTO" />
   <meta name="keywords" content="cursos, formación, desarrollo software" />
   <title>CONTACTO</title>
-  <link href="css/styles.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="./css/estilos.css">
+
+  <!-- Estas 4 etiquetas 'meta' evitan que se guarden en la memoria Caché los archivos JS y CSS. De este modo nos aseguramos que al realizar cambios, los busque y actualice la información -->
+  <meta http-equiv="Expires" content="0">
+  <meta http-equiv="Last-Modified" content="0">
+  <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+  <meta http-equiv="Pragma" content="no-cache">
 </head>
 
 <body>
@@ -42,7 +48,7 @@
   file_put_contents("./repo/pdf/contacto" . date("Y-m-d.His") . ".pdf", $dompdf->output());
 
 
-  // require("./html_modules/footer.php");
+  require("./html_modules/footer.php");
   ?>
 
 </body>

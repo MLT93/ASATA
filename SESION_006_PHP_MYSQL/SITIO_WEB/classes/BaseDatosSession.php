@@ -82,15 +82,20 @@ class BaseDatosSession
   // Cerrar la sesión del usuario
   public static function cerrarSesion()
   {
-    $cnx = new BaseDatos('localhost', 'root', '', 'gameclubdario');
-    $idUsuario = BaseDatosUsuario::mostrarIdUsuario($_SESSION['usuario']);
+    if (isset($_SESSION['usuario'])) {
 
-    $now = new DateTime();
-    $fecha = $now->format('Y-m-d H:i:s');
-    $sqlQuery = "INSERT INTO sesiones (id_cliente, fecha, interaccion) VALUES ('$idUsuario','$fecha','LOG OUT');";
-    $cnx->execute($sqlQuery);
+      $cnx = new BaseDatos('localhost', 'root', '', 'gameclubdario');
+      $idUsuario = BaseDatosUsuario::mostrarIdUsuario($_SESSION['usuario']);
 
-    $cnx->closeConnectionDb();
+      if ($idUsuario > 0) {
+        $now = new DateTime();
+        $fecha = $now->format('Y-m-d H:i:s');
+        $sqlQuery = "INSERT INTO sesiones (id_cliente, fecha, interaccion) VALUES ('$idUsuario','$fecha','LOG OUT');";
+        $cnx->execute($sqlQuery);
+      }
+
+      $cnx->closeConnectionDb();
+    }
 
     session_unset();  // Limpiar todas las variables de sesión
     session_destroy();  // Destruir la sesión

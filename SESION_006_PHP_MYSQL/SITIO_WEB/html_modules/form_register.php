@@ -1,6 +1,5 @@
 <form action="1_home.php" method="post">
 
-
   <label for="nombreId">NOMBRE</label>
   <input type="text" name="nombre" id="nombreId">
 

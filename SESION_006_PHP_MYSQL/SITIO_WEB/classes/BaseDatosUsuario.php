@@ -109,16 +109,16 @@ class BaseDatosUsuario
 
 // print_r(BaseDatosUsuario::mostrarIdUsuario("user3@mail.com")); //=> 3
 
-// BaseDatosUsuario::actualizarPassword("user1@mail.com", "1234"); //=> Encripto la password en la base de datos
-// BaseDatosUsuario::actualizarPassword("user2@mail.com", "1234"); //=> Encripto la password en la base de datos
-// BaseDatosUsuario::actualizarPassword("user3@mail.com", "1234"); //=> Encripto la password en la base de datos
-// BaseDatosUsuario::actualizarPassword("user4@mail.com", "1234"); //=> Encripto la password en la base de datos
-// BaseDatosUsuario::actualizarPassword("user5@mail.com", "1234"); //=> Encripto la password en la base de datos
-// BaseDatosUsuario::actualizarPassword("user6@mail.com", "1234"); //=> Encripto la password en la base de datos
-// BaseDatosUsuario::actualizarPassword("user7@mail.com", "1234"); //=> Encripto la password en la base de datos
-// BaseDatosUsuario::actualizarPassword("user8@mail.com", "1234"); //=> Encripto la password en la base de datos
-// BaseDatosUsuario::actualizarPassword("user9@mail.com", "1234"); //=> Encripto la password en la base de datos
-// BaseDatosUsuario::actualizarPassword("user10@mail.com", "1234"); //=> Encripto la password en la base de datos
+BaseDatosUsuario::actualizarPassword("user1@mail.com", "1234"); //=> Encripto la password en la base de datos
+BaseDatosUsuario::actualizarPassword("user2@mail.com", "1234"); //=> Encripto la password en la base de datos
+BaseDatosUsuario::actualizarPassword("user3@mail.com", "1234"); //=> Encripto la password en la base de datos
+BaseDatosUsuario::actualizarPassword("user4@mail.com", "1234"); //=> Encripto la password en la base de datos
+BaseDatosUsuario::actualizarPassword("user5@mail.com", "1234"); //=> Encripto la password en la base de datos
+BaseDatosUsuario::actualizarPassword("user6@mail.com", "1234"); //=> Encripto la password en la base de datos
+BaseDatosUsuario::actualizarPassword("user7@mail.com", "1234"); //=> Encripto la password en la base de datos
+BaseDatosUsuario::actualizarPassword("user8@mail.com", "1234"); //=> Encripto la password en la base de datos
+BaseDatosUsuario::actualizarPassword("user9@mail.com", "1234"); //=> Encripto la password en la base de datos
+BaseDatosUsuario::actualizarPassword("user10@mail.com", "1234"); //=> Encripto la password en la base de datos
 
 // echo BaseDatosUsuario::verificarUsuario("user3@mail.com","1234"); //=> 1
 // echo BaseDatosUsuario::verificarUsuario("user3@mail.com", "1222"); //=> 0

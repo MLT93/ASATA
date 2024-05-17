@@ -4,10 +4,16 @@
 <head>
   <meta charset="utf8" />
   <meta name="author" content="DMA" />
-  <meta name="description" content="LOGIN " />
+  <meta name="description" content="LOGIN & REGISTER" />
   <meta name="keywords" content="cursos, formación, desarrollo software" />
   <title>HOME</title>
-  <link href="./css/styles.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="./css/estilos.css">
+
+  <!-- Estas 4 etiquetas 'meta' evitan que se guarden en la memoria Caché los archivos JS y CSS. De este modo nos aseguramos que al realizar cambios, los busque y actualice la información -->
+  <meta http-equiv="Expires" content="0">
+  <meta http-equiv="Last-Modified" content="0">
+  <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+  <meta http-equiv="Pragma" content="no-cache">
 </head>
 
 
@@ -20,7 +26,7 @@
 
   // Inicio una sesión para poder trabajar con la información de la super-variable `$_SESSION` correspondiente al captcha
   // Inicio una sesión. Siempre iniciar una sesión en las páginas que reciben o manejan información del usuario
-  session_start();
+  session_start(); //=> Aquí hace falta iniciar sesión para el login y para el registro
 
   // Cabecera y nav
   require_once("./html_modules/header.php");
@@ -63,7 +69,9 @@
       // Compruebo captcha
       // Si el captcha no se ve en la página, dentro del archivo `php.ini` (en la carpeta php), descomentar esto `extension=gd` para poder verlo en la página web
       if ($captcha == $_SESSION['captcha']) {
-        echo "<p>El captcha es correcto</p>" . "<br/>";
+
+        // echo "<h3>Usuario logueado correctamente</h3>" . "<br/>";
+        $msg = "Usuario logueado correctamente"; //=> Conexión con el footer
 
         // Una vez verificado el usuario y comprobado el captcha, logueo el usuario
         $mySession->inicioLogin($email);
@@ -81,8 +89,7 @@
         // require("./html_modules/form_picture_up.php");
 
       } else {
-        echo "<p>El captcha NO es correcto</p>";
-        echo "<br/>";
+        echo "<h3 class='card'>El captcha NO es correcto</h3>" . "<br/>";
       }
     } else {
       echo "<h3 class='card'>Acceso denegado. Credenciales incorrectas</h3>" . "<br/>";
@@ -124,7 +131,9 @@
 
           // Creo nuevo usuario una vez comprobado todo e iniciado la sesión
           BaseDatosUsuario::registrarUsuario($nombre, $apellido1, $apellido2, $email, $pass, $tel, $direccion, $dni, $numTarjeta, $fNacimiento, $isSocio);
-          echo "<h3 class='card'>Usuario registrado correctamente</h3>" . "<br/>";
+
+          // echo "<h3 class='card'>Usuario registrado correctamente</h3>" . "<br/>";
+          $msg = "Usuario registrado correctamente"; //=> Conexión con el footer
 
           // Una vez registrado el usuario, logueo el nuevo usuario para que lo encuentre en la base de datos
           $mySession->inicioLogin($email);
@@ -152,7 +161,7 @@
     };
   }
 
-  // require("./html_modules/footer.php");
+  require("./html_modules/footer.php");
   ?>
 
 </body>

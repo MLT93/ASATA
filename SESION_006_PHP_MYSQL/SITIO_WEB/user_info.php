@@ -4,10 +4,16 @@
 <head>
   <meta charset="utf8" />
   <meta name="author" content="DMA" />
-  <meta name="description" content="LOGIN " />
+  <meta name="description" content="USER INFO" />
   <meta name="keywords" content="cursos, formación, desarrollo software" />
   <title>USER INFO</title>
-  <link href="./css/styles.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="./css/styles.css">
+
+  <!-- Estas 4 etiquetas 'meta' evitan que se guarden en la memoria Caché los archivos JS y CSS. De este modo nos aseguramos que al realizar cambios, los busque y actualice la información -->
+  <meta http-equiv="Expires" content="0">
+  <meta http-equiv="Last-Modified" content="0">
+  <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+  <meta http-equiv="Pragma" content="no-cache">
 </head>
 
 
@@ -74,7 +80,7 @@
     $secretKey = $_ENV['SIGNATURE_KEY'];
     $cipherKey = $_ENV['CIPHER_KEY'];
     if (estadoAcceso($jwt, $secretKey, $cipherKey)) {
-      
+
       // El contenido de la página iría aquí adentro porque hemos refactorizado el código para que realice todas las comprobaciones en `estadoAcceso`
       $infoUsuario = BaseDatosUsuario::mostrarUsuario($_SESSION['usuario']);
 
@@ -109,8 +115,8 @@
     http_response_code(401); //No autorizado.
     echo "<h3 class='card' >Acceso denegado. No se ha proporcionado un Token JWT.</h3>" . "<br/>";
   }
-  require("./html_modules/footer.php");
 
+  require("./html_modules/footer.php");
   ?>
 
 </body>
