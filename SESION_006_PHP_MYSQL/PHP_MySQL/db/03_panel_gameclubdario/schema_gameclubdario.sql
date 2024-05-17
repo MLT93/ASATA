@@ -3,13 +3,13 @@
 # https://www.phpmyadmin.net/
 #
 # Servidor: 127.0.0.1
-# Tiempo de generación: 17-05-2024 a las 09:42:18
+# Tiempo de generación: 17-05-2024 a las 14:06:54
 # Versión del servidor: 10.4.32-MariaDB
 # Versión de PHP: 8.2.12
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
+# SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+# START TRANSACTION;
+# SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -20,6 +20,12 @@ SET time_zone = "+00:00";
 #
 # Base de datos: `gameclubdario`
 #
+
+CREATE DATABASE IF NOT EXISTS gameclubdario;
+
+ALTER DATABASE gameclubdario CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
+USE gameclubdario;
 
 # ############################
 
@@ -54,10 +60,9 @@ INSERT INTO `alquileres` (`id`, `fechaAlquiler`, `id_cliente`, `id_videojuego`, 
 (9, '2024-05-04', 8, 63, 1, '2024-05-17', 8, 2),
 (10, '2024-05-08', 3, 64, 1, '2024-05-17', 3, 3),
 (11, '2024-05-07', 2, 66, 1, '2024-05-17', 2, 3),
-(12, '2024-05-09', 1, 67, 1, '2024-05-17', 11, 2),
 (13, '2024-05-09', 3, 67, 1, '2024-05-17', 10, 4),
-(14, '2024-05-09', 7, 64, 1, '2024-05-17', 9, 4),
-(15, '2024-05-09', 4, 60, 1, '2024-05-17', 7, 2);
+(83, '2024-05-17', 1, 74, 2, '2024-05-22', 11, 4),
+(84, '2024-05-17', 1, 65, 1, '2024-05-19', 11, 4);
 
 # ############################
 
@@ -100,25 +105,45 @@ CREATE TABLE `clientes` (
   `dni` varchar(255) NOT NULL,
   `numTarjeta` varchar(255) NOT NULL,
   `fechaNacimiento` date NOT NULL,
-  `socio` tinyint(1) NOT NULL
+  `socio` tinyint(1) NOT NULL,
+  `id_rol` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 #
 # Volcado de datos para la tabla `clientes`
 #
 
-INSERT INTO `clientes` (`id`, `nombre`, `apellido1`, `apellido2`, `email`, `hashedPassword`, `telefono`, `direccion`, `dni`, `numTarjeta`, `fechaNacimiento`, `socio`) VALUES
-(1, 'Pedro', 'López', 'Diez', 'user1@mail.com', '$2y$10$qXI5S7BEQ7Eb4BS0R0Mn5OTFZaByKd0SG.08Lcsd9N7R.wi1ZGqvK', '666555', 'plaza mayor', '88888999-O', '444555222', '2000-01-06', 1),
-(2, 'María', 'López', 'Diez', 'user2@mail.com', '$2y$10$7WqClJjO9MtSaagsNTjXe.ouniIHf2LEKFUZLH6pU/c82Zsz4eqji', '777555', 'plaza mayor', '77788999-O', '4443333222', '2003-01-06', 0),
-(3, 'Lucas', 'Gómez', 'de la Serna', 'user3@mail.com', '$2y$10$8g7QWaSyEQAxm6eQgV2SrOnLWhBi/ZNagtLFSJkNen0k6.5vx7kk2', '666555', 'plaza mayor', '88888699-O', '444555222', '2000-01-06', 1),
-(4, 'Ramiro', 'Cervantes', 'Saavedra', 'user4@mail.com', '$2y$10$tvkF/ISXueuJYBAcFOIn4.Oycn9sVZ1ELiPyQhtUaN9MPL/AOk9CG', '777555', 'plaza mayor', '77788499-O', '4443333222', '2003-01-06', 0),
-(5, 'Jesús', 'García', 'Márquez', 'user5@mail.com', '$2y$10$lVGp2CoFSpdjTp9s7dobUehGpFfYVVMLBs3R2rqQ3tZ.CSh.pYRam', '666555', 'plaza mayor', '88848999-O', '444555222', '2000-01-06', 1),
-(6, 'Ana', 'Menéndez', 'Pidal', 'user6@mail.com', '$2y$10$osDleXBfVxM0LNt7WcGAdeCCHlBBa/4YKyfg0TOBX/SrAc2i5c2s2', '777555', 'plaza mayor', '77784999-O', '4443333222', '2003-01-06', 1),
-(7, 'Marino', 'Pérez', 'Galdós', 'user7@mail.com', '$2y$10$inp18xdBRAHwAkTK0zS7..Qletg43NfWKWppjUfO3IIqFEYHZ46tC', '666555', 'plaza mayor', '84488699-O', '444555222', '2000-01-06', 1),
-(8, 'Edelmiro', 'Otero', 'Pedrayo', 'user8@mail.com', '$2y$10$6IEM3FoBsa6x.n8yy4XDneFBH2TWwWWb2XVK9bHWFHjm6a.4ExEya', '777555', 'plaza mayor', '44488699-O', '4443333222', '2003-01-06', 0),
-(9, 'Rocío', 'Pardo', 'Bazán', 'user9@mail.com', '$2y$10$o6CpZB7WRfDQuyq5PdnDEuz5gw9UwJ15Chqrx8yQ4phsnE6WlGiO.', '666555', 'plaza mayor', '86888969-O', '444555222', '2000-01-06', 1),
-(10, 'Oriol', 'Sánchez', 'Dragó', 'user10@mail.com', '$2y$10$2BGxv4gZZ.AoC1gXGJIyieW2wjGpVB6XvD.Put26teb0dEzHw6YFK', '777555', 'plaza mayor', '7688999-O', '4443333222', '2003-01-06', 0),
-(11, 'UsuarioUno', 'Lopez', 'Pepito', 'user11@mail.com', '$2y$10$f6zAeFZInzmseeI/BapisuEJz1VeV51GRP3CKHHKW6R6CHDGuHPkS', '609098898', 'C/ Almería, 5', '62658479-R', '5555000044440000', '2024-05-07', 1);
+INSERT INTO `clientes` (`id`, `nombre`, `apellido1`, `apellido2`, `email`, `hashedPassword`, `telefono`, `direccion`, `dni`, `numTarjeta`, `fechaNacimiento`, `socio`, `id_rol`) VALUES
+(1, 'Pedro', 'López', 'Diez', 'user1@mail.com', '$2y$10$4ac1xDDSIkqlF4SxPnQwVeex/NxuKOvZOUCrM.Umr9Fw361.Zleba', '666555', 'plaza mayor', '88888999-O', '444555222', '2000-01-06', 1, 1),
+(2, 'María', 'López', 'Diez', 'user2@mail.com', '$2y$10$p1PED/xF9yYL3XLBGTyDR.Zvq7W7mUaKS/nIpUIC1e1kg0kd7BqB2', '777555', 'plaza mayor', '77788999-O', '4443333222', '2003-01-06', 0, 1),
+(3, 'Lucas', 'Gómez', 'de la Serna', 'user3@mail.com', '$2y$10$EWfJmzYVgs4iOZKdu6dGmODKSHs9BfCe9e498TW6wloo7qxWNajum', '666555', 'plaza mayor', '88888699-O', '444555222', '2000-01-06', 1, 1),
+(4, 'Ramiro', 'Cervantes', 'Saavedra', 'user4@mail.com', '$2y$10$5PmmA.aMm1GQv/zeO.IINOemfV9yYvtRFY.wm7tPKrSb.DbARmOUi', '777555', 'plaza mayor', '77788499-O', '4443333222', '2003-01-06', 0, 1),
+(5, 'Jesús', 'García', 'Márquez', 'user5@mail.com', '$2y$10$Fe2O.My1MgagnhQGSzrBLuGhXyzQ.B6W.aD8BCEiQ7n8oHR5aeFHG', '666555', 'plaza mayor', '88848999-O', '444555222', '2000-01-06', 1, 1),
+(6, 'Ana', 'Menéndez', 'Pidal', 'user6@mail.com', '$2y$10$EHpFIpG/jVR48lla7RGnDOlrtG3Jqnalpxyv5.DJEDmzpHKKXJLwS', '777555', 'plaza mayor', '77784999-O', '4443333222', '2003-01-06', 1, 1),
+(7, 'Marino', 'Pérez', 'Galdós', 'user7@mail.com', '$2y$10$Xa87r.K6Vmwn24mZLjidqOTPLkPEaKRpZZa1Aio2i.GHBrUpTmV8.', '666555', 'plaza mayor', '84488699-O', '444555222', '2000-01-06', 1, 1),
+(8, 'Edelmiro', 'Otero', 'Pedrayo', 'user8@mail.com', '$2y$10$jTBe.HaR2riR40RFu1YjTepr.4IUnB87.DZhsCtgR6rjmmPWd3wpu', '777555', 'plaza mayor', '44488699-O', '4443333222', '2003-01-06', 0, 1),
+(9, 'Rocío', 'Pardo', 'Bazán', 'user9@mail.com', '$2y$10$ZQ5JfzDD1A.9ec7NcWDAruuwtIa1in/ajN8KCVjk6hqCn2LlvoP0C', '666555', 'plaza mayor', '86888969-O', '444555222', '2000-01-06', 1, 1),
+(10, 'Oriol', 'Sánchez', 'Dragó', 'user10@mail.com', '$2y$10$sKlvuKbV.mVdNgLMMuCem.JP/YuHYkkpX8j0hBAwHjDoVMYWuthdm', '777555', 'plaza mayor', '7688999-O', '4443333222', '2003-01-06', 0, 1),
+(11, 'UsuarioUno', 'Lopez', 'Pepito', 'user11@mail.com', '$2y$10$f6zAeFZInzmseeI/BapisuEJz1VeV51GRP3CKHHKW6R6CHDGuHPkS', '609098898', 'C/ Almería, 5', '62658479-R', '5555000044440000', '2024-05-07', 1, 1);
+
+# ############################
+
+#
+# Estructura de tabla para la tabla `roles`
+#
+
+CREATE TABLE `roles` (
+  `id` int(10) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  `rol` varchar(10) NOT NULL COMMENT 'Limited, Full'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+#
+# Volcado de datos para la tabla `clientes`
+#
+
+INSERT INTO `roles` (`id`, `rol`) VALUES
+(1, 'Limited'),
+(2, 'Full');
 
 # ############################
 
@@ -319,7 +344,14 @@ INSERT INTO `sesiones` (`id`, `id_cliente`, `fecha`, `interaccion`) VALUES
 (9, 11, '2024-05-17 08:57:51', 'LOG IN'),
 (10, 11, '2024-05-17 08:57:55', 'LOG OUT'),
 (11, 1, '2024-05-17 09:31:47', 'LOG IN'),
-(12, 1, '2024-05-17 09:32:04', 'LOG OUT');
+(12, 1, '2024-05-17 09:32:04', 'LOG OUT'),
+(13, 1, '2024-05-17 10:17:24', 'LOG IN'),
+(14, 1, '2024-05-17 11:28:08', 'LOG IN'),
+(15, 1, '2024-05-17 11:28:32', 'LOG IN'),
+(16, 1, '2024-05-17 11:28:40', 'LOG IN'),
+(17, 1, '2024-05-17 11:28:46', 'LOG IN'),
+(18, 1, '2024-05-17 12:22:41', 'LOG IN'),
+(19, 1, '2024-05-17 13:23:03', 'LOG IN');
 
 # ############################
 
@@ -372,10 +404,9 @@ INSERT INTO `valoraciones` (`id`, `valoracion`, `id_alquiler`) VALUES
 (8, 2, 8),
 (9, 3, 9),
 (10, 4, 10),
-(11, 5, 12),
 (12, 5, 13),
-(13, 5, 14),
-(14, 5, 15);
+(17, 5, 83),
+(18, 3, 84);
 
 # ############################
 
@@ -446,7 +477,7 @@ ALTER TABLE `categorias`
 #
 ALTER TABLE `clientes`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`);
+  ADD UNIQUE KEY `email` (`email`),
 
 #
 # Indices de la tabla `desarrolladores`
@@ -525,7 +556,7 @@ ALTER TABLE `videojuegos`
 # AUTO_INCREMENT de la tabla `alquileres`
 #
 ALTER TABLE `alquileres`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 #
 # AUTO_INCREMENT de la tabla `categorias`
@@ -579,7 +610,7 @@ ALTER TABLE `plataformas`
 # AUTO_INCREMENT de la tabla `sesiones`
 #
 ALTER TABLE `sesiones`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 #
 # AUTO_INCREMENT de la tabla `tarifas`
@@ -591,7 +622,7 @@ ALTER TABLE `tarifas`
 # AUTO_INCREMENT de la tabla `valoraciones`
 #
 ALTER TABLE `valoraciones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 #
 # AUTO_INCREMENT de la tabla `videojuegos`
@@ -639,7 +670,24 @@ ALTER TABLE `videojuegos`
   ADD CONSTRAINT `generoID` FOREIGN KEY (`id_genero`) REFERENCES `genero` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `peguiID` FOREIGN KEY (`id_pegui`) REFERENCES `pegui` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `plataformaID` FOREIGN KEY (`id_plataforma`) REFERENCES `plataformas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `clientes`
+  ADD KEY `rolID` (`id_rol`),
+  ADD CONSTRAINT `rolID` FOREIGN KEY (`id_rol`) REFERENCES `clientes`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
+
+/* Relación entre tablas */
+# Altero la tabla para agregar una clave foránea después de crear todas las demás tablas. La relación debe ser entre valores `UNIQUE` o `PRIMARY KEY` y los campos de las otras tablas que se deseen conectar. Los datos que se relacionan deben tener la misma estructura, si el id principal de una tabla es `UNSIGNED`, también lo será en el campo que se relacionará en la otra tabla
+# RECUERDA: en una tabla puede haber un solo `PRIMARY KEY` y un solo `AUTO_INCREMENT`, pero pueden existir varios `UNIQUE`
+# FOREIGN KEY relaciona un campo con otro campo de una tabla. Normalmente se utiliza para los ID de las tablas */
+#
+# ALTER TABLE nombre_tabla_donde_está_el_id_asociativo
+# ADD KEY key_asociativo (campo_de_la_tabla[el_id_asociativo]),
+# ADD CONSTRAINT key_asociativo FOREIGN KEY (campo_de_la_tabla[el_id_asociativo]) REFERENCES tabla_a_relacionar (primary_key_de_la_tabla_a_relacionar) ON DELETE CASCADE ON UPDATE CASCADE;
+#
+# ALTER TABLE table_name
+#   ADD KEY itemID (item_id),
+#   ADD CONSTRAINT itemID FOREIGN KEY (item_id) REFERENCES item (id) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -1,6 +1,6 @@
 <form action="./reg_alquiler.php" method="post" target="_self">
 
-  <div class="reg_alquiler">
+  <div class="reg">
     <label for="idVideojuegoID">VIDEOJUEGO</label>
     <!-- <input type="text" name="idVideojuego" id="idVideojuegoID" /> -->
     <select name="idVideojuego" id="idVideojuegoID">
@@ -16,7 +16,7 @@
     </select>
   </div>
 
-  <div class="reg_alquiler">
+  <div class="reg">
     <label for="idTarifaID">TARIFAS</label>
     <!-- <input type="text" name="idTarifa" id="idTarifaID" /> -->
     <select name="idTarifa" id="idTarifaID">
@@ -32,7 +32,7 @@
     </select>
   </div>
 
-  <div class="reg_alquiler">
+  <div class="reg">
     <label for="idMetodoPagoID">MÉTODO DE PAGO</label>
     <!-- <input type="text" name="idMetodoPago" id="idMetodoPagoID" /> -->
     <select name="idMetodoPago" id="idMetodoPagoID">

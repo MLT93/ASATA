@@ -237,7 +237,7 @@ th {
   border: 1px solid #ddd;
 }
 
-.reg_alquiler {
+.reg {
   display: flex;
   flex-direction: column;
 }
