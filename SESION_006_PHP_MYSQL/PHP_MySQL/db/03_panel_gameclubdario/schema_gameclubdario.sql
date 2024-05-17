@@ -3,13 +3,14 @@
 # https://www.phpmyadmin.net/
 #
 # Servidor: 127.0.0.1
-# Tiempo de generación: 15-05-2024 a las 08:56:58
+# Tiempo de generación: 17-05-2024 a las 09:42:18
 # Versión del servidor: 10.4.32-MariaDB
-# Versión de PHP: 8.0.30
+# Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -19,12 +20,6 @@ SET time_zone = "+00:00";
 #
 # Base de datos: `gameclubdario`
 #
-
-CREATE DATABASE IF NOT EXISTS gameclubdario;
-
-ALTER DATABASE gameclubdario CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-
-USE gameclubdario;
 
 # ############################
 
@@ -98,7 +93,7 @@ CREATE TABLE `clientes` (
   `nombre` varchar(255) NOT NULL,
   `apellido1` varchar(255) NOT NULL,
   `apellido2` varchar(255) NOT NULL,
-  `email` varchar(255) UNIQUE NOT NULL,
+  `email` varchar(255) NOT NULL,
   `hashedPassword` varchar(255) NOT NULL,
   `telefono` varchar(255) NOT NULL,
   `direccion` varchar(255) NOT NULL,
@@ -113,16 +108,17 @@ CREATE TABLE `clientes` (
 #
 
 INSERT INTO `clientes` (`id`, `nombre`, `apellido1`, `apellido2`, `email`, `hashedPassword`, `telefono`, `direccion`, `dni`, `numTarjeta`, `fechaNacimiento`, `socio`) VALUES
-(1, 'Pedro', 'López', 'Diez', 'user1@mail.com', '1111', '666555', 'plaza mayor', '88888999-O', '444555222', '2000-01-06', 1),
-(2, 'María', 'López', 'Diez', 'user2@mail.com', '1222', '777555', 'plaza mayor', '77788999-O', '4443333222', '2003-01-06', 0),
-(3, 'Lucas', 'Gómez', 'de la Serna', 'user3@mail.com', '1111', '666555', 'plaza mayor', '88888699-O', '444555222', '2000-01-06', 1),
-(4, 'Ramiro', 'Cervantes', 'Saavedra', 'user4@mail.com', '1222', '777555', 'plaza mayor', '77788499-O', '4443333222', '2003-01-06', 0),
-(5, 'Jesús', 'García', 'Márquez', 'user5@mail.com', '1111', '666555', 'plaza mayor', '88848999-O', '444555222', '2000-01-06', 1),
-(6, 'Ana', 'Menéndez', 'Pidal', 'user6@mail.com', '1222', '777555', 'plaza mayor', '77784999-O', '4443333222', '2003-01-06', 1),
-(7, 'Marino', 'Pérez', 'Galdós', 'user7@mail.com', '1111', '666555', 'plaza mayor', '84488699-O', '444555222', '2000-01-06', 1),
-(8, 'Edelmiro', 'Otero', 'Pedrayo', 'user8@mail.com', '1222', '777555', 'plaza mayor', '44488699-O', '4443333222', '2003-01-06', 0),
-(9, 'Rocío', 'Pardo', 'Bazán', 'user9@mail.com', '1111', '666555', 'plaza mayor', '86888969-O', '444555222', '2000-01-06', 1),
-(10, 'Oriol', 'Sánchez', 'Dragó', 'user10@mail.com', '1222', '777555', 'plaza mayor', '7688999-O', '4443333222', '2003-01-06', 0);
+(1, 'Pedro', 'López', 'Diez', 'user1@mail.com', '$2y$10$qXI5S7BEQ7Eb4BS0R0Mn5OTFZaByKd0SG.08Lcsd9N7R.wi1ZGqvK', '666555', 'plaza mayor', '88888999-O', '444555222', '2000-01-06', 1),
+(2, 'María', 'López', 'Diez', 'user2@mail.com', '$2y$10$7WqClJjO9MtSaagsNTjXe.ouniIHf2LEKFUZLH6pU/c82Zsz4eqji', '777555', 'plaza mayor', '77788999-O', '4443333222', '2003-01-06', 0),
+(3, 'Lucas', 'Gómez', 'de la Serna', 'user3@mail.com', '$2y$10$8g7QWaSyEQAxm6eQgV2SrOnLWhBi/ZNagtLFSJkNen0k6.5vx7kk2', '666555', 'plaza mayor', '88888699-O', '444555222', '2000-01-06', 1),
+(4, 'Ramiro', 'Cervantes', 'Saavedra', 'user4@mail.com', '$2y$10$tvkF/ISXueuJYBAcFOIn4.Oycn9sVZ1ELiPyQhtUaN9MPL/AOk9CG', '777555', 'plaza mayor', '77788499-O', '4443333222', '2003-01-06', 0),
+(5, 'Jesús', 'García', 'Márquez', 'user5@mail.com', '$2y$10$lVGp2CoFSpdjTp9s7dobUehGpFfYVVMLBs3R2rqQ3tZ.CSh.pYRam', '666555', 'plaza mayor', '88848999-O', '444555222', '2000-01-06', 1),
+(6, 'Ana', 'Menéndez', 'Pidal', 'user6@mail.com', '$2y$10$osDleXBfVxM0LNt7WcGAdeCCHlBBa/4YKyfg0TOBX/SrAc2i5c2s2', '777555', 'plaza mayor', '77784999-O', '4443333222', '2003-01-06', 1),
+(7, 'Marino', 'Pérez', 'Galdós', 'user7@mail.com', '$2y$10$inp18xdBRAHwAkTK0zS7..Qletg43NfWKWppjUfO3IIqFEYHZ46tC', '666555', 'plaza mayor', '84488699-O', '444555222', '2000-01-06', 1),
+(8, 'Edelmiro', 'Otero', 'Pedrayo', 'user8@mail.com', '$2y$10$6IEM3FoBsa6x.n8yy4XDneFBH2TWwWWb2XVK9bHWFHjm6a.4ExEya', '777555', 'plaza mayor', '44488699-O', '4443333222', '2003-01-06', 0),
+(9, 'Rocío', 'Pardo', 'Bazán', 'user9@mail.com', '$2y$10$o6CpZB7WRfDQuyq5PdnDEuz5gw9UwJ15Chqrx8yQ4phsnE6WlGiO.', '666555', 'plaza mayor', '86888969-O', '444555222', '2000-01-06', 1),
+(10, 'Oriol', 'Sánchez', 'Dragó', 'user10@mail.com', '$2y$10$2BGxv4gZZ.AoC1gXGJIyieW2wjGpVB6XvD.Put26teb0dEzHw6YFK', '777555', 'plaza mayor', '7688999-O', '4443333222', '2003-01-06', 0),
+(11, 'UsuarioUno', 'Lopez', 'Pepito', 'user11@mail.com', '$2y$10$f6zAeFZInzmseeI/BapisuEJz1VeV51GRP3CKHHKW6R6CHDGuHPkS', '609098898', 'C/ Almería, 5', '62658479-R', '5555000044440000', '2024-05-07', 1);
 
 # ############################
 
@@ -307,6 +303,24 @@ CREATE TABLE `sesiones` (
   `interaccion` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+#
+# Volcado de datos para la tabla `sesiones`
+#
+
+INSERT INTO `sesiones` (`id`, `id_cliente`, `fecha`, `interaccion`) VALUES
+(1, 1, '2024-05-17 08:32:05', 'LOG IN'),
+(2, 1, '2024-05-17 08:32:08', 'LOG OUT'),
+(3, 1, '2024-05-17 08:41:11', 'LOG IN'),
+(4, 1, '2024-05-17 08:41:18', 'LOG OUT'),
+(5, 1, '2024-05-17 08:53:44', 'LOG IN'),
+(6, 1, '2024-05-17 08:54:41', 'LOG IN'),
+(7, 1, '2024-05-17 08:55:21', 'LOG OUT'),
+(8, 1, '2024-05-17 08:56:04', 'LOG IN'),
+(9, 11, '2024-05-17 08:57:51', 'LOG IN'),
+(10, 11, '2024-05-17 08:57:55', 'LOG OUT'),
+(11, 1, '2024-05-17 09:31:47', 'LOG IN'),
+(12, 1, '2024-05-17 09:32:04', 'LOG OUT');
+
 # ############################
 
 #
@@ -431,7 +445,8 @@ ALTER TABLE `categorias`
 # Indices de la tabla `clientes`
 #
 ALTER TABLE `clientes`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
 
 #
 # Indices de la tabla `desarrolladores`
@@ -522,7 +537,7 @@ ALTER TABLE `categorias`
 # AUTO_INCREMENT de la tabla `clientes`
 #
 ALTER TABLE `clientes`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 #
 # AUTO_INCREMENT de la tabla `desarrolladores`
@@ -564,7 +579,7 @@ ALTER TABLE `plataformas`
 # AUTO_INCREMENT de la tabla `sesiones`
 #
 ALTER TABLE `sesiones`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 #
 # AUTO_INCREMENT de la tabla `tarifas`

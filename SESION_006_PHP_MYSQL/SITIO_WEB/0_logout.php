@@ -32,6 +32,10 @@
   require("./html_modules/nav.php");
   require_once("./classes/BaseDatosSession.php");
 
+  // Llamo a la clase
+  // Primer  elemento es el namespace
+  // Segundo elemento es la clase 
+  // Tercer  elemento el pseudonimo de la clase
   use BaseDatosSession\BaseDatosSession as Sesion;
 
   if (isset($_SESSION["usuario"])) {

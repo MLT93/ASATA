@@ -35,14 +35,14 @@
   // Incluir el autoloader del composer
   require_once("../vendor/autoload.php");
 
-  // Añado el archivo de la clase usuario y sesión
+  // Añado los archivos de las clases
   require_once("./classes/BaseDatosUsuario.php");
   require_once("./classes/BaseDatosSession.php");
 
   // Incluir funciones
   require("./functions/authentication.php");
 
-  // Llamo a la clase usuario
+  // Llamo a las clases
   // Primer  elemento es el namespace
   // Segundo elemento es la clase 
   // Tercer  elemento el pseudonimo de la clase

@@ -35,11 +35,19 @@
   // Añado el archivo de la base de datos
   require_once("./classes/BaseDatos.php");
 
-  // Llamo a la clase usuario
+  // Llamo a la clase BaseDatos
   // Primer  elemento es el namespace
   // Segundo elemento es la clase 
   // Tercer  elemento el pseudonimo de la clase
   use BaseDatos\BaseDatos as BD;
+
+  // Esto lo cargo para utilizar las variables de entorno en el archivo `.env`
+  // require_once("../vendor/autoload.php"); //=> Aquí	no hace falta recibir las variables de entorno porque es una página pública y no hay que comprobar la información del usuario ni encriptar o desencriptar
+
+  // use Dotenv\Dotenv;
+
+  // $dotenv = Dotenv::createImmutable("./");
+  // $dotenv->load();
 
   // Conexión a la base de datos
   $cnx = new BD("localhost", "root", "", "gameclubdario");

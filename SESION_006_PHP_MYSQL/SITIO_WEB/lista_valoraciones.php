@@ -31,13 +31,15 @@
   // Cabecera y nav
   require_once("./html_modules/header.php");
   require_once("./html_modules/nav.php");
+
+  // Incluir funciones
   require_once("./functions/authentication.php");
 
   // Cargo archivos de las clases
   require_once("./classes/BaseDatos.php");
   require_once("./classes/BaseDatosUsuario.php");
 
-  // Llamo a la clase usuario
+  // Llamo a las clases
   // Primer  elemento es el namespace
   // Segundo elemento es la clase 
   // Tercer  elemento el pseudonimo de la clase
