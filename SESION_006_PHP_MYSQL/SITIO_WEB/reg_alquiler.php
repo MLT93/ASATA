@@ -34,6 +34,7 @@
 
   // Añado los archivos de las clases
   require_once("./classes/BaseDatos.php");
+  require_once("./classes/BaseDatosUsuario.php");
 
   // Incluir funciones
   require("./functions/authentication.php");
@@ -43,6 +44,7 @@
   // Segundo elemento es la clase 
   // Tercer  elemento el pseudonimo de la clase
   use BaseDatos\BaseDatos;
+  use BaseDatosUsuario\BaseDatosUsuario as Usuario;
 
   // Esto lo cargo para utilizar las variables de entorno en el archivo `.env`
   require_once("../vendor/autoload.php");
@@ -70,23 +72,62 @@
       if (isset($_POST["enviarAlquiler"])) {
 
         // Variables formulario
-        $fechaAlquiler = $_POST["fechaAlquiler"];
-        $idCliente = $_POST["idCliente"];
-        $idVideojuego = $_POST["idVideojuego"];
-        $idTarifa = $_POST["idTarifa"];
-        $fechaDevo = $_POST["fechaDevo"];
-        $idEmpleado = $_POST["idEmpleado"];
-        $idMetodoPago = $_POST["idMetodoPago"];
+        $idVideojuego = intval($_POST["idVideojuego"]);
+        $idTarifa = intval($_POST["idTarifa"]);
+        $idMetodoPago = intval($_POST["idMetodoPago"]);
+
+        // Fechas de alquileres en timestamp
+        // Si el ID tarifa es 1 (standard) la devolución será en 2 días desde el alquiler
+        // De lo contrario, será en 5 días
+        $fechaAlquiler = date("Y-m-d", intval(strtotime("now")));       
+        $fechaDevo = "";
+        if ($idTarifa == 1) {
+          $fechaDevo = date("Y-m-d", intval(strtotime($fechaAlquiler . "+2 days")));
+        } else {
+          $fechaDevo = date("Y-m-d", intval(strtotime($fechaAlquiler . "+5 days")));
+        }
+
+        // Tomo el ID del usuario que está logueado
+        $idUsuario = Usuario::mostrarIdUsuario($_SESSION['usuario']);
+
+        // Suponiendo que en cada día de la semana (del 1 al 7) trabaja un empleado, lo asignaré al alquiler realizado
+        $idEmpleado = 0;
+        $diaSemana = date('N'); //=> día de la semana (1 lunes, 7 domingo)
+        switch ($diaSemana) {
+          case 1:
+            $idEmpleado = 5;
+            break;
+          case 2:
+            $idEmpleado = 5;
+            break;
+          case 3:
+            $idEmpleado = 5;
+            break;
+          case 4:
+            $idEmpleado = 11;
+            break;
+          case 5:
+            $idEmpleado = 11;
+            break;
+          case 6:
+            $idEmpleado = 13;
+            break;
+          case 7:
+            $idEmpleado = 13;
+            break;
+        }
 
         // Variables database
         $camposDB = ["fechaAlquiler", "id_cliente", "id_videojuego", "id_tarifas", "fechaDevolucion", "id_empleado", "id_metodoPago"];
-        $registrosDB = [$fechaAlquiler, $idCliente, $idVideojuego, $idTarifa, $fechaDevo, $idEmpleado, $idMetodoPago];
+        $registrosDB = [$fechaAlquiler, $idUsuario, $idVideojuego, $idTarifa, $fechaDevo, $idEmpleado, $idMetodoPago];
 
         // Escribo en la database
         $cnx->insertSingleRegister("alquileres", $camposDB, $registrosDB);
 
+        $msgFooter = "Alquiler realizado con éxito"; //=> Conexión con el footer
+
         // Envío el cliente a otra página o la recargo
-        header("Location: reg_alquiler.php");
+        header("Location: lista_alquileres.php");
       }
     }
   } else {

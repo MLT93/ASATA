@@ -75,20 +75,20 @@
       Tabla filtrada por el usuario en relación con las valoraciones (SELECT * FROM valoraciones LEFT JOIN alquileres ON valoraciones.id_alquiler = alquileres.id WHERE id_cliente = $idUsuario ORDER BY alquileres.id;)
       Con estas dos querySQL puedo ordenar la información a través del ID del alquiler (la tabla que está relacionada con todas las demás) y evitar hacer las siguientes líneas de código */
       $sqlQueryValoracionesNombre = "SELECT videojuegos.nombre FROM alquileres LEFT JOIN videojuegos ON alquileres.id_videojuego = videojuegos.id WHERE id_cliente = $idUsuario ORDER BY alquileres.id";
-      $sqlQueryValoracionesValoracion = "SELECT valoracion FROM valoraciones LEFT JOIN alquileres ON valoraciones.id_alquiler = alquileres.id WHERE id_cliente = $idUsuario ORDER BY alquileres.id";
+      $sqlQueryValoracionesValoracion = "SELECT valoracion FROM valoraciones RIGHT JOIN alquileres ON valoraciones.id_alquiler = alquileres.id WHERE id_cliente = $idUsuario ORDER BY alquileres.id";
 
 
 
       // Forma de iterar una consulta SQL guardándola en una variable
-      $idAlquilerValoracionCliente = "SELECT id_alquiler FROM valoraciones LEFT JOIN alquileres ON valoraciones.id_alquiler = alquileres.id WHERE id_cliente = $idUsuario ORDER BY valoraciones.id";
-      $registroIds = $cnx->myQueryMultiple($idAlquilerValoracionCliente, false);
-      $arrIds = [];
-      foreach ($registroIds as $key => $value) {
-        array_push($arrIds, $registroIds[$key][0]);
-      }
-      $rango = implode(",", $arrIds);
-      $sqlQueryValoracionesVideojuego = "SELECT * FROM valoraciones WHERE valoraciones.id_alquiler IN ($rango) ORDER BY valoraciones.id_alquiler";
-      $registrosValoracionesVideojuegos = $cnx->myQueryMultiple($idAlquilerValoracionCliente, false); //=> Devuelve un array con índices
+      // $idAlquilerValoracionCliente = "SELECT id_alquiler FROM valoraciones LEFT JOIN alquileres ON valoraciones.id_alquiler = alquileres.id WHERE id_cliente = $idUsuario ORDER BY valoraciones.id";
+      // $registroIds = $cnx->myQueryMultiple($idAlquilerValoracionCliente, false);
+      // $arrIds = [];
+      // foreach ($registroIds as $key => $value) {
+      //   array_push($arrIds, $registroIds[$key][0]);
+      // }
+      // $rango = implode(",", $arrIds);
+      // $sqlQueryValoracionesVideojuego = "SELECT * FROM valoraciones WHERE valoraciones.id_alquiler IN ($rango) ORDER BY valoraciones.id_alquiler";
+      // $registrosValoracionesVideojuegos = $cnx->myQueryMultiple($idAlquilerValoracionCliente, false); //=> Devuelve un array con índices
 
 
 

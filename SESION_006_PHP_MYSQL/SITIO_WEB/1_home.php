@@ -71,7 +71,7 @@
       if ($captcha == $_SESSION['captcha']) {
 
         // echo "<h3>Usuario logueado correctamente</h3>" . "<br/>";
-        $msg = "Usuario logueado correctamente"; //=> Conexión con el footer
+        $msgFooter = "Usuario logueado correctamente"; //=> Conexión con el footer
 
         // Una vez verificado el usuario y comprobado el captcha, logueo el usuario
         $mySession->inicioLogin($email);
@@ -133,7 +133,7 @@
           BaseDatosUsuario::registrarUsuario($nombre, $apellido1, $apellido2, $email, $pass, $tel, $direccion, $dni, $numTarjeta, $fNacimiento, $isSocio);
 
           // echo "<h3 class='card'>Usuario registrado correctamente</h3>" . "<br/>";
-          $msg = "Usuario registrado correctamente"; //=> Conexión con el footer
+          $msgFooter = "Usuario registrado correctamente"; //=> Conexión con el footer
 
           // Una vez registrado el usuario, logueo el nuevo usuario para que lo encuentre en la base de datos
           $mySession->inicioLogin($email);

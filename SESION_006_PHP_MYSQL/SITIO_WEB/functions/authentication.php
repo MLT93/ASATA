@@ -73,27 +73,25 @@ function JWTDecodeUser($jwt, $secretKey, $cipherKey)
 function estadoAcceso($jwt, $secretKey, $cipherKey)
 {
     try {
-        /* $jwt = $_COOKIE['jwt'];
-      $metodoCifrado = "AES-128-CBC";
-      // Decodifico el jwt
-      $jwtDecodificado = JWT::decode($jwt, new Key($key_secreta, "HS256"));
-      // Desencripto el payload del jwt
-      $payloadDesencriptado =  openssl_decrypt($jwtDecodificado->data, $metodoCifrado, $_ENV['CIPHER_KEY'], 0, base64_decode($jwtDecodificado->iv));
+        // $jwt = $_COOKIE['jwt'];
+        // $metodoCifrado = "AES-128-CBC";
+        // // Decodifico el jwt
+        // $jwtDecodificado = JWT::decode($jwt, new Key($key_secreta, "HS256"));
+        // // Desencripto el payload del jwt
+        // $payloadDesencriptado =  openssl_decrypt($jwtDecodificado->data, $metodoCifrado, $_ENV['CIPHER_KEY'], 0, base64_decode($jwtDecodificado->iv));
 
-      // Decodifico el JSON que tiene el valor del usuario que hay en el token
-      $pay = json_decode($payloadDesencriptado);
-      $userJWT = $pay->{'username'}; //=> Es el usuario logueado. Esta estructura se puede visualizar en la función `JWTCreation` dentro del array asociativo `$payload` */
-
-        $jwt = $_COOKIE['jwt'];
-        $userJWT = JWTDecodeUser($jwt, $secretKey, $cipherKey);
+        // // Decodifico el JSON que tiene el valor del usuario que hay en el token
+        // $pay = json_decode($payloadDesencriptado);
+        // $userJWT = $pay->{'username'}; //=> Es el usuario logueado. Esta estructura se puede visualizar en la función `JWTCreation` dentro del array asociativo `$payload`
 
         // Hago comprobación en la base de datos
+        $jwt = $_COOKIE['jwt'];
+        $userJWT = JWTDecodeUser($jwt, $secretKey, $cipherKey);
         if ($_SESSION['usuario'] == $userJWT) {
 
             http_response_code(200); // OK
             echo "<p>El usuario tiene acceso a esta página.</p>";
             return true;
-
         } else {
             http_response_code(401); // No autorizado.
             echo '<h3 class="card">Acceso denegado. Toke inválido / Sesión incorrecta</h3>';
