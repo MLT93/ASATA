@@ -26,7 +26,7 @@
 
   // Inicio una sesión para poder trabajar con la información de la super-variable `$_SESSION` correspondiente al captcha
   // Inicio una sesión. Siempre iniciar una sesión en las páginas que reciben o manejan información del usuario
-  // session_start(); //=> Aquí no hace falta iniciar la sesión porque es una página pública y no hay que comprobar si hay una variable de sesión y un JWT con la info del usuario
+  session_start();
 
   // Cabecera y nav
   require_once("./html_modules/header.php");
@@ -53,11 +53,11 @@
   $cnx = new BD("localhost", "root", "", "gameclubdario");
 
   // Creo las sentencias SQL y uso un LEFT JOIN para que me devuelva todos los registros de la tabla videojuegos para que me devuelva el mismo número de registros en todas las consultas (aunque estén vacíos). De esta forma evito errores
-  $sqlQuery = "SELECT * FROM videojuegos ORDER BY videojuegos.id";
-  $sqlQueryVideojuegosDesarrollador = "SELECT desarrolladores.nombre FROM videojuegos LEFT JOIN desarrolladores ON videojuegos.id_desarrollador = desarrolladores.id ORDER BY videojuegos.id";
-  $sqlQueryVideojuegosPlataforma = "SELECT plataformas.nombre FROM videojuegos LEFT JOIN plataformas ON videojuegos.id_plataforma = plataformas.id ORDER BY videojuegos.id";
-  $sqlQueryVideojuegosGenero = "SELECT genero.nombre FROM videojuegos LEFT JOIN genero ON videojuegos.id_genero = genero.id ORDER BY videojuegos.id";
-  $sqlQueryVideojuegosPegui = "SELECT pegui.pegui FROM videojuegos LEFT JOIN pegui ON videojuegos.id_pegui = pegui.id ORDER BY videojuegos.id";
+  $sqlQuery = "SELECT * FROM videojuegos ORDER BY videojuegos.id DESC"; //=> Le ponemos `DESC` para que el último videojuego agregado se vea al inicio de la tabla
+  $sqlQueryVideojuegosDesarrollador = "SELECT desarrolladores.nombre FROM videojuegos LEFT JOIN desarrolladores ON videojuegos.id_desarrollador = desarrolladores.id ORDER BY videojuegos.id DESC";
+  $sqlQueryVideojuegosPlataforma = "SELECT plataformas.nombre FROM videojuegos LEFT JOIN plataformas ON videojuegos.id_plataforma = plataformas.id ORDER BY videojuegos.id DESC";
+  $sqlQueryVideojuegosGenero = "SELECT genero.nombre FROM videojuegos LEFT JOIN genero ON videojuegos.id_genero = genero.id ORDER BY videojuegos.id DESC";
+  $sqlQueryVideojuegosPegui = "SELECT pegui.pegui FROM videojuegos LEFT JOIN pegui ON videojuegos.id_pegui = pegui.id ORDER BY videojuegos.id DESC";
 
   // Creo array
   $registrosVideoJuegos = $cnx->myQueryMultiple($sqlQuery, false); //=> Devuelve un array con índices
@@ -80,10 +80,11 @@
   */
 
   echo "<table>";
-  echo "<tr>   <th>ID</th>   <th>Nombre</th>   <th>Descripción</th>   <th>Fecha Publicación</th>   <th>ISO</th>   <th>Género</th>   <th>Desarrolladores</th>   <th>Plataforma</th>   <th>PEGI</th>   </tr>";
+  echo "<tr>   <th>Imagen</th>   <th>ID</th>   <th>Nombre</th>   <th>Descripción</th>   <th>Fecha Publicación</th>   <th>ISO</th>   <th>Género</th>   <th>Desarrolladores</th>   <th>Plataforma</th>   <th>PEGI</th>   </tr>";
 
   foreach ($registrosVideoJuegos as $key => $value) {
     echo "<tr>" .
+      "<td><img class='redondeado' src='" . $value[9] . "'></td>" .
       "<td>" . $value[0] . "</td>" .
       "<td>" . $value[1] . "</td>" .
       "<td>" . $value[2] . "</td>" .

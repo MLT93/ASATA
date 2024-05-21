@@ -84,10 +84,10 @@ class BaseDatosUsuario
     return $isVerifiedPassword;
   }
 
-  public static function registrarUsuario(string $nombre, string $apellido1, string $apellido2, string $email, string $password, string $telefono, string $direccion, string $dni, string $numTarjeta, string $fechaNacimiento, bool $isSocio){
+  public static function registrarUsuario(string $nombre, string $apellido1, string $apellido2, string $email, string $password, string $telefono, string $direccion, string $dni, string $numTarjeta, string $fechaNacimiento, bool $isSocio, int $rol, string $imagen){
     $cnx = new BaseDatos("localhost", "root", "", "gameclubdario");
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-    $sqlQuery = "INSERT INTO clientes (nombre, apellido1, apellido2, email, hashedPassword, telefono, direccion, dni, numTarjeta, fechaNacimiento, socio) VALUES ('$nombre', '$apellido1', '$apellido2', '$email','$hashedPassword', '$telefono', '$direccion', '$dni', '$numTarjeta', '$fechaNacimiento', '$isSocio');";
+    $sqlQuery = "INSERT INTO clientes (nombre, apellido1, apellido2, email, hashedPassword, telefono, direccion, dni, numTarjeta, fechaNacimiento, socio, id_rol, imagen) VALUES ('$nombre', '$apellido1', '$apellido2', '$email','$hashedPassword', '$telefono', '$direccion', '$dni', '$numTarjeta', '$fechaNacimiento', '$isSocio', $rol, '$imagen');";
     $cnx->execute($sqlQuery);
   }
 

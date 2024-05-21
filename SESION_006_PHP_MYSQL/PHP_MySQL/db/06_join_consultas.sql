@@ -29,6 +29,8 @@ SELECT tabla_donde_busco.campo_buscado1, tabla_donde_busco.campo_buscado2 FROM t
 
 SELECT tabla_donde_busco.* FROM tabla_donde_busco INNER JOIN tabla_comparación ON tabla_donde_busco.campo_buscado1 = tabla_comparación.campo.ID WHERE tabla_comparación.campo_buscado2 = "asdf";
 
+SELECT tabla_donde_busco.campo_buscado 
+
 # Ejemplos
 SELECT videojuegos.* FROM videojuegos INNER JOIN genero ON videojuegos.id_genero = genero.id;
 

@@ -27,9 +27,9 @@
   require("./html_modules/header.php");
   require("./html_modules/nav.php");
 
-  if (isset($_REQUEST['usuario']) && isset($_REQUEST['descripcion']) && isset($_REQUEST['subir'])) {
+  if (isset($_REQUEST['subir'])) {
 
-    if ($_FILES['archivo']['error'] != 0) {
+    if ($_FILES['archivo']['error'] > 0) {
       echo "<p>Ha habido un error durante la carga</p>";
       echo "<br/>";
     } else {

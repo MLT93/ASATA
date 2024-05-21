@@ -4,9 +4,9 @@
 <head>
   <meta charset="utf8" />
   <meta name="author" content="DMA" />
-  <meta name="description" content="LOGIN & REGISTER" />
+  <meta name="description" content="REGISTRO VALORACIÓN" />
   <meta name="keywords" content="cursos, formación, desarrollo software" />
-  <title>HOME</title>
+  <title>REG VALORACIÓN</title>
   <link rel="stylesheet" href="./css/estilos.css">
 
   <!-- Estas 4 etiquetas 'meta' evitan que se guarden en la memoria Caché los archivos JS y CSS. De este modo nos aseguramos que al realizar cambios, los busque y actualice la información -->
@@ -37,7 +37,7 @@
   require_once("./classes/BaseDatosUsuario.php");
 
   // Incluir funciones
-  require("./functions/authentication.php");
+  require_once("./functions/authentication.php");
 
   // Llamo a las clases
   // Primer  elemento es el namespace

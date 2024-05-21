@@ -20,6 +20,10 @@
 <body>
 
   <?php
+  // Inicio una sesión para poder trabajar con la información de la super-variable `$_SESSION` correspondiente al captcha
+  // Inicio una sesión. Siempre iniciar una sesión en las páginas que reciben o manejan información del usuario
+  session_start(); //=> Aquí necesito acceder a la variable de sesión para utilizar la imagen del usuario en el `header` cuando se hace el login
+  
   require("./html_modules/header.php");
   require("./html_modules/nav.php");
   require("./html_modules/form_login.php");

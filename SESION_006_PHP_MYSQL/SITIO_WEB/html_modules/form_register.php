@@ -36,6 +36,26 @@
   <label for="isSocioId">¿ES SOCIO?</label>
   <input type="checkbox" name="isSocio" id="isSocioId">
 
+  <label for="rolId">ROL</label>
+  <select name="rol" id="rolId">
+    <?php
+    $sentenciaSQL = "SELECT roles.id, roles.rol FROM roles";
+    $itemsLista = $cnx->myQueryMultiple($sentenciaSQL, false);
+    ?>
+    <option value="0">Escoge un rol</option>
+    <?php
+    foreach ($itemsLista as $key => $value) {
+    ?>
+      <option value="<?= $value[0] ?>"><?= $value[1] ?></option>
+    <?php
+    }
+    ?>
+  </select>
+  <br />
+
+  <label for="imagenId">IMAGEN</label>
+  <input type="file" name="imagen" id="imagenId">
+
   <div id="imgcaptcha"> <img src="./assets/img/captcha_login_register.php"> </div>
   <input type="text" name="captcha" id="captcha">
 

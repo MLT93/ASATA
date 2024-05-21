@@ -90,7 +90,7 @@ function estadoAcceso($jwt, $secretKey, $cipherKey)
         if ($_SESSION['usuario'] == $userJWT) {
 
             http_response_code(200); // OK
-            echo "<p>El usuario tiene acceso a esta página.</p>";
+            // echo "<p>El usuario tiene acceso a esta página.</p>";
             return true;
         } else {
             http_response_code(401); // No autorizado.

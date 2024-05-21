@@ -1,4 +1,4 @@
-<form action="./reg_valoracion.php" method="post" target="_self">
+<form action="reg_valoracion.php" method="post" target="_self">
 
   <div class="reg">
     <label for="idAlquilerID">ULTIMO ALQUILER</label>

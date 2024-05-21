@@ -7,7 +7,7 @@
   <meta name="description" content="USER INFO" />
   <meta name="keywords" content="cursos, formación, desarrollo software" />
   <title>USER INFO</title>
-  <link rel="stylesheet" href="./css/styles.css">
+  <link rel="stylesheet" href="./css/estilos.css">
 
   <!-- Estas 4 etiquetas 'meta' evitan que se guarden en la memoria Caché los archivos JS y CSS. De este modo nos aseguramos que al realizar cambios, los busque y actualice la información -->
   <meta http-equiv="Expires" content="0">
@@ -28,21 +28,31 @@
   // Inicio una sesión. Siempre iniciar una sesión en las páginas que reciben o manejan información del usuario
   session_start();
 
-  //cabecera y nav
+  // HTML
   require_once("./html_modules/header.php");
   require_once("./html_modules/nav.php");
 
-  //importar el archivo de las funciones
+  // Importar el archivo de las funciones
   require_once("./functions/authentication.php");
 
-  //incluir el autoloader del composer
+  // Incluir el autoload del composer
   require_once("../vendor/autoload.php");
-  require_once("./classes/BaseDatosUsuario.php");
 
+  // Añado los archivos de las clases
+  require_once("./classes/BaseDatosUsuario.php");
+  require_once("./classes/BaseDatos.php");
+
+  // Llamo a las clases
+  // Primer  elemento es el namespace
+  // Segundo elemento es la clase 
+  // Tercer  elemento el pseudonimo de la clase
+  use BaseDatos\BaseDatos;
+  use BaseDatosUsuario\BaseDatosUsuario;
+
+  // Esto lo cargo para utilizar las variables de entorno en el archivo `.env`
   // use Firebase\JWT\JWT;
   // use Firebase\JWT\Key;
   use Dotenv\Dotenv;
-  use BaseDatosUsuario\BaseDatosUsuario;
 
   $dotenv = Dotenv::createImmutable("./");
   $dotenv->load();
@@ -84,16 +94,56 @@
       // El contenido de la página iría aquí adentro porque hemos refactorizado el código para que realice todas las comprobaciones en `estadoAcceso`
       $infoUsuario = BaseDatosUsuario::mostrarUsuario($_SESSION['usuario']);
 
+      // echo
+      // "<table>";
+      // echo "<tr>   <td>ID</td>   <td>Nombre</td>   <td>Apellido 1</td>   <td>Apellido 2</td>   <td>E-Mail</td>   <td>Teléfono</td>   <td>Dirección</td>   <td>DNI</td>   <td>Número de Tarjeta</td>   <td>Fecha de Nacimiento</td>   <td>Socio</td>   <td>Rol</td>   </tr>";
+
+      // echo "<tr>";
+
+      // foreach ($infoUsuario as $key => $value) {
+
+      //   if ($key != "hashedPassword") {
+      //     echo "<td>" . $value . "</td>";
+      //   }
+      // }
+
+      // echo "</tr>";
+      // echo "</table>";
+
       echo
       "<table>";
-      echo "<tr>   <td>ID</td>   <td>Nombre</td>   <td>Apellido 1</td>   <td>Apellido 2</td>   <td>E-Mail</td>   <td>Teléfono</td>   <td>Dirección</td>   <td>DNI</td>   <td>Número de Tarjeta</td>   <td>Fecha de Nacimiento</td>   <td>Socio</td>   </tr>";
+      echo "<tr>   <td>Actualizar Usuario</td>   <td>Imagen</td>   <td>Nombre</td>   <td>Apellido 1</td>   <td>Apellido 2</td>   <td>E-Mail</td>   <td>Teléfono</td>   <td>Dirección</td>   <td>DNI</td>   <td>Número de Tarjeta</td>   <td>Fecha de Nacimiento</td>   <td>Socio</td>   <td>Rol</td>   </tr>";
 
       echo "<tr>";
 
+      echo "<td><a href='./actual_user.php'><img class='redondeado' src='./assets/img/update.png'></a></td>";
+
+      echo "<td><img class='redondeado' src='" . $infoUsuario['imagen'] . "'></td>";
+
       foreach ($infoUsuario as $key => $value) {
 
-        if ($key != "hashedPassword") {
-          echo "<td>" . $value . "</td>";
+        if ($key != "hashedPassword" && $key != "imagen" && $key != "id") {
+          if ($key != "socio" && $key != "id_rol") {
+            echo "<td>" . $value . "</td>";
+          }
+        }
+        if ($key == "socio") {
+          if ($value == 1) {
+            $value = "Si";
+            echo "<td>" . $value . "</td>";
+          } else {
+            $value = "No";
+            echo "<td>" . $value . "</td>";
+          }
+        }
+        if ($key == "id_rol") {
+          $consultaRol1 = "SELECT rol FROM roles WHERE id = " . $infoUsuario["id_rol"];
+          // $consultaRol2 = "SELECT roles.rol FROM clientes LEFT JOIN roles ON clientes.id_rol = roles.id WHERE clientes.id = " . $idUsuario['id'];
+
+          $cnx = new BaseDatos("localhost", "root", "", "gameclubdario");
+          $registroRol = $cnx->myQuerySimple($consultaRol1); //=> Devuelve un array asociativo
+
+          echo "<td>" . $registroRol['rol'] . "</td>";
         }
       }
 
@@ -113,7 +163,7 @@
     // }
   } else {
     http_response_code(401); //No autorizado.
-    echo "<h3 class='card' >Acceso denegado. No se ha proporcionado un Token JWT.</h3>" . "<br/>";
+    echo "<h3 class='card'>Acceso denegado. No se ha proporcionado un Token JWT.</h3>" . "<br/>";
   }
 
   require("./html_modules/footer.php");

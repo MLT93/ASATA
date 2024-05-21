@@ -28,11 +28,11 @@
   // Inicio una sesión. Siempre iniciar una sesión en las páginas que reciben o manejan información del usuario
   session_start(); //=> Aquí hace falta iniciar sesión para el login y para el registro
 
-  // Cabecera y nav
+  // HTML
   require_once("./html_modules/header.php");
   require_once("./html_modules/nav.php");
 
-  // Incluir el autoloader del composer
+  // Incluir el autoload del composer
   require_once("../vendor/autoload.php");
 
   // Añado los archivos de las clases
@@ -40,7 +40,8 @@
   require_once("./classes/BaseDatosSession.php");
 
   // Incluir funciones
-  require("./functions/authentication.php");
+  require_once("./functions/authentication.php");
+  require_once("./functions/multimedia.php");
 
   // Llamo a las clases
   // Primer  elemento es el namespace
@@ -88,6 +89,8 @@
         // Inserto el formulario otra página
         // require("./html_modules/form_picture_up.php");
 
+        // Envío el cliente a otra página o la recargo
+        header("Location: user_info.php");
       } else {
         echo "<h3 class='card'>El captcha NO es correcto</h3>" . "<br/>";
       }
@@ -114,6 +117,8 @@
     $numTarjeta = $_REQUEST['numTarjeta'];
     $fNacimiento = $_REQUEST['fNacimiento'];
     $isSocio = $_REQUEST['isSocio'];
+    $rol = intval($_REQUEST['rol']);
+    // $imagen = $_FILES['imagen'];
     $captcha = $_REQUEST['captcha'];
 
     // Compruebo que este usuario no exista en la base de datos
@@ -130,7 +135,33 @@
         if ($captcha == $_SESSION['captcha']) {
 
           // Creo nuevo usuario una vez comprobado todo e iniciado la sesión
-          BaseDatosUsuario::registrarUsuario($nombre, $apellido1, $apellido2, $email, $pass, $tel, $direccion, $dni, $numTarjeta, $fNacimiento, $isSocio);
+          if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] == 0) {
+            $fileName = $_FILES['imagen']['name'];
+            $origen = $_FILES['imagen']['tmp_name'];
+            $fileSize = $_FILES['imagen']['size']; //esto me permitiria controlar el tamaño de la imagen que subo
+            $fileType = $_FILES['imagen']['type'];
+            $destino = "./repo/img/users/" . $nombre . $apellido1 . "_" . date('Y.m.d.His') . "-" . $_FILES['imagen']['name'];
+
+            redimensionarImagen($origen, $destino, 50, 50);
+
+            BaseDatosUsuario::registrarUsuario(
+              $nombre,
+              $apellido1,
+              $apellido2,
+              $email,
+              $pasword,
+              $telefono,
+              $direccion,
+              $dni,
+              $tarjeta,
+              $fechaNac,
+              $socio,
+              $idRol,
+              $destino
+            );
+          } else {
+            echo "<h3 class='card'>Error al subir el archivo</h3>" . "<br/>";
+          }
 
           // echo "<h3 class='card'>Usuario registrado correctamente</h3>" . "<br/>";
           $msgFooter = "Usuario registrado correctamente"; //=> Conexión con el footer
@@ -150,6 +181,8 @@
           // Inserto el formulario otra página
           // require("./html_modules/form_picture_up.php");
 
+          // Envío el cliente a otra página o la recargo
+          header("Location: user_info.php");
         } else {
           echo "<h3 class='card'>El captcha NO es correcto</h3>" . "<br/>";
         }

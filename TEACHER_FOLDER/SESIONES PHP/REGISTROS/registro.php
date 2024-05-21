@@ -13,7 +13,7 @@
 
 <?php
 
-if(isset($_REQUEST['usuario']) && isset($_REQUEST['prioridad']) && isset($_REQUEST['enviar']) ){
+if(isset($_REQUEST['enviar']) ){
 
     //aqui compruebo si el archivo al subirse al servidor ha tenido algun error
     if( $_FILES['archivo']['error'] > 0 ){

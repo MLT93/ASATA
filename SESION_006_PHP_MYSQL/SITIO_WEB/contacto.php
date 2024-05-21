@@ -24,6 +24,7 @@
   ob_start();
   require_once("../vendor/autoload.php");
 
+  // HTML
   require("./html_modules/header.php");
   require("./html_modules/nav.php");
 

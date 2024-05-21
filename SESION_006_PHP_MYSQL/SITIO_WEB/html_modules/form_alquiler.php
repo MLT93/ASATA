@@ -1,5 +1,7 @@
 <form action="./reg_alquiler.php" method="post" target="_self">
 
+<!-- El `$cnx` acá se utiliza sin importar porque este mismo archivo se importará donde ya se establece esa conexión previamente, entonces no hace falta volver a importarlo todo -->
+
   <div class="reg">
     <label for="idVideojuegoID">VIDEOJUEGO</label>
     <!-- <input type="text" name="idVideojuego" id="idVideojuegoID" /> -->
