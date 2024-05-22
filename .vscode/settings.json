@@ -414,17 +414,24 @@
     "Desencriptado",
     "desencriptar",
     "Desencripto",
+    "gameclubdario",
     "Kelm",
     "logueo",
     "Logueo",
+    "mustrevalidate",
     "Narvaez",
+    "paypal",
     "PEGI",
     "Pelaez",
     "PHPSESSID",
+    "redimensionada",
+    "redimensionamos",
     "Redimensionamos",
+    "redimensionar",
     "refactorizado",
     "unicode",
-    "VARCHAR"
+    "VARCHAR",
+    "videogames"
   ],
   "[sql]": {
     "editor.defaultFormatter": "inferrinizzard.prettier-sql-vscode"

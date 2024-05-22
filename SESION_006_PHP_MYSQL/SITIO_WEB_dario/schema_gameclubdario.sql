@@ -3,7 +3,7 @@
 # https://www.phpmyadmin.net/
 #
 # Servidor: 127.0.0.1
-# Tiempo de generación: 22-05-2024 a las 07:26:53
+# Tiempo de generación: 22-05-2024 a las 14:32:32
 # Versión del servidor: 10.4.32-MariaDB
 # Versión de PHP: 8.2.12
 
@@ -20,14 +20,6 @@ SET time_zone = "+00:00";
 #
 # Base de datos: `gameclubdario`
 #
-
-DROP DATABASE gameclubdario;
-
-CREATE DATABASE IF NOT EXISTS gameclubdario;
-
-ALTER DATABASE gameclubdario CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-
-USE gameclubdario;
 
 # ############################
 
@@ -74,7 +66,11 @@ INSERT INTO `alquileres` (`id`, `fechaAlquiler`, `id_usuario`, `id_videojuego`, 
 (79, '2024-05-17', 1, 59, 2, '2024-05-22', 13, 5),
 (80, '2024-05-21', 1, 6, 1, '2024-05-23', 5, 1),
 (81, '2024-05-21', 1, 6, 1, '2024-05-23', 5, 1),
-(82, '2024-05-21', 1, 61, 1, '2024-05-23', 5, 3);
+(82, '2024-05-21', 1, 61, 1, '2024-05-23', 5, 3),
+(83, '2024-05-22', 2, 6, 1, '2024-05-24', 8, 1),
+(84, '2024-05-22', 2, 65, 2, '2024-05-27', 8, 1),
+(85, '2024-05-22', 18, 74, 2, '2024-05-27', 8, 1),
+(86, '2024-05-22', 18, 74, 1, '2024-05-24', 8, 4);
 
 # ############################
 
@@ -451,7 +447,33 @@ INSERT INTO `sesiones` (`id`, `id_usuario`, `fecha`, `interaccion`) VALUES
 (83, 1, '2024-05-21 23:54:42', 'LOG IN'),
 (84, 1, '2024-05-21 23:58:36', 'LOG OUT'),
 (85, 2, '2024-05-21 23:58:45', 'LOG IN'),
-(86, 1, '2024-05-22 06:50:00', 'LOG IN');
+(86, 1, '2024-05-22 06:50:00', 'LOG IN'),
+(87, 1, '2024-05-22 08:35:06', 'LOG IN'),
+(88, 1, '2024-05-22 08:43:51', 'LOG OUT'),
+(89, 2, '2024-05-22 08:44:02', 'LOG IN'),
+(90, 2, '2024-05-22 08:45:16', 'LOG OUT'),
+(91, 1, '2024-05-22 08:45:26', 'LOG IN'),
+(92, 1, '2024-05-22 09:31:55', 'LOG IN'),
+(93, 1, '2024-05-22 10:36:25', 'LOG IN'),
+(94, 1, '2024-05-22 11:42:20', 'LOG IN'),
+(95, 1, '2024-05-22 12:08:57', 'LOG OUT'),
+(96, 1, '2024-05-22 12:09:14', 'LOG IN'),
+(97, 1, '2024-05-22 13:07:12', 'LOG OUT'),
+(98, 18, '2024-05-22 13:08:30', 'LOG IN'),
+(99, 18, '2024-05-22 13:11:45', 'LOG OUT'),
+(100, 1, '2024-05-22 13:11:57', 'LOG IN'),
+(101, 1, '2024-05-22 13:12:28', 'LOG OUT'),
+(102, 2, '2024-05-22 13:12:33', 'LOG IN'),
+(103, 2, '2024-05-22 13:12:37', 'LOG OUT'),
+(104, 18, '2024-05-22 13:12:47', 'LOG IN'),
+(105, 18, '2024-05-22 13:24:54', 'LOG OUT'),
+(106, 18, '2024-05-22 13:24:59', 'LOG IN'),
+(107, 18, '2024-05-22 14:09:06', 'LOG OUT'),
+(108, 2, '2024-05-22 14:09:17', 'LOG IN'),
+(109, 2, '2024-05-22 14:16:51', 'LOG OUT'),
+(110, 18, '2024-05-22 14:16:56', 'LOG IN'),
+(111, 18, '2024-05-22 14:22:31', 'LOG OUT'),
+(112, 2, '2024-05-22 14:22:37', 'LOG IN');
 
 # ############################
 
@@ -514,7 +536,8 @@ INSERT INTO `usuarios` (`id`, `nombre`, `apellido1`, `apellido2`, `email`, `hash
 (7, 'Marino', 'Ménendez', 'Rubiera', 'use7@mail.com', '$2y$10$jGsQxNEMSWINFUjrAUUWx.NvaPhf0G0JNIPpPe2roebaz7pkPk4mO', '666555', 'plaza mayor', '84488699-O', '444555222', '2000-01-06', 1, 2, './repo/img/users/MarinoMénendez_2024.05.21.162613-h7.jpg'),
 (8, 'Edelmiro', 'Marquez', 'Herrero', 'use8@mail.com', '$2y$10$HdQg/9A6is00weQQKhfw6u50/z0UkT0DHIzJeUiqki371cOVji8ki', '777555', 'plaza mayor', '44488699-O', '4443333222', '2003-01-06', 0, 2, './repo/img/users/EdelmiroMarquez_2024.05.21.162658-h5.jpg'),
 (9, 'Rocío', 'Hernán', 'Guardiola', 'use9@mail.com', '$2y$10$mOyiSOs7er6TtedWu6XR2.EWnFneu/W.FuZ6B/gCbVO3X/agrMeIO', '666555', 'plaza mayor', '86888969-O', '444555222', '2000-01-06', 1, 2, './repo/img/users/RocíoHernán_2024.05.21.162718-f1.jpg'),
-(10, 'Oriol', 'Sanchez', 'del Pino', 'use10@mail.com', '$2y$10$qFO7.50lUCVX1PArPRAyLOXBP8G0E5fwVuB.Bg68T1p878wYQmiHe', '777555', 'plaza mayor', '7688999-O', '4443333222', '2003-01-06', 0, 2, './repo/img/users/OriolSanchez_2024.05.21.162842-h6.jpg');
+(10, 'Oriol', 'Sanchez', 'del Pino', 'use10@mail.com', '$2y$10$qFO7.50lUCVX1PArPRAyLOXBP8G0E5fwVuB.Bg68T1p878wYQmiHe', '777555', 'plaza mayor', '7688999-O', '4443333222', '2003-01-06', 0, 2, './repo/img/users/OriolSanchez_2024.05.21.162842-h6.jpg'),
+(18, 'Admin', 'Master', 'Main', 'admin@mail.com', '$2y$10$cti5v3CKNmaCInkhg.OO..IIGNj/MwVpc.PoF6gCRAmdc7i2qsClW', '654654654', 'C/ Belderraín, 5', '65696589-C', '5555000044448888', '2000-02-02', 1, 1, './repo/img/users/adminmaster_2024.05.22.130830-mario.png');
 
 # ############################
 
@@ -549,7 +572,9 @@ INSERT INTO `valoraciones` (`id`, `valoracion`, `id_alquiler`) VALUES
 (14, 5, 15),
 (24, 3, 79),
 (30, 3, 76),
-(31, 2, 82);
+(31, 2, 82),
+(32, 4, 83),
+(33, 5, 84);
 
 # ############################
 
@@ -575,7 +600,7 @@ CREATE TABLE `videojuegos` (
 #
 
 INSERT INTO `videojuegos` (`id`, `nombre`, `descripcion`, `id_genero`, `id_desarrollador`, `id_plataforma`, `id_pegui`, `fechaPublicacion`, `isoCode`, `imagen`) VALUES
-(5, 'Fifa 2020', 'juego de futbol', 5, 2, 1, 1, '2020-05-05', '555555', './repo/img/videogames/Fifa2020_2024.05.21.201650-1276415.jpg'),
+(5, 'Fifa 2020', 'juego de futbol', 5, 2, 1, 1, '2020-05-05', '555555', './repo/img/videogames/Fifa2020_2024.05.22.105301.png'),
 (6, 'Mario Bros', 'juego plataformas', 1, 1, 1, 1, '2000-01-01', '556655', './repo/img/videogames/MarioBros_2024.05.21.201641-mario.png'),
 (58, 'Elden Ring', 'Un juego de rol y acción en un mundo abierto, creado por FromSoftware.', 1, 1, 1, 4, '2022-02-25', 'US01', './repo/img/videogames/EldenRing_2024.05.21.201634-elden-ring-new-header-mobile.jpg'),
 (59, 'The Witcher 3', 'Juego de rol de mundo abierto basado en la serie de libros The Witcher.', 1, 2, 2, 3, '2015-05-19', 'US02', './repo/img/videogames/TheWitcher3_2024.05.21.201628-The_Witcher_3-_Wild_Hunt_Cover.jpg'),
@@ -590,10 +615,10 @@ INSERT INTO `videojuegos` (`id`, `nombre`, `descripcion`, `id_genero`, `id_desar
 (68, 'FIFA 23', 'Simulador de fútbol con licencias oficiales de ligas y equipos globales.', 5, 9, 1, 3, '2022-09-30', 'US11', './repo/img/videogames/FIFA23_2024.05.21.201123-1276415.jpg'),
 (69, 'NBA 2K23', 'Simulador de baloncesto que captura la cultura y emociones del deporte.', 5, 10, 1, 3, '2022-09-09', 'US12', './repo/img/videogames/NBA2K23_2024.05.21.201117-images (1).jpg'),
 (70, 'Dark Souls III', 'Juego de acción y rol con un alto grado de dificultad y mundo oscuro.', 1, 1, 1, 4, '2016-03-24', 'JP13', './repo/img/videogames/DarkSoulsIII_2024.05.21.201112-ds3_game-thumbnail.jpg'),
-(71, 'Animal Crossing: New Horizons', 'Simulador de vida donde los jugadores pueden crear y gestionar su propia isla.', 2, 11, 3, 3, '2020-03-20', 'JP14', './repo/img/videogames/AnimalCrossingNewHorizons_2024.05.21.195838-logo.png'),
+(71, 'Animal Crossing: New Horizons', 'Simulador de vida donde los jugadores pueden crear y gestionar su propia isla.', 2, 11, 3, 3, '2020-03-20', 'JP14', './repo/img/videogames/AnimalCrossingNewHorizons_2024.05.22.104959.png'),
 (72, 'Super Mario Odyssey', 'Juego de plataformas y aventuras protagonizado por Mario.', 2, 11, 3, 3, '2017-10-27', 'JP15', './repo/img/videogames/SuperMarioOdyssey_2024.05.21.201105-alfabetajuega_super_mario_odyssey_3_0.jpg'),
-(73, 'The Legend of Zelda: Breath of the Wild', 'Juego de aventuras en un vasto mundo abierto.', 3, 11, 3, 4, '2017-03-03', 'JP16', './repo/img/videogames/TheLegendofZeldaBreathoftheWild_2024.05.21.235533-images.jpg'),
-(74, 'Halo Infinite', 'FPS con un vasto mundo abierto y una rica narrativa.', 2, 12, 1, 2, '2021-12-08', 'US17', './repo/img/videogames/HaloInfinite_2024.05.21.200725-HaloInfinite_CampaignKeyArt_CLEAN_1920x1080.jpg');
+(73, 'The Legend of Zelda: Breath of the Wild', 'Juego de aventuras en un vasto mundo abierto con protagonista un elfo, Zelda.', 3, 11, 3, 4, '2017-03-03', 'JP16', './repo/img/videogames/TheLegendofZeldaBreathoftheWild_2024.05.22.114253.jpeg'),
+(74, 'Halo Infinite', 'FPS con un vasto mundo abierto y una rica narrativa inherente a una guerra relacionada con el \"anillo\" Halo, donde combaten los seres humanos y el Covenant. ', 20, 12, 1, 2, '2021-12-30', 'US19', './repo/img/videogames/HALOINFINITE_2024.05.22.124035.jpeg');
 
 #
 # Índices para tablas volcadas
@@ -708,7 +733,7 @@ ALTER TABLE `videojuegos`
 # AUTO_INCREMENT de la tabla `alquileres`
 #
 ALTER TABLE `alquileres`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 #
 # AUTO_INCREMENT de la tabla `categorias`
@@ -762,7 +787,7 @@ ALTER TABLE `roles`
 # AUTO_INCREMENT de la tabla `sesiones`
 #
 ALTER TABLE `sesiones`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
 
 #
 # AUTO_INCREMENT de la tabla `tarifas`
@@ -774,13 +799,13 @@ ALTER TABLE `tarifas`
 # AUTO_INCREMENT de la tabla `usuarios`
 #
 ALTER TABLE `usuarios`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 #
 # AUTO_INCREMENT de la tabla `valoraciones`
 #
 ALTER TABLE `valoraciones`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 #
 # AUTO_INCREMENT de la tabla `videojuegos`
