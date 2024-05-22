@@ -58,7 +58,7 @@
       $infoUsuario = Usuario::mostrarUsuario($_SESSION['usuario']);
       $idUsuario = $infoUsuario['id'];
 
-      $consultaSQL = "SELECT tarifas.coste FROM alquileres LEFT JOIN tarifas ON alquileres.id_tarifas = tarifas.id WHERE alquileres.id = $idUsuario ORDER BY alquileres.id DESC LIMIT 0, 1";
+      $consultaSQL = "SELECT tarifas.coste FROM alquileres LEFT JOIN tarifas ON alquileres.id_tarifas = tarifas.id WHERE alquileres.id_usuario = $idUsuario ORDER BY alquileres.id DESC LIMIT 0, 1";
 
       $cnx = new Db("localhost", "root", "", "gameclubdario");
 
