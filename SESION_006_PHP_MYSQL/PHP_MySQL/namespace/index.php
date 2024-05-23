@@ -9,14 +9,14 @@ require("./lib/database2.php");
 // ? `USE`
 // `use`
 // Utilizar los namespace
-// use Namespace\Class as NombreCualquieraPseudonimo
+// use Namespace\Class as CualquierPseudonimo
 use Core\Database as CoreDatabase;
 use Lib\Database as LibDatabase;
 
-// Les asigno una variable para poder usarlas más cómodamente
+// Asigno una variable para poder usar las instancias más cómodamente
 $coreDB = new CoreDatabase();
 $libDB = new LibDatabase();
 
-// Utilizo lo que deseo
+// Utilizo lo que deseo de las instancias
 $coreDB->connect();
 $libDB->connect();

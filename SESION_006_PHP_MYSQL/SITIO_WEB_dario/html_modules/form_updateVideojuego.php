@@ -42,7 +42,7 @@ if (isset($_POST['actualizarVideojuego'])) {
   <input type="text" id="videojuegoName" name="videojuegoName" value="<?= strtoupper($nameVideojuego) ?>" />
 
   <label for="videojuegoFechaPub">FECHA</label>
-  <input type="text" id="videojuegoFechaPub" name="videojuegoFechaPub" value="<?= $fechaPubVideojuego ?>" />
+  <input type="date" id="videojuegoFechaPub" name="videojuegoFechaPub" value="<?= $fechaPubVideojuego ?>" />
 
   <label for="videojuegoIsoCode">ISO Code</label>
   <input type="text" id="videojuegoIsoCode" name="videojuegoIsoCode" value="<?= $isoCodeVideojuego ?>" />

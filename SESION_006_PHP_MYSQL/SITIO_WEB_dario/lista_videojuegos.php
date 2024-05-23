@@ -68,7 +68,7 @@
       echo "<td>
       " . /* PARTE 1: Este formulario es auxiliar. Envía todo a `actual_videojuego` pero se procesa en `form_updateVideojuego` porque este último archivo se carga en `actual_videojuego`, por lo tanto recibe toda esta información.
       Se procesa la info de la base de datos, además de la imagen que carga el cliente */ "
-      <form id='update_videojuego' action='actual_videojuego.php' method='post'>
+      <form class='upd_videojuego' action='actual_videojuego.php' method='post'>
       <input type='hidden' id='videojuegoId' name='videojuegoId' value='" . $value[0] . "' />
       <input type='hidden' id='videojuegoName' name='videojuegoName' value='" . $value[1] . "' />
       <input type='hidden' id='videojuegoDescripcion' name='videojuegoDescripcion' value='" . $value[2] . "' />

@@ -70,9 +70,9 @@
                 $idPlataforma = intval($_POST['plataforma']);
                 $idPegui = intval($_POST['pegui']);
 
-                $nameVideojuego = limpiarCadena($nameVideojuego);
+                $nameVideojuegoLimpio = limpiarCadena($nameVideojuego);
                 // $nameVideojuego = substr($nameVideojuego, 0, strlen($nameVideojuego) -1); // Me da la longitud total del nombre del archivo
-                $nameVideojuego = substr($nameVideojuego, 0, 35); // Me da la longitud de 35 caracteres
+                $nameVideojuegoLimpio = substr($nameVideojuegoLimpio, 0, 35); // Me da la longitud de 35 caracteres
 
                 //aquí compruebo que la imagen se ha cargado correctamente
                 if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] == 0) {
@@ -85,19 +85,51 @@
                     echo "$fileExtension";
 
                     $rutaOrigen = $_FILES['imagen']['tmp_name'];
-                    $rutaDestino = "./repo/img/videogames/" . $nameVideojuego . "_" . date("Y.m.d.His") . "." . $fileExtension;
+                    $rutaDestino = "./repo/img/videogames/" . $nameVideojuegoLimpio . "_" . date("Y.m.d.His") . "." . $fileExtension;
 
                     //copiar imagen formateada sin acentos
                     redimensionarImagen($rutaOrigen, $rutaDestino, 50, 50);
 
                     //actualizar BD
-                    $sentenciaSQL = "UPDATE videojuegos SET imagen = '$rutaDestino', descripcion = '$descripcionVideojuego', nombre = '$nameVideojuego', fechaPublicacion = '$fechaPubVideojuego', isoCode = '$isoCodeVideojuego', id_genero = '$idGenero', id_desarrollador = '$idDesarrollador', id_plataforma = '$idPlataforma', id_pegui = '$idPegui' WHERE id = '$idVideojuego'";
+                    $sentenciaSQL = "UPDATE videojuegos SET 
+                    nombre = '$nameVideojuego', 
+                    descripcion = '$descripcionVideojuego', 
+                    id_genero = '$idGenero', 
+                    id_desarrollador = '$idDesarrollador', 
+                    id_plataforma = '$idPlataforma', 
+                    id_pegui = '$idPegui', 
+                    fechaPublicacion = '$fechaPubVideojuego', 
+                    isoCode = '$isoCodeVideojuego', 
+                    imagen = '$rutaDestino' 
+                    WHERE id = '$idVideojuego'";
 
                     $cnx = new Db("localhost", "root", "", "gameclubdario");
                     $cnx->execute($sentenciaSQL);
 
                     //reenvío el cliente a otra PÁGINA
                     header("Location: lista_videojuegos.php");
+
+                    //controlo el caso en el que no subo ningún archivo (la imagen)
+                } elseif (isset($_FILES['imagen']) && $_FILES['imagen']['error'] == 4) {
+
+                    //actualizar BD
+                    $sentenciaSQL = "UPDATE videojuegos SET 
+                    nombre = '$nameVideojuego', 
+                    descripcion = '$descripcionVideojuego', 
+                    id_genero = '$idGenero', 
+                    id_desarrollador = '$idDesarrollador', 
+                    id_plataforma = '$idPlataforma', 
+                    id_pegui = '$idPegui', 
+                    fechaPublicacion = '$fechaPubVideojuego', 
+                    isoCode = '$isoCodeVideojuego' 
+                    WHERE id = '$idVideojuego'";
+
+                    $cnx = new Db("localhost", "root", "", "gameclubdario");
+                    $cnx->execute($sentenciaSQL);
+
+                    //reenvío el cliente a otra PÁGINA
+                    header("Location: lista_videojuegos.php");
+
                 } else {
                     echo "<h2 class='card'>La imagen no se ha cargado correctamente.</h2>";
                 }

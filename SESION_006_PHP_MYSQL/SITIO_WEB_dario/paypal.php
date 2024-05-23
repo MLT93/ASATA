@@ -58,6 +58,7 @@
       $infoUsuario = Usuario::mostrarUsuario($_SESSION['usuario']);
       $idUsuario = $infoUsuario['id'];
 
+      // Obtenemos el precio del último alquiler realizado por el usuario
       $consultaSQL = "SELECT tarifas.coste FROM alquileres LEFT JOIN tarifas ON alquileres.id_tarifas = tarifas.id WHERE alquileres.id_usuario = $idUsuario ORDER BY alquileres.id DESC LIMIT 0, 1";
 
       $cnx = new Db("localhost", "root", "", "gameclubdario");
@@ -67,7 +68,7 @@
       $costeUltimoAlquiler = $registro['coste'];
 
       // Para pasar información de PHP a JavaScript debo primero pararla al HTML
-      // Genero un `div` con un `atributo ad hoc` con la información que deseo pasarle a JavaScript
+      // Genero un `div` con un `atributo personalizado` y le paso la información que deseo enviar a JavaScript
   ?>
       <div id="userInfoID" data-coste="<?= $costeUltimoAlquiler ?>"></div>
       <div id="paypal-button-container"></div>
@@ -86,7 +87,7 @@
 
   <!-- Este es el código que permite crear el botón y la conexión a la cartera para pagar -->
   <script>
-    // Elaboro la información que guardé antes en el `div` donde envío la información de PHP
+    // Elaboro la información que guardé en el `div` donde envié la información de PHP
     let userInfoID = document.getElementById("userInfoID");
     const coste = Number(userInfoID.getAttribute('data-coste'));
     console.log(coste);
@@ -96,7 +97,7 @@
         return actions.order.create({
           purchase_units: [{
             amount: {
-              value: coste
+              value: coste // Le paso el coste aquí para que me procese ese precio a la hora de pagar
             }
           }]
         });
@@ -106,7 +107,7 @@
           alert('Transaction completed by ' + details.payer.name.given_name);
         });
       }
-      // Renderiza al id container `paypal-button-container`
+      // Renderiza al ID (este ID debo asignarlo al `div` donde le paso la info de PHP) `paypal-button-container`
     }).render('#paypal-button-container');
   </script>
 
