@@ -59,7 +59,7 @@
       $idUsuario = $infoUsuario['id'];
 
       // Obtenemos el precio del último alquiler realizado por el usuario
-      $consultaSQL = "SELECT tarifas.coste FROM alquileres LEFT JOIN tarifas ON alquileres.id_tarifas = tarifas.id WHERE alquileres.id_usuario = $idUsuario ORDER BY alquileres.id DESC LIMIT 0, 1";
+      $consultaSQL = "SELECT tarifas.coste FROM videojuegos LEFT JOIN tarifas ON videojuegos.id_tarifa = tarifas.id ORDER BY videojuegos.id DESC LIMIT 0, 1";
 
       $cnx = new Db("localhost", "root", "", "gameclubdario");
 

@@ -30,8 +30,10 @@
             echo "<a href='./lista_alquileres.php'>✔️ Alquileres " . $infoUsuario['nombre'] . "</a>";
             echo "<a href='./lista_valoraciones.php'>🗳️ Valoraciones " . $infoUsuario['nombre'] . "</a>";
             echo "<a href='./lista_videojuegos.php'>🎮 VIDEOJUEGOS</a>";
-            echo "<a href='./reg_alquiler.php'>⏏️ ALQUILER</a>";
-            echo "<a href='./reg_valoracion.php'>⏏️ VALORACION</a>";
+            // echo "<a href='./reg_alquiler2.php'>⏏️ ALQUILAR</a>";
+            // echo "<a href='./reg_compra.php'>⏏️ COMPRAR</a>";
+            echo "<a href='./catalogo.php'>⏏️ CATALOGO</a>";
+            echo "<a href='./reg_valoracion.php'>⏏️ VALORACIÓN</a>";
 
 
             if ($infoUsuario['id_rol'] == 1) {
@@ -39,7 +41,7 @@
             }
 
             
-            echo "<a href='./paypal.php'>💲 PAYPAL</a>";
+            // echo "<a href='./paypal.php'>💲 PAYPAL</a>";
         }
     } else {
         echo "<a href='./0_login.php'> LOGIN</a>";

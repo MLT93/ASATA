@@ -21,7 +21,7 @@
 <?php
 //activar el almacenamiento en búfer de salida. Esto recoge toda la salida del script hasta que decidas enviarla al navegador, permitiendo modificar las cabeceras en cualquier momento del script. 
  ob_start();
- //inicio una sesion
+ //inicio una sesión
  session_start();
 
  //cabecera y nav
@@ -31,7 +31,7 @@
  require_once("./classes/db.php");
 
  require_once("./functions/authentication.php");
- //incluir el autoloader del composer
+ //incluir el autoload del composer
  require_once("../vendor/autoload.php");
 
  use UserDB\Usuario as Usuario;
@@ -46,8 +46,8 @@
     if(estadoAcceso($_COOKIE['jwt'], $_ENV['SIGNATURE_KEY'], $_ENV['CIPHER_KEY'])){
 
 
-        //EL CONTENIDO DE MI PÁGINA IRIA DENTRO DE ESTE IF  
-        //INICIA AQUI
+        //EL CONTENIDO DE MI PÁGINA IRÍA DENTRO DE ESTE IF  
+        //INICIA AQUÍ
         $infoUsuario = Usuario::mostrarUsuario($_SESSION['usuario']);
         // $idUsuario = $infoUsuario['id'];
         $idRol = $infoUsuario['id_rol'];
@@ -61,7 +61,7 @@
         echo "<table> 
         <tr>
         <th>🔄</th> <th>IMG</th> <th>NOMBRE</th> <th>APELLIDO 1</th> <th>APELLIDO 2</th> <th>E-MAIL</th> 
-        <th>TÉLEFONO</th> <th>DIRECCIÓN</th> <th>DNI</th> 
+        <th>TELÉFONO</th> <th>DIRECCIÓN</th> <th>DNI</th> 
         <th>Nº TARJETA</th> <th>FECHA NACIMIENTO</th> <th>SOCIO</th> <th>ROL</th>
         </tr>";
         echo "<tr>";
@@ -87,7 +87,7 @@
         echo "</tr>";
         echo "</table>";  
 
-        //TERMINA AQUI
+        //TERMINA AQUÍ
 
     }
 

@@ -59,7 +59,7 @@
 
     $sqlQueryAlquileresVideojuegos = "SELECT videojuegos.nombre, videojuegos.imagen FROM alquileres LEFT JOIN videojuegos ON alquileres.id_videojuego = videojuegos.id WHERE alquileres.id_usuario = $id ORDER BY alquileres.id DESC" ;
 
-    $sqlQueryAlquileresTarifas = "SELECT tarifas.tipo FROM alquileres LEFT JOIN tarifas ON alquileres.id_tarifas = tarifas.id WHERE alquileres.id_usuario = $id ORDER BY alquileres.id DESC" ;
+    // $sqlQueryAlquileresTarifas = "SELECT tarifas.tipo FROM videojuegos LEFT JOIN tarifas ON videojuegos.id_tarifas = tarifas.id WHERE videojuegos.id = $id ORDER BY videojuegos.id DESC" ;
 
     $sqlQueryAlquileresEmpleados = "SELECT empleados.nombre, empleados.apellido1, empleados.apellido2 FROM alquileres LEFT JOIN empleados ON alquileres.id_empleado = empleados.id WHERE alquileres.id_usuario = $id ORDER BY alquileres.id DESC" ;
 
@@ -69,7 +69,7 @@
     $registrosAlquileres = $cnx->myQueryMultiple($sqlQuery, false);
     $registrosAlquileresClientes = $cnx->myQueryMultiple($sqlQueryAlquileresClientes, true);
     $registrosAlquileresVideojuegos = $cnx->myQueryMultiple($sqlQueryAlquileresVideojuegos, true);
-    $registrosAlquileresTarifas = $cnx->myQueryMultiple($sqlQueryAlquileresTarifas, true);
+    // $registrosAlquileresTarifas = $cnx->myQueryMultiple($sqlQueryAlquileresTarifas, true);
     $registrosAlquileresEmpleados = $cnx->myQueryMultiple($sqlQueryAlquileresEmpleados, true);
     $registrosAlquileresMetodoPago = $cnx->myQueryMultiple($sqlQueryAlquileresMetodoPago, true);
 
@@ -78,8 +78,8 @@
     echo "<table> 
     <tr>
     <th>FECHA ALQUILER</th> 
-    <th>FECHA DEVOLUCIÓN</th> 
-    <th>TARIFA</th> 
+    <th>FECHA DEVOLUCIÓN</th> " .
+    /* "<th>TARIFA</th> " */ "
     <th>MÉTODO PAGO</th> 
     <th>IMG</th> 
     <th>VIDEOJUEGO</th> 
@@ -89,9 +89,9 @@
       echo "<tr>".
       // "<td>".$value[0]."</td>".//id
       "<td>".$value[1]."</td>".//fecha alquiler
-      "<td>".$value[5]."</td>".
+      "<td>".$value[4]."</td>".
       // "<td>".$registrosAlquileresClientes[$key]['nombre']." ".$registrosAlquileresClientes[$key]['apellido1']." ".$registrosAlquileresClientes[$key]['apellido2']." "."</td>".
-      "<td>".$registrosAlquileresTarifas[$key]['tipo']."</td>".
+      // "<td>".$registrosAlquileresTarifas[$key]['tipo']."</td>".
       "<td>".$registrosAlquileresMetodoPago[$key]['metodo']."</td>".
       "<td><img class ='redondeado' src='".$registrosAlquileresVideojuegos[$key]['imagen']."'></td>".
       "<td>".$registrosAlquileresVideojuegos[$key]['nombre']."</td>".
