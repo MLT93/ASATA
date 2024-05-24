@@ -15,7 +15,6 @@
     <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
     <meta http-equiv="Pragma" content="no-cache">
 
-    <script src="https://www.paypal.com/sdk/js?client-id=AXeihtzYXsJuQ7OixXB9JBVHsckwpCmg_oBrq1A5QU3CssXJuPzDOiBny7T3rOs3pTOfO42cR63gepCz>d"></script>
 </head>
 
 
@@ -61,7 +60,7 @@
             echo "<div id='galeria'>";
             foreach ($arrVideojuegos as $key => $value) {
                 echo "<div class='elemento_galeria'>";
-                echo "<img src='" . $value['imagen'] . "'/>";
+                echo "<img class='redondeado' src='" . $value['imagen'] . "'/>";
                 echo "<br/>";
                 echo "<div>";
                 echo "<input type='checkbox' name='" . $value['id'] . "' id='id " . $value['id'] . "' />";
@@ -91,9 +90,9 @@
             }
             ?>
     <?php
-            echo "</div>";
             echo "</select>";
             echo "<input type='submit' name='pedidoAlquiler' id='pedidoAlquiler' value='ALQUILAR'>";
+            echo "</div>";
             echo "</form>";
 
             //TERMINA AQUÍ

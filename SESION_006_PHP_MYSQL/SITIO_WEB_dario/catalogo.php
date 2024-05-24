@@ -15,7 +15,6 @@
   <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
   <meta http-equiv="Pragma" content="no-cache">
 
-  <script src="https://www.paypal.com/sdk/js?client-id=AXeihtzYXsJuQ7OixXB9JBVHsckwpCmg_oBrq1A5QU3CssXJuPzDOiBny7T3rOs3pTOfO42cR63gepCz>d"></script>
 </head>
 
 
@@ -53,25 +52,33 @@
 
       $cnx = new Db("localhost", "root", "", "gameclubdario");
 
-      $consultaSQLVideojuegos = "SELECT * FROM videojuegos;"; // ToDo: realizar un INNER JOIN para crear un ARRAY con la información del precio y del coste del alquiler
-      $consultaSQLAlquileres = "SELECT coste FROM tarifas;";
+      $infoUsuario = Usuario::mostrarUsuario($_SESSION['usuario']);
+      $idUsuario = $infoUsuario['id'];
+
+      $consultaSQLVideojuegos = "SELECT * FROM videojuegos;";
       $arrVideojuegos = $cnx->myQueryMultiple($consultaSQLVideojuegos);
-      array_push($arrVideojuegos, $consultaSQLAlquileres);
 
       echo "<form class='form_pedidos' action='carrito.php' method='post'>";
       echo "<div class='rower'>";
       echo "<div id='galeria'>";
       foreach ($arrVideojuegos as $key => $value) {
         echo "<div class='elemento_galeria'>";
-        echo "<img src='" . $value['imagen'] . "'/>";
+        echo "<img class='redondeado' src='" . $value['imagen'] . "'/>";
         echo "<br/>";
         echo "<div>";
-        echo "<input type='checkbox' name='" . $value['id'] . "' id='id " . $value['id'] . "' />";
         echo "<span class='span_galeria'>" . $value['nombre'] . "</span>";
         echo "<br/>";
         echo "<input type='radio' name='" . $value['id'] . "' id='id " . $value['precio'] . "' /> COMPRAR";
         echo "<br/>";
-        echo "<input type='radio' name='" . $value['id'] . "' id='id " . $value['coste'] . "' /> ALQUILAR";
+        $consultaSQLTarifas = "SELECT id, tipo, coste FROM tarifas;";
+        $arrConsultaSQLTarifas = $cnx->myQueryMultiple($consultaSQLTarifas, false);
+        // print_r($arrConsultaSQLTarifas);
+        echo "<select name='alquiler'>";
+        echo "<option value='0'>Escoge un tipo de alquiler</option>";
+        foreach ($arrConsultaSQLTarifas as $key => $value) {
+          echo "<option value='$value[0]'>$value[1] | $value[2]€</option>";
+        }
+        echo "</select>";
         echo "</div>";
         echo "</div>";
       }
@@ -88,18 +95,18 @@
       $consultaSQLMPago = "SELECT id, metodo FROM metodospago;";
       $itemsListaMPago = $cnx->myQueryMultiple($consultaSQLMPago, false);
       ?>
-      <option value="0">Escoge un método de pago</option>
+      <option value='0'>Escoge un método de pago</option>
       <?php
       foreach ($itemsListaMPago as $key => $value) {
       ?>
-        <option value="<?= $value[0] ?>"><?= $value[1] ?></option>
+        <option value='<?= $value[0] ?>'><?= $value[1] ?></option>
       <?php
       }
       ?>
   <?php
-      echo "</div>";
       echo "</select>";
-      echo "<input type='submit' name='pedidoPago' id='pedidoPago' value='REALIZA PAGO'>";
+      echo "<input type='submit' name='pedidoPago' id='pedidoPago' value='REALIZAR PAGO'>";
+      echo "</div>";
       echo "</form>";
 
       //TERMINA AQUÍ

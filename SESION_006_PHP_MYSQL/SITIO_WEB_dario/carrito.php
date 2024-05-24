@@ -15,9 +15,11 @@
   <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
   <meta http-equiv="Pragma" content="no-cache">
 
+  <!-- PAYPAL script -->
   <!-- Aquí llamo a la aplicación de PayPal Developer, en mi cuenta Business, con el Client ID de la aplicación (ej. `Default Application`) -->
   <!-- https://www.paypal.com/sdk/js?client-id=<CLIENT_ID_DE_TU_APP> -->
-  <script src="https://www.paypal.com/sdk/js?client-id=AQ7BC8zbNCFXpLpmWON0D5ZYv6RzVFTHi9RL-jtSs_YIsEElMOIlTI1Nl8PCB7uTBRMYewSWvgJedkJ6"></script>
+  <!-- Para definir la moneda se usa `&currency=EUR` -->
+  <script src="https://www.paypal.com/sdk/js?client-id=AQ7BC8zbNCFXpLpmWON0D5ZYv6RzVFTHi9RL-jtSs_YIsEElMOIlTI1Nl8PCB7uTBRMYewSWvgJedkJ6&currency=EUR"></script>
 </head>
 
 
@@ -58,16 +60,18 @@
       // * ALQUILERES
       if (isset($_POST['pedidoAlquiler'])) {
 
-        $cnx = new Db("localhost", "root", "", "gameclubdario");
-
         // var_dump($_POST);
+
+        $cnx = new Db("localhost", "root", "", "gameclubdario");
+        $emailUsuario = $_SESSION['usuario'];
+
         $costeTotal = 0;
         foreach ($_POST as $key => $value) {
 
           // echo $key . "<br/>";
           // echo $value . "<br/>";
 
-          // Si como `$_POST` me devuelve también el input del método de pago y el botón de envío del formulario, necesito quitar los dos últimos elementos del array
+          // `$_POST` me devuelve todos los `name` del formulario en `catalogo.php`. Si como me devuelve también el input del método de pago y el botón de envío del formulario, necesito quitar los dos últimos elementos del array
           // Negamos con un if los `name` que reciba el array como elementos
           if ($key != "mpago" && $key != "pedidoAlquiler") {
 
@@ -75,7 +79,7 @@
             $registros = $cnx->myQuerySimple($consultaSQL);
 
             // Calcular el coste acumulado de los alquileres
-            $costeTotal += floatval($registros["coste"]); // Uso `intval()` para parsear a decimal el string que recibo
+            $costeTotal += floatval($registros["coste"]); // Uso `floatval()` para parsear a decimal el string que recibo
 
             echo "<h3>" . "El videojuego seleccionado es: " . $registros['nombre'] . " --------- " . $registros["tipo"] . " " . $registros['coste'] . "€" . "</h3>" . "<br/>";
           }
@@ -85,7 +89,7 @@
             $registros = $cnx->myQuerySimple($consultaSQL);
 
             // Compruebo que haya algún método de pago seleccionado
-            // En el HTML he asignado el `value=0` cuando no hay método de pago seleccionado. Entonces, si es 0, no habrá método seleccionado y envío un error
+            // En el HTML he asignado el `value="0"` cuando no hay método de pago seleccionado. Si es 0, no habrá método seleccionado y envío un error
             if (intval($value) > 0) {
               // echo "ID método pago: " . $value . "<br/>"; // Muestro el ID del método de pago
               echo "<h3>Método de pago seleccionado: " . strtoupper($registros['metodo']) . "</h3>" . "<br/>"; // Muestro el nombre del método de pago
@@ -99,7 +103,7 @@
                 // Para pasar información de PHP a JavaScript debo primero pararla al HTML
                 // Genero un `div` con un `atributo personalizado` y le paso la información que deseo enviar a JavaScript
   ?>
-                <div id="userInfoID" data-coste="<?= $costeTotal ?>"></div>
+                <div id="userInfoID" data-coste="<?= $costeTotal ?>" data-email="<?= $emailUsuario ?>"></div>
                 <div id="paypal-button-container"></div>
               <?php
 
@@ -119,15 +123,18 @@
 
       if (isset($_POST['pedidoCompra'])) {
 
-        $cnx = new Db("localhost", "root", "", "gameclubdario");
         // var_dump($_POST);
+
+        $cnx = new Db("localhost", "root", "", "gameclubdario");
+        $emailUsuario = $_SESSION['usuario'];
+
         $precioTotal = 0;
         foreach ($_POST as $key => $value) {
 
           // echo $key . "<br/>";
           // echo $value . "<br/>";
 
-          // Si como `$_POST` me devuelve también el input del método de pago y el botón de envío del formulario, necesito quitar los dos últimos elementos del array
+          // `$_POST` me devuelve todos los `name` del formulario en `catalogo.php`. Si como me devuelve también el input del método de pago y el botón de envío del formulario, necesito quitar los dos últimos elementos del array
           // Negamos con un if los `name` que reciba el array como elementos
           if ($key != "mpago" && $key != "pedidoCompra") {
 
@@ -135,7 +142,7 @@
             $regPrecios = $cnx->myQuerySimple($consultaSQL, false);
 
             // Calcular el precio acumulado de la compra
-            $precioTotal += floatval($regPrecios[1]); // Uso `intval()` para parsear a decimal el string que recibo
+            $precioTotal += floatval($regPrecios[1]); // Uso `floatval()` para parsear a decimal el string que recibo
 
             echo "<h3>" . "El videojuego seleccionado es: " . $regPrecios[0] . " --------- " . $regPrecios[1] . "€" . "</h3>" . "<br/>";
           }
@@ -145,7 +152,7 @@
             $regMetodo = $cnx->myQuerySimple($consultaSQL);
 
             // Compruebo que haya algún método de pago seleccionado
-            // En el HTML he asignado el `value=0` cuando no hay método de pago seleccionado. Entonces, si es 0, no habrá método seleccionado y envío un error
+            // En el HTML he asignado el `value="0"` cuando no hay método de pago seleccionado. Si es 0, no habrá método seleccionado y envío un error
             if (intval($value) > 0) {
               // echo "ID método pago: " . $value . "<br/>"; // Muestro el ID del método de pago
               echo "<h3>Método de pago seleccionado: " . strtoupper($regMetodo['metodo']) . "</h3>" . "<br/>"; // Muestro el nombre del método de pago
@@ -159,7 +166,7 @@
                 // Para pasar información de PHP a JavaScript debo primero pararla al HTML
                 // Genero un `div` con un `atributo personalizado` y le paso la información que deseo enviar a JavaScript
               ?>
-                <div id="userInfoID" data-coste="<?= $precioTotal ?>"></div>
+                <div id="userInfoID" data-coste="<?= $precioTotal ?>" data-email="<?= $emailUsuario ?>"></div>
                 <div id="paypal-button-container"></div>
               <?php
 
@@ -177,63 +184,75 @@
       // * CATALOGO
 
       if (isset($_POST['pedidoPago'])) {
-        var_dump($_POST);
 
-        if (isset($_POST[''])) {
-        }
+        // var_dump($_POST);
 
         $cnx = new Db("localhost", "root", "", "gameclubdario");
-        $precioTotal = 0;
-        // foreach ($_POST as $key => $value) {
+        $emailUsuario = $_SESSION['usuario'];
+
+        $compraTotal = 0;
+        foreach ($_POST as $key => $value) {
 
           // echo $key . "<br/>";
           // echo $value . "<br/>";
 
-          // Si como `$_POST` me devuelve también el input del método de pago y el botón de envío del formulario, necesito quitar los dos últimos elementos del array
-          // Negamos con un if los `name` que reciba el array como elementos
-          // if ($key != "mpago" && $key != "pedidoCompra") {
+          // `$_POST` me devuelve todos los `name` del formulario en `catalogo.php`. Si como me devuelve también el input del método de pago, el botón de envío del formulario y el select de los alquileres, necesito quitar los dos últimos elementos del array
+          // Negamos con un `if` los `name` que asigné en el HTML (correspondientes al `id` del array obtenido)
+          if ($key != "mpago" && $key != "pedidoCompra" && $key != "alquiler") {
 
-          //   $consultaSQL = "SELECT nombre, precio FROM videojuegos WHERE videojuegos.id = " . intval($key);
-          //   $regPrecios = $cnx->myQuerySimple($consultaSQL, false);
+            $consultaSQLCompra = "SELECT nombre, precio FROM videojuegos WHERE videojuegos.id = " . intval($key);
+            $consultaSQLAlquiler = "SELECT videojuegos.nombre, tarifas.coste FROM videojuegos LEFT JOIN tarifas ON videojuegos.id_tarifa = tarifas.id WHERE videojuegos.id = " . intval($key);
+            $regCatalogoCompra = $cnx->myQuerySimple($consultaSQLCompra, false);
+            $regCatalogoAlquiler = $cnx->myQuerySimple($consultaSQLAlquiler, false);
+            $regCatalogo = []; // Voy a crear una matriz
+            array_push($regCatalogo, $regCatalogoCompra, $regCatalogoAlquiler);
+            print_r($regCatalogo);
 
-          //   // Calcular el precio acumulado de la compra
-          //   $precioTotal += floatval($regPrecios[1]); // Uso `intval()` para parsear a decimal el string que recibo
+            // Calcular el precio acumulado de alquiler y compra
+            foreach ($regCatalogo as $key => $value) {
+              $compraTotal += floatval($value[0]) + floatval($value[1]); // Uso `floatval()` para parsear a decimal el string que recibo
+            }
+            if ($key == "alquiler") {
+              echo "<h3>" . "Alquiler seleccionado es: " . $value . "</h3>" . "<br/>";
+            } elseif ($key == "pedidoCompra") {
+              echo "<h3>" . "La compra seleccionada es: " . $value . "</h3>" . "<br/>";
+            }
+          }
 
-          //   echo "<h3>" . "El videojuego seleccionado es: " . $regPrecios[0] . " --------- " . $regPrecios[1] . "€" . "</h3>" . "<br/>";
-          // }
-          // if ($key == "mpago") {
+          if ($key == "mpago") {
 
-          //   $consultaSQL = "SELECT metodo FROM metodospago WHERE id = $value;";
-          //   $regMetodo = $cnx->myQuerySimple($consultaSQL);
+            // Llama base datos
+            $consultaSQL = "SELECT metodo FROM metodospago WHERE id = $value;";
+            // Ejecuta la consulta
+            $regMetodo = $cnx->myQuerySimple($consultaSQL);
 
             // Compruebo que haya algún método de pago seleccionado
-            // En el HTML he asignado el `value=0` cuando no hay método de pago seleccionado. Entonces, si es 0, no habrá método seleccionado y envío un error
-            // if (intval($value) > 0) {
-            //   // echo "ID método pago: " . $value . "<br/>"; // Muestro el ID del método de pago
-            //   echo "<h3>Método de pago seleccionado: " . strtoupper($regMetodo['metodo']) . "</h3>" . "<br/>"; // Muestro el nombre del método de pago
+            // En el HTML he asignado el `value="0"` cuando no hay método de pago seleccionado. Si es 0, no habrá método seleccionado y envío un error
+            if (intval($value) > 0) {
 
-            //   // Aquí solo entra si es PAYPAL
-            //   if (intval($value) == 1) {
+              echo "<h3>" . "Método de pago seleccionado: " . strtoupper($regMetodo['metodo']) . "</h3>" . "<br/>"; // Muestro el nombre del método de pago
 
-            //     echo
-            //     "<h3>" . "El precio total es: " . " --------- " . $precioTotal . "€" . "</h3>" . "<br/>";
+              // Aquí solo entra si es PAYPAL
+              if (intval($value) == 1) {
 
-            //     // Para pasar información de PHP a JavaScript debo primero pararla al HTML
-            //     // Genero un `div` con un `atributo personalizado` y le paso la información que deseo enviar a JavaScript
+                echo "<h3>" . "El precio total es: " . " --------- " . $compraTotal . "€" . "</h3>" . "<br/>";
+
+                // Para pasar información de PHP a JavaScript debo primero pararla al HTML
+                // Genero un `div` con un `atributo personalizado` y le paso la información que deseo enviar a JavaScript
               ?>
-               <!--  <div id="userInfoID" data-coste="<?= $precioTotal ?>"></div>
-                <div id="paypal-button-container"></div> -->
+                <div id="userInfoID" data-coste="<?= $compraTotal ?>" data-email="<?= $emailUsuario ?>"></div>
+                <div id="paypal-button-container"></div>
   <?php
 
-        //       } else {
-        //         echo
-        //         "<h3>" . "El precio total es: " . " --------- " . $precioTotal . "€" . "</h3>" . "<br/>";
-        //       }
-        //     } else {
-        //       echo "<h2 class='card'>No has seleccionado ningún método de pago</h2>" . "<br/>";
-        //     }
-        //   }
-        // }
+              } else {
+                echo
+                "<h3>" . "El precio total es: " . " --------- " . $compraTotal . "€" . "</h3>" . "<br/>";
+              }
+            } else {
+              echo "<h2 class='card'>No has seleccionado ningún método de pago</h2>" . "<br/>";
+            }
+          }
+        }
       }
 
       //TERMINA AQUÍ
@@ -255,16 +274,29 @@
     // Elaboro la información que guardé en el `div` donde envié la información de PHP
     let userInfoID = document.getElementById("userInfoID");
     const coste = Number(userInfoID.getAttribute('data-coste'));
-    console.log(coste);
+    const email = userInfoID.getAttribute('data-email');
+    // console.log(coste);
 
     paypal.Buttons({
+      // Página: https://developer.paypal.com/docs/multiparty/checkout/standard/customize/buttons-style-guide/
+      styles: {
+        layout: 'vertical', // vertical (Default) | horizontal
+        color: 'gold', // gold (Default) | silver | blue | black | white
+        form: 'rect', // rect (Default) | pill
+        label: 'paypal', // paypal (Default) | pay | 
+        tagline: true // true (Default) | false
+      },
       createOrder: function(data, actions) {
         return actions.order.create({
           purchase_units: [{
             amount: {
-              value: coste // Le paso el coste aquí para que me procese ese precio a la hora de pagar
+              value: coste, // Le paso el coste aquí para que me procese ese precio a la hora de pagar
+              currency_code: 'EUR'
             }
-          }]
+          }],
+          payer: {
+            email_address: email
+          }
         });
       },
       onApprove: function(data, actions) {

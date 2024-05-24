@@ -28,6 +28,8 @@ body {
   font-weight: bold;
 
   padding-bottom: 100px;
+
+  min-height: 100vh;
 }
 
 .container {
@@ -299,6 +301,7 @@ th {
 
 .form_pedidos {
   width: 100%;
+
   margin: unset;
 }
 
@@ -333,8 +336,10 @@ th {
 }
 
 .span_galeria {
- margin-left: 5px;
+  margin-left: 5px;
 }
+
 .mpago_container {
   margin-left: 3rem;
+  margin-top: 3rem;
 }

@@ -3,7 +3,7 @@
 # https://www.phpmyadmin.net/
 #
 # Servidor: 127.0.0.1
-# Tiempo de generación: 22-05-2024 a las 07:26:53
+# Tiempo de generación: 23-05-2024 a las 13:20:18
 # Versión del servidor: 10.4.32-MariaDB
 # Versión de PHP: 8.2.12
 
@@ -40,7 +40,6 @@ CREATE TABLE `alquileres` (
   `fechaAlquiler` date NOT NULL,
   `id_usuario` int(10) NOT NULL,
   `id_videojuego` int(10) NOT NULL,
-  `id_tarifas` int(10) NOT NULL,
   `fechaDevolucion` date NOT NULL,
   `id_empleado` int(10) NOT NULL,
   `id_metodoPago` int(10) NOT NULL
@@ -50,31 +49,35 @@ CREATE TABLE `alquileres` (
 # Volcado de datos para la tabla `alquileres`
 #
 
-INSERT INTO `alquileres` (`id`, `fechaAlquiler`, `id_usuario`, `id_videojuego`, `id_tarifas`, `fechaDevolucion`, `id_empleado`, `id_metodoPago`) VALUES
-(1, '2024-05-10', 1, 5, 1, '2024-05-17', 2, 1),
-(2, '2024-05-09', 2, 6, 1, '2024-05-17', 2, 1),
-(3, '2024-05-10', 1, 58, 1, '2024-05-17', 6, 1),
-(4, '2024-05-09', 4, 59, 1, '2024-05-18', 8, 2),
-(5, '2024-05-09', 5, 60, 1, '2024-05-19', 7, 3),
-(6, '2024-05-03', 6, 61, 1, '2024-05-11', 11, 4),
-(7, '2024-05-09', 7, 62, 1, '2024-05-17', 12, 5),
-(8, '2024-05-09', 9, 62, 1, '2024-05-17', 4, 1),
-(9, '2024-05-04', 8, 63, 1, '2024-05-17', 8, 2),
-(10, '2024-05-08', 3, 64, 1, '2024-05-17', 3, 3),
-(11, '2024-05-07', 2, 66, 1, '2024-05-17', 2, 3),
-(12, '2024-05-09', 1, 67, 1, '2024-05-17', 11, 2),
-(13, '2024-05-09', 3, 67, 1, '2024-05-17', 10, 4),
-(14, '2024-05-09', 7, 64, 1, '2024-05-17', 9, 4),
-(15, '2024-05-09', 4, 60, 1, '2024-05-17', 7, 2),
-(74, '2024-05-17', 1, 58, 2, '2024-05-22', 13, 1),
-(75, '2024-05-17', 10, 58, 1, '2024-05-19', 13, 3),
-(76, '2024-05-17', 9, 5, 2, '2024-05-22', 13, 1),
-(77, '2024-05-17', 1, 6, 1, '2024-05-19', 10, 2),
-(78, '2024-05-17', 1, 5, 2, '2024-05-22', 13, 2),
-(79, '2024-05-17', 1, 59, 2, '2024-05-22', 13, 5),
-(80, '2024-05-21', 1, 6, 1, '2024-05-23', 5, 1),
-(81, '2024-05-21', 1, 6, 1, '2024-05-23', 5, 1),
-(82, '2024-05-21', 1, 61, 1, '2024-05-23', 5, 3);
+INSERT INTO `alquileres` (`id`, `fechaAlquiler`, `id_usuario`, `id_videojuego`, `fechaDevolucion`, `id_empleado`, `id_metodoPago`) VALUES
+(1, '2024-05-10', 1, 5, '2024-05-17', 2, 1),
+(2, '2024-05-09', 2, 6, '2024-05-17', 2, 1),
+(3, '2024-05-10', 1, 58, '2024-05-17', 6, 1),
+(4, '2024-05-09', 4, 59, '2024-05-18', 8, 2),
+(5, '2024-05-09', 5, 60, '2024-05-19', 7, 3),
+(6, '2024-05-03', 6, 61, '2024-05-11', 11, 4),
+(7, '2024-05-09', 7, 62, '2024-05-17', 12, 5),
+(8, '2024-05-09', 9, 62, '2024-05-17', 4, 1),
+(9, '2024-05-04', 8, 63, '2024-05-17', 8, 2),
+(10, '2024-05-08', 3, 64, '2024-05-17', 3, 3),
+(11, '2024-05-07', 2, 66, '2024-05-17', 2, 3),
+(12, '2024-05-09', 1, 67, '2024-05-17', 11, 2),
+(13, '2024-05-09', 3, 67, '2024-05-17', 10, 4),
+(14, '2024-05-09', 7, 64, '2024-05-17', 9, 4),
+(15, '2024-05-09', 4, 60, '2024-05-17', 7, 2),
+(74, '2024-05-17', 1, 58, '2024-05-22', 13, 1),
+(75, '2024-05-17', 10, 58, '2024-05-19', 13, 3),
+(76, '2024-05-17', 9, 5, '2024-05-22', 13, 1),
+(77, '2024-05-17', 1, 6, '2024-05-19', 10, 2),
+(78, '2024-05-17', 1, 5, '2024-05-22', 13, 2),
+(79, '2024-05-17', 1, 59, '2024-05-22', 13, 5),
+(80, '2024-05-21', 1, 6, '2024-05-23', 5, 1),
+(81, '2024-05-21', 1, 6, '2024-05-23', 5, 1),
+(82, '2024-05-21', 1, 61, '2024-05-23', 5, 3),
+(83, '2024-05-22', 2, 6, '2024-05-24', 8, 1),
+(84, '2024-05-22', 2, 65, '2024-05-27', 8, 1),
+(85, '2024-05-22', 18, 74, '2024-05-27', 8, 1),
+(86, '2024-05-22', 18, 74, '2024-05-24', 8, 4);
 
 # ############################
 
@@ -451,7 +454,44 @@ INSERT INTO `sesiones` (`id`, `id_usuario`, `fecha`, `interaccion`) VALUES
 (83, 1, '2024-05-21 23:54:42', 'LOG IN'),
 (84, 1, '2024-05-21 23:58:36', 'LOG OUT'),
 (85, 2, '2024-05-21 23:58:45', 'LOG IN'),
-(86, 1, '2024-05-22 06:50:00', 'LOG IN');
+(86, 1, '2024-05-22 06:50:00', 'LOG IN'),
+(87, 1, '2024-05-22 08:35:06', 'LOG IN'),
+(88, 1, '2024-05-22 08:43:51', 'LOG OUT'),
+(89, 2, '2024-05-22 08:44:02', 'LOG IN'),
+(90, 2, '2024-05-22 08:45:16', 'LOG OUT'),
+(91, 1, '2024-05-22 08:45:26', 'LOG IN'),
+(92, 1, '2024-05-22 09:31:55', 'LOG IN'),
+(93, 1, '2024-05-22 10:36:25', 'LOG IN'),
+(94, 1, '2024-05-22 11:42:20', 'LOG IN'),
+(95, 1, '2024-05-22 12:08:57', 'LOG OUT'),
+(96, 1, '2024-05-22 12:09:14', 'LOG IN'),
+(97, 1, '2024-05-22 13:07:12', 'LOG OUT'),
+(98, 18, '2024-05-22 13:08:30', 'LOG IN'),
+(99, 18, '2024-05-22 13:11:45', 'LOG OUT'),
+(100, 1, '2024-05-22 13:11:57', 'LOG IN'),
+(101, 1, '2024-05-22 13:12:28', 'LOG OUT'),
+(102, 2, '2024-05-22 13:12:33', 'LOG IN'),
+(103, 2, '2024-05-22 13:12:37', 'LOG OUT'),
+(104, 18, '2024-05-22 13:12:47', 'LOG IN'),
+(105, 18, '2024-05-22 13:24:54', 'LOG OUT'),
+(106, 18, '2024-05-22 13:24:59', 'LOG IN'),
+(107, 18, '2024-05-22 14:09:06', 'LOG OUT'),
+(108, 2, '2024-05-22 14:09:17', 'LOG IN'),
+(109, 2, '2024-05-22 14:16:51', 'LOG OUT'),
+(110, 18, '2024-05-22 14:16:56', 'LOG IN'),
+(111, 18, '2024-05-22 14:22:31', 'LOG OUT'),
+(112, 2, '2024-05-22 14:22:37', 'LOG IN'),
+(113, 18, '2024-05-23 08:34:08', 'LOG IN'),
+(114, 18, '2024-05-23 08:58:00', 'LOG OUT'),
+(115, 18, '2024-05-23 08:58:04', 'LOG IN'),
+(116, 18, '2024-05-23 10:04:02', 'LOG IN'),
+(117, 18, '2024-05-23 10:06:05', 'LOG OUT'),
+(118, 18, '2024-05-23 10:06:11', 'LOG IN'),
+(119, 18, '2024-05-23 10:15:47', 'LOG OUT'),
+(120, 18, '2024-05-23 10:15:50', 'LOG IN'),
+(121, 18, '2024-05-23 12:03:55', 'LOG IN'),
+(122, 18, '2024-05-23 12:14:46', 'LOG OUT'),
+(123, 18, '2024-05-23 12:14:57', 'LOG IN');
 
 # ############################
 
@@ -514,7 +554,8 @@ INSERT INTO `usuarios` (`id`, `nombre`, `apellido1`, `apellido2`, `email`, `hash
 (7, 'Marino', 'Ménendez', 'Rubiera', 'use7@mail.com', '$2y$10$jGsQxNEMSWINFUjrAUUWx.NvaPhf0G0JNIPpPe2roebaz7pkPk4mO', '666555', 'plaza mayor', '84488699-O', '444555222', '2000-01-06', 1, 2, './repo/img/users/MarinoMénendez_2024.05.21.162613-h7.jpg'),
 (8, 'Edelmiro', 'Marquez', 'Herrero', 'use8@mail.com', '$2y$10$HdQg/9A6is00weQQKhfw6u50/z0UkT0DHIzJeUiqki371cOVji8ki', '777555', 'plaza mayor', '44488699-O', '4443333222', '2003-01-06', 0, 2, './repo/img/users/EdelmiroMarquez_2024.05.21.162658-h5.jpg'),
 (9, 'Rocío', 'Hernán', 'Guardiola', 'use9@mail.com', '$2y$10$mOyiSOs7er6TtedWu6XR2.EWnFneu/W.FuZ6B/gCbVO3X/agrMeIO', '666555', 'plaza mayor', '86888969-O', '444555222', '2000-01-06', 1, 2, './repo/img/users/RocíoHernán_2024.05.21.162718-f1.jpg'),
-(10, 'Oriol', 'Sanchez', 'del Pino', 'use10@mail.com', '$2y$10$qFO7.50lUCVX1PArPRAyLOXBP8G0E5fwVuB.Bg68T1p878wYQmiHe', '777555', 'plaza mayor', '7688999-O', '4443333222', '2003-01-06', 0, 2, './repo/img/users/OriolSanchez_2024.05.21.162842-h6.jpg');
+(10, 'Oriol', 'Sanchez', 'del Pino', 'use10@mail.com', '$2y$10$qFO7.50lUCVX1PArPRAyLOXBP8G0E5fwVuB.Bg68T1p878wYQmiHe', '777555', 'plaza mayor', '7688999-O', '4443333222', '2003-01-06', 0, 2, './repo/img/users/OriolSanchez_2024.05.21.162842-h6.jpg'),
+(18, 'Admin', 'Master', 'Main', 'admin@mail.com', '$2y$10$cti5v3CKNmaCInkhg.OO..IIGNj/MwVpc.PoF6gCRAmdc7i2qsClW', '654654654', 'C/ Belderraín, 5', '65696589-C', '5555000044448888', '2000-02-02', 1, 1, './repo/img/users/adminmaster_2024.05.22.130830-mario.png');
 
 # ############################
 
@@ -549,7 +590,10 @@ INSERT INTO `valoraciones` (`id`, `valoracion`, `id_alquiler`) VALUES
 (14, 5, 15),
 (24, 3, 79),
 (30, 3, 76),
-(31, 2, 82);
+(31, 2, 82),
+(32, 4, 83),
+(33, 5, 84),
+(34, 5, 86);
 
 # ############################
 
@@ -567,33 +611,35 @@ CREATE TABLE `videojuegos` (
   `id_pegui` int(10) NOT NULL,
   `fechaPublicacion` date NOT NULL,
   `isoCode` varchar(255) NOT NULL,
-  `imagen` varchar(255) NOT NULL
+  `imagen` varchar(255) NOT NULL,
+  `id_tarifa` int(10) NOT NULL,
+  `precio` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 #
 # Volcado de datos para la tabla `videojuegos`
 #
 
-INSERT INTO `videojuegos` (`id`, `nombre`, `descripcion`, `id_genero`, `id_desarrollador`, `id_plataforma`, `id_pegui`, `fechaPublicacion`, `isoCode`, `imagen`) VALUES
-(5, 'Fifa 2020', 'juego de futbol', 5, 2, 1, 1, '2020-05-05', '555555', './repo/img/videogames/Fifa2020_2024.05.21.201650-1276415.jpg'),
-(6, 'Mario Bros', 'juego plataformas', 1, 1, 1, 1, '2000-01-01', '556655', './repo/img/videogames/MarioBros_2024.05.21.201641-mario.png'),
-(58, 'Elden Ring', 'Un juego de rol y acción en un mundo abierto, creado por FromSoftware.', 1, 1, 1, 4, '2022-02-25', 'US01', './repo/img/videogames/EldenRing_2024.05.21.201634-elden-ring-new-header-mobile.jpg'),
-(59, 'The Witcher 3', 'Juego de rol de mundo abierto basado en la serie de libros The Witcher.', 1, 2, 2, 3, '2015-05-19', 'US02', './repo/img/videogames/TheWitcher3_2024.05.21.201628-The_Witcher_3-_Wild_Hunt_Cover.jpg'),
-(60, 'Cyberpunk 2077', 'Juego de rol de mundo abierto situado en el metrópolis futurista Night City.', 1, 2, 1, 2, '2020-12-10', 'US03', './repo/img/videogames/Cyberpunk2077_2024.05.21.201621-_Cyberpunk_2077.jpg'),
-(61, 'Horizon Forbidden West', 'Aventura de acción en un mundo postapocalíptico con máquinas dominantes.', 3, 3, 3, 2, '2022-02-18', 'US04', './repo/img/videogames/HorizonForbiddenWest_2024.05.21.201613-Horizon-Forbidden-West_20220302113822.jpg'),
-(62, 'God of War', 'Acción y aventura que sigue la historia de Kratos en el mundo de los dioses nórdicos.', 3, 3, 3, 2, '2018-04-20', 'US05', './repo/img/videogames/GodofWar_2024.05.21.201406-god-of-war-pictures-83rush6v76r4v0ul.jpg'),
-(63, 'Fortnite', 'Battle Royale y sandbox donde los jugadores pueden construir estructuras.', 4, 4, 4, 3, '2017-07-21', 'US06', './repo/img/videogames/Fortnite_2024.05.21.201400-Blade_2560x1440_2560x1440-95718a8046a942675a0bc4d27560e2bb.jpg'),
-(64, 'Valorant', 'FPS táctico centrado en personajes con habilidades únicas.', 2, 5, 1, 1, '2020-06-02', 'US07', './repo/img/videogames/Valorant_2024.05.21.201353-IMAGE_4.jpg'),
-(65, 'Minecraft', 'Sandbox que permite a los jugadores construir y explorar mundos generados.', 4, 6, 4, 1, '2011-11-18', 'US08', './repo/img/videogames/Minecraft_2024.05.21.201347-XLTE2PAXLJAJPPLQUO6W7542SY.jpg'),
-(66, 'Apex Legends', 'Battle Royale de disparos en primera persona con elementos futuristas.', 4, 7, 4, 1, '2019-02-04', 'US09', './repo/img/videogames/ApexLegends_2024.05.21.201340-apex-featured-image-16x9.jpg.adapt.crop191x100.1200w.jpg'),
-(67, 'Overwatch', 'FPS centrado en equipos con personajes heroicos.', 2, 8, 1, 1, '2016-05-24', 'US10', './repo/img/videogames/Overwatch_2024.05.21.201129-images.png'),
-(68, 'FIFA 23', 'Simulador de fútbol con licencias oficiales de ligas y equipos globales.', 5, 9, 1, 3, '2022-09-30', 'US11', './repo/img/videogames/FIFA23_2024.05.21.201123-1276415.jpg'),
-(69, 'NBA 2K23', 'Simulador de baloncesto que captura la cultura y emociones del deporte.', 5, 10, 1, 3, '2022-09-09', 'US12', './repo/img/videogames/NBA2K23_2024.05.21.201117-images (1).jpg'),
-(70, 'Dark Souls III', 'Juego de acción y rol con un alto grado de dificultad y mundo oscuro.', 1, 1, 1, 4, '2016-03-24', 'JP13', './repo/img/videogames/DarkSoulsIII_2024.05.21.201112-ds3_game-thumbnail.jpg'),
-(71, 'Animal Crossing: New Horizons', 'Simulador de vida donde los jugadores pueden crear y gestionar su propia isla.', 2, 11, 3, 3, '2020-03-20', 'JP14', './repo/img/videogames/AnimalCrossingNewHorizons_2024.05.21.195838-logo.png'),
-(72, 'Super Mario Odyssey', 'Juego de plataformas y aventuras protagonizado por Mario.', 2, 11, 3, 3, '2017-10-27', 'JP15', './repo/img/videogames/SuperMarioOdyssey_2024.05.21.201105-alfabetajuega_super_mario_odyssey_3_0.jpg'),
-(73, 'The Legend of Zelda: Breath of the Wild', 'Juego de aventuras en un vasto mundo abierto.', 3, 11, 3, 4, '2017-03-03', 'JP16', './repo/img/videogames/TheLegendofZeldaBreathoftheWild_2024.05.21.235533-images.jpg'),
-(74, 'Halo Infinite', 'FPS con un vasto mundo abierto y una rica narrativa.', 2, 12, 1, 2, '2021-12-08', 'US17', './repo/img/videogames/HaloInfinite_2024.05.21.200725-HaloInfinite_CampaignKeyArt_CLEAN_1920x1080.jpg');
+INSERT INTO `videojuegos` (`id`, `nombre`, `descripcion`, `id_genero`, `id_desarrollador`, `id_plataforma`, `id_pegui`, `fechaPublicacion`, `isoCode`, `imagen`, `id_tarifa`, `precio`) VALUES
+(5, 'Fifa 2020', 'juego de futbol', 5, 2, 1, 1, '2020-05-05', '555555', './repo/img/videogames/Fifa2020_2024.05.22.105301.png', 1, 15.99),
+(6, 'Mario Bros', 'juego plataformas', 1, 1, 1, 1, '2000-01-01', '556655', './repo/img/videogames/MarioBros_2024.05.21.201641-mario.png', 1, 15.99),
+(58, 'Elden Ring', 'Un juego de rol y acción en un mundo abierto, creado por FromSoftware.', 1, 1, 1, 4, '2022-02-25', 'US01', './repo/img/videogames/EldenRing_2024.05.21.201634-elden-ring-new-header-mobile.jpg', 1, 15.99),
+(59, 'The Witcher 3', 'Juego de rol de mundo abierto basado en la serie de libros The Witcher.', 1, 2, 2, 3, '2015-05-19', 'US02', './repo/img/videogames/TheWitcher3_2024.05.21.201628-The_Witcher_3-_Wild_Hunt_Cover.jpg', 1, 15.99),
+(60, 'Cyberpunk 2077', 'Juego de rol de mundo abierto situado en el metrópolis futurista Night City.', 1, 2, 1, 2, '2020-12-10', 'US03', './repo/img/videogames/Cyberpunk2077_2024.05.21.201621-_Cyberpunk_2077.jpg', 1, 15.99),
+(61, 'Horizon Forbidden West', 'Aventura de acción en un mundo postapocalíptico con máquinas dominantes.', 3, 3, 3, 2, '2022-02-18', 'US04', './repo/img/videogames/HorizonForbiddenWest_2024.05.21.201613-Horizon-Forbidden-West_20220302113822.jpg', 1, 15.99),
+(62, 'God of War', 'Acción y aventura que sigue la historia de Kratos en el mundo de los dioses nórdicos.', 3, 3, 3, 2, '2018-04-20', 'US05', './repo/img/videogames/GodofWar_2024.05.21.201406-god-of-war-pictures-83rush6v76r4v0ul.jpg', 1, 15.99),
+(63, 'Fortnite', 'Battle Royale y sandbox donde los jugadores pueden construir estructuras.', 4, 4, 4, 3, '2017-07-21', 'US06', './repo/img/videogames/Fortnite_2024.05.21.201400-Blade_2560x1440_2560x1440-95718a8046a942675a0bc4d27560e2bb.jpg', 1, 15.99),
+(64, 'Valorant', 'FPS táctico centrado en personajes con habilidades únicas.', 2, 5, 1, 1, '2020-06-02', 'US07', './repo/img/videogames/Valorant_2024.05.21.201353-IMAGE_4.jpg', 1, 15.99),
+(65, 'Minecraft', 'Sandbox que permite a los jugadores construir y explorar mundos generados.', 4, 6, 4, 1, '2011-11-18', 'US08', './repo/img/videogames/Minecraft_2024.05.21.201347-XLTE2PAXLJAJPPLQUO6W7542SY.jpg', 1, 15.99),
+(66, 'Apex Legends', 'Battle Royale de disparos en primera persona con elementos futuristas.', 4, 7, 4, 1, '2019-02-04', 'US09', './repo/img/videogames/ApexLegends_2024.05.21.201340-apex-featured-image-16x9.jpg.adapt.crop191x100.1200w.jpg', 1, 15.99),
+(67, 'Overwatch', 'FPS centrado en equipos con personajes heroicos.', 2, 8, 1, 1, '2016-05-24', 'US10', './repo/img/videogames/Overwatch_2024.05.21.201129-images.png', 1, 15.99),
+(68, 'FIFA 23', 'Simulador de fútbol con licencias oficiales de ligas y equipos globales.', 5, 9, 1, 3, '2022-09-30', 'US11', './repo/img/videogames/FIFA23_2024.05.21.201123-1276415.jpg', 1, 15.99),
+(69, 'NBA 2K23', 'Simulador de baloncesto que captura la cultura y emociones del deporte.', 5, 10, 1, 3, '2022-09-09', 'US12', './repo/img/videogames/NBA2K23_2024.05.21.201117-images (1).jpg', 1, 15.99),
+(70, 'Dark Souls III', 'Juego de acción y rol con un alto grado de dificultad y mundo oscuro.', 1, 1, 1, 4, '2016-03-24', 'JP13', './repo/img/videogames/DarkSoulsIII_2024.05.21.201112-ds3_game-thumbnail.jpg', 1, 15.99),
+(71, 'Animal Crossing: New Horizons', 'Simulador de vida donde los jugadores pueden crear y gestionar su propia isla.', 2, 11, 3, 3, '2020-03-20', 'JP14', './repo/img/videogames/AnimalCrossingNewHorizons_2024.05.22.104959.png', 1, 15.99),
+(72, 'Super Mario Odyssey', 'Juego de plataformas y aventuras protagonizado por Mario.', 2, 11, 3, 3, '2017-10-27', 'JP15', './repo/img/videogames/SuperMarioOdyssey_2024.05.21.201105-alfabetajuega_super_mario_odyssey_3_0.jpg', 1, 15.99),
+(73, 'The Legend of Zelda: Breath of the Wild', 'Juego de aventuras en un vasto mundo abierto con protagonista un elfo, Zelda.', 3, 11, 3, 4, '2017-03-03', 'JP16', './repo/img/videogames/TheLegendofZeldaBreathoftheWild_2024.05.22.114253.jpeg', 1, 15.99),
+(74, 'HALO INFINITE WAR', 'FPS con un vasto mundo abierto y una rica narrativa inherente a una guerra por el \"anillo\", el Halo.', 20, 9, 1, 3, '2021-06-28', 'US19', './repo/img/videogames/HALOINFINITEWAR_2024.05.23.090125.jpeg', 1, 15.99);
 
 #
 # Índices para tablas volcadas
@@ -607,7 +653,6 @@ ALTER TABLE `alquileres`
   ADD KEY `clienteID` (`id_usuario`),
   ADD KEY `empleadoID` (`id_empleado`),
   ADD KEY `metodopagoID` (`id_metodoPago`),
-  ADD KEY `tarifasID` (`id_tarifas`),
   ADD KEY `videojuegoID` (`id_videojuego`);
 
 #
@@ -698,7 +743,8 @@ ALTER TABLE `videojuegos`
   ADD KEY `desarrolladorID` (`id_desarrollador`),
   ADD KEY `generoID` (`id_genero`),
   ADD KEY `peguiID` (`id_pegui`),
-  ADD KEY `plataformaID` (`id_plataforma`);
+  ADD KEY `plataformaID` (`id_plataforma`),
+  ADD KEY `tarifaVideojuegoID` (`id_tarifa`);
 
 #
 # AUTO_INCREMENT de las tablas volcadas
@@ -708,7 +754,7 @@ ALTER TABLE `videojuegos`
 # AUTO_INCREMENT de la tabla `alquileres`
 #
 ALTER TABLE `alquileres`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 #
 # AUTO_INCREMENT de la tabla `categorias`
@@ -762,7 +808,7 @@ ALTER TABLE `roles`
 # AUTO_INCREMENT de la tabla `sesiones`
 #
 ALTER TABLE `sesiones`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
 
 #
 # AUTO_INCREMENT de la tabla `tarifas`
@@ -774,13 +820,13 @@ ALTER TABLE `tarifas`
 # AUTO_INCREMENT de la tabla `usuarios`
 #
 ALTER TABLE `usuarios`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 #
 # AUTO_INCREMENT de la tabla `valoraciones`
 #
 ALTER TABLE `valoraciones`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 #
 # AUTO_INCREMENT de la tabla `videojuegos`
@@ -799,7 +845,6 @@ ALTER TABLE `alquileres`
   ADD CONSTRAINT `clienteID` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `empleadoID` FOREIGN KEY (`id_empleado`) REFERENCES `empleados` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `metodopagoID` FOREIGN KEY (`id_metodoPago`) REFERENCES `metodospago` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `tarifasID` FOREIGN KEY (`id_tarifas`) REFERENCES `tarifas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `videojuegoID` FOREIGN KEY (`id_videojuego`) REFERENCES `videojuegos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 #
@@ -833,7 +878,8 @@ ALTER TABLE `videojuegos`
   ADD CONSTRAINT `desarrolladorID` FOREIGN KEY (`id_desarrollador`) REFERENCES `desarrolladores` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `generoID` FOREIGN KEY (`id_genero`) REFERENCES `generos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `peguiID` FOREIGN KEY (`id_pegui`) REFERENCES `pegui` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `plataformaID` FOREIGN KEY (`id_plataforma`) REFERENCES `plataformas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `plataformaID` FOREIGN KEY (`id_plataforma`) REFERENCES `plataformas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tarifaVideojuegoID` FOREIGN KEY (`id_tarifa`) REFERENCES `tarifas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
