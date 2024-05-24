@@ -198,26 +198,31 @@
 
           // `$_POST` me devuelve todos los `name` del formulario en `catalogo.php`. Si como me devuelve también el input del método de pago, el botón de envío del formulario y el select de los alquileres, necesito quitar los dos últimos elementos del array
           // Negamos con un `if` los `name` que asigné en el HTML (correspondientes al `id` del array obtenido)
-          if ($key != "mpago" && $key != "pedidoCompra" && $key != "alquiler") {
+          if ($key != "mpago" && $key != "pedidoCompra" && substr($key, 0, 8) != "alquiler") {
 
             $consultaSQLCompra = "SELECT nombre, precio FROM videojuegos WHERE videojuegos.id = " . intval($key);
-            $consultaSQLAlquiler = "SELECT videojuegos.nombre, tarifas.coste FROM videojuegos LEFT JOIN tarifas ON videojuegos.id_tarifa = tarifas.id WHERE videojuegos.id = " . intval($key);
+
             $regCatalogoCompra = $cnx->myQuerySimple($consultaSQLCompra, false);
-            $regCatalogoAlquiler = $cnx->myQuerySimple($consultaSQLAlquiler, false);
-            $regCatalogo = []; // Voy a crear una matriz
-            array_push($regCatalogo, $regCatalogoCompra, $regCatalogoAlquiler);
-            print_r($regCatalogo);
+            // $regCatalogo = []; // Voy a crear una matriz
+            // array_push($regCatalogo, $regCatalogoCompra, $regCatalogoAlquiler);
+            // print_r($regCatalogo);
 
             // Calcular el precio acumulado de alquiler y compra
-            foreach ($regCatalogo as $key => $value) {
-              $compraTotal += floatval($value[0]) + floatval($value[1]); // Uso `floatval()` para parsear a decimal el string que recibo
-            }
-            if ($key == "alquiler") {
-              echo "<h3>" . "Alquiler seleccionado es: " . $value . "</h3>" . "<br/>";
-            } elseif ($key == "pedidoCompra") {
-              echo "<h3>" . "La compra seleccionada es: " . $value . "</h3>" . "<br/>";
-            }
+            // foreach ($regCatalogoCompra as $key => $value) {
+              $compraTotal += floatval($regCatalogoCompra[1]); // Uso `floatval()` para parsear a decimal el string que recibo
+
+              echo "<h3>" . "La compra seleccionada es: " . $regCatalogoCompra[1] . "</h3>" . "<br/>";
+            // }
+
           }
+
+          // ToDo: realizar mejor esta comprobación
+
+            if ($value != "0") {
+              $consultaSQLAlquiler = "SELECT videojuegos.nombre, tarifas.coste FROM videojuegos LEFT JOIN tarifas ON videojuegos.id_tarifa = tarifas.id WHERE videojuegos.id = " . intval($value);
+              $regCatalogoAlquiler = $cnx->myQuerySimple($consultaSQLAlquiler, false);
+              echo "<h3>" . "Alquiler seleccionado es: " . $regCatalogoAlquiler[1] . "</h3>" . "<br/>";
+            }
 
           if ($key == "mpago") {
 

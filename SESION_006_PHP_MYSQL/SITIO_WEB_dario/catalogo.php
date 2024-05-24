@@ -73,7 +73,7 @@
         $consultaSQLTarifas = "SELECT id, tipo, coste FROM tarifas;";
         $arrConsultaSQLTarifas = $cnx->myQueryMultiple($consultaSQLTarifas, false);
         // print_r($arrConsultaSQLTarifas);
-        echo "<select name='alquiler'>";
+        echo "<select name='alquiler" . $value['id'] . "'>";
         echo "<option value='0'>Escoge un tipo de alquiler</option>";
         foreach ($arrConsultaSQLTarifas as $key => $value) {
           echo "<option value='$value[0]'>$value[1] | $value[2]€</option>";
