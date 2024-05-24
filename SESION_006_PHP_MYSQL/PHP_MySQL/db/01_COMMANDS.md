@@ -1,20 +1,26 @@
+# DATABASE
+DRIP DATABASE IF EXISTS test;
+
+CREATE DATABASE IF NOT EXISTS test;
+
+ALTER DATABASE test CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
+USE test;
+
+# TABLE (nombre de la tabla en plural, nombre de los campos en singular) 
 DROP TABLE IF EXISTS estudiantes;
 
 CREATE TABLE `test`.`estudiantes` (
-	`estudiante_id` INT UNSIGNED NOT NULL AUTO_INCREMENT , 
+	`id_estudiante` INT UNSIGNED NOT NULL AUTO_INCREMENT , 
 	`nombre` VARCHAR(200) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL , 
 	`apellido` VARCHAR(200) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL , 
 	`edad` INT(3) NOT NULL , 
-	UNIQUE `id` (`estudiante_id`)
+	UNIQUE `id` (`id_estudiante`)
 ) ENGINE = InnoDB;
 
-INSERT INTO `estudiantes` (`estudiante_id`, `estudiante_nombre`, `estudiante_apellido`, `estudiante_edad`) VALUES (NULL, 'Pedro', 'Gómez', '22');
-
-INSERT INTO `estudiantes` (`estudiante_id`, `estudiante_nombre`, `estudiante_apellido`, `estudiante_edad`) VALUES (NULL, 'Laura', 'Del Mar', '25');
-
-INSERT INTO estudiantes (estudiante_nombre, estudiante_apellido, estudiante_edad) VALUES ("Juan", "Pérez", 30);
-
-INSERT INTO estudiantes (estudiante_nombre, estudiante_apellido, estudiante_edad) VALUES ("Pancho", "Villa", 42), ("Alberto", "Noriega", 36);
+INSERT INTO `estudiantes` (`id_estudiante`, `estudiante_nombre`, `estudiante_apellido`, `estudiante_edad`) VALUES 
+(NULL, 'Pedro', 'Gómez', '22'),
+(NULL, 'Laura', 'Del Mar', '25');
 
 ALTER TABLE alumnos ADD materia VARCHAR(200) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL;
 
@@ -22,15 +28,13 @@ INSERT INTO estudiantes (estudiante_nombre, estudiante_apellido, estudiante_edad
 
 SELECT * FROM `estudiantes`;
 
-SELECT estudiante_nombre FROM `estudiantes`;
+SELECT estudiantes.nombre FROM `estudiantes`;
 
-SELECT estudiante_nombre, estudiante_apellido FROM estudiantes WHERE estudiante_edad > 36;
+SELECT estudiantes.nombre, estudiante_apellido FROM `estudiantes` WHERE estudiante_edad > 36;
 
-SELECT * FROM estudiantes ORDER BY estudiante_edad DESC;
+SELECT * FROM estudiantes ORDER BY edad DESC;
 
-SELECT * FROM estudiantes ORDER BY estudiante_nombre ASC;
-
-ALTER TABLE estudiantes RENAME TO alumnos;
+SELECT * FROM estudiantes ORDER BY estudiantes.nombre ASC;
 
 ALTER TABLE estudiantes RENAME TO alumnos;
 
@@ -51,7 +55,7 @@ CREATE TABLE `test`.`asignaturas` (
 # Añadir campos a la tabla
 ALTER TABLE asignaturas ADD escuela VARCHAR(200) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL;
 
-# Crear elementos en la tabla respetando el orden establecido en ella
+# Añadir registros en la tabla respetando el orden establecido en ella
 INSERT INTO asignaturas ( 
     asignatura_nombre,
     n_credits,
@@ -69,10 +73,10 @@ UPDATE asignaturas SET asignatura_nombre = "Cambio 1", n_credits = "22", tutor =
 # Muestra la tabla entera
 SELECT * FROM asignaturas; 
 
-# Cuenta la cantidad de elementos dentro de la tabla
+# Cuenta la cantidad de registros dentro de la tabla
 SELECT COUNT(*) FROM asignaturas;
 
-# Borra elementos de la tabla según un id específico
+# Borra registros de la tabla según un id específico
 DELETE FROM asignaturas WHERE asignatura_id = 3;
 
 # Borra tabla si existe
@@ -85,7 +89,7 @@ CREATE TABLE `test`.`tutores` (
     `apellido` VARCHAR(200) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL , 
     `curso` VARCHAR(200) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL , 
     `materia` VARCHAR(200) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
-) ENGINE = InnoDB;
+) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 # Agregar valores a los campos de la tabla
 INSERT INTO tutores (
@@ -147,7 +151,8 @@ INSERT INTO clients (
 /* Relación entre tablas */
 Altero la tabla para agregar una clave foránea después de crear todas las demás tablas. La relación debe ser entre valores `UNIQUE` o `PRIMARY KEY` y los campos de las otras tablas que se deseen conectar. Los datos que se relacionan deben tener la misma estructura, si el id principal de una tabla es `UNSIGNED`, también lo será en el campo que se relacionará en la otra tabla
 RECUERDA: en una tabla puede haber un solo `PRIMARY KEY` y un solo `AUTO_INCREMENT`, pero pueden existir varios `UNIQUE`
-FOREIGN KEY relaciona un campo con otro campo de una tabla. Normalmente se utiliza para los ID de las tablas */
+CONSTRAINT FOREIGN KEY relaciona un campo con otro campo de una tabla. Normalmente se utiliza para los ID de las tablas
+NORMALMENTE se pone siempre en la tabla de relación a muchos `n` (`n a 1` o `1 a n `) para crear la clave foránea entre dos tablas. Por ejemplo, una tabla clientes y una tabla pedidos. La relación será clientes `1` y pedidos `n` (porque 1 cliente puede realizar muchos pedidos, entonces es `1 a n`). Aquí la clave foránea se creará en la tabla pedidos enlazando la PRIMARY KEY de clientes con la FOREIGN KEY de pedidos (recuerda que deben tener siempre la misma estructura de datos)
 
 /**
   *
@@ -160,3 +165,9 @@ FOREIGN KEY relaciona un campo con otro campo de una tabla. Normalmente se utili
   *   ADD CONSTRAINT itemID FOREIGN KEY (item_id) REFERENCES item (id) ON DELETE CASCADE ON UPDATE CASCADE;
   *
   */
+
+ALTER TABLE libros 
+  ADD KEY autoresID (author_id),
+  ADD CONSTRAINT autoresID FOREIGN KEY (author_id) REFERENCES autores (id) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD KEY editorialesID (editorial_id),
+  ADD CONSTRAINT editorialesID FOREIGN KEY (editorial_id) REFERENCES editoriales (id) ON DELETE CASCADE ON UPDATE CASCADE;

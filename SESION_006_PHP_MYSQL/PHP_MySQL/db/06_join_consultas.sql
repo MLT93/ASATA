@@ -23,13 +23,13 @@ Comprender los tipos de JOIN: Elige el tipo de JOIN adecuado (INNER, LEFT, RIGHT
 Al dominar las consultas JOIN, aprovecharás al máximo el potencial de las bases de datos relacionales en MySQL, permitiéndote obtener y analizar datos de varias tablas sin problemas.
 
 # Sintaxis
-`SELECCIONA(devuelve)` tabla_donde_busco.campo_buscado `DESDE` tabla_donde_busco `METODO JOIN` tabla_comparación `DONDE LOS ID ESTÉN RELACIONADOS(hay que ponerlo siempre)` tabla_donde_busco.campoID = tabla_comparación.campoID `+ CONDICIONES (opcional)` (se usa `AND`, `OR` para agregar condiciones);
+`SELECCIONA(devuelve)` tabla_donde_busco.campo_buscado `DESDE` tabla_donde_busco `METODO JOIN` tabla_comparación `DONDE LOS ID ESTÉN RELACIONADOS(hay que ponerlo siempre)` tabla_donde_busco.id_campo_foreign_key = tabla_comparación.campo.primary_key `+ CONDICIONES (opcional)` (se usa `AND`, `OR` para agregar condiciones);
 
-SELECT tabla_donde_busco.campo_buscado1, tabla_donde_busco.campo_buscado2 FROM tabla_donde_busco INNER JOIN tabla_comparación ON tabla_donde_busco.campo_buscado1 = tabla_comparación.campo.ID WHERE tabla_comparación.campo_buscado2 = "asdf";
+SELECT tabla_donde_busco.campo_buscado1, tabla_donde_busco.campo_buscado2 FROM tabla_donde_busco INNER JOIN tabla_comparación ON tabla_donde_busco.id_campo_foreign_key = tabla_comparación.campo.primary_key  WHERE tabla_comparación.campo_buscado2 = "asdf";
 
-SELECT tabla_donde_busco.* FROM tabla_donde_busco INNER JOIN tabla_comparación ON tabla_donde_busco.campo_buscado1 = tabla_comparación.campo.ID WHERE tabla_comparación.campo_buscado2 = "asdf";
+SELECT tabla_donde_busco.* FROM tabla_donde_busco INNER JOIN tabla_comparación ON tabla_donde_busco.id_campo_foreign_key = tabla_comparación.campo.primary_key WHERE tabla_comparación.campo_buscado2 = "asdf";
 
-SELECT tabla_donde_busco.campo_buscado 
+SELECCIONA 'SELECT' <los campos que quieras> ENTRE 'FROM' <la tabla_A> RELACIONADA 'INNER, LEFT, RIGHT JOIN' <con la tabla_B> DONDE 'ON' <exista la conexión entre el FOREIGN KEY y la PRIMARY KEY de las tablas>
 
 # Ejemplos
 SELECT videojuegos.* FROM videojuegos INNER JOIN genero ON videojuegos.id_genero = genero.id;

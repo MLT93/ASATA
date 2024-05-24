@@ -1,7 +1,7 @@
-/** DATABASE (nombre en plural) */
+/** DATABASE */
 CREATE DATABASE IF NOT EXISTS biblioteca;
 
-ALTER DATABASE biblioteca CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+ALTER DATABASE prueba DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 USE biblioteca;
 
@@ -32,16 +32,16 @@ DROP TABLE IF EXISTS libros;
 CREATE TABLE `biblioteca`.`libros` (
     `id` INT (10) UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
     `title` VARCHAR(200) NOT NULL,
-    `author_id` INT(10) UNSIGNED,
+    `id_author` INT(10) UNSIGNED,
     `year` INT (4) NOT NULL,
-    `editorial_id` INT(10) UNSIGNED
+    `id_editorial` INT(10) UNSIGNED
   ) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 INSERT INTO libros (
   title,
-  author_id, 
+  id_author, 
   year,
-  editorial_id
+  id_editorial
 ) VALUES
 ("Los Santos Inocentes", 1, 1981, 1),
 ("Don Quijote de la Mancha", 2, 1605, 2);
@@ -70,7 +70,8 @@ INSERT INTO autores (
 /** FOREIGN KEY */
 # Altero la tabla para agregar una clave foránea después de crear todas las demás tablas. La relación debe ser entre valores `UNIQUE` o `PRIMARY KEY` y los campos de las otras tablas que se deseen conectar. Los datos que se relacionan deben tener la misma estructura, si el id principal de una tabla es `UNSIGNED`, también lo será en el campo que se relacionará en la otra tabla
 # RECUERDA: en una tabla puede haber un solo `PRIMARY KEY` y un solo `AUTO_INCREMENT`, pero pueden existir varios `UNIQUE`
-# FOREIGN KEY relaciona un campo con otro campo de una tabla. Normalmente se utiliza para los ID de las tablas */
+# CONSTRAINT FOREIGN KEY relaciona un campo con otro campo de una tabla. Normalmente se utiliza para los ID de las tablas
+# NORMALMENTE se pone siempre en la tabla de relación a muchos `n` (`n a 1` o `1 a n `) para crear la clave foránea entre dos tablas. Por ejemplo, una tabla clientes y una tabla pedidos. La relación será clientes `1` y pedidos `n` (porque 1 cliente puede realizar muchos pedidos, entonces es `1 a n`). Aquí la clave foránea se creará en la tabla pedidos enlazando la PRIMARY KEY de clientes con la FOREIGN KEY de pedidos (recuerda que deben tener siempre la misma estructura de datos)
 #
 # ALTER TABLE nombre_tabla
 # ADD KEY key_asociativo (campo_de_la_tabla)
@@ -80,13 +81,71 @@ INSERT INTO autores (
 #   ADD KEY itemID (item_id),
 #   ADD CONSTRAINT itemID FOREIGN KEY (item_id) REFERENCES item (id) ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE libros 
-  ADD KEY autoresID (author_id),
-  ADD CONSTRAINT autoresID FOREIGN KEY (author_id) REFERENCES autores (id) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD KEY editorialesID (editorial_id),
-  ADD CONSTRAINT editorialesID FOREIGN KEY (editorial_id) REFERENCES editoriales (id) ON DELETE CASCADE ON UPDATE CASCADE;
+# Sintaxis 1
+CREATE TABLE `biblioteca`.`libros` (
+    `id` INT (10) UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    `title` VARCHAR(200) NOT NULL,
+    `id_author` INT(10) UNSIGNED,
+    `year` INT (4) NOT NULL,
+    `id_editorial` INT(10) UNSIGNED,
+    CONSTRAINT autoresID FOREIGN KEY (id_author) REFERENCES autores (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT editorialesID FOREIGN KEY (id_editorial) REFERENCES editoriales (id) ON DELETE CASCADE ON UPDATE CASCADE
+  ) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
-/** DATABASE (nombre en plural) */
+# Sintaxis 2
+CREATE TABLE `biblioteca`.`libros` (
+    `id` INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    `title` VARCHAR(200) NOT NULL,
+    `id_author` INT(10) UNSIGNED,
+    `year` INT(4) NOT NULL,
+    `id_editorial` INT(10) UNSIGNED,
+    FOREIGN KEY (`id_author`) REFERENCES `autores` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (`id_editorial`) REFERENCES `editoriales` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+# Sintaxis 3
+ALTER TABLE libros 
+  ADD KEY autoresID (id_author),
+  ADD CONSTRAINT autoresID FOREIGN KEY (id_author) REFERENCES autores (id) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD KEY editorialesID (id_editorial),
+  ADD CONSTRAINT editorialesID FOREIGN KEY (id_editorial) REFERENCES editoriales (id) ON DELETE CASCADE ON UPDATE CASCADE;
+
+# Ejemplo completo con clave foránea
+DROP DATABASE if EXISTS prueba;
+
+CREATE DATABASE IF NOT EXISTS prueba;
+
+ALTER DATABASE prueba DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+USE prueba;
+
+DROP TABLE IF EXISTS alfabetos;
+
+create table prueba.letras (
+	id_letra INT (10) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    letra VARCHAR (1) NOT NULL,
+    descripcion TEXT
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+INSERT INTO prueba.letras (letra, descripcion) VALUES 
+('a', 'letra principal del alfabeto'),
+('b', 'letra secundaria del alfabeto'),
+('c', 'letra terciaria del alfabeto');
+
+create table prueba.alfabetos (
+	id_alfabeto INT(10) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    nombre VARCHAR (100) NOT NULL,
+    id_letra INT (10) UNIQUE,
+    CONSTRAINT letraID FOREIGN KEY (id_letra) REFERENCES letras (id_letra) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+INSERT INTO prueba.alfabetos (nombre, id_letra) VALUES 
+('alfabeto griego', 1),
+('alfabeto latino', 2),
+('alfabeto chino', 3);
+
+
+/** DATABASE */
 CREATE DATABASE IF NOT EXISTS tienda;
 
 ALTER DATABASE tienda CHARACTER SET utf8 COLLATE utf8_unicode_ci;
@@ -141,10 +200,34 @@ CREATE TABLE `tienda`.`tarifas` (
   `descuentoSocios` FLOAT NOT NULL COMMENT 'es un %' /* `COMMENT` se usa para poner un comentario por defecto al campo de la tabla */
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+/** MODIFICAR TABLAS Y BASES DE DATOS */
+# Nuevo campo en una tabla
+ALTER TABLE alumnos ADD materia VARCHAR(200) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL;
+# Agregar registros a una tabla
+INSERT INTO estudiantes (estudiante_nombre, estudiante_apellido, estudiante_edad) VALUES ("Marquitos", "Feliz", 31);
+# Devolver datos de una tabla
+SELECT * FROM `estudiantes`;
+# Devolver datos de una tabla añadiendo condiciones
+SELECT estudiantes.nombre, estudiante_apellido FROM `estudiantes` WHERE estudiante_edad > 36;
+# Devolver datos de una tabla ordenándola
+SELECT * FROM estudiantes ORDER BY edad DESC;
+SELECT * FROM estudiantes ORDER BY estudiantes.nombre ASC;
+# Renombrar campo de una tabla
+ALTER TABLE estudiantes RENAME TO alumnos;
+# Eliminar tabla si existe
+DROP TABLE IF EXISTS asignaturas;
+# Modifica valores en la tabla según un id específico
+UPDATE asignaturas SET asignatura_nombre = "Cambio 1", n_credits = "22", tutor = "Cambio 2" WHERE id_asignatura = 1; 
+# Borra registros de la tabla según un id específico
+DELETE FROM asignaturas WHERE id_asignatura = 3;
+# Cuenta la cantidad de registros dentro de la tabla
+SELECT COUNT(*) FROM asignaturas;
+
 /** JOIN */
-# `SELECCIONA(devuelve)` tabla_donde_busco.campo_buscado `DESDE` tabla_donde_busco `METODO JOIN` tabla_comparación `DONDE LOS ID ESTÉN RELACIONADOS(hay que ponerlo siempre)` tabla_donde_busco.campoID = tabla_comparación.campoID `+ CONDICIONES (opcional)` (se usa `AND`, `OR` para agregar condiciones);
-# SELECT tabla_donde_busco.campo_buscado1, tabla_donde_busco.campo_buscado2 FROM tabla_donde_busco INNER JOIN tabla_comparación ON tabla_donde_busco.campo_buscado1 = tabla_comparación.campo.ID WHERE tabla_comparación.campo_buscado2 = "asdf";
-# SELECT tabla_donde_busco.* FROM tabla_donde_busco INNER JOIN tabla_comparación ON tabla_donde_busco.campo_buscado1 = tabla_comparación.campo.ID WHERE tabla_comparación.campo_buscado2 = "asdf";
+# `SELECCIONA(devuelve)` tabla_donde_busco.campo_buscado `DESDE` tabla_donde_busco `METODO JOIN` tabla_comparación `DONDE LOS ID ESTÉN RELACIONADOS(hay que ponerlo siempre)` tabla_donde_busco.id_campo_foreign_key = tabla_comparación.campo.primary_key `+ CONDICIONES (opcional)` (se usa `AND`, `OR` para agregar condiciones);
+# SELECT tabla_donde_busco.campo_buscado1, tabla_donde_busco.campo_buscado2 FROM tabla_donde_busco INNER JOIN tabla_comparación ON tabla_donde_busco.id_campo_foreign_key = tabla_comparación.campo.primary_key  WHERE tabla_comparación.campo_buscado2 = "asdf";
+# SELECT tabla_donde_busco.* FROM tabla_donde_busco INNER JOIN tabla_comparación ON tabla_donde_busco.id_campo_foreign_key = tabla_comparación.campo.primary_key WHERE tabla_comparación.campo_buscado2 = "asdf";
+# SELECCIONA 'SELECT' <los campos que quieras> ENTRE 'FROM' <la tabla_A> RELACIONADA 'INNER, LEFT, RIGHT JOIN' <con la tabla_B> DONDE 'ON' <exista la conexión entre el FOREIGN KEY y la PRIMARY KEY de las tablas>
 
 SELECT alquileres.id_cliente, clientes.nombre FROM alquileres INNER JOIN clientes ON alquileres.id_cliente = clientes.id
 
