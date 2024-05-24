@@ -124,7 +124,7 @@ DROP TABLE IF EXISTS alfabetos;
 create table prueba.letras (
 	id_letra INT (10) PRIMARY KEY AUTO_INCREMENT NOT NULL,
     letra VARCHAR (1) NOT NULL,
-    descripcion TEXT
+    descripcion TEXT NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO prueba.letras (letra, descripcion) VALUES 
@@ -135,7 +135,7 @@ INSERT INTO prueba.letras (letra, descripcion) VALUES
 create table prueba.alfabetos (
 	id_alfabeto INT(10) PRIMARY KEY AUTO_INCREMENT NOT NULL,
     nombre VARCHAR (100) NOT NULL,
-    id_letra INT (10) UNIQUE,
+    id_letra INT (10) UNIQUE NOT NULL,
     CONSTRAINT letraID FOREIGN KEY (id_letra) REFERENCES letras (id_letra) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -144,6 +144,9 @@ INSERT INTO prueba.alfabetos (nombre, id_letra) VALUES
 ('alfabeto latino', 2),
 ('alfabeto chino', 3);
 
+SHOW TABLES FROM prueba;
+
+SHOW COLUMNS FROM prueba.alfabetos;
 
 /** DATABASE */
 CREATE DATABASE IF NOT EXISTS tienda;
@@ -408,7 +411,21 @@ ALTER TABLE tarifas ADD UNIQUE KEY `tarifaID` (`tipo`);
 
 /* UNION ALL */
 # Devuelve los campos de dos o más tablas en una sola. Deben tener la misma cantidad de campos
-
 SELECT id, nombre FROM videojuegos
 UNION ALL
 SELECT id, nombre FROM desarrolladores;
+
+
+/* SHOW y DESCRIBE */
+# Lista de todas las bases de datos
+SHOW DATABASES;
+
+# Muestra tablas de una base de datos
+SHOW TABLES FROM pruebas;
+
+# Describe la estructura de la tabla
+SHOW COLUMNS FROM database.attribute;
+DESCRIBE database.attribute;
+
+# Get a list of databases (Microsoft SQL Server)
+SELECT name FROM sys.databases;
