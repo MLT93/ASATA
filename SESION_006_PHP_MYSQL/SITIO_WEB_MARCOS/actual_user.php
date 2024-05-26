@@ -86,7 +86,7 @@
 
           $sentenciaSQL = "UPDATE clientes SET clientes.imagen = '$rutaDestino' WHERE clientes.email = '$email'";
 
-          $cnx = new BaseDatos("localhost", "root", "mysql", "gameclubdario");
+          $cnx = new BaseDatos("localhost", "root", "mysql", "gameclub");
           $cnx->execute($sentenciaSQL);
 
           header("Location: user_info.php");

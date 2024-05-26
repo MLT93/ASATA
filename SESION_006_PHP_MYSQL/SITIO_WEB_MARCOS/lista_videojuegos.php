@@ -53,7 +53,7 @@
   // $dotenv->load();
 
   // Conexión a la base de datos
-  $cnx = new BD("localhost", "root", "mysql", "gameclubdario");
+  $cnx = new BD("localhost", "root", "mysql", "gameclub");
 
   // Creo las sentencias SQL y uso un LEFT JOIN para que me devuelva todos los registros de la tabla videojuegos para que me devuelva el mismo número de registros en todas las consultas (aunque estén vacíos). De esta forma evito errores
   $sqlQuery = "SELECT * FROM videojuegos ORDER BY videojuegos.id DESC"; //=> Le ponemos `DESC` para que el último videojuego agregado se vea al inicio de la tabla

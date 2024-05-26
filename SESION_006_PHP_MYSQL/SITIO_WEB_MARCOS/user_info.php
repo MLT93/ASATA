@@ -144,7 +144,7 @@
           $consultaRol1 = "SELECT rol FROM roles WHERE id = " . $infoUsuario["id_rol"];
           // $consultaRol2 = "SELECT roles.rol FROM clientes LEFT JOIN roles ON clientes.id_rol = roles.id WHERE clientes.id = " . $idUsuario['id'];
 
-          $cnx = new BaseDatos("localhost", "root", "mysql", "gameclubdario");
+          $cnx = new BaseDatos("localhost", "root", "mysql", "gameclub");
           $registroRol = $cnx->myQuerySimple($consultaRol1); //=> Devuelve un array asociativo
 
           echo "<td>" . $registroRol['rol'] . "</td>";

@@ -3,7 +3,7 @@
 
     // use BaseDatos\BaseDatos;
 
-    // $cnx = new BaseDatos("localhost", "root", "mysql", "gameclubdario");
+    // $cnx = new BaseDatos("localhost", "root", "mysql", "gameclub");
 
     // No necesito esto aquí porque importo directamente este archivo en `reg_videojuego.php` después de realizar la conexión a la database
 

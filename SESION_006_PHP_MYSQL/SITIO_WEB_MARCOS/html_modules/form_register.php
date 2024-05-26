@@ -3,7 +3,7 @@
 
     use BaseDatos\BaseDatos;
 
-    $cnx = new BaseDatos("localhost", "root", "mysql", "gameclubdario");
+    $cnx = new BaseDatos("localhost", "root", "mysql", "gameclub");
     ?>
 
    <form action="1_home.php" method="post">

@@ -66,7 +66,7 @@
     if (estadoAcceso($jwt, $secretKey, $cipherKey)) {
 
       // Conexión a la base de datos
-      $cnx = new BD("localhost", "root", "mysql", "gameclubdario");
+      $cnx = new BD("localhost", "root", "mysql", "gameclub");
       $idUsuario = BaseDatosUsuario::mostrarIdUsuario($_SESSION['usuario']);
 
       // Creo las sentencias SQL y uso un LEFT JOIN para que me devuelva todos los registros de la tabla videojuegos para que me devuelva el mismo número de registros en todas las consultas (aunque estén vacíos). De esta forma evito errores

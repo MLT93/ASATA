@@ -1,6 +1,7 @@
 <?php
 
 namespace BaseDatosSession;
+
 use UserDB\Usuario;
 
 require_once("BaseDatos.php");
@@ -45,7 +46,7 @@ class BaseDatosSession
   // METHODS
   public function inicioLogin(string $emailUsuario)
   {
-    $cnx = new BaseDatos("localhost", "root", "mysql", "gameclubdario");
+    $cnx = new BaseDatos("localhost", "root", "mysql", "gameclub");
     $idUsuario = BaseDatosUsuario::mostrarIdUsuario($emailUsuario);
 
     if ($idUsuario > 0) {
@@ -86,7 +87,7 @@ class BaseDatosSession
   {
     if (isset($_SESSION['usuario'])) {
 
-      $cnx = new BaseDatos('localhost', 'root', 'mysql', 'gameclubdario');
+      $cnx = new BaseDatos('localhost', 'root', 'mysql', 'gameclub');
       $idUsuario = BaseDatosUsuario::mostrarIdUsuario($_SESSION['usuario']);
 
       if ($idUsuario > 0) {
