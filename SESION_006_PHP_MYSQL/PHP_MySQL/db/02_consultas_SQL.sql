@@ -1,4 +1,6 @@
 /** DATABASE */
+DROP DATABASE IF EXISTS biblioteca;
+
 CREATE DATABASE IF NOT EXISTS biblioteca;
 
 ALTER DATABASE prueba DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -78,8 +80,8 @@ INSERT INTO autores (
 # ADD CONSTRAINT key_asociativo FOREIGN KEY (campo_de_la_tabla) REFERENCES tabla_a_relacionar (primary_key_de_la_tabla_a_relacionar) ON DELETE CASCADE ON UPDATE CASCADE;
 #
 # ALTER TABLE table_name
-#   ADD KEY itemID (item_id),
-#   ADD CONSTRAINT itemID FOREIGN KEY (item_id) REFERENCES item (id) ON DELETE CASCADE ON UPDATE CASCADE;
+#   ADD KEY itemID (id_item),
+#   ADD CONSTRAINT itemID FOREIGN KEY (id_item) REFERENCES items (id_item) ON DELETE CASCADE ON UPDATE CASCADE;
 
 # Sintaxis 1
 CREATE TABLE `biblioteca`.`libros` (
@@ -227,12 +229,20 @@ DELETE FROM asignaturas WHERE id_asignatura = 3;
 SELECT COUNT(*) FROM asignaturas;
 
 /** JOIN */
+# Sintaxis Explícita
 # `SELECCIONA(devuelve)` tabla_donde_busco.campo_buscado `DESDE` tabla_donde_busco `METODO JOIN` tabla_comparación `DONDE LOS ID ESTÉN RELACIONADOS(hay que ponerlo siempre)` tabla_donde_busco.id_campo_foreign_key = tabla_comparación.campo.primary_key `+ CONDICIONES (opcional)` (se usa `AND`, `OR` para agregar condiciones);
 # SELECT tabla_donde_busco.campo_buscado1, tabla_donde_busco.campo_buscado2 FROM tabla_donde_busco INNER JOIN tabla_comparación ON tabla_donde_busco.id_campo_foreign_key = tabla_comparación.campo.primary_key  WHERE tabla_comparación.campo_buscado2 = "asdf";
 # SELECT tabla_donde_busco.* FROM tabla_donde_busco INNER JOIN tabla_comparación ON tabla_donde_busco.id_campo_foreign_key = tabla_comparación.campo.primary_key WHERE tabla_comparación.campo_buscado2 = "asdf";
 # SELECCIONA 'SELECT' <los campos que quieras> ENTRE 'FROM' <la tabla_A> RELACIONADA 'INNER, LEFT, RIGHT JOIN' <con la tabla_B> DONDE 'ON' <exista la conexión entre el FOREIGN KEY y la PRIMARY KEY de las tablas>
 
-SELECT alquileres.id_cliente, clientes.nombre FROM alquileres INNER JOIN clientes ON alquileres.id_cliente = clientes.id
+# Sintaxis Implícita
+# `SELECCIONA(devuelve)` campos_buscados `DESDE` tabla_donde_busco, tabla_comparación `DONDE ESTA CONDICIÓN SE CUMPLA` tabla_donde_busco.id_campo_foreign_key = tabla_comparación.campo.primary_key `+ CONDICIONES (opcional)` (se usa `AND`, `OR` para agregar condiciones);
+# SELECT tabla_donde_busco.campo_buscado1, tabla_donde_busco.campo_buscado2, tabla_comparación.campo_buscado1 FROM tabla_donde_busco, tabla_comparación WHERE tabla_donde_busco.id_campo_foreign_key = tabla_comparación.campo.primary_key AND tabla_comparación.campo_buscado2 = "asdf";
+# SELECT * FROM tabla_donde_busco, tabla_comparación WHERE tabla_donde_busco.id_campo_foreign_key = tabla_comparación.campo.primary_key AND tabla_comparación.campo_buscado2 = "asdf";
+# SELECCIONA 'SELECT' <los campos que quieras> ENTRE 'FROM' <tabla_A>,  <tabla_B> DONDE 'WHERE' <exista la conexión entre el FOREIGN KEY y la PRIMARY KEY de las tablas> Y 'AND' <más condiciones>;
+
+SELECT alquileres.id_cliente, clientes.nombre FROM alquileres INNER JOIN clientes ON alquileres.id_cliente = clientes.id;
+SELECT alquileres.id_cliente, clientes.nombre FROM alquileres, clientes WHERE alquileres.id_cliente = clientes.id;
 
 /** ALIAS */
 # Asigna pseudónimos para facilitar las consultas

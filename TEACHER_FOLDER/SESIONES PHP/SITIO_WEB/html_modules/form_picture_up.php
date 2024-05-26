@@ -1,5 +1,5 @@
 <!-- el atributo de form enctype, lo necesito para enviar imagenes -->
-<form action="success_upload.php" method="post" enctype="multipart/form-data">
+<form class='form_justificado' action="success_upload.php" method="post" enctype="multipart/form-data">
                      
 <label for="usuario" >USUARIO</label>
 <input type="text" name="usuario">

@@ -1,7 +1,7 @@
-<form action="1_home.php" method="post">  
+<form class='form_justificado' action="1_home.php" method="post">  
 
-<label for="nombre">NOMBRE</label>
-<input type="text" name="nombre" id="nombre" >
+<label for="email">EMAIL</label>
+<input type="email" name="email" id="email" >
 
 <label for="pass">PASSWORD</label>
 <input type="password" name="pass" id="pass">
