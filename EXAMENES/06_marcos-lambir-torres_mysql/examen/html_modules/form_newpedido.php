@@ -18,7 +18,7 @@ $cnx = new Db("localhost", "root", "", "restaurante");
     $arrProductos = $cnx->myQueryMultiple($consultaSQL, false);
 
     foreach ($arrProductos as $key => $value) { ?>
-      <option value="<?= $value[0] ?>"> <?= $value[1] ?> <?= $value[2] ?></option>
+      <option value="<?= $value[0] ?>"> <?= $value[1] ?> <?= $value[2] ?>€</option>
     <?php
     }
     ?>
