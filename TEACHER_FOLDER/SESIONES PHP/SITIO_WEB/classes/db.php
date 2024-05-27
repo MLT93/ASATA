@@ -30,7 +30,7 @@ public function  __construct( string $host="localhost", string $user="root", str
         echo "Error de conexión";
     }
     else{
-        $con->query("SET CHARSET utf-8");
+        $con->query("SET CHARSET utf8");
         $this->connection = $con;
     }
 }
