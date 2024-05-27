@@ -66,24 +66,25 @@
     if (estadoAcceso($jwt, $secretKey, $cipherKey)) {
 
       // Conexión a la base de datos
-      $cnx = new BD("localhost", "root", "mysql", "gameclub");
+      // $cnx = new BD("localhost", "root", "mysql", "gameclub");
+      $cnx = new BD("localhost", "root", "", "gameclub");
       $idUsuario = BaseDatosUsuario::mostrarIdUsuario($_SESSION['usuario']);
 
       // Creo las sentencias SQL y uso un LEFT JOIN para que me devuelva todos los registros de la tabla videojuegos para que me devuelva el mismo número de registros en todas las consultas (aunque estén vacíos). De esta forma evito errores
       // Además, hago que la búsqueda se relacione con el cliente logueado a través de la información guardada en el token JWT y la variable de sesión
-      $sqlQuery = "SELECT * FROM alquileres WHERE id_cliente = $idUsuario ORDER BY alquileres.id";
-      $sqlQueryAlquileresCliente = "SELECT nombre, apellido1 FROM alquileres LEFT JOIN clientes ON alquileres.id_cliente = clientes.id WHERE id_cliente = $idUsuario ORDER BY alquileres.id";
-      $sqlQueryAlquileresVideojuegos = "SELECT nombre FROM alquileres LEFT JOIN videojuegos ON alquileres.id_videojuego = videojuegos.id WHERE id_cliente = $idUsuario ORDER BY alquileres.id";
-      $sqlQueryAlquileresTarifas = "SELECT tipo FROM alquileres LEFT JOIN tarifas ON alquileres.id_tarifas = tarifas.id WHERE id_cliente = $idUsuario ORDER BY tarifas.id";
-      $sqlQueryAlquileresEmpleados = "SELECT nombre, apellido1 FROM alquileres LEFT JOIN empleados ON alquileres.id_empleado = empleados.id WHERE id_cliente = $idUsuario ORDER BY alquileres.id";
-      $sqlQueryAlquileresMetodoPago = "SELECT metodo FROM alquileres LEFT JOIN metodospago ON alquileres.id_metodoPago = metodospago.id WHERE id_cliente = $idUsuario ORDER BY alquileres.id";
+      $sqlQuery = "SELECT * FROM alquileres WHERE id_usuario = $idUsuario ORDER BY alquileres.id";
+      $sqlQueryAlquileresCliente = "SELECT nombre, apellido1 FROM alquileres LEFT JOIN usuarios ON alquileres.id_usuario = usuarios.id WHERE id_usuario = $idUsuario ORDER BY alquileres.id";
+      $sqlQueryAlquileresVideojuegos = "SELECT nombre FROM alquileres LEFT JOIN videojuegos ON alquileres.id_videojuego = videojuegos.id WHERE id_usuario = $idUsuario ORDER BY alquileres.id";
+      // $sqlQueryAlquileresTarifas = "SELECT tipo FROM alquileres LEFT JOIN tarifas ON alquileres.id_tarifas = tarifas.id WHERE id_usuario = $idUsuario ORDER BY tarifas.id";
+      $sqlQueryAlquileresEmpleados = "SELECT empleados.nombre, empleados.apellido1, empleados.apellido2 FROM alquileres LEFT JOIN empleados ON alquileres.id_empleado = empleados.id WHERE alquileres.id_usuario = $idUsuario ORDER BY alquileres.id DESC";
+      $sqlQueryAlquileresMetodoPago = "SELECT metodospago.metodo FROM alquileres LEFT JOIN metodospago ON alquileres.id_metodoPago = metodospago.id WHERE alquileres.id_usuario = $idUsuario ORDER BY alquileres.id DESC";
 
       // Creo array
       $registrosAlquileres = $cnx->myQueryMultiple($sqlQuery, false); //=> Devuelve un array con índices
       // Creo una matrices de registros
       $registrosAlquileresClientes = $cnx->myQueryMultiple($sqlQueryAlquileresCliente); //=> Devuelve una matriz asociativa
       $registrosAlquileresVideojuegos = $cnx->myQueryMultiple($sqlQueryAlquileresVideojuegos); //=> Devuelve una matriz asociativa
-      $registrosAlquileresTarifas = $cnx->myQueryMultiple($sqlQueryAlquileresTarifas); //=> Devuelve una matriz asociativa
+      // $registrosAlquileresTarifas = $cnx->myQueryMultiple($sqlQueryAlquileresTarifas); //=> Devuelve una matriz asociativa
       $registrosAlquileresEmpleados = $cnx->myQueryMultiple($sqlQueryAlquileresEmpleados); //=> Devuelve una matriz asociativa
       $registrosAlquileresMetodoPago = $cnx->myQueryMultiple($sqlQueryAlquileresMetodoPago); //=> Devuelve una matriz asociativa
 
@@ -100,7 +101,7 @@
       */
 
       echo "<table>";
-      echo "<tr>   <th>ID</th>   <th>Fecha Alquiler</th>   <th>Nombre Cliente</th>   <th>Videojuego</th>   <th>Tarifa</th>   <th>Fecha Devolución</th>   <th>Empleado</th>   <th>Método de Pago</th>   </tr>";
+      echo "<tr>   <th>ID</th>   <th>Fecha Alquiler</th>   <th>Nombre Cliente</th>   <th>Videojuego</th>   "./* "<th>Tarifa</th>" */"   <th>Fecha Devolución</th>   <th>Empleado</th>   <th>Método de Pago</th>   </tr>";
 
       foreach ($registrosAlquileres as $key => $value) {
         echo "<tr>" .
@@ -111,8 +112,8 @@
           $registrosAlquileresClientes[$key]['apellido1'] . "</td>" .
 
           "<td>" . $registrosAlquileresVideojuegos[$key]['nombre'] . "</td>" .
-          "<td>" . $registrosAlquileresTarifas[$key]['tipo'] . "</td>" .
-          "<td>" . $value[5] . "</td>" .
+          // "<td>" . $registrosAlquileresTarifas[$key]['tipo'] . "</td>" .
+          "<td>" . $value[4] . "</td>" .
 
           "<td>" . $registrosAlquileresEmpleados[$key]['nombre'] . " " .
           $registrosAlquileresEmpleados[$key]['apellido1'] . "</td>" .

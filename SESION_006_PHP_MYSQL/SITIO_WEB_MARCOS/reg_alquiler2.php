@@ -4,9 +4,9 @@
 <head>
   <meta charset="utf8" />
   <meta name="author" content="DMA" />
-  <meta name="description" content="REGISTRO VALORACIÓN" />
+  <meta name="description" content="REGISTRO ALQUILER" />
   <meta name="keywords" content="cursos, formación, desarrollo software" />
-  <title>REG VALORACIÓN</title>
+  <title>REG ALQUILER</title>
   <link rel="stylesheet" href="./css/estilos.css">
 
   <!-- Estas 4 etiquetas 'meta' evitan que se guarden en la memoria Caché los archivos JS y CSS. De este modo nos aseguramos que al realizar cambios, los busque y actualice la información -->
@@ -68,43 +68,40 @@
       // Conexión a la base de datos
       // $cnx = new BaseDatos("localhost", "root", "mysql", "gameclub");
       $cnx = new BaseDatos("localhost", "root", "", "gameclub");
+      $sentenciaSQL = "SELECT * FROM videojuegos";
+      $listaVideojuegos = $cnx->myQueryMultiple($sentenciaSQL);
 
-      // Cargo el formulario después de realizar la conexión a la base de datos para que el código PHP que se ejecuta en el formulario funcione
-      require_once("./html_modules/form_valoracion.php");
-
-      // REGISTRO ALQUILER
-      if (isset($_POST["enviarValoracion"])) {
-
-        // Variables formulario
-        $valoracion = intval($_POST["valoracion"]);
-
-        // Tomo el último alquiler realizado por el usuario logueado para poderlo valorar
-        $idUsuario = Usuario::mostrarIdUsuario($_SESSION['usuario']);
-        $sqlQuery = "SELECT alquileres.id, videojuegos.nombre FROM alquileres INNER JOIN videojuegos ON alquileres.id_videojuego = videojuegos.id WHERE alquileres.id_cliente = $idUsuario ORDER BY alquileres.id DESC LIMIT 0, 1";
-        $ultimoAlquiler = $cnx->myQuerySimple($sqlQuery); //=> Devuelve un array asociativo
-        $idUltimoAlquiler = $ultimoAlquiler['id'];
-
-        // Realizo una comprobación para ver si existen valoraciones previas para el mismo juego
-        $sentenciaSQL = "SELECT COUNT(*) FROM valoraciones WHERE valoraciones.id_alquiler = $idUltimoAlquiler";
-        $existeValoracion = $cnx->myQuerySimple($sentenciaSQL); //=> Devuelve un array asociativo
-        if ($existeValoracion["COUNT(*)"] > 0) { //=> Devuelve la cantidad de valoraciones realizadas por el usuario en ese mismo juego
-
-          echo "<h3 class='card'>Ya existe una valoración para este juego</h3>";
-        } else {
-
-          // Variables database
-          $camposDB = ["valoracion", "id_alquiler"];
-          $registrosDB = [$valoracion, $idUltimoAlquiler];
-
-          // Escribo en la database
-          $cnx->insertSingleRegister("valoraciones", $camposDB, $registrosDB);
-
-          $msgFooter = "Valoración realizada con éxito"; //=> Conexión con el footer
-
-          // Envío el cliente a otra página o la recargo
-          header("Location: lista_valoraciones.php");
-        }
+      echo "<form class='form_alquiler2' action='carrito.php' method='post'>";
+      echo "<div class='galeria'>";
+      foreach ($listaVideojuegos as $key => $value) {
+        echo "<div class='elementoGaleria' >";
+        echo "<img src='" . $value["imagen"] . "'/>";
+        echo "<br/>";
+        echo "<input type='checkbox' name='" . $value['id'] . "' id='id" . $value['id'] . "'/>";
+        echo "<span>" . $value["nombre"] . "</span>";
+        echo "</div>";
       }
+      echo "</div>";
+
+      echo "<label for='mpago'>METODO PAGO</label>";
+  ?>
+      <select name="mpago">
+        <?php
+        $sentenciaSQLMpago = "SELECT metodospago.id, metodospago.metodo FROM metodospago ";
+        $itemsListaMpago = $cnx->myQueryMultiple($sentenciaSQLMpago, false);
+        ?>
+        <option value="0">Escoge un método de pago</option>
+        <?php
+        foreach ($itemsListaMpago as $key => $value) {
+        ?>
+          <option value='<?= $value[0] ?>'><?= $value[1] ?></option>
+        <?php
+        }
+        ?>
+      </select>
+  <?php
+      echo "<input type='submit'  name='pedidoAlquiler' id='pedidoAlquiler' value='ALQUILAR'/>";
+      echo "</form>";
     }
   } else {
     http_response_code(401); // No autorizado

@@ -66,24 +66,25 @@
     if (estadoAcceso($jwt, $secretKey, $cipherKey)) {
 
       // Conexión a la base de datos
-      $cnx = new BD("localhost", "root", "mysql", "gameclub");
+      // $cnx = new BD("localhost", "root", "mysql", "gameclub");
+      $cnx = new BD("localhost", "root", "", "gameclub");
       $idUsuario = BaseDatosUsuario::mostrarIdUsuario($_SESSION['usuario']);
 
       // Creo las sentencias SQL y uso un LEFT JOIN para que me devuelva todos los registros de la tabla videojuegos para que me devuelva el mismo número de registros en todas las consultas (aunque estén vacíos). De esta forma evito errores
       // Además, hago que la búsqueda se relacione con el cliente logueado a través de la información guardada en el token JWT y la variable de sesión
-      $sqlQuery = "SELECT * FROM alquileres WHERE id_cliente = $idUsuario ORDER BY alquileres.id";
-      $sqlQueryValoracionesDevolucion = "SELECT fechaDevolucion FROM alquileres LEFT JOIN valoraciones ON alquileres.id_cliente = valoraciones.id_alquiler WHERE id_cliente = $idUsuario ORDER BY alquileres.id";
+      $sqlQuery = "SELECT * FROM alquileres WHERE id_usuario = $idUsuario ORDER BY alquileres.id";
+      $sqlQueryValoracionesDevolucion = "SELECT fechaDevolucion FROM alquileres LEFT JOIN valoraciones ON alquileres.id_usuario = valoraciones.id_alquiler WHERE id_usuario = $idUsuario ORDER BY alquileres.id";
 
-      /* Nombre videojuego relacionado con alquileres: (SELECT videojuegos.nombre FROM alquileres LEFT JOIN videojuegos ON alquileres.id_videojuego = videojuegos.id WHERE id_cliente = $idUsuario ORDER BY alquileres.id;)
-      Tabla filtrada por el usuario en relación con las valoraciones (SELECT * FROM valoraciones LEFT JOIN alquileres ON valoraciones.id_alquiler = alquileres.id WHERE id_cliente = $idUsuario ORDER BY alquileres.id;)
+      /* Nombre videojuego relacionado con alquileres: (SELECT videojuegos.nombre FROM alquileres LEFT JOIN videojuegos ON alquileres.id_videojuego = videojuegos.id WHERE id_usuario = $idUsuario ORDER BY alquileres.id;)
+      Tabla filtrada por el usuario en relación con las valoraciones (SELECT * FROM valoraciones LEFT JOIN alquileres ON valoraciones.id_alquiler = alquileres.id WHERE id_usuario = $idUsuario ORDER BY alquileres.id;)
       Con estas dos querySQL puedo ordenar la información a través del ID del alquiler (la tabla que está relacionada con todas las demás) y evitar hacer las siguientes líneas de código */
-      $sqlQueryValoracionesNombre = "SELECT videojuegos.nombre FROM alquileres LEFT JOIN videojuegos ON alquileres.id_videojuego = videojuegos.id WHERE id_cliente = $idUsuario ORDER BY alquileres.id";
-      $sqlQueryValoracionesValoracion = "SELECT valoracion FROM valoraciones RIGHT JOIN alquileres ON valoraciones.id_alquiler = alquileres.id WHERE id_cliente = $idUsuario ORDER BY alquileres.id";
+      $sqlQueryValoracionesNombre = "SELECT videojuegos.nombre FROM alquileres LEFT JOIN videojuegos ON alquileres.id_videojuego = videojuegos.id WHERE id_usuario = $idUsuario ORDER BY alquileres.id";
+      $sqlQueryValoracionesValoracion = "SELECT valoracion FROM valoraciones RIGHT JOIN alquileres ON valoraciones.id_alquiler = alquileres.id WHERE id_usuario = $idUsuario ORDER BY alquileres.id";
 
 
 
       // Forma de iterar una consulta SQL guardándola en una variable
-      // $idAlquilerValoracionCliente = "SELECT id_alquiler FROM valoraciones LEFT JOIN alquileres ON valoraciones.id_alquiler = alquileres.id WHERE id_cliente = $idUsuario ORDER BY valoraciones.id";
+      // $idAlquilerValoracionCliente = "SELECT id_alquiler FROM valoraciones LEFT JOIN alquileres ON valoraciones.id_alquiler = alquileres.id WHERE id_usuario = $idUsuario ORDER BY valoraciones.id";
       // $registroIds = $cnx->myQueryMultiple($idAlquilerValoracionCliente, false);
       // $arrIds = [];
       // foreach ($registroIds as $key => $value) {

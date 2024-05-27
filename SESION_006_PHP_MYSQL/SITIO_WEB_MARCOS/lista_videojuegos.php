@@ -53,13 +53,14 @@
   // $dotenv->load();
 
   // Conexión a la base de datos
-  $cnx = new BD("localhost", "root", "mysql", "gameclub");
+  // $cnx = new BD("localhost", "root", "mysql", "gameclub");
+  $cnx = new BD("localhost", "root", "", "gameclub");
 
   // Creo las sentencias SQL y uso un LEFT JOIN para que me devuelva todos los registros de la tabla videojuegos para que me devuelva el mismo número de registros en todas las consultas (aunque estén vacíos). De esta forma evito errores
   $sqlQuery = "SELECT * FROM videojuegos ORDER BY videojuegos.id DESC"; //=> Le ponemos `DESC` para que el último videojuego agregado se vea al inicio de la tabla
   $sqlQueryVideojuegosDesarrollador = "SELECT desarrolladores.nombre FROM videojuegos LEFT JOIN desarrolladores ON videojuegos.id_desarrollador = desarrolladores.id ORDER BY videojuegos.id DESC";
   $sqlQueryVideojuegosPlataforma = "SELECT plataformas.nombre FROM videojuegos LEFT JOIN plataformas ON videojuegos.id_plataforma = plataformas.id ORDER BY videojuegos.id DESC";
-  $sqlQueryVideojuegosGenero = "SELECT genero.nombre FROM videojuegos LEFT JOIN genero ON videojuegos.id_genero = genero.id ORDER BY videojuegos.id DESC";
+  $sqlQueryVideojuegosGenero = "SELECT generos.nombre FROM videojuegos LEFT JOIN generos ON videojuegos.id_genero = generos.id ORDER BY videojuegos.id DESC";
   $sqlQueryVideojuegosPegui = "SELECT pegui.pegui FROM videojuegos LEFT JOIN pegui ON videojuegos.id_pegui = pegui.id ORDER BY videojuegos.id DESC";
 
   // Creo array

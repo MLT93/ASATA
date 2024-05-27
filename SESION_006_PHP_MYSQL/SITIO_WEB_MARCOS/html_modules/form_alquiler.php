@@ -4,6 +4,7 @@
     // use BaseDatos\BaseDatos;
 
     // $cnx = new BaseDatos("localhost", "root", "mysql", "gameclub");
+    // $cnx = new BaseDatos("localhost", "root", "", "gameclub");
 
     // No necesito esto aquí porque importo directamente este archivo en `reg_alquiler.php` después de realizar la conexión a la database
     ?>

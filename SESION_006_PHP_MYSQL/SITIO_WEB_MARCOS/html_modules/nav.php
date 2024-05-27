@@ -52,7 +52,8 @@
           echo "<a href='./lista_videojuegos.php'>LISTA VIDEOJUEGOS</a>";
           echo "<a href='./lista_alquileres.php'>ALQUILERES $personalMsg</a>";
           echo "<a href='./lista_valoraciones.php'>VALORACIONES $personalMsg</a>";
-          echo "<a href='./reg_alquiler.php'>REGISTRAR ALQUILER</a>";
+          // echo "<a href='./reg_alquiler.php'>REGISTRAR ALQUILER</a>";
+          echo "<a href='./reg_alquiler2.php'>REGISTRAR ALQUILER</a>";
           echo "<a href='./reg_valoracion.php'>REGISTRAR VALORACIÓN</a>";
         }
         $consultaRol = "SELECT rol FROM roles WHERE id = " . $infoUsuario['id'];

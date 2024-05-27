@@ -65,7 +65,8 @@
     if (estadoAcceso($jwt, $secretKey, $cipherKey)) {
 
       // Conexión a la base de datos
-      $cnx = new BaseDatos("localhost", "root", "mysql", "gameclub");
+      // $cnx = new BaseDatos("localhost", "root", "mysql", "gameclub");
+      $cnx = new BaseDatos("localhost", "root", "", "gameclub");
 
       // Cargo el formulario después de realizar la conexión a la base de datos para que el código PHP que se ejecuta en el formulario funcione
       require_once("./html_modules/form_videojuego.php");

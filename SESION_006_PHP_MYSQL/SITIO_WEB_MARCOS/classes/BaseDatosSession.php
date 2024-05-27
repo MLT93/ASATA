@@ -46,7 +46,8 @@ class BaseDatosSession
   // METHODS
   public function inicioLogin(string $emailUsuario)
   {
-    $cnx = new BaseDatos("localhost", "root", "mysql", "gameclub");
+    // $cnx = new BaseDatos("localhost", "root", "mysql", "gameclub");
+    $cnx = new BaseDatos("localhost", "root", "", "gameclub");
     $idUsuario = BaseDatosUsuario::mostrarIdUsuario($emailUsuario);
 
     if ($idUsuario > 0) {
@@ -56,7 +57,7 @@ class BaseDatosSession
 
       $now = new DateTime();
       $fecha = $now->format("Y-m-d H:i:s");
-      $sqlQuery = "INSERT INTO sesiones (id_cliente, fecha, interaccion) VALUES ('$idUsuario','$fecha','LOG IN');";
+      $sqlQuery = "INSERT INTO sesiones (id_usuario, fecha, interaccion) VALUES ('$idUsuario','$fecha','LOG IN');";
       $cnx->execute($sqlQuery);
     }
 
@@ -87,13 +88,14 @@ class BaseDatosSession
   {
     if (isset($_SESSION['usuario'])) {
 
-      $cnx = new BaseDatos('localhost', 'root', 'mysql', 'gameclub');
+      // $cnx = new BaseDatos("localhost", "root", "mysql", "gameclub");
+      $cnx = new BaseDatos("localhost", "root", "", "gameclub");
       $idUsuario = BaseDatosUsuario::mostrarIdUsuario($_SESSION['usuario']);
 
       if ($idUsuario > 0) {
         $now = new DateTime();
         $fecha = $now->format('Y-m-d H:i:s');
-        $sqlQuery = "INSERT INTO sesiones (id_cliente, fecha, interaccion) VALUES ('$idUsuario','$fecha','LOG OUT');";
+        $sqlQuery = "INSERT INTO sesiones (id_usuario, fecha, interaccion) VALUES ('$idUsuario','$fecha','LOG OUT');";
         $cnx->execute($sqlQuery);
       }
 

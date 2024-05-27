@@ -51,8 +51,9 @@ class BaseDatosUsuario
   // STATIC METHODS
   public static function mostrarIdUsuario(string $email)
   {
-    $cnx = new BaseDatos("localhost", "root", "mysql", "gameclub");
-    $sqlQuery = "SELECT id FROM clientes WHERE email = '$email';"; /* => id */
+    // $cnx = new BaseDatos("localhost", "root", "mysql", "gameclub");
+    $cnx = new BaseDatos("localhost", "root", "", "gameclub");
+    $sqlQuery = "SELECT id FROM usuarios WHERE email = '$email';"; /* => id */
     $res = $cnx->myQuerySimple($sqlQuery);
     if (isset($res["id"])) {
       return $res["id"];
@@ -65,18 +66,20 @@ class BaseDatosUsuario
   /* En las bases de datos SIEMPRE se guardan las password encriptadas */
   public static function actualizarPassword(string $email, string $password)
   {
-    $cnx = new BaseDatos("localhost", "root", "mysql", "gameclub");
+    // $cnx = new BaseDatos("localhost", "root", "mysql", "gameclub");
+    $cnx = new BaseDatos("localhost", "root", "", "gameclub");
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-    $sqlQuery = "UPDATE clientes SET hashedPassword = '$hashedPassword' WHERE email = '$email';"; /* Modifico la password del usuario */
+    $sqlQuery = "UPDATE usuarios SET hashedPassword = '$hashedPassword' WHERE email = '$email';"; /* Modifico la password del usuario */
     $cnx->execute($sqlQuery);
   }
 
   public static function verificarUsuario(string $email, string $password)
   {
     // Conexión base de datos
-    $cnx = new BaseDatos("localhost", "root", "mysql", "gameclub");
+    // $cnx = new BaseDatos("localhost", "root", "mysql", "gameclub");
+    $cnx = new BaseDatos("localhost", "root", "", "gameclub");
     // Sentencia para que me devuelva la password encriptada para verificarla
-    $sqlQuery = "SELECT hashedPassword FROM clientes WHERE email = '$email';";
+    $sqlQuery = "SELECT hashedPassword FROM usuarios WHERE email = '$email';";
     $res = $cnx->myQuerySimple($sqlQuery);
     $hashedPasswordFromDB = $res["hashedPassword"];
     $isVerifiedPassword = password_verify($password, $hashedPasswordFromDB);
@@ -85,16 +88,18 @@ class BaseDatosUsuario
 
   public static function registrarUsuario(string $nombre, string $apellido1, string $apellido2, string $email, string $password, string $telefono, string $direccion, string $dni, string $numTarjeta, string $fechaNacimiento, bool $isSocio, int $rol, string $imagen)
   {
-    $cnx = new BaseDatos("localhost", "root", "mysql", "gameclub");
+    // $cnx = new BaseDatos("localhost", "root", "mysql", "gameclub");
+    $cnx = new BaseDatos("localhost", "root", "", "gameclub");
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-    $sqlQuery = "INSERT INTO clientes (nombre, apellido1, apellido2, email, hashedPassword, telefono, direccion, dni, numTarjeta, fechaNacimiento, socio, id_rol, imagen) VALUES ('$nombre', '$apellido1', '$apellido2', '$email','$hashedPassword', '$telefono', '$direccion', '$dni', '$numTarjeta', '$fechaNacimiento', '$isSocio', $rol, '$imagen');";
+    $sqlQuery = "INSERT INTO usuarios (nombre, apellido1, apellido2, email, hashedPassword, telefono, direccion, dni, numTarjeta, fechaNacimiento, socio, id_rol, imagen) VALUES ('$nombre', '$apellido1', '$apellido2', '$email','$hashedPassword', '$telefono', '$direccion', '$dni', '$numTarjeta', '$fechaNacimiento', '$isSocio', $rol, '$imagen');";
     $cnx->execute($sqlQuery);
   }
 
   public static function mostrarUsuario(string $email)
   {
-    $cnx = new BaseDatos("localhost", "root", "mysql", "gameclub");
-    $sqlQuery = "SELECT * FROM clientes WHERE email = '$email';"; /* => devuelve todos los campos de la base de datos */
+    // $cnx = new BaseDatos("localhost", "root", "mysql", "gameclub");
+    $cnx = new BaseDatos("localhost", "root", "", "gameclub");
+    $sqlQuery = "SELECT * FROM usuarios WHERE email = '$email';"; /* => devuelve todos los campos de la base de datos */
     $res = $cnx->myQuerySimple($sqlQuery);
 
     if (isset($res["id"])) {
