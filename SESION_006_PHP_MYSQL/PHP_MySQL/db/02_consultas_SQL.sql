@@ -3,7 +3,7 @@ DROP DATABASE IF EXISTS biblioteca;
 
 CREATE DATABASE IF NOT EXISTS biblioteca;
 
-ALTER DATABASE prueba DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+ALTER DATABASE biblioteca DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 USE biblioteca;
 
