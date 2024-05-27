@@ -1,5 +1,5 @@
    <?php
-    // require_once("../classes/BaseDatos.php");
+    // require_once("./classes/BaseDatos.php");
 
     // use BaseDatos\BaseDatos;
 
