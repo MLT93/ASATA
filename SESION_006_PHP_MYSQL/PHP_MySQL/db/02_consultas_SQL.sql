@@ -90,8 +90,8 @@ CREATE TABLE `biblioteca`.`libros` (
     `id_author` INT(10) UNSIGNED,
     `year` INT (4) NOT NULL,
     `id_editorial` INT(10) UNSIGNED,
-    CONSTRAINT autoresID FOREIGN KEY (id_author) REFERENCES autores (id) ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT editorialesID FOREIGN KEY (id_editorial) REFERENCES editoriales (id) ON DELETE CASCADE ON UPDATE CASCADE
+    ADD CONSTRAINT autoresID FOREIGN KEY (id_author) REFERENCES autores (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD CONSTRAINT editorialesID FOREIGN KEY (id_editorial) REFERENCES editoriales (id) ON DELETE CASCADE ON UPDATE CASCADE
   ) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 # Sintaxis 2
@@ -138,7 +138,7 @@ create table prueba.alfabetos (
 	id_alfabeto INT(10) PRIMARY KEY AUTO_INCREMENT NOT NULL,
     nombre VARCHAR (100) NOT NULL,
     id_letra INT (10) UNIQUE NOT NULL,
-    CONSTRAINT letraID FOREIGN KEY (id_letra) REFERENCES letras (id_letra) ON DELETE CASCADE ON UPDATE CASCADE
+    ADD CONSTRAINT letraID FOREIGN KEY (id_letra) REFERENCES letras (id_letra) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO prueba.alfabetos (nombre, id_letra) VALUES 

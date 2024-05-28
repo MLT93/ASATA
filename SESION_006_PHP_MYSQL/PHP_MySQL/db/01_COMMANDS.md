@@ -147,7 +147,7 @@ INSERT INTO clients (
 ) VALUES
 ("Dario", "Martínez", "Fernández", "34156896-Y", "1980-07-21", "dario.example@gmail.com", "C/ la Algarroba, 3", "679245312");
 
-# Claves foráneas. Conexión entre tablas
+# Claves foráneas. Conexión entre tablas. Foreign key
 /* Relación entre tablas */
 Altero la tabla para agregar una clave foránea después de crear todas las demás tablas. La relación debe ser entre valores `UNIQUE` o `PRIMARY KEY` y los campos de las otras tablas que se deseen conectar. Los datos que se relacionan deben tener la misma estructura, si el id principal de una tabla es `UNSIGNED`, también lo será en el campo que se relacionará en la otra tabla
 RECUERDA: en una tabla puede haber un solo `PRIMARY KEY` y un solo `AUTO_INCREMENT`, pero pueden existir varios `UNIQUE`
@@ -171,3 +171,23 @@ ALTER TABLE libros
   ADD CONSTRAINT autoresID FOREIGN KEY (author_id) REFERENCES autores (id) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD KEY editorialesID (editorial_id),
   ADD CONSTRAINT editorialesID FOREIGN KEY (editorial_id) REFERENCES editoriales (id) ON DELETE CASCADE ON UPDATE CASCADE;
+
+CREATE TABLE `biblioteca`.`libros` (
+    `id` INT (10) UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    `title` VARCHAR(200) NOT NULL,
+    `id_author` INT(10) UNSIGNED,
+    `year` INT (4) NOT NULL,
+    `id_editorial` INT(10) UNSIGNED,
+    ADD CONSTRAINT autoresID FOREIGN KEY (id_author) REFERENCES autores (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD CONSTRAINT editorialesID FOREIGN KEY (id_editorial) REFERENCES editoriales (id) ON DELETE CASCADE ON UPDATE CASCADE
+  ) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
+CREATE TABLE `biblioteca`.`libros` (
+    `id` INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    `title` VARCHAR(200) NOT NULL,
+    `id_author` INT(10) UNSIGNED,
+    `year` INT(4) NOT NULL,
+    `id_editorial` INT(10) UNSIGNED,
+    FOREIGN KEY (`id_author`) REFERENCES `autores` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (`id_editorial`) REFERENCES `editoriales` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;

@@ -10,7 +10,7 @@
 
 
 /* Creación de database */
-/** DATABASE (nombre en plural) */
+/** DATABASE */
 DROP DATABASE IF EXISTS clinica;
 
 CREATE DATABASE IF NOT EXISTS clinica;
