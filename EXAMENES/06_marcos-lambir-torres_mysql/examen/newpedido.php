@@ -62,15 +62,14 @@
 
                 $idProducto = intval($_POST['producto']);
                 // echo $idProducto . "<br/>";
-                $fechaPedido = date("Y-m-d", intval(strtotime("now")));
+                $fechaPedido = date("Y-m-d_H:i:s", intval(strtotime("now")));
                 $arrUsuario = Usuario::mostrarUsuario($_SESSION['usuario']); //=> asociativo
                 $idUsuario = intval($arrUsuario['id']);
                 // echo $idUsuario . "<br/>";
                 $consultaSQL1 = "SELECT * FROM productos, detallespedido WHERE productos.id = $idProducto;";
                 $arrConsulta1 = $cnx->myQuerySimple($consultaSQL1);
                 $precio = floatval($arrConsulta1['precio']);
-
-                var_dump($arrConsulta1);
+                // var_dump($arrConsulta1);
 
                 $camposDB1 = ["id_usuario", "fechaPedido", "total"]; // faltaría realizar el total de forma correcta, utilizando inputs en el formulario para poder seleccionar más productos. Pero así está bien :D
                 $dataDB1 = [$idUsuario, $fechaPedido, $precio];
@@ -79,6 +78,35 @@
                 $camposDB2 = ["id_pedido", "id_producto"];
                 $dataDB2 = [$idUsuario, $idProducto];
                 $cnx->insertSingleRegister("detallespedido", $camposDB2, $dataDB2);
+
+                                /* 
+                ? Otra forma de hacerlo (con checkbox en el formulario para seleccionar varios productos):
+                * Realizar la iteración de todos los checkbox seleccionados (provenientes del formulario):
+                foreach ($_POST as $key => $value) {
+                    * Quito el input type="submit" de lo que me llega del formulario 
+                    if ($key != 'newpedido') {
+                        * Genera un nuevo pedido:
+                        $consultaSQL = "SELECT precio FROM productos WHERE productos.id = $idProducto;";
+                        $arrConsulta = $cnx->myQuerySimple($consultaSQL);
+                        $precio = floatval($arrConsulta['precio']);
+                        $total += $precio;
+                        $idProducto = intval($_POST['producto']);
+                        $fechaPedido = date("Y-m-d_H:i:s", intval(strtotime("now")));
+                        $arrUsuario = Usuario::mostrarUsuario($_SESSION['usuario']); //=> asociativo
+                        $idUsuario = intval($arrUsuario['id']);
+                        $sentencia = "INSERT INTO pedidos (usuario_id, fecha, total) VALUE ($idUsuario, '$fechaPedido', $total);";
+                        $registro = $cnx->execute($sentencia);
+                        * Ver cuál es el último pedido del usuario:
+                        $sentenciaUltimoPedido = "SELECT id FROM pedidos WHERE pedidos.usuario_id = $idUsuario ORDER BY pedidos.fecha DESC LIMIT 0,1;";
+                        $arrUltimoPedido = $cnx->myQuerySimple($sentenciaUltimoPedido);
+                        $idPedido = $arrUltimoPedido['id'];
+                        * Actualiza los detalles de los pedidos después de realizar el nuevo pedido
+                        $sentenciaDetalle = "INSERT INTO detallespedido (id_pedido, id_producto) VALUES ($idPedido, $idProducto);";
+                        $arrDetalle = $cnx->execute($sentenciaDetalle);
+                    }
+                }
+                echo "<h2 class='ok'>Pedido realizado</h2>" . "<br/>";
+                */
             }
 
             //TERMINA AQUI
