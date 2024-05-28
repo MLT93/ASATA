@@ -12,25 +12,28 @@ class Gato
   // `PROPIEDADES` o variables de la class. Normalmente son siempre `private`
   /**
    * Summary of properties
-   * @var string $propiedad 
-   * @var string $nombre Nombre del gato 
-   * @var string $color Color del gato
-   * @var boolean $rayado Por defecto es siempre rayado
+   * @var string $nombre Nombre único de la instalación
+   * @var string $descripcion Detalle de la instalación
+   * @var int $capacidad Número máximo de personas
+   * @var boolean $disponibilidad Por defecto será false 
    */
-  private $propiedad;
-  private $nombre;
-  private $color;
-  private $rayado = true;
+  private $nombre; // En la base de datos tendremos el nombre de la instalación único, por lo tanto éste será el identificador principal
+  private $descripcion;
+  private $capacidad;
+  private $disponibilidad;
 
 
   // `MÉTODO CONSTRUCTOR` es siempre público y se ejecuta inmediatamente al instanciar. Debemos pasarle unos valores al crear una instancia (obj) o ponérselos por defecto a los parámetros, así cuando creamos la instancia (obj) recibe esos valores
   // Nos facilita la vida al crear una nueva instancia (obj) sin acceder a cada método individualmente, proporcionando la información necesaria para que esa instancia (obj) exista
   // Cada constructor es único para cada clase, si hay un `extends` lo hereda, pero si creas uno en el nuevo instancia (obj), lo sobrescribe
-  function __construct($parametro = "Parámetro del constructor por defecto")
+  function __construct(string $nombre, string $descripcion = "", int $capacidad, $disponibilidad = false)
   {
     // Igual que en JavaScript se accede con `this` a las propiedades y métodos de la clase, y se les asignan los parámetros de la función para poder proporcionárselos desde afuera
     // Si no le damos un valor por defecto, al crear una instancia sin parámetros me dará un error
-    $this->propiedad = $parametro;
+    $this->nombre = $nombre;
+    $this->descripcion = $descripcion;
+    $this->capacidad = $capacidad;
+    $this->disponibilidad = $disponibilidad;
   }
 
   // ? `GETTERS` AND `SETTERS` SON MÉTODOS SINGULARES RELACIONADOS CON LAS PROPIEDADES PARA OBTENER VALORES Y ASIGNARLES VALORES
@@ -38,54 +41,62 @@ class Gato
   // `setters` su función permite brindar acceso a propiedades especificas para poder asignar un valor desde afuera de la clase
 
   // `GETTERS` (devuelve la información de una propiedad para usarla en un método y desde afuera de la class). Normalmente son siempre `protected`
-  protected function getPropiedad()
-  {
-    return $this->propiedad;
-  }
   protected function getNombre()
   {
     return $this->nombre;
   }
-  protected function getColor()
+  protected function getDescripcion()
   {
-    return $this->color;
+    return $this->descripcion;
   }
-  protected function getRayado()
+  protected function getCapacidad()
   {
-    return $this->rayado;
+    return $this->capacidad;
+  }
+  protected function getDisponibilidad()
+  {
+    return $this->disponibilidad;
   }
 
   // `SETTERS` (transforma la información de una propiedad desde afuera de la clase). Normalmente son siempre `protected`
-  protected function setPropiedad($parametro)
+  protected function setNombre($parametro)
   {
-    $this->propiedad = $parametro;
+    $this->nombre = $parametro;
   }
-  protected function setNombre($nombre)
+  protected function setDescripcion($parametro)
   {
-    $this->nombre = $nombre;
+    $this->descripcion = $parametro;
   }
-  protected function setColor($color)
+  protected function setCapacidad($parametro)
   {
-    $this->color = $color;
+    $this->capacidad = $parametro;
   }
-  protected function setRayado($rayado)
+  protected function setDisponibilidad($parametro)
   {
-    $this->rayado = $rayado;
+    $this->disponibilidad = $parametro;
   }
 
   // `MÉTODOS` (utilizan los setters y getters para acceder a la información)
-  public function nombre()
+  public function registrarInstalacion()
   {
     return $this->getNombre();
   }
-  public function color()
+  public function reservarInstalacion()
   {
     return $this->getColor();
   }
-  public function rayado()
+  public function cancelarReserva()
   {
     return $this->getRayado();
   }
+
+  // `MÉTODOS ESTÁTICOS`
+  // ? `STATIC` NO DEPENDE DE NINGUNA PROPIEDAD O MÉTODO DE LA INSTANCIA O CLASE DEFINIDA, PERO TIENE RELACIÓN CON ELLA Y PUEDE SER UTILIZADA A TRAVÉS DE LAS INSTANCIAS
+  // Sólo puede ser estático si no tiene relación con las propiedades o métodos de la clase o instancia establecida, pero sí tiene que ver con ella y puede ser utilizada a través de las instancias
+  /* Ejemplo: una clase `Agente` nos informará sobre el agente con su grado, especialidad, el cuerpo al cual pertenece, etc... Pero también poseerá un método `estático` que será `comprobar documentación` que no utiliza sus métodos o sus propiedades pero sí tiene que ver con la clase y puede ser utilizada por cada agente [instancia (obj)] */
+  // ? `$INSTANCE_OR_CLASS::STATIC_FUNCION()` PARA LLAMAR UNA FUNCIÓN ESTÁTICA
+  // `$NameClass::staticFunction()` llama a la función estática desde la propia clase. Se utilizan 4 puntitos en vez de una flecha porque es un método sin relación con los métodos o las propiedades de la clase
+  // `$martina::staticFunction()` llama a la función estática desde la instancia creada. Se utilizan 4 puntitos en vez de una flecha porque es un método sin relación con los métodos o las propiedades de la clase
   public function cambiarColor($color)
   {
     $this->setColor($color);
@@ -96,163 +107,39 @@ class Gato
     $this->setNombre($nombre);
     return $this->getNombre();
   }
-  public function showProp()
-  {
-    return $this->getPropiedad();
-  }
-  public function maullar()
-  {
-    echo "Miau!" . "<br/>";
-  }
-  public function maullar2($nombreGato)
-  {
-    echo "$nombreGato dice: \"Miau!\" Tengo hambre.";
-  }
-
-  // `MÉTODO DESTRUCTOR`. Sirve para destruir las instancias creadas con esta clase una vez haya realizado y completado todos los procesos
-  // function __destruct()
-  // {
-  //   $this->nombre = "dice: Adiós." . "<br/>";
-  // }
 }
-
-echo "<hr />";
 
 // ? `NEW` CREA UNA INSTANCIA DE UNA CLASS. UNA INSTANCIA ES LA MATERIALIZACIÓN DE UNA CLASE
 // `new` es una palabra clave para crear una instancia de una clase. Un "nuevo" objeto al fin y al cabo
-new Gato(); // Esta instancia no está asociada a una variable, por lo tanto no es accesible
-$gatoBaldomero = new Gato(); // Nueva instancia de la class `Gato`. Ahora tenemos un objeto con las propiedades accesibles de la clase
-// Instancia (obj) sin parámetros
-$gatoX = new Gato();
-echo $gatoX->showProp() . "<br/>"; //=> Parámetro del constructor por defecto
-$gatito = new Gato();
-// Instancia (obj) utilizando los parámetros del constructor
-$minino = new Gato("Parámetro del constructor asignado en la instancia");
-echo $minino->showProp() . "<br/>"; //=> El gato se llama: Arturito
-
-echo "<hr/>";
 
 // ? `GET_DECLARED_CLASSES()` PARA VER TODAS LAS CLASES QUE HAY
 // `get_declared_classes()` nos devuelve un array con todas las clases declaradas
-$everyClasses = get_declared_classes();
-foreach ($everyClasses as $key => $value) {
-  echo $value . "<br/>";
-}
-
-echo "<hr/>";
 
 // ? `CLASS_EXISTS()` PARA VER SI UNA CLASE EXISTE
 // `class_exists()` devuelve true (1) o false (0) si existe o no
-class_exists("Gato"); // => 1
-
-function isClassExists($className)
-{
-  if (class_exists($className)) {
-    echo "La clase $className existe";
-  } else {
-    echo "La clase $className no existe";
-  }
-};
-isClassExists("Gato"); //=> La clase Gato existe
-
-echo "<hr/>";
 
 // ? `METHOD_EXISTS()` PARA VER SI UNA CLASE EXISTE
 // `method_exists()` devuelve true (1) o false (0) si existe o no. Recibe 2 parámetros
 // 1 La class
 // 2 El método
-method_exists("Gato", "maullar"); // => 1
-
-function isMethodExists($class, $method)
-{
-  if (method_exists($class, $method)) {
-    echo "El método $method existe";
-  } else {
-    echo "El método $method no existe";
-  }
-};
-isMethodExists("Gato", "maullar"); //=> El método maullar existe 
-
-echo "<hr />";
 
 // ? `GET_CLASS()` SABER A QUÉ CLASE PERTENECE UNA INSTANCIA
 // `get_class()` nos devuelve el nombre de la clase a la cual pertenece la instancia (el objeto)
-echo "Baldomero pertenece a la clase " . get_class($gatoBaldomero) . "<br/>";
-
-echo "<hr />";
 
 // ? `->` ACCEDE DESDE EL OBJETO INSTANCIADO A UN MÉTODO O PROPIEDAD DE LA PROPIA CLASE. Es como el `.` en los objetos de JavaScript
 // `->` nos ayuda a acceder a un método o propiedad disponible en la class `Gato` desde el objeto que se ha instanciado
-echo "Baldomero dice: ";
-$gatoBaldomero->maullar() . "<br/>";
-$gatoBaldomero->maullar2("Baldomero") . "<br/>";
-
-$gatito->cambiarNombre("Félix");
-echo "El nuevo gatito se llama: {$gatito->nombre()}" . "<br/>";
-
-$gatoBaldomero->cambiarNombre("Baldomero");
-$gatoBaldomero->cambiarColor("gris");
-echo "{$gatoBaldomero->nombre()} tiene el color: {$gatoBaldomero->color()}" . "<br/>";
-
-
-echo "<hr/>";
 
 // ? `EXTENDS` SIRVE PARA CREAR UNA CLASE HIJA DE OTRA CLASE
 // `extends` hace uso del principio de herencia y visibilidad. La nueva clase heredará todas sus propiedades y métodos públicos y protegidos del padre, pudiendo agregar más funcionalidades. Los métodos privados de una clase padre no son accesibles para una clase hija. Atento! Lo que se hereda no se puede modificar
-class GatoGordo extends Gato
-{
-  // Sin hacer nada hemos heredado todos los métodos públicos y protegidos de la class Gato
-  // Si la clase hija no encuentra un constructor propio, utilizará el constructor del padre. Cada constructor es único para cada clase
-
-  // constructor
-  function __construct($nombre, $color, $rayado, $parametro)
-  {
-    $this->setNombre($nombre);
-    $this->setColor($color);
-    $this->setRayado($rayado);
-    $this->setPropiedad($parametro);
 
     // ? `NAME_FATHER_CLASS::__CONSTRUCT()` LLAMA AL CONSTRUCTOR PADRE PARA FUSIONAR LOS DOS CONSTRUCTORES. RECUERDA PASAR LOS PARÁMETROS DEL CONSTRUCTOR PADRE EN EL CONSTRUCTOR HIJO TAMBIÉN
     // `Gato::__construct()` nos ayuda a utilizar el constructor de la class padre dentro del constructor de la class hija
-    Gato::__construct($parametro);
-  }
-
-  // getters
-
-  // setters
-
-  // methods
-  public function info()
-  {
-    $msg = "";
-    $this->getRayado() ? $msg .= "Si" : $msg .= "No";
-
-    echo "Es un gato atigrado?" . " $msg" . "<br/>";
-    echo "Tiene un color " . $this->getColor() . "<br/>";
-    echo "A " . $this->getNombre() . " le gusta la lasaña" . "<br/>";
-    echo $this->maullar2($this->getNombre()) . "<br/>";
-    echo "Es perezoso pero de todas formas es un " . $this->getPropiedad() . "<br/>"; // puedo acceder a esta función porque es protected, si fuere private no podría porque estamos dentro de una clase hija
-  }
-};
-
-$garfield = new GatoGordo("Garfield", "Naranja", true, "buen gato");
-echo $garfield->info() . "<br/>";
-echo $garfield->showProp() . "<br/>"; // Puedo acceder desde la instancia porque es un método público
-/* echo $this->getPropiedad() ."<br/>"; */ // No puedo acceder desde la instancia a un método protegido
-/* echo $this->nombre ."<br/>"; */ // No puedo acceder desde la instancia o desde la clase hija a una propiedad privada
-
-echo "<hr/>";
 
 // ? `IS_SUBCLASS_OF()` SIRVE PARA COMPROBAR SI UNA CLASE O UNA INSTANCIA (OBJ) ES HIJA DE OTRA. DEVUELVE TRUE (1) O FALSE (0)
 // `is_subclass_of()` Comprueba si una clase o una instancia (obj) tiene una clase en particular como uno de sus padres o si la implementa. Devuelve true (1) si pertenece a la classe del segundo parámetro, false (0) en caso contrario. Tiene 3 argumentos
 // 1 Un nombre de clase o una instancia de objeto
 // 2 El nombre de clase a comprobar
 // 3 Booleano que impide que se llame al cargador automático. Es opcional
-echo is_subclass_of("GatoGordo", "Gato") . "<br/>"; //=> 1
-echo is_subclass_of($garfield, "Gato") . "<br/>"; //=> 1
-
-echo "<hr/>";
 
 // ? `GET_PARENT_CLASS` SIRVE PARA SABER CUÁL ES EL PADRE Y SABER A LO QUE PUEDO ACCEDER
 // `get_parent_class()` nos dice quién es el padre de la class que ha sido extendida
-echo get_parent_class("GatoGordo") . "<br/>"; //=> Gato
