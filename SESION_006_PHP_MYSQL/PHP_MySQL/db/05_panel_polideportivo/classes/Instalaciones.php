@@ -1,8 +1,19 @@
 <?php
 
+// ? `NAMESPACE` SE USA PARA DEFINIR EL NOMBRE DE LA CARPETA O ESPACIO DONDE ESTOY
+// `namespace` define el nombre del espacio (carpeta) donde estoy trabajando. Se define con Upper Camel Case
+// Esto nos sirve para invocar clases desde otros archivos
+// Básicamente sirven de contenedores para el código de PHP, de modo que cuando creemos elementos del lenguaje como constantes, funciones o clases, se queden en un ámbito más restringido, evitando colisiones o conflictos de nombres con otros elementos que puedas crear tú más adelante, otras personas de tu equipo o incluso otros desarrolladores
+namespace Instalaciones;
+
+// Importo otra clase para utilizar la base de datos
+require_once("./TEACHER_FOLDER/SESIONES%20PHP/SITIO_WEB/classes/db.php");
+
+use Database\Db as Db;
+
 // ? CREAR UNA CLASE igual que JavaScript, sólo que la creas de verdad, no es un prototype
 // Las clases siempre van en Upper Camel Case
-class Gato
+class Instalacion
 {
   // ? `PUBLIC`, `PRIVATE` Y `PROTECTED`
   // `private` es unicamente accesible desde la propia clase
@@ -17,16 +28,16 @@ class Gato
    * @var int $capacidad Número máximo de personas
    * @var boolean $disponibilidad Por defecto será false 
    */
-  private $nombre; // En la base de datos tendremos el nombre de la instalación único, por lo tanto éste será el identificador principal
-  private $descripcion;
-  private $capacidad;
-  private $disponibilidad;
+  private string $nombre; // En la base de datos tendremos el nombre de la instalación único, por lo tanto éste será el identificador principal
+  private string $descripcion;
+  private int $capacidad;
+  private string $disponibilidad;
 
 
   // `MÉTODO CONSTRUCTOR` es siempre público y se ejecuta inmediatamente al instanciar. Debemos pasarle unos valores al crear una instancia (obj) o ponérselos por defecto a los parámetros, así cuando creamos la instancia (obj) recibe esos valores
   // Nos facilita la vida al crear una nueva instancia (obj) sin acceder a cada método individualmente, proporcionando la información necesaria para que esa instancia (obj) exista
   // Cada constructor es único para cada clase, si hay un `extends` lo hereda, pero si creas uno en el nuevo instancia (obj), lo sobrescribe
-  function __construct(string $nombre, string $descripcion = "", int $capacidad, $disponibilidad = false)
+  function __construct(string $nombre, string $descripcion = "", int $capacidad, $disponibilidad = true)
   {
     // Igual que en JavaScript se accede con `this` a las propiedades y métodos de la clase, y se les asignan los parámetros de la función para poder proporcionárselos desde afuera
     // Si no le damos un valor por defecto, al crear una instancia sin parámetros me dará un error
@@ -79,38 +90,42 @@ class Gato
   // `MÉTODOS` (utilizan los setters y getters para acceder a la información)
   public function registrarInstalacion()
   {
-    return $this->getNombre();
+    $cnx = new Db ("localhost", "root", "", "polideportivo");
+    $nombre = $this->getNombre();
+    $descripcion = $this->getDescripcion();
+    $capacidad = $this->getCapacidad();
+    $consultaSQL = "INSERT INTO instalaciones (nombre, descripcion, capacidad) VALUES ('$nombre', '$descripcion', $capacidad);";
+    $cnx->execute($consultaSQL);
   }
   public function reservarInstalacion()
   {
-    return $this->getColor();
+    
   }
   public function cancelarReserva()
   {
-    return $this->getRayado();
+    
   }
 
-  // `MÉTODOS ESTÁTICOS`
+  // `MÉTODOS ESTÁTICOS` (no tiene relación con las propiedades o métodos de la clase y se puede llamar desde afuera)
   // ? `STATIC` NO DEPENDE DE NINGUNA PROPIEDAD O MÉTODO DE LA INSTANCIA O CLASE DEFINIDA, PERO TIENE RELACIÓN CON ELLA Y PUEDE SER UTILIZADA A TRAVÉS DE LAS INSTANCIAS
   // Sólo puede ser estático si no tiene relación con las propiedades o métodos de la clase o instancia establecida, pero sí tiene que ver con ella y puede ser utilizada a través de las instancias
   /* Ejemplo: una clase `Agente` nos informará sobre el agente con su grado, especialidad, el cuerpo al cual pertenece, etc... Pero también poseerá un método `estático` que será `comprobar documentación` que no utiliza sus métodos o sus propiedades pero sí tiene que ver con la clase y puede ser utilizada por cada agente [instancia (obj)] */
   // ? `$INSTANCE_OR_CLASS::STATIC_FUNCION()` PARA LLAMAR UNA FUNCIÓN ESTÁTICA
   // `$NameClass::staticFunction()` llama a la función estática desde la propia clase. Se utilizan 4 puntitos en vez de una flecha porque es un método sin relación con los métodos o las propiedades de la clase
   // `$martina::staticFunction()` llama a la función estática desde la instancia creada. Se utilizan 4 puntitos en vez de una flecha porque es un método sin relación con los métodos o las propiedades de la clase
-  public function cambiarColor($color)
+  public function actualizar($instalacion)
   {
-    $this->setColor($color);
-    return $this->getColor();
+  
   }
-  public function cambiarNombre($nombre)
+  public function darDeBaja($instalacion)
   {
-    $this->setNombre($nombre);
-    return $this->getNombre();
+  
   }
 }
 
 // ? `NEW` CREA UNA INSTANCIA DE UNA CLASS. UNA INSTANCIA ES LA MATERIALIZACIÓN DE UNA CLASE
 // `new` es una palabra clave para crear una instancia de una clase. Un "nuevo" objeto al fin y al cabo
+$instalacion = new Instalacion("Tennis A", "Cancha de tierra", 4, true);
 
 // ? `GET_DECLARED_CLASSES()` PARA VER TODAS LAS CLASES QUE HAY
 // `get_declared_classes()` nos devuelve un array con todas las clases declaradas
@@ -132,8 +147,8 @@ class Gato
 // ? `EXTENDS` SIRVE PARA CREAR UNA CLASE HIJA DE OTRA CLASE
 // `extends` hace uso del principio de herencia y visibilidad. La nueva clase heredará todas sus propiedades y métodos públicos y protegidos del padre, pudiendo agregar más funcionalidades. Los métodos privados de una clase padre no son accesibles para una clase hija. Atento! Lo que se hereda no se puede modificar
 
-    // ? `NAME_FATHER_CLASS::__CONSTRUCT()` LLAMA AL CONSTRUCTOR PADRE PARA FUSIONAR LOS DOS CONSTRUCTORES. RECUERDA PASAR LOS PARÁMETROS DEL CONSTRUCTOR PADRE EN EL CONSTRUCTOR HIJO TAMBIÉN
-    // `Gato::__construct()` nos ayuda a utilizar el constructor de la class padre dentro del constructor de la class hija
+// ? `NAME_FATHER_CLASS::__CONSTRUCT()` LLAMA AL CONSTRUCTOR PADRE PARA FUSIONAR LOS DOS CONSTRUCTORES. RECUERDA PASAR LOS PARÁMETROS DEL CONSTRUCTOR PADRE EN EL CONSTRUCTOR HIJO TAMBIÉN
+// `Gato::__construct()` nos ayuda a utilizar el constructor de la class padre dentro del constructor de la class hija
 
 // ? `IS_SUBCLASS_OF()` SIRVE PARA COMPROBAR SI UNA CLASE O UNA INSTANCIA (OBJ) ES HIJA DE OTRA. DEVUELVE TRUE (1) O FALSE (0)
 // `is_subclass_of()` Comprueba si una clase o una instancia (obj) tiene una clase en particular como uno de sus padres o si la implementa. Devuelve true (1) si pertenece a la classe del segundo parámetro, false (0) en caso contrario. Tiene 3 argumentos
