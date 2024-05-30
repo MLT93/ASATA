@@ -33,7 +33,7 @@
 
     require_once("../vendor/autoload.php");
 
-    $dotenv = Dotenv\Dotenv::createImmutable("./");
+    $dotenv = Dotenv\Dotenv::createImmutable("./"); // Busco el directorio del archivo `.env`
     $dotenv->load();
 
     // Compruebo que el token existe en la cookie

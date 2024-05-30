@@ -33,7 +33,7 @@
  use UserDB\Usuario as Usuario;
 
  //para puede extraer las variables de entorno del archivo .env
- $dotenv = Dotenv\Dotenv::createImmutable("./");
+ $dotenv = Dotenv\Dotenv::createImmutable("./"); // Busco el directorio del archivo `.env`
  $dotenv->load();
 
  //si el cookie exist

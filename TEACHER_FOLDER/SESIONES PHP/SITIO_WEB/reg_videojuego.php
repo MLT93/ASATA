@@ -42,7 +42,7 @@
 //  use DateTime;
  
 
- $dotenv = Dotenv\Dotenv::createImmutable("./");
+ $dotenv = Dotenv\Dotenv::createImmutable("./"); // Busco el directorio del archivo `.env`
  $dotenv->load();
 
  if(isset($_COOKIE['jwt'])){

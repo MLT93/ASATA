@@ -81,7 +81,7 @@
   // Es necesario el `autoload` del `vendor` para cargar y encontrar estos paquetes. También se puede cargar el directorio en otro archivo e importar este en él
   // La función estática en el namespace `Dotenv` recibe 1 parámetro
   // 1 El directorio donde encontrar el archivo `.env`. No hace falta poner el nombre del archivo oculto, solo ponemos el directorio donde está porque lo busca automáticamente
-  $dotenv = Dotenv\Dotenv::createImmutable("../../");
+  $dotenv = Dotenv\Dotenv::createImmutable("../../"); // Busco el directorio del archivo `.env`
   $dotenv->load();
 
   // Inicio una sesión para poder trabajar con la información de la super-variable `$_SESSION` correspondiente al captcha
@@ -187,7 +187,7 @@
   // La función estática en el namespace `Dotenv` recibe 1 parámetro
   // El directorio donde encontrar el archivo `.env`. No hace falta poner el nombre del archivo oculto, solo ponemos el directorio donde está, porque lo busca automáticamente
   // También se puede hacer así dado que `__DIR__` localiza el directorio en el que estamos: "../" . __DIR__
-  // $dotenv = Dotenv\Dotenv::createImmutable("../../"); /* Already been declared */
+  // $dotenv = Dotenv\Dotenv::createImmutable("../../"); // Busco el directorio del archivo `.env` /* Already been declared */
   // $dotenv->load(); /* Already been declared */
 
   // Inicio una sesión para poder trabajar con la información de la super-variable `$_SESSION` correspondiente al captcha

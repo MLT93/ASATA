@@ -49,7 +49,7 @@
 
   // use Dotenv\Dotenv;
 
-  // $dotenv = Dotenv::createImmutable("./");
+  // $dotenv = Dotenv::createImmutable("./"); // Busco el directorio del archivo `.env`
   // $dotenv->load();
 
   // Conexión a la base de datos

@@ -54,7 +54,7 @@
 
   use Dotenv\Dotenv;
 
-  $dotenv = Dotenv::createImmutable("./");
+  $dotenv = Dotenv::createImmutable("./"); // Busco el directorio del archivo `.env`
   $dotenv->load();
 
   // Compruebo la existencia de credenciales en el la cookie del token JWT y si coincide con la información del usuario en la variable de sesión `PHPSESSID` 

@@ -58,7 +58,7 @@
   // 1 El directorio donde encontrar el archivo `.env`. No hace falta poner el nombre del archivo oculto, solo ponemos el directorio donde está porque lo busca automáticamente
   use Dotenv\Dotenv;
 
-  $dotenv = Dotenv::createImmutable("./");
+  $dotenv = Dotenv::createImmutable("./"); // Busco el directorio del archivo `.env`
   $dotenv->load();
 
   // Clave secreta en el archivo `.env`

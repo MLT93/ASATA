@@ -12,7 +12,7 @@ function JWTCreation($info, $path)
    // Es necesario el `autoload` del `vendor` para cargar y encontrar estos paquetes. También se puede cargar el directorio en otro archivo e importar este en él
    // La función estática en el namespace `Dotenv` recibe 1 parámetro
    // 1 El directorio donde encontrar el archivo `.env`. No hace falta poner el nombre del archivo oculto, solo ponemos el directorio donde está porque lo busca automáticamente
-   $dotenv = Dotenv::createImmutable($path);
+   $dotenv = Dotenv::createImmutable($path); // Busco el directorio del archivo `.env`
    $dotenv->load();
 
    //clave secreta utilizo la variable de mia archivo de entorno.
@@ -105,7 +105,7 @@ function  newJWTCreation($info, $path)
    // Es necesario el `autoload` del `vendor` para cargar y encontrar estos paquetes. También se puede cargar el directorio en otro archivo e importar este en él
    // La función estática en el namespace `Dotenv` recibe 1 parámetro
    // 1 El directorio donde encontrar el archivo `.env`. No hace falta poner el nombre del archivo oculto, solo ponemos el directorio donde está porque lo busca automáticamente
-   $dotenv = Dotenv::createImmutable($path);
+   $dotenv = Dotenv::createImmutable($path); // Busco el directorio del archivo `.env`
    $dotenv->load();
 
    //clave secreta utilizo la variable de mia rchivo de entorno.

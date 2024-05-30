@@ -8,7 +8,7 @@ require_once("../functions/authentication.php");
 // 1 El directorio donde encontrar el archivo `.env`. No hace falta poner el nombre del archivo oculto, solo ponemos el directorio donde está porque lo busca automáticamente
 require_once("../../vendor/autoload.php");
 
-$dotenv = Dotenv\Dotenv::createImmutable("../"); // Busco el directorio del archivo `.env`
+$dotenv = Dotenv\Dotenv::createImmutable("../");
 $dotenv->load();
 
 // Antes de realizar ninguna acción controlo que la petición se realice a través de un método $payloadDesencriptado

@@ -16,7 +16,7 @@ use Firebase\JWT\Key;
 // Call ENV environment
 // La función estática en el namespace `Dotenv` recibe 1 parámetro
 // El directorio donde encontrar el archivo `.env`. No hace falta poner el nombre del archivo oculto, solo ponemos el directorio donde está, porque lo busca automáticamente
-$dotenv = Dotenv\Dotenv::createImmutable("../../");
+$dotenv = Dotenv\Dotenv::createImmutable("../../"); // Busco el directorio del archivo `.env`
 $dotenv->load();
 
 // Secret key (the same value of encrypted key)

@@ -48,7 +48,7 @@
 
     use Dotenv\Dotenv as Dotenv;
 
-    $dotenv = Dotenv::createImmutable("./");
+    $dotenv = Dotenv::createImmutable("./"); // Busco el directorio del archivo `.env`
     $dotenv->load();
 
 

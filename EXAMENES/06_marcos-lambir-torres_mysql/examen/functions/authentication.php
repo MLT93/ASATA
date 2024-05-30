@@ -8,7 +8,7 @@ use Dotenv\Dotenv    as Dotenv;
 function JWTCreation($info,$path){
 
  //las 2 siguientes lineas cargan el archivo .env para poder acceder a sus variables
- $dotenv = Dotenv::createImmutable($path);
+ $dotenv = Dotenv::createImmutable($path); // Busco el directorio del archivo `.env`
  $dotenv->load();
  //clave secreta utilizo la variable de mia rchivo de entorno.
  $secretKey = $_ENV['SIGNATURE_KEY'];
