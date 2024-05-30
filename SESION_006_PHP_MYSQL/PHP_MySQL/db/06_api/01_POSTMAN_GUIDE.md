@@ -22,5 +22,5 @@
 * Para llamar a las variables se utilizan las dobles llaves `{{}}`.
 * Para obtener las peticiones en código, en la parte dcha de la ventana de Postman, hay un botón con este símbolo `</>` este botón genera un desplegable con todos los lenguajes donde puedo obtener el código de esa petición.
 * QUERY PARAMS -> En una dirección `https://www.api.com/example?key=value` la query param en este caso es `?key=value` y se utiliza en en el método GET para definir una respuesta específica o limitar la cantidad de información devuelta por la base de datos.
-* PATH VARIABLES -> También conocidas como variables de enrutamiento. Son variables como las query params pero sirven para ir a buscar exactamente (a través de un ID) la información que deseo obtener de la base de datos. Válido para POST y GET.
+* PATH PARAMS -> También conocidas como variables de enrutamiento. Son variables como las query params pero sirven para ir a buscar exactamente (a través de un ID) la información que deseo obtener de la base de datos. Válido para POST y GET.
 * Una vez que enviamos la petición, en la respuesta podemos guardar un ejemplo de la respuesta en el botón `Save as example` de la esquina dcha del recuadro propio de la respuesta (justo al lado del `Status Code`).
