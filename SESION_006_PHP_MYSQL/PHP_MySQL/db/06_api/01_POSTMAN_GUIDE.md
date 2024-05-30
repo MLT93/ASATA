@@ -3,10 +3,10 @@
 **Crear Workspace**
 
 **Crear Collection (Collections)**
-	Se pueden crear variables de entorno específicas para cada cliente, como claves de autenticación, la identificación del cliente, su token de acceso...	
+	Se pueden crear variables específicas para cada cliente, como claves de autenticación, la identificación del cliente, su token de acceso...	
 
 **Crear entornos (Environments)**
-	Se puede crear variables globales, como urls base (sin el endpoint)...
+	Se puede crear variables globales, como urls base (sin el endpoint). Recuerda que podemos añadir una parte de seguridad más a las passwords o credenciales creando variables secretas. Además las variables de entorno sobrescriben las variables de Collections.
 	Los Environments hay que seleccionarlos en la parte superior dcha de Postman. Por defecto saldrá en 'No Environments'. Seleccionamos nuestro entorno y ya tendremos a disposición todas las variables globales de ese entorno, que serán accesible en las distintas peticiones que se realicen en ese entorno.
 
 **Crear Request**
