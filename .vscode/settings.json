@@ -409,6 +409,7 @@
     "editor.defaultFormatter": "foxundermoon.shell-format"
   },
   "cSpell.words": [
+    "ciberseguridad",
     "descomentar",
     "DESENCRIPTA",
     "Desencriptado",
@@ -438,7 +439,8 @@
     "subcategorías",
     "unicode",
     "VARCHAR",
-    "videogames"
+    "videogames",
+    "WLAN"
   ],
   "[sql]": {
     "editor.defaultFormatter": "inferrinizzard.prettier-sql-vscode"

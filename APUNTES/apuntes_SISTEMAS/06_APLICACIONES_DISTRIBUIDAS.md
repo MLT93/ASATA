@@ -76,3 +76,57 @@ Es un conjunto de servicios pequeños e independientes que se comunican entre s�
 # ARQUITECTURA DE RESTFUL
 
 Servicios que siguen el estilo arquitectónico REST (Representational State Transfer) como API de Twitter, Google Maps API, etc.
+
+# SEGURIDAD
+
+- `SAFETY`: la seguridad relacionada con la integridad de las personas.
+
+- `SECURITY`: es la seguridad para mantener la integridad de la máquina (software y hardware). Es la ciberseguridad.
+
+- `Cifrado Simétrico`: Utiliza la mima clave para cifrar y descifrar los datos. Es más rápido y eficiente para grandes volúmenes de datos. Ejemplos: AES (Advanced Encryption Standard), DES (Data Encryption Standard). Utiliza las funciones hash (hash functions) que sirven para garantizar la integridad de los datos con una longitud siempre igual (un mismo tamaño). Gracias a esto, es imposible llegar a la clave (Entrada) sin poseer la clave.
+
+`Entrada`: "Zorro" -> `Hash Function` -> `Salida`: DFCD4355
+`Entrada`: "Pepito Grillo" -> `Hash Function` -> `Salida`: DFC56S74
+
+- `Cifrados de Bloque`: Tengo una información, la divido en bloques y los encripto separadamente
+
+- `Cifrado de flujo`: Se utilizan en aplicaciones donde la velocidad del flujo de datos es variable o en tiempo real, como telefonía o WLAN. Se genera un flujo de claves a partir de una semilla aleatoria.
+
+- `Cifrado Asimétrico`: Este tipo de cifrado utiliza 2 claves (pública y privada). La clave pública cifra los datos y la clave privada los descifra. Es más seguro pero menos eficiente.
+Ejemplo enviando un mensaje cifrado: 
+1. Ana redacta un msg
+2. Ana cifra el msg con la clave pública de David (porque sólo David posee su clave privada)
+3. Ana envía el msg a David a través de internet (email, WhatsApp, etc...)
+4. David recibe el msg
+5. David con su clave privada es el único que puede leer el msg
+
+- `Integridad`: Garantiza que los mensajes no han sido alterados durante el tránsito de la información. Esto se logra mediante las funciones hash.
+- ``:
+- `Firmas Digitales`: Utilizan cifrado asimétrico para firmar el mensaje. La clave privada del remitente firma el mensaje y cualquier persona con la clave pública correspondiente puede verificar la firma.
+Ejemplo enviando un mensaje firmado:
+1. David redacta un msg
+2. David firma digitalmente el msg con la clave privada
+3. David envía el msg a Ana a través de internet (email, WhatsApp, etc...)
+4. Ana recibe el msg
+5. Ana con su clave pública puede leer el msg
+
+- `Técnicas de Cifrado`: Se usan para proteger el contenido del mensaje durante la transmisión.
+
+- `Control de Acceso Basado en Roles (RBAC)`: Asigna los permisos a roles de usuario.
+
+- `TLS/SSL (Transport Layer Security)`: Protocolo de seguridad que proporciona comunicaciones a través de una red. Es la versión mejorada de SSL (Secure Sockets Layer). Involucra la config de certificados digitales emitidos por una autoridad de certificación (CA), y la config de servidores para aceptar conexiones seguras. Incluye autenticación de clientes y servidores (proceso Handshake).
+
+- `HTTPS (HTTP SECURE)`: HTTP sobre TLS. Garantiza que la comunicación entre navegador y servidor sea segura.
+
+- `WS-Security`: Protocolo de extensión SOAP que permite asegurar mensajes SOAP mediante integridad y confidencialidad.
+
+- `OAuth`: Protocolo de autorización que permite a los usuarios otorgar acceso limitado a recursos sin compartir sus credenciales.
+
+- `JWT (JSON Web Token)`: Estándar abierto para la creación de tokens de acceso que permiten la propagación de información entre dos partes, accediendo a la identidad de un determinado usuario con una serie de claims o privilegios. En la práctica es una cadena de texto que tiene 3 partes codificadas en Base64. Puede funcionar desde cualquier espacio, ya que su tamaño no es muy extenso. Puede establecerse en sitios como URL, parámetros de respuesta POST o dentro de un header HTTP.
+Se compone de 3 partes:
+  `Header`: tipo de token (JWT), algoritmo de codificación
+  `Payload`: claims (las demandas de una entidad o usuario con su información y detalles sobre la creación y expiración del token)
+  `Signature`: firma que nos permite verificar si el token es válido. Se firmará el header codificado, el payload token codificado, el secret key y el algoritmo que se ha establecido en el header. Esto se realiza para verificar que la entidad o usuario es quien dice ser.
+Es perfecto para enviar otros tokens de acceso dentro de este mismo token, porque al desencriptar la información compruebo si lo que obtengo corresponde con mi base de datos. Es una herramienta como un las variables de sesión o las cookies.
+Enlace: `https://openwebinars.net/blog/que-es-json-web-token-y-como-funciona/`
+Enlace: `https://keepcoding.io/blog/que-es-jwt/`
