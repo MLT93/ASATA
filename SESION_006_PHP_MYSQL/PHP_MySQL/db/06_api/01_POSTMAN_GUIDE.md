@@ -15,7 +15,7 @@
 		`Authorization` (Es donde se configuran las autenticaciones del usuario. Esta es la forma cómoda hecha por Postman, pero de todas formas siempre se mandan a través del header en formato código. De hecho, si utilizamos Authorization y vamos al Header, veremos ahí el key del Authentication puesto), 
 		`Headers` (Aquí está la información y metadatos que envío en la request para poder realizar la petición. Por ejemplo: el Content-Type, Cache-Control, Authorization, etc...), 
 		`Body` (Aquí es donde se envían los POST y PUT), 
-		`Scripts`, 
+		`Scripts` (Aquí podemos ejecutar código JavaScript en el request y en el response para manipular la información y hacer las cosas más dinámicas. Ej: que las variables de Collections o Environments se actualicen automáticamente), 
 		`Tests`, 
 		`Settings`.
 
