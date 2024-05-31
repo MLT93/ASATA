@@ -30,7 +30,7 @@
 //   $authHeader = isset($headers['Authorization']) ? $headers['Authorization'] : null; //=> 'Bearer dXZ1cnVzZXI6MTIzNA=='
 //   // echo $authHeader;
 
-//   // Ahora compruebo la información encriptada
+//   // Ahora compruebo la información encriptada y creo array para guardar la info separadamente
 //   // Aquí pregunto si la cadena de texto donde estoy buscando, empieza por 'Basic ' en la posición 0
 //   if (strpos($authHeader, "Bearer ") == 0) {
 

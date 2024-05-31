@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
   $authHeader = isset($headers['Authorization']) ? $headers['Authorization'] : null; //=> 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkYXRhIjoiUEhZcEFoM0kxTkt5d3lsUFJMeFJrbkNqL0VpcHZ0K2dnOEdkck0zLzRFOFNGZmMrMkE3alFadkRCVEJpNWVBblhpQ1FsWTR5am1XcW5uM09lcThqTk83SjZUZXRLYWdwU0pZZ2lRT2I5Z1p5dnJwQ0Q0YjEwR1FiZ3VVcDNxWjNCZElCY2s4ZDRuYXB0b0JvaGErcHA5NlJEWk9PVjBRRkhPYTh6YXRPRGpJPSIsIml2IjoiNkt1TnV0dXUrenVybytMMDZFZEQ3dz09In0.Slnr0-Uv4Nxah_s5svywssEWSd_T3Wlt4BftMIXNqUc'
   // echo $authHeader;
 
-  // Ahora compruebo la información encriptada
+  // Ahora compruebo la información encriptada y creo array para guardar la info separadamente
   // Aquí pregunto si la cadena de texto donde estoy buscando, empieza por 'Basic ' en la posición 0
   if (strpos($authHeader, "Bearer ") == 0) {
 
@@ -51,6 +51,26 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 
     // Verifico que me ha llegado toda la información para crear después el token
     if ($nickname && $password && $mail && $rol) {
+
+      if ($nickname == "useruser") {
+        // Set del la respuesta y mensaje en formato JSON
+        http_response_code(200);
+        echo json_encode(
+          [
+            'success' => true,
+            'nickname' => "Bienvenido $nickname"
+          ]
+        );
+      } else {
+        // Set del la respuesta y mensaje en formato JSON
+        http_response_code(400);
+        echo json_encode(
+          [
+            'success' => false,
+            'nickname' => 'Usuario incorrecto'
+          ]
+        );
+      }
 
       if ($rol == "admin") {
         // Set del la respuesta y mensaje en formato JSON

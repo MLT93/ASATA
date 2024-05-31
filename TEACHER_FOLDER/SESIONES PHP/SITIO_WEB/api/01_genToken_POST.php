@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
   // echo $mail;
   // echo $rol;
 
-  // Ahora compruebo la información encriptada
+  // Ahora compruebo la información encriptada y creo array para guardar la info separadamente
   $info = [];
 
   // Aquí pregunto si la cadena de texto donde estoy buscando, empieza por 'Basic ' en la posición 0
@@ -78,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
       echo json_encode(
         [
           'success' => false,
-          'token' => 'Faltan parámetros para incluir en la petición'
+          'error' => 'Faltan parámetros para incluir en la petición'
         ]
       );
     }
@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
   echo json_encode(
     [
       'success' => false,
-      'token' => 'La petición debe ser realizada a través de un POST'
+      'error' => 'La petición debe ser realizada a través de un POST'
     ]
   );
 }

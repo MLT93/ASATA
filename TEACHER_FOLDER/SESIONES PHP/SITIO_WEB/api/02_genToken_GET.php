@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
   // echo $mail;
   // echo $rol;
 
-  // Ahora compruebo la información encriptada
+  // Ahora compruebo la información encriptada y creo array para guardar la info separadamente
   $info = [];
 
   // Aquí pregunto si la cadena de texto donde estoy buscando, empieza por 'Basic ' en la posición 0

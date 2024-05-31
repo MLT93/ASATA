@@ -1,7 +1,5 @@
 <?php
 
-require_once("../functions/authentication.php");
-
 // Esto lo cargo para utilizar las variables de entorno en el archivo `.env`
 // Es necesario el `autoload` del `vendor` para cargar y encontrar estos paquetes. También se puede cargar el directorio en otro archivo e importar este en él
 // La función estática en el namespace `Dotenv` recibe 1 parámetro
@@ -44,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
   // echo $mail;
   // echo $rol;
 
-  // Ahora compruebo la información encriptada
+  // Ahora compruebo la información encriptada y creo array para guardar la info separadamente
   $info = [];
 
   // Aquí pregunto si la cadena de texto donde estoy buscando, empieza por 'Basic ' en la posición 0
