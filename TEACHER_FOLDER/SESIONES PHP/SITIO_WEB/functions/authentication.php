@@ -162,12 +162,12 @@ function newJWTdecodeUser($jwt, $secretKey, $cipherKey)
    $payloadDesencriptado =  openssl_decrypt($jwtDecodificado->data, $metodoCifrado, $cipherKey, 0, base64_decode($jwtDecodificado->iv));
 
    //obtengo el valor del usuario que hay en el token
-   $pay =  json_decode($payloadDesencriptado);
+   $payload =  json_decode($payloadDesencriptado);
    $infoUserJWT = [];
-   $infoUserJWT['nickname'] = $pay->{'nickname'};
-   $infoUserJWT['password'] = $pay->{'password'};
-   $infoUserJWT['mail'] = $pay->{'mail'};
-   $infoUserJWT['rol'] = $pay->{'rol'};
+   $infoUserJWT['nickname'] = $payload->{'nickname'};
+   $infoUserJWT['password'] = $payload->{'password'};
+   $infoUserJWT['mail'] = $payload->{'mail'};
+   $infoUserJWT['rol'] = $payload->{'rol'};
 
    return $infoUserJWT;
 }
