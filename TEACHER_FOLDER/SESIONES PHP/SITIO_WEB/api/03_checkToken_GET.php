@@ -62,6 +62,16 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
             'rol' => "El usuario es admin"
           ]
         );
+      } else {
+        // Set del la respuesta y mensaje en formato JSON
+        http_response_code(400);
+        echo json_encode(
+          [
+            'success' => false,
+            'token' => $encodedCredentialsJWT,
+            'rol' => 'Este rol de usuario no tiene acceso'
+          ]
+        );
       }
     } else {
       // Set del la respuesta y mensaje en formato JSON
