@@ -24,10 +24,9 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 
   // Compruebo que en el Header están los datos que me debe enviar el cliente
 
-  // Vamos a pedirle las `credenciales de acceso` con el `nickname` y `password`
-  // Esta información deberá ir en el Header como Basic Authentication
-  // Se manda normalmente como Basic Authentication porque te devuelve la información encriptada
-  $authHeader = isset($headers['Authorization']) ? $headers['Authorization'] : null; //=> 'Bearer dXZ1cnVzZXI6MTIzNA=='
+  // Vamos a pedirle las `credenciales de acceso`
+  // Esta información deberá ir en el Header siempre. En este caso, al haber creado ya el Token con el Basic Authentication previamente, obtendremos un Bearer Token
+  $authHeader = isset($headers['Authorization']) ? $headers['Authorization'] : null; //=> 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkYXRhIjoiUEhZcEFoM0kxTkt5d3lsUFJMeFJrbkNqL0VpcHZ0K2dnOEdkck0zLzRFOFNGZmMrMkE3alFadkRCVEJpNWVBblhpQ1FsWTR5am1XcW5uM09lcThqTk83SjZUZXRLYWdwU0pZZ2lRT2I5Z1p5dnJwQ0Q0YjEwR1FiZ3VVcDNxWjNCZElCY2s4ZDRuYXB0b0JvaGErcHA5NlJEWk9PVjBRRkhPYTh6YXRPRGpJPSIsIml2IjoiNkt1TnV0dXUrenVybytMMDZFZEQ3dz09In0.Slnr0-Uv4Nxah_s5svywssEWSd_T3Wlt4BftMIXNqUc'
   // echo $authHeader;
 
   // Ahora compruebo la información encriptada
