@@ -68,8 +68,8 @@ function JWTdecodeUser($jwt, $secretKey, $cipherKey)
    $payloadDesencriptado =  openssl_decrypt($jwtDecodificado->data, $metodoCifrado, $cipherKey, 0, base64_decode($jwtDecodificado->iv));
 
    //obtengo el valor del usuario que hay en el token
-   $pay =  json_decode($payloadDesencriptado);
-   $userJWT = $pay->{'username'};
+   $payload =  json_decode($payloadDesencriptado);
+   $userJWT = $payload->{'username'};
 
    return $userJWT;
 }
