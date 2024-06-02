@@ -62,6 +62,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     // Verifico que me ha llegado toda la información para crear después el token
     if ($nickname && $password && $mail && $rol) {
+
+      // Creo JWT
       $jwt = newJWTCreation($info, $path);
 
       // Set del la respuesta y mensaje en formato JSON

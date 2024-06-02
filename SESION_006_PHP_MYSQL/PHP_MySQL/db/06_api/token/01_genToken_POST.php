@@ -4,7 +4,7 @@
 // Es necesario el `autoload` del `vendor` para cargar y encontrar estos paquetes. También se puede cargar el directorio en otro archivo e importar este en él
 // La función estática en el namespace `Dotenv` recibe 1 parámetro
 // 1 El directorio donde encontrar el archivo `.env`. No hace falta poner el nombre del archivo oculto, solo ponemos el directorio donde está porque lo busca automáticamente
-require_once("../../vendor/autoload.php");    // Esto lo cargo para utilizar las variables de entorno en el archivo `.env`
+require_once("../../vendor/autoload.php"); // Esto lo cargo para utilizar las variables de entorno en el archivo `.env`
 
 use Firebase\JWT\JWT;
 use Dotenv\Dotenv;
@@ -69,8 +69,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     // Verifico que me ha llegado toda la información para crear después el token
     if ($nickname && $password && $mail && $rol) {
 
-      $iat = time(); //fecha creacion
-      $exp = $iat + (3200 * 30 * 24); //fecha expiracion
+      // Creo JWT
+      // Preparo el Payload con la info del cliente para el cifrar el JWT
+      $iat = time(); // Fecha creación
+      $exp = $iat + (3200 * 30 * 24); // Fecha expiración
       $sub = 1;
       $payload = [
         "iat" => $iat,
@@ -82,28 +84,26 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         "rol" => $info['rol']
       ];
 
-      //vamos a cifrar / encriptar el payload anterior
+      // Vamos a cifrar el Payload anterior
+      $metodoCifrado = "AES-128-CBC"; // Elijo el tipo de cifrado
+      
+      $iv_longitud = openssl_cipher_iv_length($metodoCifrado); // Calculo longitud vector inicialización del cifrado
+      $iv = openssl_random_pseudo_bytes($iv_longitud); // Creo el vector de inicialización como un string de bytes random
+      $payload_encriptado = openssl_encrypt(json_encode($payload), $metodoCifrado, $cipherKey, 0, $iv); // Encripto la información
+      $iv_encriptado = base64_encode($iv); // Encripto el iv
 
-      //DEFINO EL METODO DE CIFRADO
-      $metodoCifrado = "AES-128-CBC";
-      //calculo longitud vector inicialización del cifrado
-      $iv_longitud = openssl_cipher_iv_length($metodoCifrado);
-      //creo el vector de inicialización como un string de bytes random 
-      $iv = openssl_random_pseudo_bytes($iv_longitud);
-      //encripto la informacion
-      $payload_encriptado = openssl_encrypt(json_encode($payload), $metodoCifrado, $cipherKey, 0, $iv);
-
-      //tenemos el nuevo payload encriptado
-      $nuevoPayload = array(
+      // Ahora con el `payload_encriptado` y el `iv_encriptado` creamos un Payload totalmente codificado
+      $encodedPayload = array(
         "data" => $payload_encriptado,
-        "iv" => base64_encode($iv)
+        "iv" => $iv_encriptado
       );
 
-      //codificamos ese payload en un token JWT
-      $jwt = JWT::encode($nuevoPayload, $secretKey, "HS256");
+      // Codificamos ese payload en un token JWT
+      $encodedJWT = JWT::encode($encodedPayload, $secretKey, "HS256");
 
-      $jwtArray = [
-        "jwt" => $jwt,
+      // Creamos un array con toda la info
+      $jwt = [
+        "jwt" => $encodedJWT,
         "exp" => $exp
       ];
 
@@ -112,7 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
       echo json_encode(
         [
           'success' => true,
-          'token' => $jwtArray
+          'token' => $jwt
         ]
       );
     } else {

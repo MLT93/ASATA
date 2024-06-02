@@ -17,7 +17,7 @@ $token = newJWTCreation($info, $path);
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-  CURLOPT_URL => 'http://127.0.0.1/PHP/SITIO_WEB/api/checkToken.php',
+  CURLOPT_URL => 'localhost/ASATA/TEACHER_FOLDER/SESIONES%20PHP/SITIO_WEB/api/01_genToken_POST.php',
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => '',
   CURLOPT_MAXREDIRS => 10,
@@ -33,4 +33,7 @@ curl_setopt_array($curl, array(
 $response = curl_exec($curl);
 
 curl_close($curl);
-echo $response;
+// echo $response;
+
+$data = json_decode($response);
+echo $data;
