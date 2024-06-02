@@ -8,7 +8,7 @@
 
 - **Tecnologías entorno servidor**:
 
-  `PHP` | `MySQL`
+  `Apache` | `PHP` | `MySQL`
 
 ## Boceto de página web para tienda de ropa HIPPO CLOTHES:
 

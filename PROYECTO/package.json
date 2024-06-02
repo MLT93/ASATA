@@ -8,7 +8,7 @@
     "loadClient": "cd client/ && npm run dev:1",
     "loadServer": "cd server/ && npm run dev:2",
     "installClient": "cd client/ && npm i",
-    "installServer": "cd server/ && npm i"
+    "installServer": "cd server/ && composer i"
   },
   "repository": {
     "type": "git",
