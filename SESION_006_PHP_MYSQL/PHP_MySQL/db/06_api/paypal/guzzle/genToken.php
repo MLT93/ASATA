@@ -4,6 +4,7 @@ require_once("../../../../../vendor/autoload.php");
 
 use GuzzleHttp\Client;
 
+// * Realizo petición a la API paypal para generar el access_token a través del user y password de la API. Esta info es enviada a través del Header con Basic Auth
 $client = new Client();
 
 $clientID = 'AQ7BC8zbNCFXpLpmWON0D5ZYv6RzVFTHi9RL-jtSs_YIsEElMOIlTI1Nl8PCB7uTBRMYewSWvgJedkJ6';

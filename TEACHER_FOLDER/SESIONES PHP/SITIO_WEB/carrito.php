@@ -140,18 +140,18 @@
         $clientID = 'AQ7BC8zbNCFXpLpmWON0D5ZYv6RzVFTHi9RL-jtSs_YIsEElMOIlTI1Nl8PCB7uTBRMYewSWvgJedkJ6';
         $clientSECRET = 'EHY1TneczlNLTwSQpLvV3HIW0fK6oJF4xXn37LN8Qv-oD2Nj8Qh3YgeZ0LC77izd6ljG_aQG07nOzuLm';
 
-        // * Aplico la estructura para codificar las credenciales para mandarlas como Basic Authentication
-        // * Codifico las credenciales en base64
+        // Aplico la estructura para codificar las credenciales para mandarlas como Basic Authentication
+        // Codifico las credenciales en base64
         $credentials = $clientID . ":" . $clientSECRET;
         $encodeCredentials = base64_encode($credentials);
         
-        // * Definir Headers en un array
+        // Definir Headers en un array
         $headers = [
           'Content-Type' => 'application/x-www-form-urlencode', // Al utilizar `x-www-form-urlencode` hay que pasar en el array `options` el `form_params => []` 
           'Authorization' => 'Basic ' . $encodeCredentials,
         ];
         
-        // * Juntar todo (si hubiese también un Body, lo juntaríamos en `$options`)
+        // Juntar todo (si hubiese también un Body, lo juntaríamos en `$options`)
         $options = [
           'form_params' => [
             'grant_type' => 'client_credentials',
@@ -162,7 +162,7 @@
         
         $URL_forAuth = 'https://api-m.sandbox.paypal.com/v1/oauth2/token';
         
-        // * Genero la petición
+        // Genero la petición
         $response = $client->request('POST', $URL_forAuth, $options);
 
         $data = $response->getBody();
@@ -173,7 +173,7 @@
 
         // echo $access_token;
 
-        // * Ahora envío una orden de pago
+        // * Ahora envío la orden de pago
         $URL_forOrder = "https://api-m.sandbox.paypal.com/v2/checkout/orders";
         $client = new Client();
 
@@ -188,8 +188,8 @@
           "purchase_units": [
             {
               "amount": {
-                "currency_code": "USD",
-                "value": "100.00"
+                "currency_code": "'.$currencycode.'",
+                "value": "'.$value.'"
               }
             }
           ]
@@ -200,16 +200,19 @@
           'body' => $body
         ];
 
-        // * Utilizando los métodos de la clase Client
+        // Utilizando los métodos de la clase Client
         $res = $client->request('POST', $URL_forOrder, $options);
-        // echo $res->getBody();
+  
+        $data = json_decode($res->getBody());
 
-        // * Utilizando la clase Request
+        $idPago = $data->{'id'}; // Saco el ID de la orden de pago
+
+        // Utilizando la clase Request
         // $req = new Request('POST', 'https://api-m.sandbox.paypal.com/v2/checkout/orders', $headers, $body);
         // $res = $client->sendAsync($req)->wait();
         // echo $res->getBody();
 
-        // * Utilizando CURL
+        // Utilizando CURL
         // $curl = curl_init();
 
         // curl_setopt_array($curl, array(
@@ -242,6 +245,37 @@
 
         // curl_close($curl);
         // echo $response;
+
+        // * Muestro los detalles del pago utilizando el ID de pago
+        $URL_forDetailsOrder = "https://api-m.sandbox.paypal.com/v2/checkout/orders/$idPago"; // Este endpoint figura de la siguiente forma en Postman: 'https://api-m.sandbox.paypal.com/v2/checkout/orders/:order_id' donde ':order_id' es una variable de enrutamiento (patch variable). Se reconoce en las páginas porque se escribe así: 'https://api-m.sandbox.paypal.com/v2/checkout/orders/{id}'
+        $client = new Client();
+
+        $headers = [
+          'Content-Type' => 'application/json', // Al utilizar `json` hay que pasar la información en formato JSON a través del body
+          'Authorization' => "Bearer " . $access_token
+        ];
+
+        $options = [
+          'headers' => $headers,
+        ];
+
+        // Utilizando los métodos de la clase Client
+        $res = $client->request('GET', $URL_forDetailsOrder, $options);
+
+        $data = json_decode($res->getBody());
+
+        $purchaseUnits = $data->{'purchase_units'};
+
+        // print_r($purchaseUnits[0]->{'amount'});
+
+        $currency = $purchaseUnits[0]->{'amount'}->{'currency_code'};
+        $price = $purchaseUnits[0]->{'amount'}->{'value'};
+
+        echo "<table>";
+        echo "<tr>   <th>ID</th>   <th>Moneda</th>   <th>Precio</th>   </tr>";
+        echo "<tr>   <td>$idPago</td>   <td>$currency</td>   <td>$price</td>   </tr>";
+        echo "</table>";
+
 
       }
       //TERMINA AQUI
