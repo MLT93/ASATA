@@ -3,7 +3,7 @@
 # https://www.phpmyadmin.net/
 #
 # Servidor: 127.0.0.1
-# Tiempo de generación: 23-05-2024 a las 13:20:18
+# Tiempo de generación: 03-06-2024 a las 10:17:35
 # Versión del servidor: 10.4.32-MariaDB
 # Versión de PHP: 8.2.12
 
@@ -21,7 +21,7 @@ SET time_zone = "+00:00";
 # Base de datos: `gameclub`
 #
 
-DROP DATABASE if EXISTS gameclub;
+DROP DATABASE IF EXISTS gameclub;
 
 CREATE DATABASE IF NOT EXISTS gameclub;
 
@@ -244,6 +244,22 @@ INSERT INTO `metodospago` (`id`, `metodo`) VALUES
 (3, 'cuenta bancaria'),
 (4, 'contado'),
 (5, 'bitcoins');
+
+# ############################
+
+#
+# Estructura de tabla para la tabla `ordenespago`
+#
+
+CREATE TABLE `ordenespago` (
+  `id` int(10) NOT NULL,
+  `id_usuario` int(10) NOT NULL,
+  `intent` varchar(255) NOT NULL COMMENT 'CAPTURE, AUTHORIZE',
+  `currencycode` varchar(3) NOT NULL,
+  `value` decimal(10,2) NOT NULL,
+  `fechaOrden` datetime NOT NULL,
+  `estado` varchar(255) NOT NULL COMMENT 'GENERADA, EN PROCESO, COMPLETADA'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 # ############################
 
@@ -688,6 +704,13 @@ ALTER TABLE `metodospago`
   ADD PRIMARY KEY (`id`);
 
 #
+# Indices de la tabla `ordenespago`
+#
+ALTER TABLE `ordenespago`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_usuario` (`id_usuario`);
+
+#
 # Indices de la tabla `pegui`
 #
 ALTER TABLE `pegui`
@@ -787,6 +810,12 @@ ALTER TABLE `metodospago`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 #
+# AUTO_INCREMENT de la tabla `ordenespago`
+#
+ALTER TABLE `ordenespago`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+
+#
 # AUTO_INCREMENT de la tabla `pegui`
 #
 ALTER TABLE `pegui`
@@ -852,6 +881,12 @@ ALTER TABLE `alquileres`
 #
 ALTER TABLE `empleados`
   ADD CONSTRAINT `categoriaID` FOREIGN KEY (`id_categoria`) REFERENCES `categorias` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+#
+# Filtros para la tabla `ordenespago`
+#
+ALTER TABLE `ordenespago`
+  ADD CONSTRAINT `ordenespago_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 #
 # Filtros para la tabla `sesiones`
