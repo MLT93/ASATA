@@ -6,8 +6,7 @@ require_once("../functions/authentication.php");
 // Es necesario el `autoload` del `vendor` para cargar y encontrar estos paquetes. También se puede cargar el directorio en otro archivo e importar este en él
 // La función estática en el namespace `Dotenv` recibe 1 parámetro
 // 1 El directorio donde encontrar el archivo `.env`. No hace falta poner el nombre del archivo oculto, solo ponemos el directorio donde está porque lo busca automáticamente
-require_once("../../vendor/autoload.php"); /* En este caso `$dotenv = Dotenv\Dotenv::createImmutable("./");` 
-y `$dotenv->load();` no nos hacen falta porque se llaman en la función `newJWTCreation()` pero sí debo pasarle la ruta para encontrar el archivo `.env` a través de la variable `$path` */
+require_once("../../vendor/autoload.php"); /* En este caso `$dotenv = Dotenv\Dotenv::createImmutable("./");` y `$dotenv->load();` no nos hacen falta porque se llaman en la función `newJWTCreation()` pero sí debo pasarle la ruta para encontrar el archivo `.env` a través de la variable `$path` */
 $path = "../";
 
 // Antes de realizar ninguna acción controlo que la petición se realice a través de un método $payloadDesencriptado
