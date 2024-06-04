@@ -10,11 +10,12 @@ require_once("../../vendor/autoload.php"); /* En este caso `$dotenv = Dotenv\Dot
 y `$dotenv->load();` no nos hacen falta porque se llaman en la función `newJWTCreation()` pero sí debo pasarle la ruta para encontrar el archivo `.env` a través de la variable `$path` */
 $path = "../";
 
-// Antes de realizar ninguna acción controlo que la petición se realice a través de un método $payloadDesencriptado
+// Antes de realizar ninguna acción controlo que la petición se realice a través de un método GET
+// var_dump($_SERVER);
 if ($_SERVER['REQUEST_METHOD'] == "GET") {
 
   // Aquí recibiré una petición con credenciales: Usuario y Password
-  // Generará y devolverá un Token relacionado
+  // Generaré y devolveré un Token relacionado
   // Las credenciales se enviarán como Basic Authentication (es lo más común para crear el Token)
 
   // Si como siempre se manda la información en el Header, entonces obtengo todos los datos del Header
