@@ -45,6 +45,7 @@
       $secretKey = $_ENV['SIGNATURE_KEY'];
       $cipherKey = $_ENV['CIPHER_KEY'];
       if (estadoAcceso($jwt, $secretKey, $cipherKey)) {
+
         $infoUsuario = Usuario::mostrarUsuario($_SESSION['usuario']);
         $personalMsg = strtoupper($infoUsuario['nombre']);
 

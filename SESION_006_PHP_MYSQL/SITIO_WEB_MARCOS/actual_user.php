@@ -45,14 +45,13 @@
   // Segundo elemento es la clase 
   // Tercer  elemento el pseudonimo de la clase
   use BaseDatos\BaseDatos;
+  use BaseDatosUsuario\BaseDatosUsuario as Usuario;
 
   // Esto lo cargo para utilizar las variables de entorno en el archivo `.env`
   // Es necesario el `autoload` del `vendor` para cargar y encontrar estos paquetes. También se puede cargar el directorio en otro archivo e importar este en él
   // La función estática en el namespace `Dotenv` recibe 1 parámetro
   // 1 El directorio donde encontrar el archivo `.env`. No hace falta poner el nombre del archivo oculto, solo ponemos el directorio donde está porque lo busca automáticamente
   require_once("../vendor/autoload.php");
-
-  use BaseDatosUsuario\BaseDatosUsuario as Usuario;
 
   $dotenv = Dotenv\Dotenv::createImmutable("./"); // Busco el directorio del archivo `.env`
   $dotenv->load();
@@ -70,6 +69,7 @@
       if (isset($_REQUEST['actualizarImg'])) {
 
         $infoUsuario = Usuario::mostrarUsuario($_SESSION['usuario']);
+        // var_dump($infoUsuario);
 
         $nombre = $infoUsuario['nombre'];
         $apellido1 = $infoUsuario['apellido1'];
@@ -84,7 +84,7 @@
 
           redimensionarImagen($rutaOrigen, $rutaDestino, 50, 50);
 
-          $sentenciaSQL = "UPDATE clientes SET clientes.imagen = '$rutaDestino' WHERE clientes.email = '$email'";
+          $sentenciaSQL = "UPDATE usuarios SET usuarios.imagen = '$rutaDestino' WHERE usuarios.email = '$email'";
 
           // $cnx = new BaseDatos("localhost", "root", "mysql", "gameclub");
           $cnx = new BaseDatos("localhost", "root", "", "gameclub");

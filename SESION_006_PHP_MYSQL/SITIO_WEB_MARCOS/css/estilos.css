@@ -293,3 +293,13 @@ th {
   -ms-border-radius: 10%;
   -o-border-radius: 10%;
 }
+
+.h3_pago{
+  margin: 3rem;
+}
+
+.paypal_container{
+  margin-left: 3rem;
+  margin-top: 3rem;
+  width: 300px;
+}
