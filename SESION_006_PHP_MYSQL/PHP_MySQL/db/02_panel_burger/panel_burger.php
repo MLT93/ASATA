@@ -43,7 +43,7 @@ $connection = new DB("localhost", "root", "", "burger");
       <input type="number" name="stock" id="stockID" />
 
       <label for="costeID">COSTE UNITARIO</label>
-      <input type="number" name="coste" id="costeID" step="0.10" />
+      <input type="number" name="coste" id="costeID" step="0.01" /> <!-- `step="0.01"` permite escribir decimales -->
 
       <input type="submit" name="submitIngredient" id="submitIngredientID" value="ingrediente" />
     </form>

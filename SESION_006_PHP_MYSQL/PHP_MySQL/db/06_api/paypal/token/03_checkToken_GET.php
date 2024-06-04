@@ -6,9 +6,9 @@
 // // Es necesario el `autoload` del `vendor` para cargar y encontrar estos paquetes. También se puede cargar el directorio en otro archivo e importar este en él
 // // La función estática en el namespace `Dotenv` recibe 1 parámetro
 // // 1 El directorio donde encontrar el archivo `.env`. No hace falta poner el nombre del archivo oculto, solo ponemos el directorio donde está porque lo busca automáticamente
-// require_once("../../../../vendor/autoload.php");
+// require_once("../../../../../vendor/autoload.php");
 
-// $dotenv = Dotenv\Dotenv::createImmutable("../");
+// $dotenv = Dotenv\Dotenv::createImmutable("../../../../../SITIO_WEB_MARCOS/");
 // $dotenv->load();
 
 // // Antes de realizar ninguna acción controlo que la petición se realice a través de un método $payloadDesencriptado

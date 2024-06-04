@@ -72,7 +72,7 @@
       // Cargo el formulario después de realizar la conexión a la base de datos para que el código PHP que se ejecuta en el formulario funcione
       require_once("./html_modules/form_alquiler.php");
 
-      // REGISTRO ALQUILER
+      // REGISTRAR datos del formulario
       if (isset($_POST["enviarAlquiler"])) {
 
         // Variables formulario
