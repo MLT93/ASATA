@@ -40,7 +40,7 @@
             // echo "<a href='./paypal.php'>💲PAYPAL</a>";
 
             echo "<a href='./reg_factura.php'>📝 REALIZA FACTURA</a>";
-            // echo "<a href='./lista_facturas.php'>📄 FACTURAS DE " . $infoUsuario['nombre'] . "</a>";
+            echo "<a href='./lista_facturas.php'>📄 FACTURAS DE " . $infoUsuario['nombre'] . "</a>";
         }
     } else {
         echo "<a href='./0_login.php'> LOGIN</a>";

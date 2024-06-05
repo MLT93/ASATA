@@ -96,20 +96,33 @@
       $res = $client->request('GET', $URL_forShowInvoices, $options);
 
       $data = json_decode($res->getBody());
+      // var_dump($data);
 
-      var_dump($data);
+      $items = $data->{'items'};
+      // print_r($items[0]);
 
-      // $purchaseUnits = $data->{'purchase_units'};
-
-      // // print_r($purchaseUnits[0]->{'amount'});
-
-      // $currency = $purchaseUnits[0]->{'amount'}->{'currency_code'};
-      // $price = $purchaseUnits[0]->{'amount'}->{'value'};
-
+      // $invoice_id = $items[0]->{'id'};
+      // $status = $items[0]->{'status'};
+      // $invoice_number = $items[0]->{'detail'}->{'invoice_number'};
+      // $invoice_date = $items[0]->{'detail'}->{'invoice_date'};
+      // $currency_code = $items[0]->{'amount'}->{'currency_code'};
+      // $amount = $items[0]->{'amount'}->{'value'};
+      // $contacto = $items[0]->{'invoicer'}->{'email_address'};
 
       echo "<table>";
-      echo "<tr>   <th>ID</th>   <th>Moneda</th>   <th>Precio</th>   </tr>";
-      echo "<tr>   <td></td>   <td></td>   <td></td>   </tr>";
+      echo "<tr>   <th>🔍</th>   <th>ID</th>   <th>Status</th>   <th>Número Factura</th>   <th>Fecha</th>   <th>Moneda</th>   <th>Total</th>   <th>Contacto</th>   <th>❌</th>   </tr>";
+      foreach ($items as $key => $value) {
+        echo "<tr>   
+        <td><a href='detail_factura.php?idFactura=" . $value->{'id'} . "'>🔍</a></td>   "./* Envío el cliente al detalle de la factura */"
+        <td>" . $value->{'id'} . "</td>   
+        <td>" . $value->{'status'} . "</td>   
+        <td>" . $value->{'detail'}->{'invoice_number'} . "</td>   
+        <td>" . $value->{'detail'}->{'invoice_date'} . "</td>   
+        <td>" . $value->{'amount'}->{'currency_code'} . "</td>   
+        <td>" . $value->{'amount'}->{'value'} . "</td>   
+        <td>" . $value->{'invoicer'}->{'email_address'} . "</td>   
+        <td><a href='delete_factura.php?idFactura=".$value->{'id'}."'>❌</a></td>   </tr>"; /* Le agrego el ID de la factura como Query Params para que me envíe a la página de borrado y poder borrar la factura por ID (así como lo pide la API PayPal) */
+      }
       echo "</table>";
     }
   } else {

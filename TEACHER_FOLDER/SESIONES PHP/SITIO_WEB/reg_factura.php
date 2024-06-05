@@ -217,6 +217,19 @@
                     "country_code": "EU"
                 },
                 "email_address": "' . $email . '"
+            },
+            "amount": {
+                "breakdown": {
+                    "custom": {
+                        "label": "Packing Charges",
+                        "amount": {
+                            "currency_code": "' . $monedaDePago . '",
+                            "value": "' . $total . '"
+                        }
+                    },
+                    "shipping": {},
+                    "discount": {}
+                }
             }
         }';
 

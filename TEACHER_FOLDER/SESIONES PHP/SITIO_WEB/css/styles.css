@@ -371,3 +371,11 @@ table th:nth-child(even){
   background-color: #5c0124; /* Color de fondo para columnas pares */
 
 }
+
+.container_separator {
+  margin: 3rem;
+
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
