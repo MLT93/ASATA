@@ -66,6 +66,65 @@
     $cipherKey = $_ENV['CIPHER_KEY'];
     if (estadoAcceso($jwt, $secretKey, $cipherKey)) {
 
+      // TODO: MODIFICAR EL BODY DE LA PETICIÓN PARA PONER BIEN EL EMISOR DE LA FACTURA. QUIEN EMITE LA FACTURA ES LA EMPRESA, NO EL USUARIO. UTILIZA LA SIGUIENTE ESTRUCTURA:
+      /* 
+      {
+                    "detail": {
+                        "currency_code": "EUR",
+                        "invoice_number": "' . $n_factura . '",
+                        "reference": "deal-ref",
+                        "invoice_date": "' . $fecha . '",
+                        "note": "Gracias por su pedido."
+                    },
+                    "invoicer": {
+                        "name": {
+                            "given_name": "Restaurante Family"
+                        },
+                        "address": {
+                            "address_line_1": "Calle Mayor 10"
+                        },
+                        "email_address": "contacto@restaurantefamily.com"
+                    },
+                    "primary_recipients": [
+                        {
+                            "billing_info": {
+                                "name": {
+                                    "given_name": "' . $nickname . '"
+                                },
+                                "address": {
+                                    "address_line_1": "' . $direccion . '"
+                                },
+                                "email_address": "' . $email . '",
+                                "additional_info_value": "add-info"
+                            }
+                        }
+                    ],
+                    "items": [
+                        {
+                            "name": "' . $nameProducto . '",
+                            "description": "' . $descripcionProducto . '",
+                            "quantity": "1",
+                            "unit_amount": {
+                                "currency_code": "EUR",
+                                "value": "' . $valueProducto . '"
+                            },
+                            "unit_of_measure": "QUANTITY"
+                        },
+                        {
+                            "name": "' . $nameProducto . '",
+                            "description": "' . $descripcionProducto . '",
+                            "quantity": "1",
+                            "unit_amount": {
+                                "currency_code": "EUR",
+                                "value": "' . $valueProducto . '"
+                            },
+                            "unit_of_measure": "QUANTITY"
+                        }
+                    ]
+                }
+      
+      */
+
       // * Conexión a la base de datos
       $cnx = new Db("localhost", "root", "", "gameclub");
 
@@ -245,7 +304,7 @@
         // var_dump($data);
 
         // var_dump($data['href']);
-        // ["href"]=> string(77) "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-T9NB-ZNJC-DZT3-2XRH"
+        // Ejemplo de lo que devuelve: ["href"]=> string(77) "https://api.sandbox.paypal.com/v2/invoicing/invoices/INV2-T9NB-ZNJC-DZT3-2XRH"
         $longInicial = strlen($data->{'href'}) - 24;
         $longFinal = strlen($data->{'href'});
         $idInvoice = substr($data->{'href'}, $longInicial, $longFinal);
