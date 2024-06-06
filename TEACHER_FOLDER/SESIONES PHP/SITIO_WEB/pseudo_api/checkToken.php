@@ -19,7 +19,7 @@ $authHeader = isset($headers['Authorization'])?$headers['Authorization']:null;
 if(strpos($authHeader,"Bearer ") === 0){
 
     $jwt = substr($authHeader, 7);
-    $payload = JWTdecode($jwt,$_ENV['SIGNATURE_KEY'],$_ENV['CIPHER_KEY']);
+    $payload = JWTdecodeUser($jwt,$_ENV['SIGNATURE_KEY'],$_ENV['CIPHER_KEY']);
 
     
     if($payload->{'rol'} === "admin"){

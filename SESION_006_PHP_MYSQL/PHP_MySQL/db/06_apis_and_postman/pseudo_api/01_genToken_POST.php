@@ -1,33 +1,36 @@
 <?php
 
+// * PARA REALIZAR ESTE CÓDIGO DEBO ENVIAR UNA PETICIÓN CON POSTMAN A ESTE ENDPOINT O GENERAR EL CÓDIGO PARA QUE REALICE LA PETICIÓN POST NECESARIA PARA RECIBIR LA INFO
+// * PARA VER LAS RESPUESTAS, DEBERÉ UTILIZAR POSTMAN TAMBIÉN
+
 // Esto lo cargo para utilizar las variables de entorno en el archivo `.env`
 // Es necesario el `autoload` del `vendor` para cargar y encontrar estos paquetes. También se puede cargar el directorio en otro archivo e importar este en él
 // La función estática en el namespace `Dotenv` recibe 1 parámetro
 // 1 El directorio donde encontrar el archivo `.env`. No hace falta poner el nombre del archivo oculto, solo ponemos el directorio donde está porque lo busca automáticamente
-require_once("../../../../../vendor/autoload.php"); // Esto lo cargo para utilizar las variables de entorno en el archivo `.env`
+require_once("../../../../vendor/autoload.php"); // Esto lo cargo para utilizar las variables de entorno en el archivo `.env`
 
 use Firebase\JWT\JWT;
 use Dotenv\Dotenv;
 
-$dotenv = Dotenv::createImmutable("../../../../../SITIO_WEB_MARCOS/"); // Busco el directorio del archivo `.env`
+$dotenv = Dotenv::createImmutable("../../../../../SESION_006_PHP_MYSQL/"); // Busco el directorio del archivo `.env`
 $dotenv->load();
 
-//claves secretas del archivo `.env`
+// Variables del archivo `.env`
 $secretKey = $_ENV['SIGNATURE_KEY'];
 $cipherKey = $_ENV['CIPHER_KEY'];
 
+// Si como siempre se manda la información en el Header, entonces obtengo todos los datos del Header
+// Compruebo que en el Header están los datos que me debe enviar el cliente
+$headers = getallheaders();
+// var_dump($headers);
+
 // Antes de realizar ninguna acción controlo que la petición se realice a través de un método $payloadDesencriptado
+// var_dump($_SERVER);
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
   // Aquí recibiré una petición con credenciales: Usuario y Password
-  // Generará y devolverá un Token relacionado
-  // Las credenciales se enviarán como Basic Authentication (es lo más común para crear el Token)
-
-  // Si como siempre se manda la información en el Header, entonces obtengo todos los datos del Header
-  $headers = getallheaders();
-  // var_dump($headers);
-
-  // Compruebo que en el Header están los datos que me debe enviar el cliente
+  // Generaré y devolveré un Bearer Token relacionado
+  // Las credenciales para generar el Token se enviarán como Basic Authentication (es lo más común para crear el Token)
 
   // Vamos a pedirle las `credenciales de acceso` con el `nickname` y `password`
   // Esta información deberá ir en el Header como Basic Authentication
@@ -48,14 +51,14 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
   // Aquí pregunto si la cadena de texto donde estoy buscando, empieza por 'Basic ' en la posición 0
   if (strpos($authHeader, "Basic ") == 0) {
 
-    // Recorto la cadena de texto. empieza en el indice 6 y acaba al final de la cadena
+    // Recorto la cadena de texto para obtener el código encriptado. Empieza en el indice 6 y acaba al final de la cadena
     $encodedCredentials = substr($authHeader, 6);
 
     // Decodifico las credenciales
     $decodedCredentials = base64_decode($encodedCredentials);
     // echo $decodedCredentials; //=> useruser:1234
 
-    // Separar el nickname y la password
+    // Separo el nickname y la password
     // `list()` crea las variables
     // `explode()` quita la separación que le indique, sobre la variable que le paso, y devuelve la cantidad de elementos que le pase como número
     list($nickname, $password) = explode(":", $decodedCredentials, 2);
@@ -86,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
       // Vamos a cifrar el Payload anterior
       $metodoCifrado = "AES-128-CBC"; // Elijo el tipo de cifrado
-      
+
       $iv_longitud = openssl_cipher_iv_length($metodoCifrado); // Calculo longitud vector inicialización del cifrado
       $iv = openssl_random_pseudo_bytes($iv_longitud); // Creo el vector de inicialización como un string de bytes random
       $payload_encriptado = openssl_encrypt(json_encode($payload), $metodoCifrado, $cipherKey, 0, $iv); // Encripto la información
@@ -109,29 +112,23 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
       // Set del la respuesta y mensaje en formato JSON
       http_response_code(200);
-      echo json_encode(
-        [
-          'success' => true,
-          'token' => $jwt
-        ]
-      );
+      echo json_encode([
+        'success' => true,
+        'token' => $jwt
+      ]);
     } else {
       // Set del la respuesta y mensaje en formato JSON
       http_response_code(400);
-      echo json_encode(
-        [
-          'success' => false,
-          'token' => 'Faltan parámetros para incluir en la petición'
-        ]
-      );
+      echo json_encode([
+        'success' => false,
+        'token' => 'Faltan parámetros para incluir en la petición'
+      ]);
     }
-  }
-} else {
-  http_response_code(400);
-  echo json_encode(
-    [
+  } else {
+    http_response_code(400);
+    echo json_encode([
       'success' => false,
       'token' => 'La petición debe ser realizada a través de un POST'
-    ]
-  );
+    ]);
+  }
 }
