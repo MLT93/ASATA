@@ -113,38 +113,33 @@
           $invoice_id = $data->{'id'};
           $status = $data->{'status'};
           $invoice_number = $data->{'detail'}->{'invoice_number'};
-          $memo = $data->{'detail'}->{'memo'};
           $create_time = $data->{'detail'}->{'metadata'}->{'create_time'};
           $last_update_time = $data->{'detail'}->{'metadata'}->{'last_update_time'};
           $currency_code = $data->{'amount'}->{'currency_code'};
           $value = $data->{'amount'}->{'value'};
           $contacto = $data->{'invoicer'}->{'email_address'};
           $nombreDelContacto = $data->{'invoicer'}->{'name'}->{'given_name'};
-          $apellidoDelContacto = $data->{'invoicer'}->{'name'}->{'surname'};
           $address = $data->{'invoicer'}->{'address'}->{'address_line_1'};
 
           // Si no existe el dato en la database y es null, enviamos un mensaje diciendo que no existe ese dato
           $msg = "NO DATA";
-          isset($value) && $value != null ? $value : $msg;
-          isset($contacto) && $contacto != null ? $contacto : $msg;
-          isset($nombreDelContacto) && $nombreDelContacto != null ? $nombreDelContacto : $msg;
-          isset($apellidoDelContacto) && $apellidoDelContacto != null ? $apellidoDelContacto : $msg;
-          isset($address) && $address != null ? $address : $msg;
 
+          echo "<div class='container_separator'>";
           echo "<table>";
           echo "<tr>   <th>ID</th>   <th>Status</th>   <th>Número Factura</th>   <th>Fecha Creación</th>   <th>Fecha Actualización</th>   <th>Moneda</th>   <th>Total</th>   <th>Contacto</th>   <th>Nombre</th>   <th>Dirección</th>   </tr>";
-          echo "<tr>    
+          echo "<tr>   
           <td>" . $invoice_id . "</td>   
           <td>" . $status . "</td>   
           <td>" . $invoice_number . "</td>   
           <td>" . $create_time . "</td>   
           <td>" . $last_update_time . "</td>   
           <td>" . $currency_code . "</td>   
-          <td>" . $value . "</td>   
-          <td>" . $contacto . "</td>   
-          <td>" . $nombreDelContacto . " " . $apellidoDelContacto . "</td>   
-          <td>" . $address . "</td>   </tr>";
+          <td>" . (isset($value) && $value != null ? $value : $msg) . "</td>   
+          <td>" . (isset($contacto) && $contacto != null ? $contacto : $msg) . "</td>   
+          <td>" . (isset($nombreDelContacto) && $nombreDelContacto != null ? $nombreDelContacto : $msg) . "</td>   
+          <td>" . (isset($address) && $address != null ? $address : $msg) . "</td>   </tr>";
           echo "</table>";
+          echo "</div>";
 
           // * Remito al cliente al borrado o a la cancelación del borrado. Lo tengo que mandar por HTML si no, no funciona
   ?>

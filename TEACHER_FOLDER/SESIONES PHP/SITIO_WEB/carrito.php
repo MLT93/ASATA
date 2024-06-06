@@ -62,6 +62,8 @@
 
         $emailUsuario = $_SESSION['usuario'];
         $costeTotal = 0;
+
+        echo "<div class='container_separator'>";
         echo "<table>";
         echo "<tr><th>TIPO</th><th>TITULO</th><th>TARIFA</th><th>COSTE</th><th>MONEDA</th></tr>";
 
@@ -110,13 +112,15 @@
                 </tr>";
             }
             echo "</table>";
+            echo "</div>";
+
             echo "<h3>El método elegido es " . $registro['metodo'] . "</h3>";
 
             if (intval($value) == 1) { //solo si es método de pago paypal
-            ?>
+  ?>
               <div id="userInfo" data-coste="<?= $costeTotal ?>" data-email="<?= $emailUsuario ?>"></div>
               <div id="paypal-button-container"></div>
-            <?php
+  <?php
             }
           }
         }
@@ -144,13 +148,13 @@
         // Codifico las credenciales en base64
         $credentials = $clientID . ":" . $clientSECRET;
         $encodeCredentials = base64_encode($credentials);
-        
+
         // Definir Headers en un array
         $headers = [
           'Content-Type' => 'application/x-www-form-urlencode', // Al utilizar `x-www-form-urlencode` hay que pasar en el array `options` el `form_params => []` 
           'Authorization' => 'Basic ' . $encodeCredentials,
         ];
-        
+
         // Juntar todo (si hubiese también un Body, lo juntaríamos en `$options`)
         $options = [
           'form_params' => [
@@ -159,9 +163,9 @@
           ],
           'headers' => $headers
         ];
-        
+
         $URL_forAuth = 'https://api-m.sandbox.paypal.com/v1/oauth2/token';
-        
+
         // Genero la petición
         $response = $client->request('POST', $URL_forAuth, $options);
 
@@ -188,8 +192,8 @@
           "purchase_units": [
             {
               "amount": {
-                "currency_code": "'.$currencycode.'",
-                "value": "'.$value.'"
+                "currency_code": "' . $currencycode . '",
+                "value": "' . $value . '"
               }
             }
           ]
@@ -202,7 +206,7 @@
 
         // Utilizando los métodos de la clase Client
         $res = $client->request('POST', $URL_forOrder, $options);
-  
+
         $data = json_decode($res->getBody());
 
         $idPago = $data->{'id'}; // Saco el ID de la orden de pago
@@ -275,8 +279,6 @@
         echo "<tr>   <th>ID</th>   <th>Moneda</th>   <th>Precio</th>   </tr>";
         echo "<tr>   <td>$idPago</td>   <td>$currency</td>   <td>$price</td>   </tr>";
         echo "</table>";
-
-
       }
       //TERMINA AQUI
 

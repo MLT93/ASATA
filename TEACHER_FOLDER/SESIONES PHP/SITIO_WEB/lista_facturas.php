@@ -109,11 +109,13 @@
       // $amount = $items[0]->{'amount'}->{'value'};
       // $contacto = $items[0]->{'invoicer'}->{'email_address'};
 
+      echo "<div class='container_separator'>";
       echo "<table>";
       echo "<tr>   <th>🔍</th>   <th>ID</th>   <th>Status</th>   <th>Número Factura</th>   <th>Fecha</th>   <th>Moneda</th>   <th>Total</th>   <th>Contacto</th>   <th>❌</th>   </tr>";
       foreach ($items as $key => $value) {
+
         echo "<tr>   
-        <td><a href='detail_factura.php?idFactura=" . $value->{'id'} . "'>🔍</a></td>   "./* Envío el cliente al detalle de la factura */"
+        <td><a href='detail_factura.php?idFactura=" . $value->{'id'} . "'>🔍</a></td>   " ./* Envío el cliente al detalle de la factura */ "
         <td>" . $value->{'id'} . "</td>   
         <td>" . $value->{'status'} . "</td>   
         <td>" . $value->{'detail'}->{'invoice_number'} . "</td>   
@@ -121,9 +123,10 @@
         <td>" . $value->{'amount'}->{'currency_code'} . "</td>   
         <td>" . $value->{'amount'}->{'value'} . "</td>   
         <td>" . $value->{'invoicer'}->{'email_address'} . "</td>   
-        <td><a href='delete_factura.php?idFactura=".$value->{'id'}."'>❌</a></td>   </tr>"; /* Le agrego el ID de la factura como Query Params para que me envíe a la página de borrado y poder borrar la factura por ID (así como lo pide la API PayPal) */
+        <td><a href='delete_factura.php?idFactura=" . $value->{'id'} . "'>❌</a></td>   </tr>"; /* Le agrego el ID de la factura como Query Params para que me envíe a la página de borrado y poder borrar la factura por ID (así como lo pide la API PayPal) */
       }
       echo "</table>";
+      echo "</div>";
     }
   } else {
     http_response_code(401); // No autorizado

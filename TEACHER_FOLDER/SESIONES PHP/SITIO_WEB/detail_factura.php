@@ -124,14 +124,10 @@
 
           // Si no existe el dato en la database y es null, enviamos un mensaje diciendo que no existe ese dato
           $msg = "NO DATA";
-          isset($value) && $value != null ? $value : $msg;
-          isset($contacto) && $contacto != null ? $contacto : $msg;
-          isset($nombreDelContacto) && $nombreDelContacto != null ? $nombreDelContacto : $msg;
-          isset($apellidoDelContacto) && $apellidoDelContacto != null ? $apellidoDelContacto : $msg;
-          isset($address) && $address != null ? $address : $msg;
 
+          echo "<div class='container_separator'>";
           echo "<table>";
-          echo "<tr>   <th>ID</th>   <th>Status</th>   <th>Número Factura</th>   <th>Fecha Creación</th>   <th>Fecha Actualización</th>   <th>Moneda</th>   <th>Total</th>   <th>Contacto</th>   <th>Nombre</th>   <th>Dirección</th>   </tr>";
+          echo "<tr>   <th>ID</th>   <th>Status</th>   <th>Número Factura</th>   <th>Fecha Creación</th>   <th>Fecha Actualización</th>   <th>Moneda</th>   <th>Total</th>   <th>Contacto</th>   <th>Cliente</th>   <th>Dirección</th>   <th>Descripcion</th>   </tr>";
           echo "<tr>    
           <td>" . $invoice_id . "</td>   
           <td>" . $status . "</td>   
@@ -139,12 +135,13 @@
           <td>" . $create_time . "</td>   
           <td>" . $last_update_time . "</td>   
           <td>" . $currency_code . "</td>   
-          <td>" . $value . "</td>   
-          <td>" . $contacto . "</td>   
-          <td>" . $nombreDelContacto . " " . $apellidoDelContacto . "</td>   
-          <td>" . $address . "</td>   </tr>";
+          <td>" . (isset($value) && $value != null ? $value : $msg) . "</td>   
+          <td>" . (isset($contacto) && $contacto != null ? $contacto : $msg) . "</td>   
+          <td>" . (isset($nombreDelContacto) && $nombreDelContacto != null ? $nombreDelContacto : $msg) . " " . (isset($apellidoDelContacto) && $apellidoDelContacto != null ? $apellidoDelContacto : $msg) . "</td>   
+          <td>" . (isset($address) && $address != null ? $address : $msg) . "</td>   
+          <td>" . (isset($memo) && $memo != null ? $memo : $msg) . "</td>   </tr>";
           echo "</table>";
-          
+          echo "</div>";
         } else {
           // http_response_code(404); // Not Found
           echo "<h3 class='card' >El ID de la factura no se encuentra el la base de datos de PayPal.</h3>" . "<br/>";
@@ -152,15 +149,11 @@
       }
 
       // * DELETE by ID on database API PayPal
-      
 
-        // Envío msg al cliente
-        // $msgFooter = "Factura borrada con éxito"; //=> Conexión con el footer
 
-        // Envío el cliente a otra página o la recargo
-        header("Location: lista_facturas.php");
-      }
-    
+      // Envío msg al cliente
+      // $msgFooter = "Factura borrada con éxito"; //=> Conexión con el footer
+    }
   } else {
     http_response_code(401); // No autorizado
     echo "<h3 class='card' >Acceso denegado. No se ha proporcionado un Token JWT.</h3>" . "<br/>";

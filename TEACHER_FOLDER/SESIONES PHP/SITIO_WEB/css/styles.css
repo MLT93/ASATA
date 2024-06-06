@@ -225,7 +225,7 @@ input, textarea, select {
 
 table {
  border-collapse: collapse;
- margin: 10%;
+ /* margin: 10%; */
  margin-top: 2%;
  background-color: var(--claro); /* Color de fondo */
  font-size: 0.9em;
