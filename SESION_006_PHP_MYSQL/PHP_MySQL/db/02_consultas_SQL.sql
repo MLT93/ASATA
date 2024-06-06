@@ -83,18 +83,22 @@ INSERT INTO autores (
 #   ADD KEY itemID (id_item),
 #   ADD CONSTRAINT itemID FOREIGN KEY (id_item) REFERENCES items (id_item) ON DELETE CASCADE ON UPDATE CASCADE;
 
-# Sintaxis 1
+# Sintaxis 1 (Con esta forma es siempre recomendable alterar las tablas al final del archivo)
 CREATE TABLE `biblioteca`.`libros` (
     `id` INT (10) UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
     `title` VARCHAR(200) NOT NULL,
     `id_author` INT(10) UNSIGNED,
     `year` INT (4) NOT NULL,
-    `id_editorial` INT(10) UNSIGNED,
-    ADD CONSTRAINT autoresID FOREIGN KEY (id_author) REFERENCES autores (id) ON DELETE CASCADE ON UPDATE CASCADE,
-    ADD CONSTRAINT editorialesID FOREIGN KEY (id_editorial) REFERENCES editoriales (id) ON DELETE CASCADE ON UPDATE CASCADE
+    `id_editorial` INT(10) UNSIGNED
   ) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
-# Sintaxis 2
+ALTER TABLE libros 
+  ADD KEY autoresID (id_author),
+  ADD CONSTRAINT autoresID FOREIGN KEY (id_author) REFERENCES autores (id) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD KEY editorialesID (id_editorial),
+  ADD CONSTRAINT editorialesID FOREIGN KEY (id_editorial) REFERENCES editoriales (id) ON DELETE CASCADE ON UPDATE CASCADE;  
+
+# Sintaxis 2  (Con esta forma es recomendable dejar la creación de las tablas con claves foráneas al final)
 CREATE TABLE `biblioteca`.`libros` (
     `id` INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     `title` VARCHAR(200) NOT NULL,
@@ -105,12 +109,21 @@ CREATE TABLE `biblioteca`.`libros` (
     FOREIGN KEY (`id_editorial`) REFERENCES `editoriales` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-# Sintaxis 3
-ALTER TABLE libros 
-  ADD KEY autoresID (id_author),
-  ADD CONSTRAINT autoresID FOREIGN KEY (id_author) REFERENCES autores (id) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD KEY editorialesID (id_editorial),
-  ADD CONSTRAINT editorialesID FOREIGN KEY (id_editorial) REFERENCES editoriales (id) ON DELETE CASCADE ON UPDATE CASCADE;
+# Ejemplo easy
+USE `gameclub`;
+
+DROP TABLE IF EXISTS `ordenespago`;
+
+CREATE TABLE `ordenespago` (
+  `id` int(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `id_usuario` int(10) NOT NULL,
+  `intent` varchar(255) NOT NULL COMMENT 'Capture, Authorize',
+  `currencycode` varchar(3) NOT NULL,
+  `value` decimal(10, 2) NOT NULL,
+  `fechaOrden` date NOT NULL,
+  `estado` varchar(255) NOT NULL COMMENT 'Generada, En proceso, Completada',
+   FOREIGN KEY (id_usuario) REFERENCES usuarios (id) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 # Ejemplo completo con clave foránea
 DROP DATABASE if EXISTS prueba;
@@ -138,7 +151,7 @@ create table prueba.alfabetos (
 	id_alfabeto INT(10) PRIMARY KEY AUTO_INCREMENT NOT NULL,
     nombre VARCHAR (100) NOT NULL,
     id_letra INT (10) UNIQUE NOT NULL,
-    ADD CONSTRAINT letraID FOREIGN KEY (id_letra) REFERENCES letras (id_letra) ON DELETE CASCADE ON UPDATE CASCADE
+    FOREIGN KEY (id_letra) REFERENCES letras (id_letra) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO prueba.alfabetos (nombre, id_letra) VALUES 

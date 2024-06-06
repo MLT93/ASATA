@@ -3,7 +3,7 @@
 # https://www.phpmyadmin.net/
 #
 # Servidor: 127.0.0.1
-# Tiempo de generación: 03-06-2024 a las 10:17:35
+# Tiempo de generación: 06-06-2024 a las 08:26:29
 # Versión del servidor: 10.4.32-MariaDB
 # Versión de PHP: 8.2.12
 
@@ -20,14 +20,6 @@ SET time_zone = "+00:00";
 #
 # Base de datos: `gameclub`
 #
-
-DROP DATABASE IF EXISTS gameclub;
-
-CREATE DATABASE IF NOT EXISTS gameclub;
-
-ALTER DATABASE gameclub DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-USE gameclub;
 
 # ############################
 
@@ -183,6 +175,41 @@ INSERT INTO `empleados` (`id`, `nombre`, `apellido1`, `apellido2`, `dni`, `nSS`,
 # ############################
 
 #
+# Estructura de tabla para la tabla `facturas`
+#
+
+CREATE TABLE `facturas` (
+  `id` int(10) NOT NULL,
+  `n_factura` varchar(255) NOT NULL COMMENT 'El que proporciona la API de PayPal',
+  `fechaCreacion` datetime NOT NULL,
+  `fechaActualizacion` datetime NOT NULL COMMENT 'Cuando cambia el estado',
+  `estado` varchar(255) NOT NULL COMMENT 'El que proporciona la API de PayPal',
+  `total` decimal(10,2) NOT NULL,
+  `emisor` varchar(255) NOT NULL COMMENT 'El nombre del usuario'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+#
+# Volcado de datos para la tabla `facturas`
+#
+
+INSERT INTO `facturas` (`id`, `n_factura`, `fechaCreacion`, `fechaActualizacion`, `estado`, `total`, `emisor`) VALUES
+(8, 'INV2-SHXW-GHZT-BKBV-45ZR', '2024-06-04 13:58:11', '2024-06-04 13:58:41', 'DRAFT', 123.25, 'PEDRO'),
+(9, 'INV2-54EQ-EHF3-FCP4-F6BU', '2024-06-04 14:18:31', '2024-06-04 14:19:01', 'DRAFT', 120.00, 'PEDRO'),
+(10, 'INV2-WPRH-ZH3W-5GX3-F4NW', '2024-06-04 14:29:46', '2024-06-04 14:30:16', 'DRAFT', 123.00, 'PEDRO'),
+(11, 'INV2-PTGT-G8RY-VB55-MA5P', '2024-06-05 08:37:16', '2024-06-05 08:37:46', 'DRAFT', 32.00, 'PEDRO'),
+(12, 'INV2-ZL6J-NWG7-96HL-UMWN', '2024-06-05 09:06:59', '2024-06-05 09:07:29', 'DRAFT', 121.00, 'PEDRO'),
+(13, 'INV2-C6TQ-LGLD-YQ69-FXRZ', '2024-06-05 09:17:30', '2024-06-05 09:18:00', 'DRAFT', 24.90, 'PEDRO'),
+(14, 'INV2-W6ZM-SSNM-X8EE-XUNR', '2024-06-05 09:28:28', '2024-06-05 09:28:58', 'DRAFT', 23.00, 'PEDRO'),
+(15, 'INV2-HFEB-E3DK-2TZZ-37BF', '2024-06-05 09:36:48', '2024-06-05 09:37:18', 'DRAFT', 300.00, 'PEDRO'),
+(16, 'INV2-JQ9R-C28M-EY3M-JP4D', '2024-06-05 09:37:21', '2024-06-05 09:37:51', 'DRAFT', 233.00, 'PEDRO'),
+(17, 'INV2-ZVKE-FM42-VQ3P-HU66', '2024-06-05 10:42:39', '2024-06-05 10:43:09', 'DRAFT', 21.99, 'ADMIN'),
+(18, 'INV2-6KHM-RKA9-NLAH-Y475', '2024-06-05 11:44:04', '2024-06-05 11:44:34', 'DRAFT', 123.23, 'ADMIN'),
+(19, 'INV2-NANM-53ZF-C242-TF96', '2024-06-05 12:45:31', '2024-06-05 12:46:01', 'DRAFT', 122.00, 'ADMIN'),
+(20, 'INV2-Z5MJ-X4KS-E4FD-VBPL', '2024-06-05 13:46:01', '2024-06-05 13:46:31', 'DRAFT', 11.00, 'ADMIN');
+
+# ############################
+
+#
 # Estructura de tabla para la tabla `generos`
 #
 
@@ -260,6 +287,75 @@ CREATE TABLE `ordenespago` (
   `fechaOrden` datetime NOT NULL,
   `estado` varchar(255) NOT NULL COMMENT 'GENERADA, EN PROCESO, COMPLETADA'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+#
+# Volcado de datos para la tabla `ordenespago`
+#
+
+INSERT INTO `ordenespago` (`id`, `id_usuario`, `intent`, `currencycode`, `value`, `fechaOrden`, `estado`) VALUES
+(2, 18, 'CAPTURE', 'EUR', 47.97, '2024-06-03 11:24:15', 'GENERADA'),
+(3, 18, 'CAPTURE', 'EUR', 47.97, '2024-06-03 11:49:12', 'GENERADA'),
+(4, 18, 'CAPTURE', 'EUR', 31.98, '2024-06-03 11:54:42', 'GENERADA'),
+(5, 18, 'CAPTURE', 'EUR', 31.98, '2024-06-03 11:58:10', 'GENERADA'),
+(6, 18, 'CAPTURE', 'EUR', 31.98, '2024-06-03 12:00:05', 'GENERADA'),
+(7, 18, 'CAPTURE', 'EUR', 31.98, '2024-06-03 12:01:17', 'GENERADA'),
+(8, 18, 'CAPTURE', 'EUR', 31.98, '2024-06-03 12:04:37', 'GENERADA'),
+(9, 18, 'CAPTURE', 'EUR', 31.98, '2024-06-03 12:04:47', 'GENERADA'),
+(10, 18, 'CAPTURE', 'EUR', 31.98, '2024-06-03 12:09:07', 'GENERADA'),
+(11, 18, 'CAPTURE', 'EUR', 31.98, '2024-06-03 12:19:11', 'GENERADA'),
+(12, 18, 'CAPTURE', 'EUR', 31.98, '2024-06-03 12:19:28', 'GENERADA'),
+(13, 18, 'CAPTURE', 'EUR', 31.98, '2024-06-03 12:19:33', 'GENERADA'),
+(14, 18, 'CAPTURE', 'EUR', 31.98, '2024-06-03 12:21:37', 'GENERADA'),
+(15, 18, 'CAPTURE', 'EUR', 31.98, '2024-06-03 12:21:40', 'GENERADA'),
+(16, 18, 'CAPTURE', 'EUR', 31.98, '2024-06-03 12:22:06', 'GENERADA'),
+(17, 18, 'CAPTURE', 'EUR', 31.98, '2024-06-03 12:22:09', 'GENERADA'),
+(18, 18, 'CAPTURE', 'EUR', 31.98, '2024-06-03 12:22:16', 'GENERADA'),
+(19, 18, 'CAPTURE', 'EUR', 36.98, '2024-06-03 12:22:23', 'GENERADA'),
+(20, 18, 'CAPTURE', 'EUR', 36.98, '2024-06-03 12:26:14', 'GENERADA'),
+(21, 18, 'CAPTURE', 'EUR', 36.98, '2024-06-03 12:26:21', 'GENERADA'),
+(22, 18, 'CAPTURE', 'EUR', 68.96, '2024-06-03 12:26:31', 'GENERADA'),
+(23, 18, 'CAPTURE', 'EUR', 68.96, '2024-06-03 12:26:57', 'GENERADA'),
+(24, 18, 'CAPTURE', 'EUR', 68.96, '2024-06-03 12:27:02', 'GENERADA'),
+(25, 18, 'CAPTURE', 'EUR', 68.96, '2024-06-03 12:27:08', 'GENERADA'),
+(26, 18, 'CAPTURE', 'EUR', 68.96, '2024-06-03 12:28:15', 'GENERADA'),
+(27, 18, 'CAPTURE', 'EUR', 68.96, '2024-06-03 12:28:35', 'GENERADA'),
+(28, 18, 'CAPTURE', 'EUR', 68.96, '2024-06-03 12:28:41', 'GENERADA'),
+(29, 18, 'CAPTURE', 'EUR', 31.98, '2024-06-03 12:28:58', 'GENERADA'),
+(30, 18, 'CAPTURE', 'EUR', 31.98, '2024-06-03 12:32:49', 'GENERADA'),
+(31, 18, 'CAPTURE', 'EUR', 31.98, '2024-06-03 12:36:16', 'GENERADA'),
+(32, 18, 'CAPTURE', 'EUR', 31.98, '2024-06-03 12:43:27', 'GENERADA'),
+(33, 18, 'CAPTURE', 'EUR', 31.98, '2024-06-03 12:48:00', 'GENERADA'),
+(34, 18, 'CAPTURE', 'EUR', 31.98, '2024-06-03 12:51:37', 'GENERADA'),
+(35, 18, 'CAPTURE', 'EUR', 31.98, '2024-06-03 12:54:43', 'GENERADA'),
+(36, 18, 'CAPTURE', 'EUR', 31.98, '2024-06-03 13:01:42', 'GENERADA'),
+(37, 18, 'CAPTURE', 'EUR', 31.98, '2024-06-03 13:03:56', 'GENERADA'),
+(38, 18, 'CAPTURE', 'EUR', 31.98, '2024-06-03 13:11:48', 'GENERADA'),
+(39, 18, 'CAPTURE', 'EUR', 31.98, '2024-06-03 13:13:35', 'GENERADA'),
+(40, 18, 'CAPTURE', 'EUR', 31.98, '2024-06-03 13:14:27', 'GENERADA'),
+(41, 18, 'CAPTURE', 'EUR', 31.98, '2024-06-03 13:17:13', 'GENERADA'),
+(42, 18, 'CAPTURE', 'EUR', 31.98, '2024-06-03 13:17:57', 'GENERADA'),
+(43, 18, 'CAPTURE', 'EUR', 31.98, '2024-06-03 13:19:11', 'GENERADA'),
+(44, 18, 'CAPTURE', 'EUR', 31.98, '2024-06-03 13:20:20', 'GENERADA'),
+(45, 18, 'CAPTURE', 'EUR', 7.50, '2024-06-03 14:06:27', 'GENERADA'),
+(46, 18, 'CAPTURE', 'EUR', 7.50, '2024-06-03 14:07:02', 'GENERADA'),
+(47, 18, 'CAPTURE', 'EUR', 7.50, '2024-06-03 14:09:08', 'GENERADA'),
+(48, 18, 'CAPTURE', 'EUR', 7.50, '2024-06-03 14:12:27', 'GENERADA'),
+(49, 18, 'CAPTURE', 'EUR', 7.50, '2024-06-03 14:12:45', 'GENERADA'),
+(50, 18, 'CAPTURE', 'EUR', 7.50, '2024-06-03 14:13:12', 'GENERADA'),
+(51, 18, 'CAPTURE', 'EUR', 7.50, '2024-06-03 14:14:22', 'GENERADA'),
+(52, 18, 'CAPTURE', 'EUR', 7.50, '2024-06-03 14:14:59', 'GENERADA'),
+(53, 18, 'CAPTURE', 'EUR', 7.50, '2024-06-03 14:15:40', 'GENERADA'),
+(54, 18, 'CAPTURE', 'EUR', 7.50, '2024-06-03 14:16:01', 'GENERADA'),
+(55, 18, 'CAPTURE', 'EUR', 7.50, '2024-06-03 14:16:27', 'GENERADA'),
+(56, 18, 'CAPTURE', 'EUR', 7.50, '2024-06-03 14:16:38', 'GENERADA'),
+(57, 18, 'CAPTURE', 'EUR', 7.50, '2024-06-03 14:19:32', 'GENERADA'),
+(58, 18, 'CAPTURE', 'EUR', 7.50, '2024-06-03 14:20:06', 'GENERADA'),
+(59, 18, 'CAPTURE', 'EUR', 7.50, '2024-06-03 14:20:39', 'GENERADA'),
+(60, 18, 'CAPTURE', 'EUR', 7.50, '2024-06-03 14:21:22', 'GENERADA'),
+(61, 18, 'CAPTURE', 'EUR', 7.50, '2024-06-03 14:23:47', 'GENERADA'),
+(62, 18, 'CAPTURE', 'EUR', 7.50, '2024-06-03 14:23:53', 'GENERADA'),
+(63, 18, 'CAPTURE', 'EUR', 7.50, '2024-06-03 14:28:16', 'GENERADA'),
+(64, 18, 'CAPTURE', 'EUR', 18.49, '2024-06-04 13:38:57', 'GENERADA');
 
 # ############################
 
@@ -507,7 +603,32 @@ INSERT INTO `sesiones` (`id`, `id_usuario`, `fecha`, `interaccion`) VALUES
 (120, 18, '2024-05-23 10:15:50', 'LOG IN'),
 (121, 18, '2024-05-23 12:03:55', 'LOG IN'),
 (122, 18, '2024-05-23 12:14:46', 'LOG OUT'),
-(123, 18, '2024-05-23 12:14:57', 'LOG IN');
+(123, 18, '2024-05-23 12:14:57', 'LOG IN'),
+(124, 18, '2024-06-03 11:05:07', 'LOG IN'),
+(125, 18, '2024-06-03 12:08:59', 'LOG IN'),
+(126, 18, '2024-06-03 12:28:51', 'LOG IN'),
+(127, 18, '2024-06-03 14:06:19', 'LOG IN'),
+(128, 18, '2024-06-04 08:25:29', 'LOG IN'),
+(129, 18, '2024-06-04 08:32:40', 'LOG OUT'),
+(130, 18, '2024-06-04 08:32:53', 'LOG IN'),
+(131, 18, '2024-06-04 10:30:57', 'LOG IN'),
+(132, 18, '2024-06-04 12:06:22', 'LOG IN'),
+(133, 18, '2024-06-04 12:41:30', 'LOG OUT'),
+(134, 18, '2024-06-04 12:41:36', 'LOG IN'),
+(135, 18, '2024-06-04 12:45:53', 'LOG OUT'),
+(136, 18, '2024-06-04 12:45:56', 'LOG IN'),
+(137, 1, '2024-06-04 13:50:43', 'LOG IN'),
+(138, 1, '2024-06-05 08:37:07', 'LOG IN'),
+(139, 1, '2024-06-05 09:37:13', 'LOG IN'),
+(140, 18, '2024-06-05 10:42:26', 'LOG IN'),
+(141, 18, '2024-06-05 11:43:47', 'LOG IN'),
+(142, 18, '2024-06-05 11:49:45', 'LOG OUT'),
+(143, 18, '2024-06-05 11:50:49', 'LOG IN'),
+(144, 18, '2024-06-05 11:50:56', 'LOG OUT'),
+(145, 18, '2024-06-05 11:51:07', 'LOG IN'),
+(146, 18, '2024-06-05 12:52:41', 'LOG IN'),
+(147, 18, '2024-06-05 13:52:55', 'LOG IN'),
+(148, 18, '2024-06-06 08:26:05', 'LOG IN');
 
 # ############################
 
@@ -571,7 +692,7 @@ INSERT INTO `usuarios` (`id`, `nombre`, `apellido1`, `apellido2`, `email`, `hash
 (8, 'Edelmiro', 'Marquez', 'Herrero', 'use8@mail.com', '$2y$10$HdQg/9A6is00weQQKhfw6u50/z0UkT0DHIzJeUiqki371cOVji8ki', '777555', 'plaza mayor', '44488699-O', '4443333222', '2003-01-06', 0, 2, './repo/img/users/EdelmiroMarquez_2024.05.21.162658-h5.jpg'),
 (9, 'Rocío', 'Hernán', 'Guardiola', 'use9@mail.com', '$2y$10$mOyiSOs7er6TtedWu6XR2.EWnFneu/W.FuZ6B/gCbVO3X/agrMeIO', '666555', 'plaza mayor', '86888969-O', '444555222', '2000-01-06', 1, 2, './repo/img/users/RocíoHernán_2024.05.21.162718-f1.jpg'),
 (10, 'Oriol', 'Sanchez', 'del Pino', 'use10@mail.com', '$2y$10$qFO7.50lUCVX1PArPRAyLOXBP8G0E5fwVuB.Bg68T1p878wYQmiHe', '777555', 'plaza mayor', '7688999-O', '4443333222', '2003-01-06', 0, 2, './repo/img/users/OriolSanchez_2024.05.21.162842-h6.jpg'),
-(18, 'Admin', 'Master', 'Main', 'admin@mail.com', '$2y$10$cti5v3CKNmaCInkhg.OO..IIGNj/MwVpc.PoF6gCRAmdc7i2qsClW', '654654654', 'C/ Belderraín, 5', '65696589-C', '5555000044448888', '2000-02-02', 1, 1, './repo/img/users/adminmaster_2024.05.22.130830-mario.png');
+(18, 'Admin', 'Master', 'Main', 'admin@mail.com', '$2y$10$cti5v3CKNmaCInkhg.OO..IIGNj/MwVpc.PoF6gCRAmdc7i2qsClW', '654654654', 'C/ Belderraín, 5', '65696589-C', '5555000044448888', '2000-02-02', 1, 1, './repo/img/users/AdminMaster_2024.06.04.133846-mario.png');
 
 # ############################
 
@@ -691,6 +812,12 @@ ALTER TABLE `empleados`
   ADD KEY `categoriaID` (`id_categoria`);
 
 #
+# Indices de la tabla `facturas`
+#
+ALTER TABLE `facturas`
+  ADD PRIMARY KEY (`id`);
+
+#
 # Indices de la tabla `generos`
 #
 ALTER TABLE `generos`
@@ -798,6 +925,12 @@ ALTER TABLE `empleados`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 #
+# AUTO_INCREMENT de la tabla `facturas`
+#
+ALTER TABLE `facturas`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+#
 # AUTO_INCREMENT de la tabla `generos`
 #
 ALTER TABLE `generos`
@@ -813,7 +946,7 @@ ALTER TABLE `metodospago`
 # AUTO_INCREMENT de la tabla `ordenespago`
 #
 ALTER TABLE `ordenespago`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 #
 # AUTO_INCREMENT de la tabla `pegui`
@@ -837,7 +970,7 @@ ALTER TABLE `roles`
 # AUTO_INCREMENT de la tabla `sesiones`
 #
 ALTER TABLE `sesiones`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=149;
 
 #
 # AUTO_INCREMENT de la tabla `tarifas`

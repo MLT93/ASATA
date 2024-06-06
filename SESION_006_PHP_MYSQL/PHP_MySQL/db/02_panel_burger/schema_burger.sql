@@ -121,18 +121,17 @@ VALUES
 #   ADD KEY itemID (id_item),
 #   ADD CONSTRAINT itemID FOREIGN KEY (id_item) REFERENCES items (id_item) ON DELETE CASCADE ON UPDATE CASCADE;
 
-# Sintaxis 1
+# Sintaxis 2 (Con esta forma es recomendable dejar la creación de las tablas con claves foráneas al final)
 CREATE TABLE `biblioteca`.`libros` (
     `id` INT (10) UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
     `title` VARCHAR(200) NOT NULL,
     `id_author` INT(10) UNSIGNED,
     `year` INT (4) NOT NULL,
     `id_editorial` INT(10) UNSIGNED,
-    CONSTRAINT autoresID FOREIGN KEY (id_author) REFERENCES autores (id) ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT editorialesID FOREIGN KEY (id_editorial) REFERENCES editoriales (id) ON DELETE CASCADE ON UPDATE CASCADE
+    FOREIGN KEY (id_author) REFERENCES autores (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (id_editorial) REFERENCES editoriales (id) ON DELETE CASCADE ON UPDATE CASCADE
   ) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
-# Sintaxis 2
 CREATE TABLE `biblioteca`.`libros` (
     `id` INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     `title` VARCHAR(200) NOT NULL,
@@ -143,6 +142,7 @@ CREATE TABLE `biblioteca`.`libros` (
     FOREIGN KEY (`id_editorial`) REFERENCES `editoriales` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+# Sintaxis 1 (Con esta forma es siempre recomendable alterar las tablas al final del archivo)
 ALTER TABLE itemsMenu 
   ADD KEY itemsMenuID (category_id),
   ADD CONSTRAINT itemsMenuID FOREIGN KEY (category_id) REFERENCES categoriasMenu (id) ON DELETE CASCADE ON UPDATE CASCADE;

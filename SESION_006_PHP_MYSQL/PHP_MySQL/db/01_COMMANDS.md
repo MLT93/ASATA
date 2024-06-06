@@ -43,14 +43,32 @@ ALTER TABLE alumnos DROP COLUMN email;
 # Eliminar tabla si existe
 DROP TABLE IF EXISTS asignaturas;
 
-# Crear tabla
+# Crear tabla con valores por defecto
+DROP TABLE IF EXISTS `asignaturas`;
+
 CREATE TABLE `test`.`asignaturas` (
     `asignatura_id` INT(10) UNSIGNED AUTO_INCREMENT NOT NULL ,
-    `asignatura_nombre` VARCHAR(200) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL , 
-    `n_credits` INT(10) UNSIGNED NOT NULL , 
-    `tutor` VARCHAR(200) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL , 
+    `asignatura_nombre` VARCHAR(200) NOT NULL , 
+    `n_credits` INT(10) UNSIGNED NOT NULL DEFAULT 0, 
+    `tutor` VARCHAR(200) NOT NULL DEFAULT 'Desconocido', 
     UNIQUE `id` (`asignatura_id`)
-) ENGINE = InnoDB;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+# Crear tabla con FOREIGN KEY anidado
+USE `gameclub`;
+
+DROP TABLE IF EXISTS `ordenespago`;
+
+CREATE TABLE `ordenespago` (
+  `id` int(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `id_usuario` int(10) NOT NULL,
+  `intent` varchar(255) NOT NULL COMMENT 'Capture, Authorize',
+  `currencycode` varchar(3) NOT NULL,
+  `value` decimal(10, 2) NOT NULL,
+  `fechaOrden` date NOT NULL,
+  `estado` varchar(255) NOT NULL COMMENT 'Generada, En proceso, Completada',
+   FOREIGN KEY (id_usuario) REFERENCES usuarios (id) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 # Añadir campos a la tabla
 ALTER TABLE asignaturas ADD escuela VARCHAR(200) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL;
