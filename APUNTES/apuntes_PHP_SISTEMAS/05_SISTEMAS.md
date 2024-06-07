@@ -82,7 +82,7 @@ Reutilización de software.
 - Hay que realizar pruebas exhaustivas.
 - Aplicable a desarrollos que han contemplado en su diseño la incorporación de componentes comerciales, siempre que se pueda afrontar su coste. 
 
-1. Desarrollo rápido (RAD)
+6. Desarrollo rápido (RAD)
 
 - Fusiona las fases de análisis y diseño,
 requiriendo la colaboración absoluta del cliente. Este recibirá muchos prototipos o partes funcionales de su software en cortos espacios de tiempo, evaluando el
