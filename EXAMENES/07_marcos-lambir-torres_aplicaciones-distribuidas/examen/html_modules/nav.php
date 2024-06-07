@@ -56,10 +56,13 @@
 
     //compruebo que el token existe en la cookie
     if (isset($_COOKIE['jwt'])) {
-        setcookie('token', $access_token, time() + 3600, "/"); // Duración de 1h (igual que la del usuario)
 
         //compruebo que las credenciales son correctas
         if (estadoAcceso($_COOKIE['jwt'], $_ENV['SIGNATURE_KEY'], $_ENV['CIPHER_KEY'])) {
+            
+            //agrego cookie del token para la API si el usuario es quien dice ser
+            setcookie('token', $access_token, time() + 3600, "/"); // Duración de 1h (igual que la del usuario)
+
             $infoUsuario = Usuario::mostrarUsuario($_SESSION['usuario']);
             echo "<a href='./newpedido.php'>🍜 HAZ PEDIDO </a>";
             echo "<a href='./historial.php'>🗒️HISTORIAL PEDIDOS</a>";

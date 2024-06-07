@@ -51,14 +51,16 @@
             //EL CONTENIDO DE MI PÁGINA IRIA DENTRO DE ESTE IF  
             //INICIA AQUI
 
-            if (isset($_REQUEST['pedido'])) {
+            // * Tomo la info enviada por el formulario
+            if (isset($_POST['pedido'])) {
 
+                // * Conexión a la base de datos
                 $cnx = new Db("localhost", "root", "", "restaurante");
                 $idUsuario = intval(Usuario::mostrarIdUsuario($_SESSION['usuario']));
                 $now = new DateTime();
                 $fecha = $now->format('Y-m-d  H:i:s');
                 $sentencia = "INSERT INTO pedidos ( usuario_id, fecha, estado) VALUES ($idUsuario,'$fecha','En proceso')";
-                $registro = $cnx->execute($sentencia);
+                $cnx->execute($sentencia);
                 $sentenciaUltimoPedido = "SELECT id FROM pedidos WHERE pedidos.usuario_id = $idUsuario AND pedidos.estado = 'En proceso' ORDER BY pedidos.fecha DESC LIMIT 1 ";
                 $regUltimoPedido = $cnx->myQuerySimple($sentenciaUltimoPedido);
                 $idPedido = intval($regUltimoPedido['id']);
@@ -67,13 +69,13 @@
                 $descripcionProducto = "";
                 $valueProducto = floatval(0.00);
 
-                foreach ($_REQUEST as $key => $value) {
+                foreach ($_POST as $key => $value) {
                     if ($key != 'pedido') {
                         $sentenciaproducto = "SELECT * FROM productos WHERE productos.id = $key ";
                         $producto = $cnx->myQuerySimple($sentenciaproducto);
                         $precioProducto = floatval($producto['precio']); //al parsearlo a float, podrian perderse los decimales
                         $sentenciaDetalle = "INSERT INTO detallespedido ( pedido_id, producto_id, cantidad, precio) VALUES ($idPedido,$key,1,$precioProducto)";
-                        $registroDetalle = $cnx->execute($sentenciaDetalle);
+                        $cnx->execute($sentenciaDetalle);
 
                         // Para PayPal
                         $nameProducto = $producto['nombre'];

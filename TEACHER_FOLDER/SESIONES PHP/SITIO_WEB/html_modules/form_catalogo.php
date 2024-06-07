@@ -8,7 +8,7 @@ use Database\Db as Db;
 $cnx = new Db("localhost", "root", "", "gameclub");
 $sentenciaSQL = "SELECT * FROM videojuegos";
 
-$listaVideojuegos = $cnx->myQueryMultiple($sentenciaSQL);
+$listaVideojuegos = $cnx->myQueryMultiple($sentenciaSQL); // Asociativa
 ?>
 
 <form class='catalogo' action='carrito.php' method='post'>
@@ -16,7 +16,7 @@ $listaVideojuegos = $cnx->myQueryMultiple($sentenciaSQL);
     <div id='galeria'>
         <?php
         //  listaVideojuegos es un matriz (array de arrays)
-        // $value es un array de esa matriz, para accceder a los valores dentro del array uso los indices asociativos
+        // $value es un array de esa matriz, para acceder a los valores dentro del array uso los indices asociativos
         foreach ($listaVideojuegos as $key => $value) {
         ?>
             <!-- saco iterativamente todos los videojuegos y los pinto -->
