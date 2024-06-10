@@ -1,0 +1,44 @@
+{
+ "detail": {
+  "currency_code": "EUR",
+  "invoice_number": "#111",
+  "reference": "deal-ref",
+  "invoice_date": "2024-06-06",
+  "note": "Gracias por su pedido."
+ },
+ "invoicer": {
+  "name": {
+   "given_name": "Concesionario Cars"
+  },
+  "address": {
+   "address_line_1": "Calle Mayor 10"
+  },
+  "email_address": "contacto@restaurantefamily.com"
+ },
+ "primary_recipients": [
+  {
+   "billing_info": {
+    "name": {
+     "given_name": "conductor1"
+    },
+    "address": {
+     "address_line_1": "calle alegria 2"
+    },
+    "email_address": "conductor@example.com",
+    "additional_info_value": "add-info"
+   }
+  }
+ ],
+ "items": [
+  {
+   "name": "Producto 1",
+   "description": "Descripcion producto 1",
+   "quantity": "1",
+   "unit_amount": {
+   "currency_code": "EUR",
+   "value": "10.00"
+  },
+   "unit_of_measure": "QUANTITY"
+  }
+ ]
+}
