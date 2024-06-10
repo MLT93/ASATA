@@ -41,7 +41,7 @@ $listaCoches = $cnx->myQueryMultiple($sentenciaSQL); // Asociativa
       <label for="diasID">Número de días de alquiler</label>
       <input type="number" name="numDias" id="diasID">
 
-    <input type="submit" name="coches" value="ALQUILA" />
+      <input type="submit" name="coches" value="ALQUILA" />
     </div>
   </div>
 

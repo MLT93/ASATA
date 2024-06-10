@@ -80,7 +80,9 @@
                         // Para PayPal
                         $nameProducto = $producto['nombre'];
                         $descripcionProducto = $producto['descripcion'];
-                        $valueProducto += $precioProducto; 
+                        $valueProducto += $precioProducto;
+
+                        // Al estar dentro del foreach generará un item por cada iteración
                         $objForArrItems = '
                         {
                             "name": "' . $nameProducto . '",
@@ -92,8 +94,24 @@
                             },
                             "unit_of_measure": "QUANTITY"
                         }';
+
+                        // Para hacerlo explícito y correctamente, se debe separar cada objeto JSON con un coma final y después quitársela en el último obj JSON
+                        /* 
+                        $objForArrItems = $objForArrItems . '
+                                {
+                                    "name": "' . $nameProducto . '",
+                                    "description": "' . $descripcionProducto . '",
+                                    "quantity": "1",
+                                    "unit_amount": {
+                                        "currency_code": "EUR",
+                                        "value": "' . strval($valueProducto) . '"
+                                    },
+                                    "unit_of_measure": "QUANTITY"
+                                },';
+                        */
                     }
                 }
+                // $objForArrItems = substr($objForArrItems, 0, -1); // Quito la última coma del obj JSON
 
                 // * Ahora envío la factura a través de la API paypal
                 $URL_invoice = "https://api-m.sandbox.paypal.com/v2/invoicing/invoices";

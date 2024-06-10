@@ -53,7 +53,7 @@
 
 
             // * Conexión a la base de datos
-            $cnx = new Db("localhost", "root", "", "gameclub");
+            $cnx = new Db("localhost", "root", "", "restaurante");
 
             // * SHOW info database
             // $consultaSQL = "SELECT * FROM facturas;";

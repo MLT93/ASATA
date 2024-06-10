@@ -53,16 +53,10 @@
             $cnx = new Db("localhost", "root", "", "concesionario");
             $idUsuario = Usuario::mostrarIdUsuario($_SESSION['usuario']);
 
-            //creamos una sentencia SQL para hacer la consulta a mi base de datos
-
-            $consultaSQL1 = "SELECT id, fecha FROM alquileres;";
-            $consultaSQL2 =  "SELECT detallealquileres.cantidad, detallealquileres.subtotal FROM detallealquileres, alquileres WHERE ;";
-
-            $arrAlquileres1 = $cnx->myQueryMultiple($consultaSQL1);
-            $arrAlquileres2 = $cnx->myQueryMultiple($consultaSQL2);
-
-            // var_dump($arrAlquileres1);
-            var_dump($arrAlquileres2);
+            // Realizo esta consulta para tener accesible el ID del alquiler según el usuario
+            $consultaSQL = "SELECT id FROM alquileres WHERE usuario_id = $idUsuario";
+            $arrAlquileres = $cnx->myQueryMultiple($consultaSQL); // Asociativa
+            // var_dump($arrAlquileres);
 
             echo "<div class='container_separator'>";
             echo "<table> 
@@ -74,20 +68,39 @@
                     <th>SUBTOTAL</th> 
                     <th>MONEDA</th> 
                 </tr>";
-            foreach ($arrAlquileres1 as $key => $value) {
+            foreach ($arrAlquileres as $key => $value) {
 
+                // var_dump($key);
                 // var_dump($value);
-    
-                $msg = "No Data";
 
-                echo "<tr>" .
-                    "<td>" . $value['id'] . "</td>" .
-                    "<td>" . $value['fecha'] . "</td>" .
-                    "<td>" . (isset($key) && $key != null ? $arrAlquileres2[$key]['nombre'] : $msg) . "</td>" .
-                    "<td>" . (isset($key) && $key != null ? $arrAlquileres2[$key]['cantidad'] : $msg) . "</td>" .
-                    "<td>" . (isset($key) && $key != null ? $arrAlquileres2[$key]['subtotal'] : $msg) . "</td>" .
-                    "<td>€</td>" .
-                    "</tr>";
+                // Tomo el ID de los alquileres
+                $idAlquiler = intval($arrAlquileres[$key]['id']);
+
+                // Creamos una sentencia SQL para hacer la consulta a mi base de datos
+                $consultaSQLDettAlqProd = "SELECT * FROM detallealquileres 
+                INNER JOIN productos ON detallealquileres.producto_id = productos.id
+                INNER JOIN alquileres ON detallealquileres.alquiler_id = alquileres.id 
+                WHERE detallealquileres.alquiler_id = $idAlquiler;";
+
+                $arrDettAlqProd = $cnx->myQueryMultiple($consultaSQLDettAlqProd);
+                // print_r($arrDettAlqProd);
+
+                foreach ($arrDettAlqProd as $clave => $valor) {
+
+                    // var_dump($clave);
+                    // var_dump($valor);
+
+                    $msg = "No Data";
+
+                    echo "<tr>" .
+                        "<td>" . $idAlquiler . "</td>" .
+                        "<td>" . $arrDettAlqProd[$clave]['fecha'] . "</td>" .
+                        "<td>" . $arrDettAlqProd[$clave]['nombre'] . "</td>" .
+                        "<td>" . $arrDettAlqProd[$clave]['cantidad'] . "</td>" .
+                        "<td>" . $arrDettAlqProd[$clave]['subtotal'] . "</td>" .
+                        "<td>€</td>" .
+                        "</tr>";
+                }
             }
             echo "</table>";
             echo "</div>";

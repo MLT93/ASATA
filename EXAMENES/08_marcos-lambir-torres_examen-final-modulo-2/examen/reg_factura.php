@@ -54,46 +54,40 @@
             // * REGISTRAR datos del formulario
             if (isset($_POST['coches'])) {
 
-                // Variables formulario
+                // Variables del formulario
                 $fecha = $_POST['fecha']; // Date
-                $cantidadDias = $_POST['numDias']; // Number
-                // var_dump($cantidadDias);
-                $idProducto = 0; // Number
-
-                $nameProducto = "";
-                $descripcionProducto = "";
-                $valueProducto = floatval(0.00);
-
+                $cantidadDias = intval($_POST['numDias']);
+                $idProducto = intval(0);
                 foreach ($_POST as $key => $value) {
-
-                    if ($key != "coches" && $key != "fecha" && $key != "dias") {
-
-                        $idProducto = intval($key);
+                    // Saco el ID del producto de esta forma porque el `name=""` es el ID del producto y se modifica por cada producto, por eso necesito iterar `$_POST`
+                    // Si `name=""` no es coches, numDias o fecha, me queda el ID
+                    if ($key != "coches" && $key != "numDias" && $key != "fecha") {
+                        $idProducto += intval($key);
                     }
-
-                    $cnx = new Db("localhost", "root", "", "concesionario");
-                    $sentenciaproducto = "SELECT * FROM productos WHERE productos.id = $key ";
-                    $producto = $cnx->myQuerySimple($sentenciaproducto);
-                    $precioProducto = floatval($producto['precio']); //al parsearlo a float, podrian perderse los decimales
-
-                    $nameProducto = $producto['nombre'];
-                    $descripcionProducto = $producto['descripcion'];
-                    $valueProducto += $precioProducto;
-                    $objForArrItems = '
-                        {
-                            "name": "' . $nameProducto . '",
-                            "description": "' . $descripcionProducto . '",
-                            "quantity": "1",
-                            "unit_amount": {
-                                "currency_code": "EUR",
-                                "value": "' . strval($valueProducto) . '"
-                            },
-                            "unit_of_measure": "QUANTITY"
-                        }';
                 }
 
-                // Variables del usuario que están dentro de las variables de sesión y se comprueba el usuario en la base de datos
-                $idUsuario = intval(Usuario::mostrarIdUsuario($_SESSION['usuario']));
+                // Variables para PayPal
+                $cnx = new Db("localhost", "root", "", "concesionario");
+                $consultaProducto = "SELECT * FROM productos WHERE productos.id = $idProducto;";
+                $arrProducto = $cnx->myQuerySimple($consultaProducto); // Asociativa
+
+                $precioProducto = floatval($arrProducto['precio']); // Al parsearlo a float, podrían perderse los decimales
+                $nameProducto = $arrProducto['nombre'];
+                $descripcionProducto = $arrProducto['descripcion'];
+                $objForArrItems = '
+                    {
+                        "name": "' . $nameProducto . '",
+                        "description": "' . $descripcionProducto . '",
+                        "quantity": "' . $cantidadDias . '",
+                        "unit_amount": {
+                            "currency_code": "EUR",
+                            "value": "' . strval($precioProducto) . '"
+                        },
+                        "unit_of_measure": "QUANTITY"
+                    }';
+
+                // Variables para mi DB
+                $idUsuario = intval(Usuario::mostrarIdUsuario($_SESSION['usuario'])); // Variables del usuario que están dentro de las variables de sesión y se comprueba el usuario en la base de datos
                 $fechaDateTime = date("Y-m-d H:i:s", intval(strtotime("now"))); // Date Time
                 // var_dump($fechaDateTime); //=> "2024-06-07 12:08:55"
                 $estado = "En proceso";
@@ -106,15 +100,15 @@
 
                 $senteciaInfoAlquileres =  "SELECT alquileres.id, productos.id, productos.precio FROM alquileres, productos WHERE alquileres.usuario_id = $idUsuario AND alquileres.estado = 'En proceso' ORDER BY alquileres.fecha DESC LIMIT 0, 1;";
                 $arrAlquileres = $cnx->myQueryMultiple($senteciaInfoAlquileres, false); // Iterativa
-                $idAlquiler;
-                $idProducto;
-                $precioSingular;
 
+                $idAlquiler = intval(0);
+                $idProducto = intval(0);
+                $precioSingular = floatval(0.00);
                 foreach ($arrAlquileres as $key => $value) {
                     // print_r($value) . "<br/>";
-                    $idAlquiler = intval($value[0]);
-                    $idProducto = intval($value[1]);
-                    $precioSingular = floatval($value[2]);
+                    $idAlquiler += intval($value[0]);
+                    $idProducto += intval($value[1]);
+                    $precioSingular += floatval($value[2]);
                 }
                 // var_dump($precioSingular);
                 $total = $precioSingular * intval($cantidadDias);
@@ -133,7 +127,7 @@
                 $client = new Client();
 
                 $access_token = $_COOKIE['token'];
-                $n_factura = "#" . rand(1, 10000);
+                $numFactura = "#" . rand(1, 10000);
                 $infoUsuario = Usuario::mostrarUsuario($_SESSION['usuario']);
                 $nickname = $infoUsuario['nickname'];
                 $email = $infoUsuario['email'];
@@ -149,7 +143,7 @@
                     '{
                     "detail": {
                         "currency_code": "EUR",
-                        "invoice_number": "' . $n_factura . '",
+                        "invoice_number": "' . $numFactura . '",
                         "reference": "deal-ref",
                         "invoice_date": "' . $fecha . '",
                         "note": "Gracias por su pedido."
