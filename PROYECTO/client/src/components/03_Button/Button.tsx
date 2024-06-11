@@ -35,10 +35,10 @@ const Button = ({
   onClick: MouseEventHandler<HTMLButtonElement>;
 }): JSX.Element => {
   const buttonClassNames = classNames({
-    'button': true,
-    'is_primary': isPrimary,
-    'is_secondary': isSecondary,
-    'is_tertiary': isTertiary,
+    button: true,
+    is_primary: isPrimary,
+    is_secondary: isSecondary,
+    is_tertiary: isTertiary,
   });
 
   const bgAnimations = classNames({

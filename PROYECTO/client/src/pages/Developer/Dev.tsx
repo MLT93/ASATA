@@ -2,7 +2,9 @@ import "./Dev.module.scss";
 import { Button } from "../../components/03_Button/Button";
 import { Link } from "../../components/02_Link/Link";
 import { Text } from "../../components/01_Text/Text";
-import MarioBros from "../../assets/icons/02_Example2";
+import IconExample2 from "../../assets/icons/02_Example2";
+import { Card } from "../../components/04_Card/Card";
+import IconExample1 from "../../assets/icons/01_Example1";
 
 const Dev = () => {
   return (
@@ -30,7 +32,7 @@ const Dev = () => {
           <Link isAnchorPrimary text="Link Primary" href="###" isTarget />
           <Link
             isAnchorSecondary
-            svg={<MarioBros width="3" />}
+            svg={<IconExample2 width="3" />}
             text="Link Secondary"
             href="###"
             isSelf
@@ -53,6 +55,18 @@ const Dev = () => {
           isTertiary
           text="Button Tertiary"
           onClick={() => console.log("Button Tertiary")}
+        />
+        <hr />
+        <Card
+          isCardPrimary
+          svgCard={<IconExample2 width="5" />}
+          preTitle="preTitle"
+          title="Title"
+          subtitle="Subtitle"
+          body="Body"
+          textButton="textButton"
+          svgButton={<IconExample1 width="3" />}
+          onClick={() => console.log("Button Card")}
         />
       </section>
     </>

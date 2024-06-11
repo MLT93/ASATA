@@ -8,7 +8,7 @@ import { useSpring, animated } from "@react-spring/web";
  * @returns {JSX.Element} Elemento | Estructura HTML
  */
 
-const Example = ({ width }: { width: string }): JSX.Element => {
+const IconExample1 = ({ width }: { width: string }): JSX.Element => {
   // Uso de `react-spring`: https://www.react-spring.dev/docs/advanced/config
   const [{ translateY /* , api */ }] = useSpring(
     () => ({
@@ -4991,4 +4991,4 @@ const Example = ({ width }: { width: string }): JSX.Element => {
   );
 };
 
-export default Example;
+export default IconExample1;

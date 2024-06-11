@@ -9,7 +9,7 @@ import imgExample from "../img/mario.png";
  * @returns {JSX.Element} Elemento | Estructura HTML
  */
 
-const MarioBros = ({
+const IconExample2 = ({
   color,
   width,
 }: {
@@ -25,4 +25,4 @@ const MarioBros = ({
   );
 };
 
-export default MarioBros;
+export default IconExample2;

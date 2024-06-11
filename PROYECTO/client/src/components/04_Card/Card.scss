@@ -1,27 +1,74 @@
-.card-primary {
+.card {
   display: flex;
-  flex-direction: column;
+  flex-flow: column wrap;
+  justify-content: space-between;
   align-items: center;
-  justify-content: space-around;
+  text-align: start;
 
-  background-color: var(--color-background);
+  width: 300px;
+  height: 380px;
+  margin: var(--space-lg) 0px;
 
-  width: 340px;
-  height: 340px;
+  box-sizing: border-box;
 
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.48);
-  margin: 0px 20px 0px 20px;
-  border-radius: var(--border-radius-ml);
+  padding: var(--space-lg);
+
+  overflow: inherit;
+
+  border-radius: var(--border-radius-l);
+  border: var(--space-5xs) solid var(--color-shadow-1);
+  border-bottom: var(--space-3xs) solid var(--color-shadow-1);
+  -webkit-border-radius: var(--border-radius-l);
+  -moz-border-radius: var(--border-radius-l);
+  -ms-border-radius: var(--border-radius-l);
+  -o-border-radius: var(--border-radius-l);
+
+  font: inherit;
 }
 
-.card-text {
-  display: flex;
-  flex-direction: column;
+.is_card_primary {
+  color: var(--color-text);
+  background: var(--gradient-bg-card-1);
+  transform: rotate(-2.36deg);
+  -webkit-transform: rotate(-2.36deg);
+  -moz-transform: rotate(-2.36deg);
+  -ms-transform: rotate(-2.36deg);
+  -o-transform: rotate(-2.36deg);
 }
 
-.card-list {
+.is_card_secondary {
+  color: var(--color-text);
+  background: var(--gradient-bg-card-2);
+  transform: rotate(1.43deg);
+  -webkit-transform: rotate(1.43deg);
+  -moz-transform: rotate(1.43deg);
+  -ms-transform: rotate(1.43deg);
+  -o-transform: rotate(1.43deg);
+}
+
+.container_card_text {
+  width: 100%;
+
+  text-align: left;
+}
+
+.container_card_button {
   display: flex;
-  flex-direction: row;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
+  text-align: center;
+
+  height: 60px;
+
+  > .container_card_opacity {
+    background: rgb(74, 74, 74);
+
+    border-radius: var(--border-radius-ml);
+    -webkit-border-radius: var(--border-radius-ml);
+    -moz-border-radius: var(--border-radius-ml);
+    -ms-border-radius: var(--border-radius-ml);
+    -o-border-radius: var(--border-radius-ml);
+
+    width: fit-content;
+  }
 }

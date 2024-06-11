@@ -1,67 +1,79 @@
-// import TickSVG from "../../assets/Icons/TickSVG";
-import { Text } from "../01_Text/Text";
 import "./Card.scss";
+import { Text } from "../01_Text/Text";
+import { Button } from "../03_Button/Button";
+import { MouseEventHandler } from "react";
+import classNames from "classnames";
 
 /**
  *
  * @param {Object} props - Propiedades para renderizar el tipo de texto
- * @param {string} props.title - Titulo de la card
- * @param {string} props.text - El texto
- * @param {string} props.bgColor - Color de fondo de la card
- * @param {string} props.titleColor - Color del titulo la card
- * @param {string} props.textColor - Color del texto la card
- * @param {string} props.button - Tipo de botón de la card
+ * @param {boolean} props.isCardPrimary - Booleano para definir si la card es de tipo primario o no
+ * @param {boolean} props.isCardSecondary - Booleano para definir si la card es de tipo secundario o no
+ * @param {boolean} props.className - Asignación de los estilos SCSS
+ * @param {boolean} props.svgCard - El icono dentro de la card, puede ser un componente o un elemento svg
+ * @param {boolean} props.preTitle - El texto previo al título del botón
+ * @param {string} props.title - El texto del título del botón
+ * @param {string} props.subtitle - El texto del subtítulo del botón
+ * @param {string} props.body - El texto del cuerpo del botón
+ * @param {string} props.textButton - El texto del botón de la card
+ * @param {string} props.svgButton - El icono dentro del botón, puede ser un componente o un elemento svg
+ * @param {MouseEventHandler<HTMLButtonElement> | string} props.onClick - Función al hacer click en el botón
  *
- * @returns {JSX.Element} Elemento | Estructura HTML
+ * @returns {JSX.Element} Elemento HTML para el texto
  */
 
 const Card = ({
+  isCardPrimary,
+  isCardSecondary,
+  svgCard,
+  preTitle,
   title,
-  text,
-  text2,
-  text3,
-  text4,
-  bgColor,
-  titleColor,
-  textColor,
-  button,
+  subtitle,
+  body,
+  textButton,
+  svgButton,
+  onClick,
 }: {
-  text: string;
-  text2: string;
-  text3: string;
-  text4: string;
+  isCardPrimary?: boolean;
+  isCardSecondary?: boolean;
+  svgCard: JSX.Element | string;
+  preTitle: string;
   title: string;
-  bgColor: string;
-  titleColor: string;
-  textColor: string;
-  button: JSX.Element;
+  subtitle: string;
+  body: string;
+  textButton: string;
+  svgButton: JSX.Element | string;
+  onClick: MouseEventHandler<HTMLButtonElement>;
 }): JSX.Element => {
+  const cardClassNames = classNames({
+    card: true,
+    is_card_primary: isCardPrimary,
+    is_card_secondary: isCardSecondary,
+  });
+
   return (
-    <div className="card-primary" style={{ background: `${bgColor}` }}>
-      <div>
-        <Text size="text-size-h3-bold" color={titleColor} text={title} />
+    <div className={cardClassNames}>
+      {/* <Icono icono={icon} className={"cta-card-icon"} /> */}
+      {svgCard && svgCard}
+      <div className="container_card_text">
+        <Text size={"pa_bold"} text={preTitle} />
+        <Text size={"h2"} text={title} />
+        <Text size={"pa_bold"} text={subtitle} />
       </div>
-      <ul className="card-text">
-        <li className="card-list">
-          {/* <TickSVG color="var(--color-secondary)" /> */}
-          <Text size="text-size-sp" color={textColor} text={text} />
-        </li>
-        <li className="card-list">
-          {/* <TickSVG color="var(--color-secondary)" /> */}
-          <Text size="text-size-sp" color={textColor} text={text2} />
-        </li>
-        <li className="card-list">
-          {/* <TickSVG color="var(--color-secondary)" /> */}
-          <Text size="text-size-sp" color={textColor} text={text3} />
-        </li>
-        <li className="card-list">
-          {/* <TickSVG color="var(--color-secondary)" /> */}
-          <Text size="text-size-sp" color={textColor} text={text4} />
-        </li>
-      </ul>
-      <div>{button}</div>
+      <Text size={"pa"} text={body} />
+      <div className="container_card_button">
+        <div className="container_card_opacity">
+          <Button
+            isPrimary
+            text={textButton}
+            gap={"0.7"}
+            svg={svgButton}
+            onClick={onClick}
+          />
+        </div>
+      </div>
     </div>
   );
 };
 
-export default Card;
+export { Card };
