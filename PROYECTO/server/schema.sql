@@ -7,7 +7,62 @@ ALTER DATABASE hippoclothes DEFAULT CHARSET = utf8 COLLATE = utf8_unicode_ci;
 
 USE hippoclothes;
 
-/*  Tabla categorías */
+/* Tabla roles */
+CREATE TABLE
+  `roles` (
+    id_rol INT (10) PRIMARY KEY AUTO_INCREMENT,
+    rol VARCHAR(5) DEFAULT 'User' COMMENT 'Admin, User, Proveedor',
+    descripcion TEXT
+  ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_unicode_ci;
+
+/* Tabla métodos pago */
+CREATE TABLE
+  `metodos_pago` (
+    id INT (10) PRIMARY KEY AUTO_INCREMENT,
+    metodo VARCHAR(100) NOT NULL DEFAULT 'PayPal' COMMENT 'PayPal, Tarjeta, Transferencia bancaria, Crypto, Contado',
+    tipo_documento_asociado VARCHAR(20) NOT NULL,
+    num_documento_asociado VARCHAR(20) UNIQUE NOT NULL,
+    direccion VARCHAR(70) NOT NULL,
+    num_tarjeta VARCHAR(16),
+    cvv_tarjeta INT(3),
+    iban_bancario VARCHAR(24),
+    swift_bic VARCHAR(11),
+    moneda_crypto VARCHAR(3) DEFAULT 'BNB' COMMENT 'BNB, ETH, BTC, USDT',
+    telefono VARCHAR(20),
+    fecha_nacimiento DATE NOT NULL
+  )
+
+  /* Tabla usuarios */
+CREATE TABLE
+  `usuarios` (
+    id_usuario INT (10) PRIMARY KEY AUTO_INCREMENT,
+    id_rol INT (10) NOT NULL,
+    id_metodo_pago INT (10) NOT NULL,
+    username VARCHAR(100) NOT NULL,
+    email VARCHAR(50) UNIQUE NOT NULL,
+    hashedPassword VARCHAR(16) NOT NULL,
+    imagen varchar(255) NOT NULL,
+    FOREIGN KEY (id_rol) REFERENCES rol (id_rol),
+    FOREIGN KEY (id_metodo_pago) REFERENCES metodos_pago (id)
+  ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_unicode_ci;
+
+/* Tabla proveedores */
+CREATE TABLE
+  `proveedores` (
+    id_persona INT (10) PRIMARY KEY AUTO_INCREMENT,
+    id_rol INT (10) NOT NULL,
+    tipo_proveedor VARCHAR(20) NOT NULL COMMENT 'Empresa, Autónomo',
+    nombre VARCHAR(100) NOT NULL,
+    apellidos VARCHAR(100),
+    nombre_comercial VARCHAR(100),
+    tipo_documento VARCHAR(20) null COMMENT 'Cif, DNI, Pasaporte',
+    num_documento VARCHAR(20) null,
+    direccion VARCHAR(70) NOT NULL,
+    telefono VARCHAR(20) NOT NULL,
+    email VARCHAR(50) NOT NULL
+  ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_unicode_ci;
+
+/* Tabla categorías */
 DROP TABLE IF EXISTS temporadas;
 
 CREATE TABLE
@@ -26,7 +81,7 @@ VALUES
   ('Winter', 'Ropa de invierno', 2024),
   ('Spring', 'Ropa de primavera', 2024);
 
-/*  Tabla artículos */
+/* Tabla artículos */
 DROP TABLE IF EXISTS articulos;
 
 CREATE TABLE
@@ -42,48 +97,7 @@ CREATE TABLE
     FOREIGN KEY (id_categoria) REFERENCES categorias (id)
   ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_unicode_ci;
 
-/*  Tabla proveedores */
-CREATE TABLE
-  `proveedores` (
-    id_persona INT (10) PRIMARY KEY AUTO_INCREMENT,
-    tipo_proveedor VARCHAR(20) NOT NULL COMMENT 'Empresa, Autónomo',
-    nombre VARCHAR(100) NOT NULL,
-    apellidos VARCHAR(100),
-    nombre_comercial VARCHAR(100),
-    tipo_documento VARCHAR(20) null COMMENT 'Cif, DNI, Pasaporte',
-    num_documento VARCHAR(20) null,
-    direccion VARCHAR(70) NOT NULL,
-    telefono VARCHAR(20) NOT NULL,
-    email VARCHAR(50) NOT NULL
-  ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_unicode_ci;
-
-/*  Tabla roles */
-CREATE TABLE
-  `roles` (
-    id_rol INT (10) PRIMARY KEY AUTO_INCREMENT,
-    nombre VARCHAR(30) NOT NULL,
-    descripcion TEXT,
-    estado VARCHAR(30) COMMENT 'Admin, User'
-  ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_unicode_ci;
-
-/*  Tabla usuarios */
-CREATE TABLE
-  usuarios (
-    id_usuario INT (10) PRIMARY KEY AUTO_INCREMENT,
-    id_rol INT (10) NOT NULL,
-    nombre VARCHAR(100) NOT NULL,
-    tipo_documento VARCHAR(20) NOT NULL,
-    num_documento VARCHAR(20) UNIQUE NOT NULL,
-    direccion VARCHAR(70),
-    telefono VARCHAR(20),
-    email VARCHAR(50) UNIQUE NOT NULL,
-    fecha_nacimiento DATE NOT NULL,
-    hashedPassword VARCHAR(16) NOT NULL,
-    socio TINYINT (1) NOT NULL,
-    FOREIGN KEY (id_rol) REFERENCES rol (id_rol)
-  ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_unicode_ci;
-
-/*  Tabla recepciones_almacen */
+/* Tabla recepciones_almacen */
 CREATE TABLE
   `recepciones_almacen` (
     id INT (10) PRIMARY KEY AUTO_INCREMENT,
@@ -96,9 +110,9 @@ CREATE TABLE
     FOREIGN KEY (id_proveedor) REFERENCES proveedores (id)
   ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_unicode_ci;
 
-/*  Tabla detalle_recepciones_almacen */
+/* Tabla detalle_recepciones_almacen */
 CREATE TABLE
-  detalle_recepciones_almacen (
+  `detalle_recepciones_almacen` (
     id INT (10) PRIMARY KEY AUTO_INCREMENT,
     id_recepcion_almacen INT (10) NOT NULL,
     id_articulo INT (10) NOT NULL,
@@ -108,9 +122,9 @@ CREATE TABLE
     FOREIGN KEY (id_articulo) REFERENCES articulos (id)
   ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_unicode_ci;
 
-/*  Tabla pedidos */
+/* Tabla pedidos */
 CREATE TABLE
-  pedidos (
+  `pedidos` (
     id INT (10) PRIMARY KEY AUTO_INCREMENT,
     id_usuario INT (10) NOT NULL,
     id_factura tipo_comprobante VARCHAR(20) NOT NULL COMMENT 'Factura, Ticket, Ticket nominal',
@@ -119,13 +133,12 @@ CREATE TABLE
     impuesto decimal(4, 2) NOT NULL,
     total decimal(11, 2) NOT NULL,
     estado VARCHAR(20) NOT NULL,
-    FOREIGN KEY (id_cliente) REFERENCES personas (id),
     FOREIGN KEY (id_usuario) REFERENCES usuarios (id)
   ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_unicode_ci;
 
-/*  Tabla detalles_pedido */
+/* Tabla detalles_pedido */
 CREATE TABLE
-  detalles_pedido (
+  `detalles_pedido` (
     id INT (10) PRIMARY KEY AUTO_INCREMENT,
     id_pedido INT (10) NOT NULL,
     id_articulos INT (10) NOT NULL,
@@ -138,7 +151,7 @@ CREATE TABLE
 
 /* Tabla facturas */
 CREATE TABLE
-  facturas (
+  `facturas` (
     id INT (10) PRIMARY KEY AUTO_INCREMENT,
     id_pedido INT (10) NOT NULL,
     num_factura VARCHAR(10) NOT NULL,
@@ -146,13 +159,12 @@ CREATE TABLE
     impuesto decimal(4, 2) NOT NULL,
     total decimal(11, 2) NOT NULL,
     estado VARCHAR(20) NOT NULL,
-    FOREIGN KEY (id_cliente) REFERENCES personas (id),
     FOREIGN KEY (id_usuario) REFERENCES usuarios (id)
   ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_unicode_ci;
 
 /* Tabla detalles_facturas */
 CREATE TABLE
-  detalles_facturas (
+  `detalles_facturas` (
     id INT (10) PRIMARY KEY AUTO_INCREMENT,
     id_detalle_pedido INT (10) NOT NULL,
     FOREIGN KEY (id_articulos) REFERENCES articulos (id)
@@ -160,7 +172,7 @@ CREATE TABLE
 
 /* Tabla tickets */
 CREATE TABLE
-  tickets (
+  `tickets` (
     id INT (10) PRIMARY KEY AUTO_INCREMENT,
     id_pedido INT (10) NOT NULL,
     num_factura VARCHAR(10) NOT NULL,
@@ -168,14 +180,22 @@ CREATE TABLE
     impuesto decimal(4, 2) NOT NULL,
     total decimal(11, 2) NOT NULL,
     estado VARCHAR(20) NOT NULL,
-    FOREIGN KEY (id_cliente) REFERENCES personas (id),
     FOREIGN KEY (id_usuario) REFERENCES usuarios (id)
   ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_unicode_ci;
 
 /* Tabla detalles_tickets */
 CREATE TABLE
-  detalles_tickets (
+  `detalles_tickets` (
     id INT (10) PRIMARY KEY AUTO_INCREMENT,
     id_detalle_pedido INT (10) NOT NULL,
     FOREIGN KEY (id_articulos) REFERENCES articulos (id)
+  ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_unicode_ci;
+
+/* Tabla sesiones */
+CREATE TABLE
+  `sesiones` (
+    `id` int (10) NOT NULL,
+    `id_usuario` int (10) NOT NULL,
+    `fecha` datetime NOT NULL,
+    `interaccion` varchar(255) NOT NULL
   ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_unicode_ci;

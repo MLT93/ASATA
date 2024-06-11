@@ -21,6 +21,14 @@ SET time_zone = "+00:00";
 # Base de datos: `gameclub`
 #
 
+DROP DATABASE IF EXISTS gameclub;
+
+CREATE DATABASE IF NOT EXISTS gameclub;
+
+ALTER DATABASE gameclub DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+USE gameclub;
+
 # ############################
 
 #

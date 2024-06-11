@@ -1,6 +1,6 @@
 import "./Link.scss";
 import classNames from "classnames";
-import { Text } from "../Text/Text";
+import { Text } from "../01_Text/Text";
 
 /**
  *
@@ -11,6 +11,7 @@ import { Text } from "../Text/Text";
  * @param {string} props.svg - Icono del link
  * @param {string} props.gap - Espaciado entre el contenido de la caja, relacionado con `display: flex; | grid;`
  * @param {boolean} props.isTarget - Variable booleana para hacer que el renderizado de la URL se realice en otra página del navegador
+ * @param {boolean} props.isSelf - Variable booleana para hacer que el renderizado de la URL se realice en la misma página del navegador
  * @param {boolean} props.isAnchorPrimary - Booleano para definir si el botón es de tipo primario o no
  * @param {boolean} props.isAnchorSecondary - Booleano para definir si el botón es de tipo secundario
  * @param {boolean} props.isAnchorTertiary - Booleano para definir si el botón es de tipo terciario
@@ -25,6 +26,7 @@ const Link = ({
   svg,
   gap,
   isTarget,
+  isSelf,
   isAnchorPrimary,
   isAnchorSecondary,
   isAnchorTertiary,
@@ -35,35 +37,32 @@ const Link = ({
   svg?: JSX.Element | string;
   gap?: string;
   isTarget?: boolean;
+  isSelf?: boolean;
   isAnchorPrimary?: boolean;
   isAnchorSecondary?: boolean;
   isAnchorTertiary?: boolean;
 }): JSX.Element => {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
   const targets = classNames({
     _blank: isTarget,
+    _self: isSelf,
   });
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
   const anchorClassNames = classNames({
     anchor: true,
-    "is-anchor-primary": isAnchorPrimary,
-    "is-anchor-secondary": isAnchorSecondary,
-    "is-anchor-tertiary": isAnchorTertiary,
+    is_anchor_primary: isAnchorPrimary,
+    is_anchor_secondary: isAnchorSecondary,
+    is_anchor_tertiary: isAnchorTertiary,
   });
 
   return (
     <a
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       className={anchorClassNames}
       href={href}
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       target={targets}
       rel="nofollow"
-      style={{ gap: `${gap}rem` }}
-    >
-      {svg && svg}
-      <Text size="a" text={text} color={color} />
+      style={{ gap: `${gap}rem` }}>
+      {isAnchorSecondary  ? svg && svg : null}
+      <Text size="an" text={text} color={color} />
     </a>
   );
 };

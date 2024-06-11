@@ -1,0 +1,117 @@
+@import "../../sass/mixins";
+
+.button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  font-family: inherit;
+
+  white-space: nowrap;
+  letter-spacing: 0.03em;
+  line-height: 1.1;
+  outline: 0;
+
+  color: var(--color-contrast-2);
+
+  padding: 0px var(--space-lg);
+
+  min-height: var(--space-xl);
+
+  border-radius: var(--border-radius-md);
+  -webkit-border-radius: var(--border-radius-md);
+  -moz-border-radius: var(--border-radius-md);
+  -ms-border-radius: var(--border-radius-md);
+  -o-border-radius: var(--border-radius-md);
+  border-width: var(--zero-space);
+  border: none;
+
+  box-shadow: var(--color-shadow-1) 0px -1px 0px 0px inset;
+
+  cursor: pointer;
+
+  opacity: 1;
+
+  &:hover {
+    opacity: 0.75;
+
+    transition: all 0.2s ease 0.2s;
+    -webkit-transition: all 0.2s ease 0.2s;
+    -moz-transition: all 0.2s ease 0.2s;
+    -ms-transition: all 0.2s ease 0.2s;
+    -o-transition: all 0.2s ease 0.2s;
+  }
+}
+
+.is_primary {
+  background: var(--gradient-button-bg-image);
+  color: var(--color-contrast-3);
+}
+
+.is_secondary {
+  background: var(--color-8);
+  color: var(--color-contrast-2);
+
+  box-shadow: none;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.bg_animation {
+  background: var(--gradient-bg-image-primary);
+  @include bg-animation;
+
+  width: max-content;
+
+  padding: 1.9px;
+
+  border-radius: var(--border-radius-md);
+  -webkit-border-radius: var(--border-radius-md);
+  -moz-border-radius: var(--border-radius-md);
+  -ms-border-radius: var(--border-radius-md);
+  -o-border-radius: var(--border-radius-md);
+  border-width: var(--borderWidths-0);
+  border: none;
+}
+
+.is_tertiary {
+  background: var(--color-17);
+  color: var(--color-contrast-2);
+
+  border: 1.9px solid var(--color-contrast-secondary);
+
+  &:hover {
+    background: var(--color-9);
+    color: var(--color-18);
+
+    border-color: var(--color-2);
+
+    opacity: 1;
+
+    transition: all 0.2s ease 0.2s;
+    -webkit-transition: all 0.2s ease 0.2s;
+    -moz-transition: all 0.2s ease 0.2s;
+    -ms-transition: all 0.2s ease 0.2s;
+    -o-transition: all 0.2s ease 0.2s;
+
+    box-shadow: var(--color-18) 0px -1px 0px 0px inset;
+  }
+}
+
+@media (hover: hover) {
+  .is-tertiary:hover svg {
+    stroke: var(--color-contrast-1);
+    fill: var(--color-contrast-1);
+
+    opacity: 1;
+
+    transition: all 0.2s ease 0.2s;
+    -webkit-transition: all 0.2s ease 0.2s;
+    -moz-transition: all 0.2s ease 0.2s;
+    -ms-transition: all 0.2s ease 0.2s;
+    -o-transition: all 0.2s ease 0.2s;
+  }
+}

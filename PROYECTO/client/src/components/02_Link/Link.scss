@@ -1,3 +1,5 @@
+@import "../../sass/mixins";
+
 .anchor {
   display: flex;
   flex-wrap: wrap;
@@ -24,29 +26,35 @@
   }
 }
 
-.is-anchor-primary {
-  color: var(--color-contrast-2);
+.is_anchor_primary {
+  color: var(--color-contrast-3);
 
   &:hover {
-    filter: drop-shadow(0 0 0.5rem var(--color-3));
-    -webkit-filter: drop-shadow(0 0 0.5rem var(--color-3));
+    @include border_animation;
+
+    filter: drop-shadow(0px 0px 0.7rem var(--color-16));
+    -webkit-filter: drop-shadow(0px 0px 0.7rem var(--color-16));
+    text-shadow: 0px 0px 0.3rem var(--color-2);
   }
 }
 
-.is-anchor-secondary {
+.is_anchor_secondary {
   flex-flow: column wrap;
   align-items: center;
 
   margin-bottom: var(--space-5xs);
 
-  color: var(--color-7);
+  color: var(--color-contrast-3);
 
   &:hover {
+    @include link_bottom_animation;
+
     transform: scale(1.1);
     -webkit-transform: scale(1.1);
     -moz-transform: scale(1.1);
     -ms-transform: scale(1.1);
     -o-transform: scale(1.1);
+
     transition: all 0.2s linear;
     -webkit-transition: all 0.2s linear;
     -moz-transition: all 0.2s linear;
@@ -55,7 +63,7 @@
   }
 }
 
-.is-anchor-tertiary {
+.is_anchor_tertiary {
   color: var(--color-contrast-3);
 
   &:hover {

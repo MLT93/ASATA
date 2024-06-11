@@ -23,8 +23,7 @@
   --font-size-h1: 64px;
 
   /* SPACING */
-  --space-rem: 1rem;
-  --space-rem-m: 1.5rem;
+  --zero-space: 0px;
   --space-5xs: 1px;
   --space-4xs: 2px;
   --space-3xs: 4px;
@@ -41,6 +40,8 @@
   --space-xxl: 48px;
   --space-3xl: 56px;
   --space-4xl: 64px;
+  --space-rem: 1rem;
+  --space-rem-m: 1.5rem;
 
   /* RADIUS */
   --border-radius-sm: 5px;
@@ -58,35 +59,46 @@
   --color-5: rgba(255, 66, 8, 0.843);
   --color-6: rgba(136, 8, 255, 0.843);
   --color-7: rgba(8, 53, 255, 0.843);
-  --color-8: rgb(112, 112, 112);
-
+  --color-8: rgba(245, 245, 245, 0.5);
+  --color-9: rgb(180, 180, 180);
+  --color-10: rgba(255, 191, 0, 0.794);
+  --color-11: rgba(255, 145, 0, 0.736);
+  --color-12: rgb(255, 238, 0);
+  --color-13: rgb(18, 45, 142);
+  --color-14: rgba(27, 66, 208, 0.969);
+  --color-15: rgb(35, 133, 238);
+  --color-16: rgb(231, 232, 255);
+  --color-17: rgb(121, 185, 254);
+  --color-18: rgb(16, 111, 212);
+  
   --color-contrast-1: rgb(219, 219, 219);
   --color-contrast-2: rgb(7, 7, 7);
-  --color-contrast-3: rgb(255, 255, 255);
+  --color-contrast-3: rgb(243, 243, 243);
 
-  --color-shadow: rgb(80, 80, 80);
+  --color-shadow-1: rgb(80, 80, 80);
+  // --color-shadow-2: rgb(101, 101, 101);
+
+  --color-blur-1: rgb(50, 60, 65);
+  --color-blur-2: rgba(0, 0, 0, 0.8);
 
   /* GRADIENTS */
-  --button-bg-image: linear-gradient(
+  --gradient-button-bg-image: linear-gradient(
     37deg,
-    rgb(18, 45, 142) 12%,
-    rgba(22, 57, 185, 0.969) 39%,
-    rgb(4, 107, 218) 78%
+    var(--color-13) 12%,
+    var(--color-14) 39%,
+    var(--color-15) 78%
   );
 
   --slider-bg-image: linear-gradient(
     211deg,
-    var(--color-tertiary) 2%,
-    var(--color-text-primary) 77%
+    var(--color-15) 2%,
+    var(--color-16) 77%
   );
 
-  --gradient-bg-image-primary: linear-gradient(
-    rgb(83, 222, 233),
-    rgb(141, 87, 255)
-  );
+  --gradient-bg-image-primary: linear-gradient(var(--color-2), var(--color-6));
   --gradient-bg-image-secondary: linear-gradient(
-    rgb(232, 44, 12),
-    rgb(255, 238, 0)
+    var(--color-5),
+    var(--color-12)
   );
   --gradient-bg-image-tertiary: linear-gradient(
     164deg,

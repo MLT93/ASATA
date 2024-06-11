@@ -31,15 +31,15 @@ const Text = ({
       {size === "h1" && (
         <h1 className={styles.h1} style={{ color: `${color}` }}>
           {text}
-          <span className={styles.h1_bold} style={{ color: "var(--color-bg)" }}>
+          <span className={styles.h1_bold} style={{ color: "var(--color-3)" }}>
             {textColorEnd && ` ${textColorEnd}`}
           </span>
         </h1>
       )}
-      {size === "h1-bold" && (
+      {size === "h1_bold" && (
         <h1 className={styles.h1_bold} style={{ color: `${color}` }}>
           {text}
-          <span style={{ color: "var(--color-bg)" }}>
+          <span style={{ color: "var(--color-3)" }}>
             {textColorEnd && ` ${textColorEnd}`}
           </span>
         </h1>
@@ -47,15 +47,15 @@ const Text = ({
       {size === "h2" && (
         <h2 className={styles.h2} style={{ color: `${color}` }}>
           {text}
-          <span className={styles.h2_bold} style={{ color: "var(--color-bg)" }}>
+          <span className={styles.h2_bold} style={{ color: "var(--color-3)" }}>
             {textColorEnd && ` ${textColorEnd}`}
           </span>
         </h2>
       )}
-      {size === "h2-bold" && (
+      {size === "h2_bold" && (
         <h2 className={styles.h2_bold} style={{ color: `${color}` }}>
           {text}
-          <span style={{ color: "var(--color-bg)" }}>
+          <span style={{ color: "var(--color-3)" }}>
             {textColorEnd && ` ${textColorEnd}`}
           </span>
         </h2>
@@ -63,15 +63,15 @@ const Text = ({
       {size === "h3" && (
         <h3 className={styles.h3} style={{ color: `${color}` }}>
           {text}
-          <span className={styles.h3_bold} style={{ color: "var(--color-bg)" }}>
+          <span className={styles.h3_bold} style={{ color: "var(--color-3)" }}>
             {textColorEnd && ` ${textColorEnd}`}
           </span>
         </h3>
       )}
-      {size === "h3-bold" && (
+      {size === "h3_bold" && (
         <h3 className={styles.h3_bold} style={{ color: `${color}` }}>
           {text}
-          <span style={{ color: "var(--color-bg)" }}>
+          <span style={{ color: "var(--color-3)" }}>
             {textColorEnd && ` ${textColorEnd}`}
           </span>
         </h3>
@@ -79,15 +79,15 @@ const Text = ({
       {size === "h4" && (
         <h4 className={styles.h4} style={{ color: `${color}` }}>
           {text}
-          <span className={styles.h4_bold} style={{ color: "var(--color-bg)" }}>
+          <span className={styles.h4_bold} style={{ color: "var(--color-3)" }}>
             {textColorEnd && ` ${textColorEnd}`}
           </span>
         </h4>
       )}
-      {size === "h4-bold" && (
+      {size === "h4_bold" && (
         <h4 className={styles.h4_bold} style={{ color: `${color}` }}>
           {text}
-          <span style={{ color: "var(--color-bg)" }}>
+          <span style={{ color: "var(--color-3)" }}>
             {textColorEnd && ` ${textColorEnd}`}
           </span>
         </h4>
@@ -95,31 +95,31 @@ const Text = ({
       {size === "h5" && (
         <h5 className={styles.h5} style={{ color: `${color}` }}>
           {text}
-          <span className={styles.h5_bold} style={{ color: "var(--color-bg)" }}>
+          <span className={styles.h5_bold} style={{ color: "var(--color-3)" }}>
             {textColorEnd && ` ${textColorEnd}`}
           </span>
         </h5>
       )}
-      {size === "h5-bold" && (
+      {size === "h5_bold" && (
         <h5 className={styles.h5_bold} style={{ color: `${color}` }}>
           {text}
-          <span style={{ color: "var(--color-bg)" }}>
+          <span style={{ color: "var(--color-3)" }}>
             {textColorEnd && ` ${textColorEnd}`}
           </span>
         </h5>
       )}
-      {size === "p" && (
+      {size === "pa" && (
         <p className={styles.pa} style={{ color: `${color}` }}>
           {text}
-          <span className={styles.pa_bold} style={{ color: "var(--color-bg)" }}>
+          <span className={styles.pa_bold} style={{ color: "var(--color-3)" }}>
             {textColorEnd && ` ${textColorEnd}`}
           </span>
         </p>
       )}
-      {size === "p-bold" && (
+      {size === "pa_bold" && (
         <p className={styles.pa_bold} style={{ color: `${color}` }}>
           {text}
-          <span style={{ color: "var(--color-bg)" }}>
+          <span style={{ color: "var(--color-3)" }}>
             {textColorEnd && ` ${textColorEnd}`}
           </span>
         </p>
@@ -129,12 +129,12 @@ const Text = ({
           {text}
         </span>
       )}
-      {size === "sp-bold" && (
+      {size === "sp_bold" && (
         <span className={styles.sp_bold} style={{ color: `${color}` }}>
           {text}
         </span>
       )}
-      {size === "a" && (
+      {size === "an" && (
         <span className={styles.an} style={{ color: `${color}` }}>
           {text}
         </span>
