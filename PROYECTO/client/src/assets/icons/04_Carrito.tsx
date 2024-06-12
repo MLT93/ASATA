@@ -22,12 +22,13 @@ const Carrito = ({
         xmlns="http://www.w3.org/2000/svg"
         width="512.000000pt"
         height="512.000000pt"
-        viewBox="0 0 512.000000 512.000000"
+        viewBox="0 21 512.000000 512.000000"
         preserveAspectRatio="xMidYMid meet"
         style={{ width: `${width}rem`, color: `${color}`, height: `auto` }}>
         <g
           transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
-          fill="#000000"
+          // fill="#000000"
+          fill="#f3f3f3"
           stroke="none">
           <path
             d="M3670 4419 c-41 -5 -97 -16 -125 -24 -29 -8 -67 -12 -87 -9 -108 18

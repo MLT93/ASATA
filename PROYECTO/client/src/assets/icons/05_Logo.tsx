@@ -22,12 +22,13 @@ const Logo = ({
         xmlns="http://www.w3.org/2000/svg"
         width="500.000000pt"
         height="500.000000pt"
-        viewBox="0 0 500.000000 500.000000"
+        viewBox="0 50 470.000000 470.000000"
         preserveAspectRatio="xMidYMid meet"
         style={{ width: `${width}rem`, color: `${color}`, height: `auto` }}>
         <g
           transform="translate(0.000000,500.000000) scale(0.100000,-0.100000)"
-          fill="#000000"
+          // fill="#000000"
+          fill="#ff7f08e7"
           stroke="none">
           <path
             d="M2269 3883 c-18 -47 -68 -193 -101 -293 -35 -110 -96 -272 -107 -282

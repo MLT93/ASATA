@@ -11,7 +11,7 @@ const Dev = () => {
   return (
     <>
       <aside>
-        <h3>Aside</h3>
+        {/* <h3>Aside</h3> */}
       </aside>
       <main>
         <Section>

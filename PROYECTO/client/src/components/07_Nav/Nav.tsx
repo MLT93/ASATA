@@ -20,14 +20,16 @@ const Nav = (): JSX.Element => {
           isFlexRowStart
           textAlign="center"
           alignItems="center"
-          paddingLeft="3">
-          <Link text={""} href={"###"} svg={<Logo width="6" />} />
+          paddingLeft="3"
+          marginTop="1">
+          <Link text={""} href={"###"} svg={<Logo width="7.5" />} />
         </Box>
         <Box
           isFlexRowSpaceBetween
           textAlign="center"
           alignItems="center"
-          paddingRight="1">
+          paddingRight="1"
+          marginTop="1">
           <Link isAnchorPrimary text={"CATEGORIES"} href={"###"} />
           <Link isAnchorPrimary text={"CONTACT"} href={"###"} />
           <Link isAnchorPrimary text={"ABOUT US"} href={"###"} />
