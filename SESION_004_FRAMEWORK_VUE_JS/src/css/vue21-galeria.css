@@ -2,6 +2,8 @@
 *::after,
 *::before {
   box-sizing: border-box;
+
+  /* Los estilos del scrollbar siempre van en el `*{}` */
   ::-webkit-scrollbar {
     width: 8px;
   }
