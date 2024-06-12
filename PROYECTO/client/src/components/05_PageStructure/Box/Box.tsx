@@ -28,6 +28,8 @@ import classNames from "classnames";
  * @param {string} props.left - Elegir la posición exacta teniendo como referencia la parte izquierda del navegador o del contenedor padre, relacionado con `isRelative | isAbsolute | isFixed`
  * @param {string} props.paddingTop - Espaciado interno de la caja, relacionada con la parte superior de la misma
  * @param {string} props.paddingBottom - Espaciado interno de la caja, relacionada con la parte inferior de la misma
+ * @param {string} props.paddingRight - Espaciado interno de la caja, relacionada con la parte derecha de la misma
+ * @param {string} props.paddingLeft - Espaciado interno de la caja, relacionada con la parte izquierda de la misma
  * @param {string} props.marginTop - Espaciado externo de la caja, relacionado con la parte de arriba
  * @param {string} props.marginBottom - Espaciado externo de la caja, relacionado con la parte de abajo
  * @param {string} props.marginRight - Espaciado externo de la caja, relacionado con la parte de la derecha
@@ -66,6 +68,8 @@ export const Box = ({
   left,
   paddingTop,
   paddingBottom,
+  paddingRight,
+  paddingLeft,
   marginTop,
   marginBottom,
   marginRight,
@@ -100,6 +104,8 @@ export const Box = ({
   left?: string;
   paddingTop?: string;
   paddingBottom?: string;
+  paddingRight?: string;
+  paddingLeft?: string;
   marginTop?: string;
   marginBottom?: string;
   marginRight?: string;
@@ -138,6 +144,8 @@ export const Box = ({
         gap: `${gap}rem`,
         paddingTop: `${paddingTop}rem`,
         paddingBottom: `${paddingBottom}rem`,
+        paddingRight: `${paddingRight}rem`,
+        paddingLeft: `${paddingLeft}rem`,
         marginTop: `${marginTop}rem`,
         marginBottom: `${marginBottom}rem`,
         marginRight: `${marginRight}rem`,

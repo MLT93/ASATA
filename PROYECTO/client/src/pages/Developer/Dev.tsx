@@ -10,8 +10,11 @@ import { Section } from "../../components/05_PageStructure/Section/Section";
 const Dev = () => {
   return (
     <>
+      <aside>
+        <h3>Aside</h3>
+      </aside>
       <main>
-        <Section bg="">
+        <Section>
           <Text size="h1" text="h1" />
           <Text size="h1_bold" text="h1_bold" />
           <Text size="h2" text="h2" />

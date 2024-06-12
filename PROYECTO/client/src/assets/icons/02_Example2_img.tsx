@@ -15,14 +15,16 @@ const IconExample2 = ({
 }: {
   width: string;
   color?: string;
-}): JSX.Element => {
-  return (
-    <img
-      src={imgExample}
-      alt="Mario Bros"
-      style={{ color: `${color}`, width: `${width}rem`, height: "auto" }}
-    />
-  );
-};
+  }): JSX.Element => {
+    // style={{ width: `${width}rem`, color: `${color}`, height: `auto` }}
+
+    return (
+      <img
+        src={imgExample}
+        alt="Mario Bros"
+        style={{ color: `${color}`, width: `${width}rem`, height: "auto" }}
+      />
+    );
+  };
 
 export default IconExample2;

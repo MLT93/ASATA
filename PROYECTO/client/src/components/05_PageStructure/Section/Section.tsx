@@ -16,16 +16,41 @@ const Section = ({
   overflow,
 }: {
   children: React.ReactNode;
-  bg: string;
+  bg?: string;
   overflow?: string;
 }): JSX.Element => {
-  return (
-    <section
-      className={styles.section}
-      style={{ background: `${bg}`, overflow: `${overflow}` }}>
-      {children}
-    </section>
-  );
+  const primeraLetraBg: string | undefined = bg?.slice(0, 1);
+
+  console.log(primeraLetraBg);
+
+  if (typeof bg !== "undefined") {
+    if (primeraLetraBg === ".") {
+      return (
+        <section
+          className={styles.section}
+          style={{
+            background: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), no-repeat center 17%/100% url(${bg})`,
+            overflow: `${overflow}`,
+          }}>
+          {children}
+        </section>
+      );
+    } else {
+      return (
+        <section
+          className={styles.section}
+          style={{ background: `${bg}`, overflow: `${overflow}` }}>
+          {children}
+        </section>
+      );
+    }
+  } else {
+    return (
+      <section className={styles.section} style={{ overflow: `${overflow}` }}>
+        {children}
+      </section>
+    );
+  }
 };
 
 export { Section };

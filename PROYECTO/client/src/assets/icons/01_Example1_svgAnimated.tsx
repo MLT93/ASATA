@@ -16,6 +16,9 @@ const IconExample1 = ({
   color?: string;
 }): JSX.Element => {
   // Uso de `react-spring`: https://www.react-spring.dev/docs/advanced/config
+
+  // style={{ width: `${width}rem`, color: `${color}`, height: `auto` }}
+
   const [{ translateY /* , api */ }] = useSpring(
     () => ({
       to: { translateY: 7 },

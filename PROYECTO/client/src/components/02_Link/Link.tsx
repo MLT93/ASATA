@@ -61,7 +61,7 @@ const Link = ({
       target={targets}
       rel="nofollow"
       style={{ gap: `${gap}rem` }}>
-      {isAnchorSecondary ? svg && svg : null}
+      {!isAnchorPrimary && !isAnchorTertiary ? svg && svg : null}
       <Text size="an" text={text} color={color} />
     </a>
   );
