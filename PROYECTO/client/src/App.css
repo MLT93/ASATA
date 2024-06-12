@@ -51,42 +51,50 @@ body {
 
   margin: unset;
   padding: unset;
+}
+
+div[id="root"] {
+  min-width: 100%;
+  min-height: 100vh;
+
+  margin: unset;
+  padding: unset;
 
   background: var(--color-contrast-3);
   color: var(--color-contrast-2);
 
   display: grid;
   grid-template-areas:
-    "cabecera       cabecera      cabecera"
-    "navegacion     navegacion    navegacion"
-    "principal      principal     principal"
-    "publi          publi         publi"
-    "pie            pie           pie";
+    "header       header       header"
+    "nav          nav          nav"
+    "aside        aside        aside"
+    "main         main         main"
+    "footer       footer       footer";
   grid-template-rows: 5rem 3rem auto 3rem 5rem;
   /* grid-template-columns: 10rem auto auto; */
 }
 
 header {
-  grid-area: cabecera;
+  grid-area: header;
 }
 
 nav {
-  grid-area: navegacion;
-}
-
-main {
-  grid-area: principal;
+  grid-area: nav;
 }
 
 aside {
-  grid-area: publi;
+  grid-area: aside;
+}
+
+main {
+  grid-area: main;
 }
 
 footer {
-  grid-area: pie;
+  grid-area: footer;
 }
 
-.flex-row-cnt {
+/* .flex-row-cnt {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -200,15 +208,15 @@ footer {
 
 .background-8 {
   background: var(--color-8);
-}
+} */
 
 @media (width >= 1080px) {
   body {
     grid-template-areas:
-      "cabecera       cabecera      cabecera"
-      "navegacion     navegacion    navegacion"
-      "principal      principal     principal"
-      "pie            pie           pie";
+      "header       header       header"
+      "nav          nav          nav"
+      "main         main         main"
+      "footer       footer       footer";
     grid-template-rows: 5rem 3rem auto 5rem;
     grid-template-columns: 10rem auto auto;
     gap: 0.3rem;

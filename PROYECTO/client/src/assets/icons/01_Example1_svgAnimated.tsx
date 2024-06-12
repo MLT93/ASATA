@@ -8,7 +8,13 @@ import { useSpring, animated } from "@react-spring/web";
  * @returns {JSX.Element} Elemento | Estructura HTML
  */
 
-const IconExample1 = ({ width }: { width: string }): JSX.Element => {
+const IconExample1 = ({
+  width,
+  color,
+}: {
+  width: string;
+  color?: string;
+}): JSX.Element => {
   // Uso de `react-spring`: https://www.react-spring.dev/docs/advanced/config
   const [{ translateY /* , api */ }] = useSpring(
     () => ({
@@ -25,7 +31,7 @@ const IconExample1 = ({ width }: { width: string }): JSX.Element => {
       xmlns="http://www.w3.org/2000/svg"
       version="1.1"
       viewBox="0.00 0.00 1314.00 1594.00"
-      style={{ width: `${width}rem`, translateY }}>
+      style={{ width: `${width}rem`, color: `${color}`, translateY }}>
       <g strokeWidth="2.00" fill="none" strokeLinecap="butt">
         <path
           stroke="#806f32"

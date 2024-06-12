@@ -5,6 +5,9 @@ import { Text } from "../01_Text/Text";
 /**
  *
  * @param {Object} props - Propiedades para renderizar el tipo de texto
+ * @param {boolean} props.isAnchorPrimary - Booleano para definir si el botón es de tipo primario o no
+ * @param {boolean} props.isAnchorSecondary - Booleano para definir si el botón es de tipo secundario
+ * @param {boolean} props.isAnchorTertiary - Booleano para definir si el botón es de tipo terciario
  * @param {string} props.text - El texto
  * @param {string} props.color - El color del texto
  * @param {string} props.href - URL de la página web relacionada
@@ -12,14 +15,14 @@ import { Text } from "../01_Text/Text";
  * @param {string} props.gap - Espaciado entre el contenido de la caja, relacionado con `display: flex; | grid;`
  * @param {boolean} props.isTarget - Variable booleana para hacer que el renderizado de la URL se realice en otra página del navegador
  * @param {boolean} props.isSelf - Variable booleana para hacer que el renderizado de la URL se realice en la misma página del navegador
- * @param {boolean} props.isAnchorPrimary - Booleano para definir si el botón es de tipo primario o no
- * @param {boolean} props.isAnchorSecondary - Booleano para definir si el botón es de tipo secundario
- * @param {boolean} props.isAnchorTertiary - Booleano para definir si el botón es de tipo terciario
  *
  * @returns {JSX.Element} Elemento | Estructura HTML
  */
 
 const Link = ({
+  isAnchorPrimary,
+  isAnchorSecondary,
+  isAnchorTertiary,
   text,
   color,
   href,
@@ -27,10 +30,10 @@ const Link = ({
   gap,
   isTarget,
   isSelf,
-  isAnchorPrimary,
-  isAnchorSecondary,
-  isAnchorTertiary,
 }: {
+  isAnchorPrimary?: boolean;
+  isAnchorSecondary?: boolean;
+  isAnchorTertiary?: boolean;
   text: string;
   color?: string;
   href: string;
@@ -38,9 +41,6 @@ const Link = ({
   gap?: string;
   isTarget?: boolean;
   isSelf?: boolean;
-  isAnchorPrimary?: boolean;
-  isAnchorSecondary?: boolean;
-  isAnchorTertiary?: boolean;
 }): JSX.Element => {
   const targets = classNames({
     _blank: isTarget,
@@ -61,7 +61,7 @@ const Link = ({
       target={targets}
       rel="nofollow"
       style={{ gap: `${gap}rem` }}>
-      {isAnchorSecondary  ? svg && svg : null}
+      {isAnchorSecondary ? svg && svg : null}
       <Text size="an" text={text} color={color} />
     </a>
   );

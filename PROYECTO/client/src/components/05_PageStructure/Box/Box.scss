@@ -1,0 +1,100 @@
+.box {
+  width: 100%;
+  height: 100%;
+}
+
+.flex-col {
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.flex-col-center {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+}
+
+.flex-col-start {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: flex-start;
+}
+
+.flex-col-space-between {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+}
+
+.flex-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex-row-center {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.flex-row-start {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.flex-row-space-between {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.flex-row-space-around {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.item-with-blur {
+  width: 100%;
+  height: 100%;
+
+  background: var(--color-bg-blur);
+
+  position: relative;
+  z-index: 2;
+
+  backdrop-filter: blur(20px);
+
+  border: 2px solid var(--color-border-blur);
+
+  @media (min-width: 1200px) {
+    padding: var(--space-xll);
+    border-radius: var(--border-radius-xxl);
+    -webkit-border-radius: var(--border-radius-xxl);
+    -moz-border-radius: var(--border-radius-xxl);
+    -ms-border-radius: var(--border-radius-xxl);
+    -o-border-radius: var(--border-radius-xxl);
+  }
+  @media (min-width: 768px) {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    -webkit-border-radius: none;
+  }
+  @media (min-width: 390px) {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+}
+
+.position-relative {
+  position: relative;
+}
+
+.position-absolute {
+  position: absolute;
+}
+
+.position-fixed {
+  position: fixed;
+}

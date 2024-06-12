@@ -10,16 +10,16 @@ import imgExample from "../img/mario.png";
  */
 
 const IconExample2 = ({
-  color,
   width,
+  color,
 }: {
-  color?: string;
   width: string;
+  color?: string;
 }): JSX.Element => {
   return (
     <img
       src={imgExample}
-      alt="Genius with solar panel"
+      alt="Mario Bros"
       style={{ color: `${color}`, width: `${width}rem`, height: "auto" }}
     />
   );
