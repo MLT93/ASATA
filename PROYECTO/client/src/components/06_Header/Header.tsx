@@ -6,7 +6,7 @@ import Mascota from "../../assets/icons/06_Mascota";
 /**
  *
  * @param {Object} props - Propiedades para renderizar el tipo de texto
- * @param {string} props.any - Por hacer...
+ * @param {string} props.any - ToDo Por hacer...
  *
  * @returns {JSX.Element} Elemento | Estructura HTML
  */
