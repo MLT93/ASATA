@@ -8,6 +8,12 @@
 
 - [**Explicación de uso de Axios**](https://www.freecodecamp.org/espanol/news/como-usar-axios-con-react/)
 
+- [**Explicación de react-toastify**](https://github.com/urian121/Implementa-Alertas-con-React-Toastify)
+
+- [**Explicación video de react-toastify**](https://www.youtube.com/watch?v=hazBM39NL3s)
+
+- [**Explicación video para crear tus propios toastify**](https://www.youtube.com/watch?v=qlHSvwHpwaA)
+
 - **Ejemplo de Uncontrolled Form React:**
 
 import React from "react";
