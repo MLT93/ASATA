@@ -1,4 +1,4 @@
-import styles from "./Nav.module.scss";
+import styles from "./Aside.module.scss";
 import { Link } from "../02_Link/Link";
 import { Box } from "../04_PageStructure/Box/Box";
 import Logo from "../../assets/icons/05_Logo";
@@ -12,7 +12,7 @@ import Carrito from "../../assets/icons/04_Carrito";
  * @returns {JSX.Element} Elemento | Estructura HTML
  */
 
-const Nav = (): JSX.Element => {
+const Aside = (): JSX.Element => {
   return (
     <>
       <nav className={styles.nav}>
@@ -42,4 +42,4 @@ const Nav = (): JSX.Element => {
   );
 };
 
-export { Nav };
+export { Aside };

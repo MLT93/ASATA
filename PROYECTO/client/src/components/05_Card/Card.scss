@@ -27,7 +27,7 @@
 }
 
 .is_card_primary {
-  color: var(--color-text);
+  color: var(--color-contrast-2);
   background: var(--gradient-bg-card-1);
   transform: rotate(-2.36deg);
   -webkit-transform: rotate(-2.36deg);
@@ -37,13 +37,32 @@
 }
 
 .is_card_secondary {
-  color: var(--color-text);
+  color: var(--color-contrast-2);
   background: var(--gradient-bg-card-2);
   transform: rotate(1.43deg);
   -webkit-transform: rotate(1.43deg);
   -moz-transform: rotate(1.43deg);
   -ms-transform: rotate(1.43deg);
   -o-transform: rotate(1.43deg);
+}
+
+.is_card_tertiary {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  text-align: start;
+
+  width: 400px; // +100
+  height: 193px; // -87
+
+  padding: var(--space-ml);
+
+  .container_card_button {
+    .container_card_opacity {
+      background-color: transparent;
+    }
+  }
 }
 
 .container_card_text {

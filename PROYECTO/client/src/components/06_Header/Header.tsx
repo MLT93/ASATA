@@ -1,6 +1,6 @@
 import styles from "./Header.module.scss";
-import { Box } from "../05_PageStructure/Box/Box";
-import { Section } from "../05_PageStructure/Section/Section";
+import { Box } from "../04_PageStructure/Box/Box";
+import { Section } from "../04_PageStructure/Section/Section";
 import Mascota from "../../assets/icons/06_Mascota";
 
 /**
@@ -16,7 +16,10 @@ const Header = (): JSX.Element => {
     <>
       <header>
         <Section bg={"../../../public/portada.png"}>
-          <Box isFlexColStart alignItems="center" className={styles.height_for_img}>
+          <Box
+            isFlexColStart
+            alignItems="center"
+            className={styles.height_for_img}>
             <Mascota width="10" />
           </Box>
         </Section>

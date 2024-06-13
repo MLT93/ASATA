@@ -1,6 +1,6 @@
 import styles from "./Footer.module.scss";
 import { Link } from "../02_Link/Link";
-import { Box } from "../05_PageStructure/Box/Box";
+import { Box } from "../04_PageStructure/Box/Box";
 
 /**
  *

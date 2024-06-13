@@ -44,12 +44,12 @@
   }
 }
 
-.is_primary {
+.is_button_primary {
   background: var(--gradient-button-bg-image);
   color: var(--color-contrast-3);
 }
 
-.is_secondary {
+.is_button_secondary {
   background: var(--color-8);
   color: var(--color-contrast-2);
 
@@ -77,14 +77,14 @@
   border: none;
 }
 
-.is_tertiary {
-  background: var(--color-17);
+.is_button_tertiary {
+  background: transparent;
   color: var(--color-contrast-2);
 
-  border: 1.9px solid var(--color-contrast-secondary);
+  border: 1.9px solid var(--color-contrast-2);
 
   &:hover {
-    background: var(--color-9);
+    background: transparent;
     color: var(--color-18);
 
     border-color: var(--color-2);
@@ -101,17 +101,18 @@
   }
 }
 
-@media (hover: hover) {
-  .is-tertiary:hover svg {
-    stroke: var(--color-contrast-1);
-    fill: var(--color-contrast-1);
+/* HOVER QUE AFECTA A VARIOS OBJETOS SEPARADOS */
+// @media (hover: hover) {
+  // .is_button_tertiary:hover svg {
+  //   stroke: var(--color-contrast-1);
+  //   fill: var(--color-contrast-1);
 
-    opacity: 1;
+  //   opacity: 1;
 
-    transition: all 0.2s ease 0.2s;
-    -webkit-transition: all 0.2s ease 0.2s;
-    -moz-transition: all 0.2s ease 0.2s;
-    -ms-transition: all 0.2s ease 0.2s;
-    -o-transition: all 0.2s ease 0.2s;
-  }
-}
+  //   transition: all 0.2s ease 0.2s;
+  //   -webkit-transition: all 0.2s ease 0.2s;
+  //   -moz-transition: all 0.2s ease 0.2s;
+  //   -ms-transition: all 0.2s ease 0.2s;
+  //   -o-transition: all 0.2s ease 0.2s;
+  // }
+// }

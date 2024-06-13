@@ -57,12 +57,13 @@ body {
 
   display: grid;
   grid-template-areas:
-    "header       nav          nav"
+    "header       header       header"
+    "nav          nav          nav"
     "aside        aside        aside"
     "main         main         main"
     "footer       footer       footer";
-  grid-template-columns: 9rem auto auto;
-  grid-template-rows: 5rem 5rem auto 5rem;
+  grid-template-columns: 3rem auto 3rem;
+  grid-template-rows: 5rem 5rem 21rem auto 5rem;
 }
 
 header {

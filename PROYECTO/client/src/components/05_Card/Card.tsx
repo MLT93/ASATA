@@ -9,6 +9,7 @@ import classNames from "classnames";
  * @param {Object} props - Propiedades para renderizar el tipo de texto
  * @param {boolean} props.isCardPrimary - Booleano para definir si la card es de tipo primario o no
  * @param {boolean} props.isCardSecondary - Booleano para definir si la card es de tipo secundario o no
+ * @param {boolean} props.isCardTertiary - Booleano para definir si la card es de tipo terciario o no
  * @param {boolean} props.className - Asignación de los estilos SCSS
  * @param {boolean} props.svgCard - El icono dentro de la card, puede ser un componente o un elemento svg
  * @param {boolean} props.preTitle - El texto previo al título del botón
@@ -25,6 +26,7 @@ import classNames from "classnames";
 const Card = ({
   isCardPrimary,
   isCardSecondary,
+  isCardTertiary,
   svgCard,
   preTitle,
   title,
@@ -36,11 +38,12 @@ const Card = ({
 }: {
   isCardPrimary?: boolean;
   isCardSecondary?: boolean;
-  svgCard: JSX.Element | string;
+  isCardTertiary?: boolean;
+  svgCard?: JSX.Element | string;
   preTitle: string;
   title: string;
-  subtitle: string;
-  body: string;
+  subtitle?: string;
+  body?: string;
   textButton: string;
   svgButton: JSX.Element | string;
   onClick: MouseEventHandler<HTMLButtonElement>;
@@ -49,27 +52,38 @@ const Card = ({
     card: true,
     is_card_primary: isCardPrimary,
     is_card_secondary: isCardSecondary,
+    is_card_tertiary: isCardTertiary,
   });
 
   return (
+    // ToDo: Refactorizar con Box component
     <div className={cardClassNames}>
-      {/* <Icono icono={icon} className={"cta-card-icon"} /> */}
-      {svgCard && svgCard}
+      {isCardTertiary ? null : svgCard}
       <div className="container_card_text">
-        <Text size={"pa_bold"} text={preTitle} />
-        <Text size={"h2"} text={title} />
-        <Text size={"pa_bold"} text={subtitle} />
+        {isCardTertiary ? null : <Text size={"pa_bold"} text={`${preTitle}`} />}
+        <Text size={"h2"} text={`${title}`} />
+        <Text size={"pa_bold"} text={`${subtitle}`} />
       </div>
-      <Text size={"pa"} text={body} />
+      {isCardTertiary ? null : <Text size={"pa"} text={`${body}`} />}
       <div className="container_card_button">
         <div className="container_card_opacity">
-          <Button
-            isPrimary
-            text={textButton}
-            gap={"0.7"}
-            svg={svgButton}
-            onClick={onClick}
-          />
+          {isCardTertiary ? (
+            <Button
+              isButtonTertiary
+              text={`${textButton}`}
+              gap={"0.7"}
+              svg={svgButton}
+              onClick={onClick}
+            />
+          ) : (
+            <Button
+              isButtonPrimary
+              text={`${textButton}`}
+              gap={"0.7"}
+              svg={svgButton}
+              onClick={onClick}
+            />
+          )}
         </div>
       </div>
     </div>

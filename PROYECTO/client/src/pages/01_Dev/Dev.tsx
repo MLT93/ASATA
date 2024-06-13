@@ -3,16 +3,14 @@ import { Button } from "../../components/03_Button/Button";
 import { Link } from "../../components/02_Link/Link";
 import { Text } from "../../components/01_Text/Text";
 import IconExample2 from "../../assets/icons/02_Example2_img";
-import { Card } from "../../components/04_Card/Card";
+import { Card } from "../../components/05_Card/Card";
 import IconExample1 from "../../assets/icons/01_Example1_svgAnimated";
-import { Section } from "../../components/05_PageStructure/Section/Section";
+import { Section } from "../../components/04_PageStructure/Section/Section";
 
 const Dev = () => {
   return (
     <>
-      <aside>
-        {/* <h3>Aside</h3> */}
-      </aside>
+      <aside>{/* <h3>Aside</h3> */}</aside>
       <main>
         <Section>
           <Text size="h1" text="h1" />
@@ -47,23 +45,45 @@ const Dev = () => {
           <hr />
           <Button text="Button Basic" onClick={() => console.log("Button")} />
           <Button
-            isPrimary
+            isButtonPrimary
             text="Button Primary"
             onClick={() => console.log("Button Primary")}
           />
           <Button
-            isSecondary
+            isButtonSecondary
             text="Button Secondary"
             onClick={() => console.log("Button Secondary")}
           />
           <Button
-            isTertiary
+            isButtonTertiary
             text="Button Tertiary"
             onClick={() => console.log("Button Tertiary")}
           />
           <hr />
           <Card
             isCardPrimary
+            svgCard={<IconExample2 width="5" />}
+            preTitle="preTitle"
+            title="Title"
+            subtitle="Subtitle"
+            body="Body"
+            textButton="textButton"
+            svgButton={<IconExample1 width="3" />}
+            onClick={() => console.log("Button Card")}
+          />
+          <Card
+            isCardSecondary
+            svgCard={<IconExample2 width="5" />}
+            preTitle="preTitle"
+            title="Title"
+            subtitle="Subtitle"
+            body="Body"
+            textButton="textButton"
+            svgButton={<IconExample1 width="3" />}
+            onClick={() => console.log("Button Card")}
+          />
+          <Card
+            isCardTertiary
             svgCard={<IconExample2 width="5" />}
             preTitle="preTitle"
             title="Title"
