@@ -15,7 +15,7 @@
 
   color: var(--color-contrast-2);
 
-  padding: 0px var(--space-lg);
+  padding: 0px var(--space-ml);
 
   min-height: var(--space-xl);
 
@@ -27,7 +27,7 @@
   border-width: var(--zero-space);
   border: none;
 
-  box-shadow: var(--color-shadow-1) 0px -1px 0px 0px inset;
+  box-shadow: var(--color-contrast-2) 0px -1px 0px 0px inset;
 
   cursor: pointer;
 
@@ -82,12 +82,15 @@
   color: var(--color-contrast-2);
 
   border: 1.9px solid var(--color-contrast-2);
+}
 
-  &:hover {
+/* HOVER QUE AFECTA A VARIOS OBJETOS SEPARADOS ENTRE SÍ */
+@media (hover: hover) {
+  .is_button_tertiary:hover {
     background: transparent;
-    color: var(--color-18);
+    color: var(--color-contrast-3);
 
-    border-color: var(--color-2);
+    border-color: var(--color-contrast-3);
 
     opacity: 1;
 
@@ -97,22 +100,21 @@
     -ms-transition: all 0.2s ease 0.2s;
     -o-transition: all 0.2s ease 0.2s;
 
-    box-shadow: var(--color-18) 0px -1px 0px 0px inset;
+    box-shadow: var(--color-contrast-3) 0px -1px 0px 0px inset;
+  }
+
+  .is_button_tertiary:hover svg {
+    stroke: var(--color-contrast-3);
+    fill: var(--color-contrast-3);
+    color: var(--color-contrast-3);
+    // background-color: var(--color-contrast-3);
+
+    opacity: 1;
+
+    transition: all 0.2s ease 0.2s;
+    -webkit-transition: all 0.2s ease 0.2s;
+    -moz-transition: all 0.2s ease 0.2s;
+    -ms-transition: all 0.2s ease 0.2s;
+    -o-transition: all 0.2s ease 0.2s;
   }
 }
-
-/* HOVER QUE AFECTA A VARIOS OBJETOS SEPARADOS */
-// @media (hover: hover) {
-  // .is_button_tertiary:hover svg {
-  //   stroke: var(--color-contrast-1);
-  //   fill: var(--color-contrast-1);
-
-  //   opacity: 1;
-
-  //   transition: all 0.2s ease 0.2s;
-  //   -webkit-transition: all 0.2s ease 0.2s;
-  //   -moz-transition: all 0.2s ease 0.2s;
-  //   -ms-transition: all 0.2s ease 0.2s;
-  //   -o-transition: all 0.2s ease 0.2s;
-  // }
-// }

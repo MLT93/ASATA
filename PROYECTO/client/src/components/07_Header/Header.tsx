@@ -1,6 +1,6 @@
 import styles from "./Header.module.scss";
-import { Box } from "../04_PageStructure/Box/Box";
-import { Section } from "../04_PageStructure/Section/Section";
+import { Box } from "../05_PageStructure/Box/Box";
+import { Section } from "../05_PageStructure/Section/Section";
 import Mascota from "../../assets/icons/06_Mascota";
 
 /**

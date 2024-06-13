@@ -53,11 +53,11 @@
   --border-radius-xxl: 72px;
 
   /* COLORS */
-  --color-1: rgba(201, 43, 206, 0.855);
+  --color-1: rgba(229, 127, 233, 0.824);
   --color-2: rgba(40, 255, 255, 0.808);
   --color-3: rgba(255, 127, 8, 0.906);
-  --color-4: rgba(8, 255, 8, 0.69);
-  --color-5: rgba(255, 66, 8, 0.843);
+  --color-4: rgba(109, 240, 109, 0.69);
+  --color-5: rgba(202, 105, 76, 0.843);
   --color-6: rgba(136, 8, 255, 0.843);
   --color-7: rgba(8, 53, 255, 0.843);
   --color-8: rgba(245, 245, 245, 0.5);
@@ -92,26 +92,28 @@
 
   --gradient-swiper-bg-image: linear-gradient(
     211deg,
-    var(--color-15) 2%,
-    var(--color-16) 77%
+    var(--color-8) 2%,
+    var(--color-18) 77%
   );
 
   --gradient-bg-card-1: linear-gradient(
-    var(--color-11) 0%,
-    var(--color-12) 100%
+    164deg,
+    var(--color-1) 1%,
+    var(--color-16) 88%
   );
   --gradient-bg-card-2: linear-gradient(
-    var(--color-11) 0%,
-    var(--color-12) 100%
+    164deg,
+    var(--color-4) 1%,
+    var(--color-contrast-3) 88%
+  );
+  --gradient-bg-card-3: linear-gradient(
+    164deg,
+    var(--color-contrast-3) 1%,
+    var(--color-5) 88%
   );
 
   --gradient-bg-image-1: linear-gradient(var(--color-2), var(--color-6));
   --gradient-bg-image-2: linear-gradient(var(--color-5), var(--color-12));
-  --gradient-bg-image-3: linear-gradient(
-    164deg,
-    var(--color-3) 1%,
-    var(--color-6) 88%
-  );
   --gradient-bg-image-4: linear-gradient(
     157deg,
     var(--color-1) 31%,

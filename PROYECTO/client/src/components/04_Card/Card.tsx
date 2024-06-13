@@ -56,34 +56,25 @@ const Card = ({
   });
 
   return (
-    // ToDo: Refactorizar con Box component
     <div className={cardClassNames}>
-      {isCardTertiary ? null : svgCard}
+      <div className="container_card_svg">
+        {isCardTertiary ? null : svgCard}
+      </div>
       <div className="container_card_text">
-        {isCardTertiary ? null : <Text size={"pa_bold"} text={`${preTitle}`} />}
-        <Text size={"h2"} text={`${title}`} />
-        <Text size={"pa_bold"} text={`${subtitle}`} />
+        <Text size={"pa_bold"} text={`${preTitle}`} />
+        <Text size={"h3"} text={`${title}`} />
+        {isCardTertiary ? null : <Text size={"pa_bold"} text={`${subtitle}`} />}
       </div>
       {isCardTertiary ? null : <Text size={"pa"} text={`${body}`} />}
       <div className="container_card_button">
         <div className="container_card_opacity">
-          {isCardTertiary ? (
-            <Button
-              isButtonTertiary
-              text={`${textButton}`}
-              gap={"0.7"}
-              svg={svgButton}
-              onClick={onClick}
-            />
-          ) : (
-            <Button
-              isButtonPrimary
-              text={`${textButton}`}
-              gap={"0.7"}
-              svg={svgButton}
-              onClick={onClick}
-            />
-          )}
+          <Button
+            isButtonPrimary
+            text={`${textButton}`}
+            gap={"0.3"}
+            svg={svgButton}
+            onClick={onClick}
+          />
         </div>
       </div>
     </div>
