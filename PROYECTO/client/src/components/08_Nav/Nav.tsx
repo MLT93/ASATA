@@ -34,7 +34,7 @@ const Nav = (): JSX.Element => {
           <Link isAnchorPrimary text={"CONTACT"} href={"###"} />
           <Link isAnchorPrimary text={"ABOUT US"} href={"###"} />
           <Link isAnchorPrimary text={"TEAM"} href={"###"} />
-          <Link isAnchorPrimary text={"ACCESS"} href={"###"} />
+          <Link isAnchorPrimary text={"ACCESS"} href={"/access"} />
           <Link text={""} href={"###"} svg={<Carrito width="3.7" />} />
         </Box>
       </nav>

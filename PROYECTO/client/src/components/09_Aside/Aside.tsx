@@ -2,10 +2,10 @@ import styles from "./Aside.module.scss";
 import { Box } from "../05_PageStructure/Box/Box";
 import { Card } from "../04_Card/Card";
 import { SwiperComponent } from "../06_Swiper/Swiper";
+import { Section } from "../05_PageStructure/Section/Section";
 import Dollar from "../../assets/icons/07_Dollar";
 import Gorra from "../../assets/icons/08_Gorra";
 import TShirt from "../../assets/icons/09_T-shirt";
-import { Section } from "../05_PageStructure/Section/Section";
 
 /**
  *

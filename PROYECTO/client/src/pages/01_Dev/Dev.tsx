@@ -1,4 +1,3 @@
-import "./Dev.module.scss";
 import styles from "./Dev.module.scss";
 import { Box } from "../../components/05_PageStructure/Box/Box";
 import { Section } from "../../components/05_PageStructure/Section/Section";
@@ -20,7 +19,7 @@ import IconExample1 from "../../assets/icons/01_Example1_svgAnimated";
 const Dev = (): JSX.Element => {
   return (
     <>
-      <main className={styles.main}>
+      <main className={styles.dev}>
         <Section bg="var(--color-contrast-3)">
           <Box maxWidth="1100" isFlexColCenter gap="1" alignItems="center">
             <Text size="h1" text="h1" />

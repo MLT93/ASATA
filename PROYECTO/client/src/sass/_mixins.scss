@@ -126,3 +126,19 @@
   -webkit-animation: border_bg linear infinite $duration;
   width: fit-content;
 }
+
+@mixin modal_bg_animation {
+  $duration: 0.3s;
+
+  @keyframes appear {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  animation: appear $duration ease-out forwards;
+  -webkit-animation: appear $duration ease-out forwards;
+}

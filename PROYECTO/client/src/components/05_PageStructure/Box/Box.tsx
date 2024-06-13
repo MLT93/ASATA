@@ -1,5 +1,6 @@
 import "./Box.scss";
 import classNames from "classnames";
+import { MouseEventHandler, ReactNode } from "react";
 
 /**
  *
@@ -39,6 +40,7 @@ import classNames from "classnames";
  * @param {string} props.overflow - Forma de mostrar el contenido excedente al interno del contenedor: `visible | hidden`
  * @param {string} props.alignItems - Alineamiento Vertical u Horizontal, dependiendo del `flexCol | flexRow` que se haya elegido, entre las opciones `flex-start | flex-end | baseline | center`
  * @param {string} props.textAlign - Alineamiento Vertical u Horizontal del texto, entre las opciones `center | end | left | right | start`
+ * @param {MouseEventHandler<HTMLDivElement> | string} props.onClick - Función al hacer click en el div
  *
  * @returns {JSX.Element} Elemento | Estructura HTML
  */
@@ -79,8 +81,9 @@ export const Box = ({
   overflow,
   alignItems,
   textAlign,
+  onClick,
 }: {
-  children: React.ReactNode;
+  children?: ReactNode;
   className?: string;
   isFlexCol?: boolean;
   isFlexColCenter?: boolean;
@@ -115,6 +118,7 @@ export const Box = ({
   overflow?: string;
   alignItems?: string;
   textAlign?: CanvasTextAlign | undefined;
+  onClick?: MouseEventHandler<HTMLDivElement>;
 }): JSX.Element => {
   const views = classNames({
     box: true,
@@ -158,8 +162,9 @@ export const Box = ({
         overflow: `${overflow}`,
         alignItems: `${alignItems}`,
         textAlign: textAlign,
-      }}>
-      {children}
+      }}
+      onClick={onClick}>
+      {children && children}
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import styles from "./Section.module.scss";
+import { ReactNode } from "react";
 
 /**
  *
@@ -15,7 +16,7 @@ const Section = ({
   bg,
   overflow,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   bg?: string;
   overflow?: string;
 }): JSX.Element => {

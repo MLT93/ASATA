@@ -11,10 +11,6 @@ import styles from "./Text.module.scss";
  * @returns {JSX.Element} Elemento HTML para el texto
  */
 
-// /**
-//  * ToDo: Agregar librería ClassNames para poder integrar el `text-align` en cada `<Text />`, y así modificar el alineamiento del texto que se desea escribir
-//  */
-
 const Text = ({
   size,
   color,
