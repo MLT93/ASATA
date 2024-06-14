@@ -89,7 +89,6 @@ const Form = (): JSX.Element => {
     user.password1 === user.password2
       ? (definitivePassword = user.password1)
       : (errMsg = "Las passwords no coinciden.");
-    console.error(`${errMsg}`);
 
     if (definitivePassword) {
       void (async (URL) => {
@@ -123,6 +122,8 @@ const Form = (): JSX.Element => {
             : console.error("Error desconocido");
         }
       })(URL_API);
+    } else {
+      console.error(`${errMsg}`);
     }
   };
 
