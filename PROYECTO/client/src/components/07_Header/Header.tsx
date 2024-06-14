@@ -15,7 +15,7 @@ const Header = (): JSX.Element => {
   return (
     <>
       <header>
-        <Section bg={"../../../public/portada.png"}>
+        <Section bg={"../portada.png"}>
           <Box
             isFlexColStart
             alignItems="center"

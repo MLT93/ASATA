@@ -8,7 +8,7 @@
     "install-client": "cd client/ && set PORT=80 && npm i",
     "install-server": "cd server/ && composer install",
     "load-client": "cd client/ && npm run dev:1",
-    "load-server": "cd server/ && npm run dev:2"
+    "load-server": "cd server/ && sudo systemctl restart apache2"
   },
   "repository": {
     "type": "git",

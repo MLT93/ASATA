@@ -21,8 +21,7 @@ const Section = ({
   overflow?: string;
 }): JSX.Element => {
   const primeraLetraBg: string | undefined = bg?.slice(0, 1);
-
-  console.log(primeraLetraBg);
+  // console.log(primeraLetraBg);
 
   if (typeof bg !== "undefined") {
     if (primeraLetraBg === ".") {
