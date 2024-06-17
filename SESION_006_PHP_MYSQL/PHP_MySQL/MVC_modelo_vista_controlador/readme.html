@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+
+</head>
+<body>
+    <h1>Ejercicio 17/06/24 MVC</h1>
+    <h2>Modelo Vista Controlador</h2>
+<ol>
+    <li><a href="models/model.php">model.php</a></li>
+    <li><a href="controllers/videogamesControler.php">videogamesControler.php</a></li>
+    <li><a href="views/home.php">home.php</a></li>
+    <li><a href="routes.php">routes.php</a></li>
+</ol>
+<p>En index (es conveniente llamarlo así) tengo que llamar a las rutas que van a dirigir el tráfico a un lugar o a otro, es el punto de entrada de la aplicación</p>
+<article>
+    <h2>Explicación de la secuencia de funcionamiento:</h2>
+    <ol>
+        <li>Introduzco la URL y el <b>index</b> obtiene el valor de $url</li>
+        <li>La clase <b>Router</b> va a chequear la ruta y escoge (switch), creo <b>instancia del controlador</b> y escoge el <b>método</b></li>
+        <li>El método de ese <b>controlador</b> va a establecer la conexión con el modelo y va a enviar esa información a la vista</li>
+    </ol>
+    <p>El archivo index coge la url que le pasamos a través de un parámetro. La dirección en este ejemplo es <b>localhost/PHP/MVC?url="clientes"</b>. Recuerda que los parámetros son ?url="clientes; localhost/PHP/MVC(directorio raíz). Es como si se cargara todo a través de index.</p>
+</article>
+
+</body>
+</html>
