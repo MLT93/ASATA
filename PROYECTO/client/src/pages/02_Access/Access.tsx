@@ -5,6 +5,7 @@ import { Box } from "../../components/05_PageStructure/Box/Box";
 import { Text } from "../../components/01_Text/Text";
 import { Button } from "../../components/03_Button/Button";
 import { Modal } from "../../components/11_Modal/Modal";
+import { OldForm } from "../../components/12_Form/OldForm";
 import { Form } from "../../components/12_Form/Form";
 
 /**
@@ -27,7 +28,14 @@ const Access = (): JSX.Element => {
             {/* Formulario de LOGIN */}
             {/* Botón de REGISTRO (para el Modal) */}
             {/* Modal que abre Formulario REGISTER */}
-            <Button text={""} onClick={() => setIsModalVisible(true)} />
+            <Button text={"Old Form"} onClick={() => setIsModalVisible(true)} />
+            {isModalVisible ? (
+              <Modal setIsModalVisible={setIsModalVisible}>
+                {/* <Text size={"h3"} text={"Contenedor interno"} /> */}
+                <OldForm />
+              </Modal>
+            ) : null}
+            <Button text={"Form"} onClick={() => setIsModalVisible(true)} />
             {isModalVisible ? (
               <Modal setIsModalVisible={setIsModalVisible}>
                 {/* <Text size={"h3"} text={"Contenedor interno"} /> */}

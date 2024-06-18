@@ -15,7 +15,8 @@ import axios from "axios";
 
 const Form = (): JSX.Element => {
   //* URLs DE LAS PETICIONES */
-  const URL_API = "http://localhost/ASATA/PROYECTO/server/api/registro.php";
+  const URL_API =
+    "https://cors-anywhere.herokuapp.com/http://localhost/ASATA/PROYECTO/server/api";
 
   //* GUARDAR VALORES DE LOS INPUTS. Se puede hacer con `useRef()` o con `useState` */
   const [user, setUser] = useState({
@@ -72,18 +73,10 @@ const Form = (): JSX.Element => {
   // Email: /[\w._%+-]+@[\w.-]+\.[a-zA-Z]{2,4}/
 
   //* PETICIÓN API (POST) ENVIAMOS LA INFORMACIÓN DEL FORM AL SERVIDOR */
-  const handleSubmitForm = (event: {
-    target: EventTarget;
-    preventDefault: () => void;
-  }) => {
-    /**
-     ** 1. Impedimos que la página se vuelva a cargar una vez que apretamos el botón `Submit`
-     */
-    event.preventDefault();
-
+  const handleSubmitForm = (event: { preventDefault: () => void }) => {
     /**
      ** 1. Comprobamos que las passwords coincidan
-     ** 2. Si coinciden, realizamos petición POST y usamos `user` con la Class FormData para enviar la información al servidor
+     ** 2. Si coinciden, realizamos petición HTTP y usamos `user` con el objeto `formData` para enviar la información al servidor
      */
     let definitivePassword = "";
     let errMsg = "";
@@ -92,45 +85,32 @@ const Form = (): JSX.Element => {
       : (errMsg = "Las passwords no coinciden.");
 
     if (definitivePassword) {
+      /**
+       ** 1. Impedimos que la página se vuelva a cargar una vez que apretamos el botón `Submit`
+       */
+      event.preventDefault();
+
+      /**
+       ** 1. Creamos un objeto de pares clave/valor que representa los datos de un formulario HTML con la class FormData
+       ** 2. Permite construir fácilmente un conjunto de datos que luego se puede enviar a través de una solicitud HTTP
+       ** 3. Utilizamos el método `append` porque asigna nuevos valores al objeto de forma dinámica
+       ** 4. Recuerda que el primer parámetro de este método son los atributos `name=""` de los inputs
+       */
+      const formData = new FormData();
+      const credentials = {
+        username: user.username,
+        email: user.email,
+        password: definitivePassword,
+      };
+      formData.append("credentials", JSON.stringify(credentials));
+
       void (async (URL) => {
-        const formData = new FormData();
-        const credentials = {
-          username: user.username,
-          email: user.email,
-          password: definitivePassword,
-        };
-        formData.set("credentials", JSON.stringify(credentials));
-
-        console.log(credentials);
         try {
-          // axios({
-          //   method: "options",
-          //   url: "http://localhost/ASATA/PROYECTO/server/api/registro.php",
-          //   headers: {
-          //     "Content-Type": "application/json; charset=UTF-8",
-          //     "Access-Control-Allow-Origin": "*",
-          //     // "Access-Control-Allow-Headers":
-          //     // "Content-Type, Accept, Authorization, X-Requested-With, X-Auth-Token, Origin, Application, X-API-KEY, Access-Control-Request-Method",
-          //     // "Access-Control-Allow-Methods":
-          //     // "GET, POST, PUT, PATCH, DELETE, OPTIONS",
-
-          //     // Authorization: "Bearer <token>",
-          //   },
-          // })
-          //   .then((response) => {
-          //     console.log("Preflight response:", response);
-          //   })
-          //   .catch((error) => {
-          //     console.error("Error en la solicitud OPTIONS:", error);
-          //   });
-
-          const data = "";
           const config = {
-            method: "post",
-            mode: "no-cors",
-            Accept: "*/*",
-            maxBodyLength: Infinity,
-            url: URL,
+            baseURL: URL,
+            // `timeout` especifica el número de milisegundos antes que la petición expire.
+            url: "/registro.php",
+            method: "POST",
             headers: {
               "Content-Type": " application/json; charset=UTF-8",
               "Access-Control-Allow-Origin": "*",
@@ -139,19 +119,26 @@ const Form = (): JSX.Element => {
               "Access-Control-Allow-Methods":
                 "GET, POST, PUT, PATCH, DELETE, OPTIONS",
               Allow: " GET, POST, PUT, PATCH, DELETE, OPTIONS",
-              Authorization: "Basic QWRtaW46MTIzNA==",
+              // Authorization: "Basic QWRtaW46MTIzNA==",
               email: "admin@mail.com",
+              "X-Requested-With": "XMLHttpRequest",
             },
-            data: data,
+            // `auth` indica que HTTP Basic auth debe ser usado, y proveer credenciales.
+            // Esto establecerá una cabecera `Authorization`, sobrescribiendo cualquier cabecera personalizada
+            // existente `Authorization`, previamente a través de `headers`.
+            // Ten en cuenta que solo HTTP Basic auth es configurable a través de este parámetro.
+            // Para tokens Bearer y otros, usa la cabecera personalizada `Authorization` en su lugar.
+            auth: {
+              username: "Admin",
+              password: "1234",
+            },
+            data: credentials,
+            timeout: 10000,
           };
-          /* const response: AxiosResponse = */ await axios
-            .request(config)
-            .then((response) => {
-              console.log(JSON.stringify(response.data));
-            })
-            .catch((error) => {
-              console.log(error);
-            });
+          console.log(config);
+          console.log(config.data);
+
+          await axios(config);
 
           // console.log(response);
           // toast.success("Usuario registrado correctamente.");
@@ -162,7 +149,7 @@ const Form = (): JSX.Element => {
            */
         } catch (error) {
           error instanceof Error
-            ? console.error("Error al agregar usuario:", error.message)
+            ? console.error("Error obtenido:", error.message)
             : console.error("Error desconocido");
         }
       })(URL_API);
@@ -209,10 +196,10 @@ const Form = (): JSX.Element => {
         <input
           type="text"
           name="username"
-          id="usernameID"
+          id=""
           ref={inputRef}
-          onChange={handleInputOnChangeText}
           value={user.username}
+          onChange={handleInputOnChangeText}
           autoComplete=""
         />
 
@@ -220,9 +207,9 @@ const Form = (): JSX.Element => {
         <input
           type="text"
           name="email"
-          id="emailID"
-          onChange={handleInputOnChangeText}
+          id=""
           value={user.email}
+          onChange={handleInputOnChangeText}
           autoComplete=""
         />
 
@@ -230,9 +217,9 @@ const Form = (): JSX.Element => {
         <input
           type="password"
           name="password1"
-          id="password1ID"
-          onChange={handleInputOnChangeText}
+          id=""
           value={user.password1}
+          onChange={handleInputOnChangeText}
           autoComplete=""
         />
 
@@ -240,25 +227,17 @@ const Form = (): JSX.Element => {
         <input
           type="password"
           name="password2"
-          id="password2ID"
-          onChange={handleInputOnChangeText}
+          id=""
           value={user.password2}
+          onChange={handleInputOnChangeText}
           autoComplete=""
         />
 
-        <button
-          type="submit"
-          name="registro"
-          id="registroID"
-          disabled={isDisabled}>
+        <button type="submit" name="registro" id="" disabled={isDisabled}>
           SEND
         </button>
 
-        <button
-          type="reset"
-          name="reset"
-          id="resetID"
-          onClick={handleResetForm}>
+        <button type="reset" name="reset" id="" onClick={handleResetForm}>
           RESET
         </button>
       </form>
