@@ -2,7 +2,8 @@
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { Button } from "../03_Button/Button";
 import { Modal } from "../11_Modal/Modal";
-import axios, { AxiosResponse } from "axios";
+// import axios, {AxiosResponse} from "axios";
+import axios from "axios";
 
 /**
  *
@@ -14,7 +15,7 @@ import axios, { AxiosResponse } from "axios";
 
 const Form = (): JSX.Element => {
   //* URLs DE LAS PETICIONES */
-  const URL_API = "http://localhost/ASATA/PROYECTO/server/pages/registro.php";
+  const URL_API = "http://localhost/ASATA/PROYECTO/server/api/registro.php";
 
   //* GUARDAR VALORES DE LOS INPUTS. Se puede hacer con `useRef()` o con `useState` */
   const [user, setUser] = useState({
@@ -102,14 +103,57 @@ const Form = (): JSX.Element => {
 
         console.log(credentials);
         try {
-          const response: AxiosResponse = await axios.post(URL, credentials, {
+          // axios({
+          //   method: "options",
+          //   url: "http://localhost/ASATA/PROYECTO/server/api/registro.php",
+          //   headers: {
+          //     "Content-Type": "application/json; charset=UTF-8",
+          //     "Access-Control-Allow-Origin": "*",
+          //     // "Access-Control-Allow-Headers":
+          //     // "Content-Type, Accept, Authorization, X-Requested-With, X-Auth-Token, Origin, Application, X-API-KEY, Access-Control-Request-Method",
+          //     // "Access-Control-Allow-Methods":
+          //     // "GET, POST, PUT, PATCH, DELETE, OPTIONS",
+
+          //     // Authorization: "Bearer <token>",
+          //   },
+          // })
+          //   .then((response) => {
+          //     console.log("Preflight response:", response);
+          //   })
+          //   .catch((error) => {
+          //     console.error("Error en la solicitud OPTIONS:", error);
+          //   });
+
+          const data = "";
+          const config = {
+            method: "post",
+            mode: "no-cors",
+            Accept: "*/*",
+            maxBodyLength: Infinity,
+            url: URL,
             headers: {
+              "Content-Type": " application/json; charset=UTF-8",
               "Access-Control-Allow-Origin": "*",
-              Authorization: "Basic Auth",
-              "Content-Type": "application/json",
+              "Access-Control-Allow-Headers": "*",
+              "Access-Control-Allow-Credentials": "true",
+              "Access-Control-Allow-Methods":
+                "GET, POST, PUT, PATCH, DELETE, OPTIONS",
+              Allow: " GET, POST, PUT, PATCH, DELETE, OPTIONS",
+              Authorization: "Basic QWRtaW46MTIzNA==",
+              email: "admin@mail.com",
             },
-          });
-          console.log(response);
+            data: data,
+          };
+          /* const response: AxiosResponse = */ await axios
+            .request(config)
+            .then((response) => {
+              console.log(JSON.stringify(response.data));
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+
+          // console.log(response);
           // toast.success("Usuario registrado correctamente.");
 
           /**
