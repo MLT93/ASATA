@@ -30,7 +30,8 @@ session_start();
 
  //incluir el autoloader del composer
  require_once("../vendor/autoload.php");
- //añado la pagina de la clase usuario
+ 
+ //añado la pagina de las clases
  require_once("./classes/UsuarioDB.php");
  require_once("./classes/SesionDB.php");
 
