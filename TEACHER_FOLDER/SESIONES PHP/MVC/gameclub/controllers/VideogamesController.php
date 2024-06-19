@@ -1,6 +1,6 @@
 <?php
 
-// Poner a disposición del controlador el modelo
+// Importación de archivos
 require_once('models/Model.php');
 
 
