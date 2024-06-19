@@ -26,6 +26,7 @@
       <th>FECHA</th>
       <th>HORA DE ENTRADA</th>
       <th>HORA DE SALIDA</th>
+      <th>ENLACE</th>
     </tr>
     <?php
     foreach ($fichajes as $key => $value) {
@@ -36,6 +37,7 @@
       echo "<td>" . $value['fecha'] . "</td>";
       echo "<td>" . $value['hora_entrada'] . "</td>";
       echo "<td>" . $value['hora_salida'] . "</td>";
+      echo "<td><a href='/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/fichajes/detail?id=" . $value['id'] . "'" . ">Detalle</a></td>";
       echo "</tr>";
     }
     ?>

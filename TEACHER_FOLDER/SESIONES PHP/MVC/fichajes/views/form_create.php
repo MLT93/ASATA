@@ -19,7 +19,7 @@
 
     <label for="trabajadorID">TRABAJADOR</label>
     <select name="trabajador" id="trabajadorID">
-      <option value="">Elige un trabajador</option>
+      <option value="0">Elige un trabajador</option>
       <?php
       /* 
       1. El Controller (intermediario entre el Model y la View) Utiliza el Model (donde realiza la consulta a la DB) y envía la información (la variable) a la View (donde está lo que ve el usuario)
@@ -51,10 +51,10 @@
     <input type="date" name="fecha" id="fechaID">
 
     <label for="horaEntradaID">HORA ENTRADA</label>
-    <input type="datetime" name="horaEntrada" id="horaEntradaID">
+    <input type="time" name="horaEntrada" id="horaEntradaID">
 
     <label for="horaSalidaID">HORA ENTRADA</label>
-    <input type="datetime" name="horaSalida" id="horaSalidaID">
+    <input type="time" name="horaSalida" id="horaSalidaID">
 
     <input type="submit" name="registrar" value="REGISTRAR">
 

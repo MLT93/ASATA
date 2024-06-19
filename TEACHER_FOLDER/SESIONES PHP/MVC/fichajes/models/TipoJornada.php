@@ -26,7 +26,7 @@ class TipoJornada
   // Methods
   public function getAllTiposJornada()
   {
-    $consultaSQL = "SELECT * FROM tipojornadas;"; // Aquí saco todos los productos y sus Foreign Keys asociados
+    $consultaSQL = "SELECT * FROM tipojornadas;";
     $registros = $this->connection->query($consultaSQL); // Utilizamos los métodos de la instancia `\mysqli`. `query` ejecuta la sentencia y devuelve cosas, `execute` ejecuta solo la sentencia
     // $arrAssoc = $registros->fetch_assoc(); // Convertimos cada uno de los registros en forma de array asociativo
     $arrAssoc = $registros->fetch_all(MYSQLI_ASSOC); // Convertimos cada uno de los registros en forma de array asociativo

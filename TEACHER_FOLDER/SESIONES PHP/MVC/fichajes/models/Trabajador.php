@@ -26,7 +26,7 @@ class Trabajador
   // Methods
   public function getAllTrabajadores()
   {
-    $consultaSQL = "SELECT * FROM trabajadores;"; // Aquí saco todos los productos y sus Foreign Keys asociados
+    $consultaSQL = "SELECT * FROM trabajadores;";
     $registros = $this->connection->query($consultaSQL); // Utilizamos los métodos de la instancia `\mysqli`. `query` ejecuta la sentencia y devuelve cosas, `execute` ejecuta solo la sentencia
     // $arrAssoc = $registros->fetch_assoc(); // Convertimos cada uno de los registros en forma de array asociativo
     $arrAssoc = $registros->fetch_all(MYSQLI_ASSOC); // Convertimos cada uno de los registros en forma de array asociativo

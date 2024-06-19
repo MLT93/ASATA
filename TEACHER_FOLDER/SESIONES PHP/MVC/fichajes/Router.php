@@ -29,7 +29,6 @@ class Router
     /* 
       1. Esta función nos permite crear una nueva ruta, asignándole un controlador y un método del mismo controlador de forma específica
       2. Ejemplo: "/" => ['controller' => "Controller", 'method' => "index"]
-      3. Ejemplo: "/" => ['controller' => "Controller", 'method' => "create"]
     */
     $this->routes[$path] = ['controller' => $controller, 'method' => $method];
   }
