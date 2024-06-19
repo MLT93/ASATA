@@ -25,7 +25,8 @@ $router = new Router();
   3. elijo el método (action) 
 */
 $router->addRoute( '/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/almacen/', 'ProductoController', 'index');
-// $router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/almacen/producto/create', 'ProductoController', 'create');
+$router->addRoute( '/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/almacen/productos/create', 'ProductoController', 'create');
+$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/almacen/productos/store', 'ProductoController', 'store');
 
 // Obtener la ruta solicitada
 $_SERVER["REQUEST_URI"]; // Esto devuelve toda la URI con las Query Params y todo

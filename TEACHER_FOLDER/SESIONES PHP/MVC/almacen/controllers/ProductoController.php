@@ -40,6 +40,20 @@ class ProductoController
     require "views/form_producto.php"; // Aquí existirá las variables `$categorias` y `$proveedores`
   }
 
+  public function store()
+  {
+    if (isset($_POST['registrar'])) {
+      $nombre = $_POST['nombre'];
+      $categoria = $_POST['categoria'];
+      $proveedor = $_POST['proveedor'];
+      $precio = floatval($_POST['precio']);
+      $stock = intval($_POST['stock']);
+
+      $productoModel = new Producto();
+      $productoModel->addProducto($nombre, $categoria, $proveedor, $precio, $stock);
+    }
+  }
+
   // Static Methods
 
 

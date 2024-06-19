@@ -39,7 +39,8 @@ class Router
         1. La propiedad routes (array) va a poseer la siguiente información para cada ruta:
           $routes = [
             '/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/almacen/' => ['controller' => 'ProductoController', 'method' => 'index'],
-            '/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/almacen/producto/create' => ['controller' => 'ProductoController', 'method' => 'create'],
+            '/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/almacen/productos/create' => ['controller' => 'ProductoController', 'method' => 'create'],
+            '/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/almacen/productos/store' => ['controller' => 'ProductoController', 'method' => 'store'],
           ]
         2. Entonces para conseguir la información dinamicamente iteraremos este array para conseguir cada controller y su método correspondiente por cada caso
       */
@@ -50,6 +51,8 @@ class Router
       require "./controllers/$controllerName.php";
       $controller = new $controllerName();
       $controller->$methodName();
+    } else {
+      echo "404 - Not Found";
     }
   }
 
