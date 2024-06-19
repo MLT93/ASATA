@@ -12,6 +12,8 @@
 
   <h1>LISTA DE PRODUCTOS</h1>
 
+  <button><a href="/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/almacen/productos/create">REGISTRA UN NUEVO PRODUCTO</a></button>
+
   <table>
     <tr>
       <th>ID</th>
@@ -24,12 +26,12 @@
     <?php
     foreach ($productos as $key => $value) {
       echo "<tr>";
-        echo "<td>" . $value['id'] . "</td>";
-        echo "<td>" . $value['nombre'] . "</td>";
-        echo "<td>" . $value['categoria'] . "</td>";
-        echo "<td>" . $value['proveedor'] . "</td>";
-        echo "<td>" . $value['precio'] . "</td>";
-        echo "<td>" . $value['stock'] . "</td>";
+      echo "<td>" . $value['id'] . "</td>";
+      echo "<td>" . $value['nombre'] . "</td>";
+      echo "<td>" . $value['categoria'] . "</td>";
+      echo "<td>" . $value['proveedor'] . "</td>";
+      echo "<td>" . $value['precio'] . "</td>";
+      echo "<td>" . $value['stock'] . "</td>";
       echo "</tr>";
     }
     ?>

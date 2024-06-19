@@ -51,6 +51,8 @@ class ProductoController
 
       $productoModel = new Producto();
       $productoModel->addProducto($nombre, $categoria, $proveedor, $precio, $stock);
+
+      header("Location: /ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/almacen/");
     }
   }
 

@@ -1,5 +1,6 @@
 <?php
 
+
 class Router
 {
 
@@ -52,7 +53,10 @@ class Router
       $controller = new $controllerName();
       $controller->$methodName();
     } else {
-      echo "404 - Not Found";
+      // echo "404 - Not Found";
+      require "controllers/ErrorController.php";
+      $controllerError = new ErrorController();
+      $controllerError->error404();
     }
   }
 
