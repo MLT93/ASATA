@@ -1,5 +1,6 @@
 <?php
 
+// Importación de archivos
 require_once('models/Model.php');
 
 

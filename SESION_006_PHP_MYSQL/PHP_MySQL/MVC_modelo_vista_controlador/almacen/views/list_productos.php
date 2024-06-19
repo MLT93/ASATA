@@ -10,30 +10,40 @@
 
 <body>
 
+  <?php
+  // var_dump($productos);
+  ?>
+
   <h1>LISTA DE PRODUCTOS</h1>
 
+  <button><a href="/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/almacen/productos/create">REGISTRA UN NUEVO PRODUCTO</a></button>
+
   <table>
-    <tr>
-      <th>ID</th>
-      <th>NOMBRE</th>
-      <th>CATEGORIA</th>
-      <th>PROVEEDOR</th>
-      <th>PRECIO</th>
-      <th>STOCK</th>
+    <th>ID</th>
+    <th>NOMBRE</th>
+    <th>CATEGORIA</th>
+    <th>PROVEEDOR</th>
+    <th>PRECIO</th>
+    <th>STOCK</th>
+    <th>ENLACE</th>
     </tr>
     <?php
     foreach ($productos as $key => $value) {
       echo "<tr>";
-        echo "<td>" . $value['id'] . "</td>";
-        echo "<td>" . $value['nombre'] . "</td>";
-        echo "<td>" . $value['categoria'] . "</td>";
-        echo "<td>" . $value['proveedor'] . "</td>";
-        echo "<td>" . $value['precio'] . "</td>";
-        echo "<td>" . $value['stock'] . "</td>";
+      echo "<td>" . $value['id'] . "</td>";
+      echo "<td>" . $value['nombre'] . "</td>";
+      echo "<td>" . $value['categoria'] . "</td>";
+      echo "<td>" . $value['proveedor'] . "</td>";
+      echo "<td>" . $value['precio'] . "</td>";
+      echo "<td>" . $value['stock'] . "</td>";
+      echo "<td><a href='/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/almacen/productos/detail?id=" . $value['id'] . "'" . ">Detalle</a></td>";
       echo "</tr>";
     }
     ?>
   </table>
+
+  <button><a href="/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/almacen/proveedores/">LISTA DE PROVEEDORES</a></button>
+
 
 </body>
 

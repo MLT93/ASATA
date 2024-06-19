@@ -1,7 +1,7 @@
 <?php
-/* Esta clase va a gestionar la tabla `proveedores` */
+/* Esta clase va a gestionar la tabla `fichajes` */
 
-class Proveedor
+class Fichaje
 {
   // Propiedades
   private $connection;
@@ -24,21 +24,26 @@ class Proveedor
 
 
   // Methods
-  public function getAllProveedores()
+  public function getAllFichajes()
   {
-    $consultaSQL = "SELECT * FROM proveedores;";
+    $consultaSQL = "SELECT fichajes.id, trabajadores.nombre, tipojornadas.descripcion, fichajes.fecha, fichajes.hora_entrada, fichajes.hora_salida 
+    FROM fichajes 
+    INNER JOIN trabajadores ON fichajes.trabajador_id = trabajadores.id
+    INNER JOIN tipojornadas ON fichajes.tipojornada_id = tipojornadas.id;"; // Aquí saco todos los fichajes y sus Foreign Keys asociados
     $registros = $this->connection->query($consultaSQL); // Utilizamos los métodos de la instancia `\mysqli`. `query` ejecuta la sentencia y devuelve cosas, `execute` ejecuta solo la sentencia
     // $arrAssoc = $registros->fetch_assoc(); // Convertimos cada uno de los registros en forma de array asociativo
     $arrAssoc = $registros->fetch_all(MYSQLI_ASSOC); // Convertimos cada uno de los registros en forma de array asociativo
     return $arrAssoc;
   }
 
-  public function addProveedor($nombre, $contacto)
+  public function addFichaje($trabajador, $tipoJornada, $fecha, $hora_entrada, $hora_salida)
   {
-    $consultaSQL = "INSERT INTO proveedores (nombre, contacto) VALUES
-    (?, ?);"; // Para preparar esta consulta, los valores vacíos de VALUES deben escribirse como `?` porque utilizamos la class `\mysqli`
+    $consultaSQL = "INSERT INTO fichajes (trabajador_id, tipojornada_id, fecha, hora_entrada, hora_salida) VALUES
+    (?, ?, ?, ?, ?);"; // Para preparar esta consulta, los valores vacíos de VALUES deben escribirse como `?` porque utilizamos la class `\mysqli`
 
     $consultaPrepare = $this->connection->prepare($consultaSQL); // Toma la consulta y la prepara para vincularle los VALUES a través de otro método 
+
+
     /* 
       1. Agrega variables a una sentencia preparada como sus VALUES
       2. Recibe parámetros:
@@ -49,15 +54,19 @@ class Proveedor
             `b`	la variable correspondiente es un blob y se envía en paquetes
           2. Las variables correspondientes a la cantidad de VALUES a ingresar en la consulta
     */
-    $consultaPrepare->bind_param("ss", $nombre, $contacto);
+    $consultaPrepare->bind_param("iisss", $trabajador, $tipoJornada, $fecha, $hora_entrada, $hora_salida);
 
     return $consultaPrepare->execute(); // Ejecuto la consulta
   }
 
-  public function getProveedorByID()
+  public function getByID()
   {
     $id = intval($_GET['id']);
-    $consultaSQL = "SELECT * FROM proveedores WHERE proveedores.id = $id;"; // Aquí saco el producto a través de su ID y sus Foreign Keys asociados
+    $consultaSQL = "SELECT fichajes.id, trabajadores.nombre, tipojornadas.descripcion, fichajes.fecha, fichajes.hora_entrada, fichajes.hora_salida 
+    FROM fichajes 
+    INNER JOIN trabajadores ON fichajes.trabajador_id = trabajadores.id
+    INNER JOIN tipojornadas ON fichajes.tipojornada_id = tipojornadas.id
+    WHERE fichajes.id = $id;"; // Aquí saco el producto a través de su ID y sus Foreign Keys asociados
     $registro = $this->connection->query($consultaSQL);
     $arrAssoc = $registro->fetch_all(MYSQLI_ASSOC); // Convertimos cada uno de los registros en forma de array asociativo (que tendrá sólo 1 elemento)
     return $arrAssoc;
