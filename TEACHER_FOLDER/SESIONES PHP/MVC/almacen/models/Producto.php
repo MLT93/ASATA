@@ -44,16 +44,16 @@ class Producto
     /* 
       1. Agrega variables a una sentencia preparada como sus VALUES
       2. Recibe parámetros:
-        1. Type (Una cadena que contiene uno o más caracteres que especifican los tipos para el correspondiente enlazado de variables)
-          `i`	la variable correspondiente es de tipo entero
-          `d`	la variable correspondiente es de tipo double
-          `s`	la variable correspondiente es de tipo string
-          `b`	la variable correspondiente es un blob y se envía en paquetes
-        2. Las variables correspondientes a la cantidad de VALUES a ingresar en la consulta
+          1. Type (Una cadena que contiene uno o más caracteres que especifican los tipos para el correspondiente enlazado de variables)
+            `i`	la variable correspondiente es de tipo entero
+            `d`	la variable correspondiente es de tipo double
+            `s`	la variable correspondiente es de tipo string
+            `b`	la variable correspondiente es un blob y se envía en paquetes
+          2. Las variables correspondientes a la cantidad de VALUES a ingresar en la consulta
     */
     $consultaPrepare->bind_param("siidi", $nombre, $categoria, $proveedor, $precio, $stock);
 
-    return $consultaPrepare->execute();
+    return $consultaPrepare->execute(); // Ejecuto la consulta
   }
 
   // Static Methods
