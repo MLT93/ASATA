@@ -1,6 +1,6 @@
 <?php
 
-// Importo archivos
+// Importación de archivos
 
 
 class ErrorController

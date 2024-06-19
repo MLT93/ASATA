@@ -26,7 +26,8 @@ class Producto
   // Methods
   public function getAllProductos()
   {
-    $consultaSQL = "SELECT productos.id, productos.nombre, productos.precio, productos.stock, categorias.nombre AS categoria, proveedores.nombre AS proveedor FROM productos 
+    $consultaSQL = "SELECT productos.id, productos.nombre, productos.precio, productos.stock, categorias.nombre AS categoria, proveedores.nombre AS proveedor 
+    FROM productos 
     INNER JOIN categorias ON productos.categoria_id = categorias.id 
     INNER JOIN proveedores ON productos.proveedor_id = proveedores.id;"; // Aquí saco todos los productos y sus Foreign Keys asociados
     $registros = $this->connection->query($consultaSQL); // Utilizamos los métodos de la instancia `\mysqli`. `query` ejecuta la sentencia y devuelve cosas, `execute` ejecuta solo la sentencia
@@ -54,6 +55,19 @@ class Producto
     $consultaPrepare->bind_param("siidi", $nombre, $categoria, $proveedor, $precio, $stock);
 
     return $consultaPrepare->execute(); // Ejecuto la consulta
+  }
+
+  public function getProductoByID()
+  {
+    $id = intval($_GET['id']);
+    $consultaSQL = "SELECT productos.id, productos.nombre, productos.precio, productos.stock, categorias.nombre AS categoria, proveedores.nombre AS proveedor 
+    FROM productos 
+    INNER JOIN categorias ON productos.categoria_id = categorias.id 
+    INNER JOIN proveedores ON productos.proveedor_id = proveedores.id
+    WHERE productos.id = $id;"; // Aquí saco el producto a través de su ID y sus Foreign Keys asociados
+    $registro = $this->connection->query($consultaSQL);
+    $arrAssoc = $registro->fetch_all(MYSQLI_ASSOC); // Convertimos cada uno de los registros en forma de array asociativo (que tendrá sólo 1 elemento)
+    return $arrAssoc;
   }
 
   // Static Methods

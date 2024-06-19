@@ -1,6 +1,6 @@
 <?php
 
-// Importo clases
+// Importación de archivos
 require_once("models/Categoria.php");
 require_once("models/Proveedor.php");
 require_once("models/Producto.php");
@@ -54,6 +54,14 @@ class ProductoController
 
       header("Location: /ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/almacen/");
     }
+  }
+
+  public function detail()
+  {
+    $productoModel = new Producto();
+    $producto = $productoModel->getProductoByID();
+
+    require "views/detail_producto.php";
   }
 
   // Static Methods

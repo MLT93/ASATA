@@ -10,6 +10,11 @@
 
 <body>
 
+  <?php
+  // var_dump($categorias);
+  // var_dump($proveedores);
+  ?>
+
   <form action="/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/almacen/productos/store" method="post" target="_self">
 
     <label for="nombreID">NOMBRE</label>
