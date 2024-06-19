@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 
 // Resto de tu lógica para manejar la solicitud
 $proxyUrl = 'http://localhost:80'; // URL del proxy configurado en Apache
-$targetUrl = 'http://localhost:80/ASATA/PROYECTO/server/api/registro.php'; // URL del backend PHP
+$targetUrl = 'http://localhost:80/ASATA/PROYECTO/server/credentials/registro.php'; // URL del backend PHP
 
 $ch = curl_init();
 
