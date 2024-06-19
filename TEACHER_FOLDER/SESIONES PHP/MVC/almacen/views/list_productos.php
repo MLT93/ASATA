@@ -42,6 +42,9 @@
     ?>
   </table>
 
+  <button><a href="/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/almacen/proveedores/">LISTA DE PROVEEDORES</a></button>
+
+
 </body>
 
 </html>

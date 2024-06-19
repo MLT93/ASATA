@@ -20,7 +20,7 @@ class ProductoController
 
 
   // Methods
-  public function index()
+  public function index() // Muestra la lista de la DB
   {
     $productModel = new Producto(); // Instancia de `Producto` donde se realiza la conexión a la DB
     $productos = $productModel->getAllProductos(); // Obtengo la información de la DB y la envío a la View `list_productos.php`
@@ -28,7 +28,7 @@ class ProductoController
     require "views/list_productos.php";
   }
 
-  public function create()
+  public function create() // Crea el formulario
   {
 
     $categoriaModel = new Categoria(); // Instancia de `Categoria` donde se realiza la conexión a la DB
@@ -40,7 +40,7 @@ class ProductoController
     require "views/form_producto.php"; // Aquí existirá las variables `$categorias` y `$proveedores`
   }
 
-  public function store()
+  public function store() // Almacena los datos del formulario en la DB
   {
     if (isset($_POST['registrar'])) {
       $nombre = $_POST['nombre'];
@@ -56,12 +56,12 @@ class ProductoController
     }
   }
 
-  public function detail()
+  public function detail() // Muestra sólo 1 a través del ID
   {
-    $productoModel = new Producto();
-    $producto = $productoModel->getProductoByID();
+    $productoModel = new Producto(); // Instancia de `Producto` donde se realiza la conexión a la DB
+    $producto = $productoModel->getProductoByID(); // Obtengo la información de la DB y la envío a la View `detail_producto.php`
 
-    require "views/detail_producto.php";
+    require "views/detail_producto.php"; // Aquí existirá las variables `$producto`
   }
 
   // Static Methods

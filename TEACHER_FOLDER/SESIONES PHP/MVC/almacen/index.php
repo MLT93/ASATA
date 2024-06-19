@@ -27,7 +27,11 @@ $router = new Router();
 $router->addRoute( '/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/almacen/', 'ProductoController', 'index');
 $router->addRoute( '/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/almacen/productos/create', 'ProductoController', 'create');
 $router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/almacen/productos/store', 'ProductoController', 'store');
-$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/almacen/productos/detail', 'ProductoController', 'detail'); // Aquí deberé pasarle el Query Param para que lo guarde en `$_GET`
+$router->addRoute( '/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/almacen/productos/detail', 'ProductoController', 'detail'); // Aquí deberé pasarle el Query Param para que lo guarde en `$_GET`
+$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/almacen/proveedores/', 'ProveedorController', 'index');
+$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/almacen/proveedores/create', 'ProveedorController', 'create');
+$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/almacen/proveedores/store', 'ProveedorController', 'store');
+$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/almacen/proveedores/detail', 'ProveedorController', 'detail'); // Aquí deberé pasarle el Query Param para que lo guarde en `$_GET`
 
 // Obtener la ruta solicitada
 $_SERVER["REQUEST_URI"]; // Esto devuelve toda la URI con las Query Params y todo

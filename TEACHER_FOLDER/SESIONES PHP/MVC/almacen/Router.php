@@ -43,6 +43,7 @@ class Router
             '/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/almacen/productos/create' => ['controller' => 'ProductoController', 'method' => 'create'],
             '/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/almacen/productos/store' => ['controller' => 'ProductoController', 'method' => 'store'],
             '/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/almacen/productos/detail' => ['controller' => 'ProductoController', 'method' => 'detail'], // Aquí deberé pasarle el Query Param para que lo guarde en `$_GET`
+            '/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/almacen/proveedores/' => ['controller' => 'ProveedorController', 'method' => 'index'], // Aquí deberé pasarle el Query Param para que lo guarde en `$_GET`
           ]
         2. Entonces, para conseguir la información dinamicamente iteraremos este array y conseguimos cada controller y su método correspondiente por cada caso específico
       */
