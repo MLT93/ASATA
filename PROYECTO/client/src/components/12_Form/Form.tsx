@@ -1,9 +1,10 @@
 // import styles from "./Form.module.scss";
-import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
 import { Button } from "../03_Button/Button";
 import { Modal } from "../11_Modal/Modal";
+import { User } from "../../utils/interfaces";
 // import axios, {AxiosResponse} from "axios";
-import axios from "axios";
+// import axios from "axios";
 
 /**
  *
@@ -15,11 +16,11 @@ import axios from "axios";
 
 const Form = (): JSX.Element => {
   //* URLs DE LAS PETICIONES */
-  const URL_API =
-    "https://cors-anywhere.herokuapp.com/http://localhost/ASATA/PROYECTO/server/api";
+  // const URL_API = "https://cors-anywhere.herokuapp.com/http://localhost/ASATA/PROYECTO/server/api/registro.php";
+  const URL_API = "/api/registro.php";
 
   //* GUARDAR VALORES DE LOS INPUTS. Se puede hacer con `useRef()` o con `useState` */
-  const [user, setUser] = useState({
+  const [user, setUser] = useState<User>({
     username: "",
     email: "",
     password1: "",
@@ -45,7 +46,7 @@ const Form = (): JSX.Element => {
   };
 
   //* DESHABILITAR BOTÓN SI NO ESTÁN LOS CAMPOS LLENOS */
-  const [isDisabled, setIsDisabled] = useState(true);
+  const [isDisabled, setIsDisabled] = useState<boolean>(true);
   useEffect(() => {
     const areInputsFilled =
       user.username.trim() !== "" &&
@@ -73,7 +74,7 @@ const Form = (): JSX.Element => {
   // Email: /[\w._%+-]+@[\w.-]+\.[a-zA-Z]{2,4}/
 
   //* PETICIÓN API (POST) ENVIAMOS LA INFORMACIÓN DEL FORM AL SERVIDOR */
-  const handleSubmitForm = (event: { preventDefault: () => void }) => {
+  const handleSubmitForm = (event: FormEvent<HTMLFormElement>) => {
     /**
      ** 1. Comprobamos que las passwords coincidan
      ** 2. Si coinciden, realizamos petición HTTP y usamos `user` con el objeto `formData` para enviar la información al servidor
@@ -106,51 +107,68 @@ const Form = (): JSX.Element => {
 
       void (async (URL) => {
         try {
-          const config = {
-            baseURL: URL,
-            // `timeout` especifica el número de milisegundos antes que la petición expire.
-            url: "/registro.php",
+          // const config = {
+          //   baseURL: URL,
+          //   // `timeout` especifica el número de milisegundos antes que la petición expire.
+          //   url: "/registro.php",
+          //   method: "POST",
+          //   headers: {
+          //     "Content-Type": " application/json; charset=UTF-8",
+          //     "Access-Control-Allow-Origin": "*",
+          //     "Access-Control-Allow-Headers": "*",
+          //     "Access-Control-Allow-Credentials": "true",
+          //     "Access-Control-Allow-Methods":
+          //       "GET, POST, PUT, PATCH, DELETE, OPTIONS",
+          //     Allow: " GET, POST, PUT, PATCH, DELETE, OPTIONS",
+          //     // Authorization: "Basic QWRtaW46MTIzNA==",
+          //     email: "admin@mail.com",
+          //     "X-Requested-With": "XMLHttpRequest",
+          //   },
+          //   // `auth` indica que HTTP Basic auth debe ser usado, y proveer credenciales.
+          //   // Esto establecerá una cabecera `Authorization`, sobrescribiendo cualquier cabecera personalizada
+          //   // existente `Authorization`, previamente a través de `headers`.
+          //   // Ten en cuenta que solo HTTP Basic auth es configurable a través de este parámetro.
+          //   // Para tokens Bearer y otros, usa la cabecera personalizada `Authorization` en su lugar.
+          //   auth: {
+          //     username: "Admin",
+          //     password: "1234",
+          //   },
+          //   data: credentials,
+          //   timeout: 10000,
+          // };
+          // console.log(config);
+          // console.log(config.data);
+          // await axios(config);
+          // // console.log(response);
+
+          const options: RequestInit = {
             method: "POST",
             headers: {
-              "Content-Type": " application/json; charset=UTF-8",
-              "Access-Control-Allow-Origin": "*",
-              "Access-Control-Allow-Headers": "*",
-              "Access-Control-Allow-Credentials": "true",
-              "Access-Control-Allow-Methods":
-                "GET, POST, PUT, PATCH, DELETE, OPTIONS",
-              Allow: " GET, POST, PUT, PATCH, DELETE, OPTIONS",
-              // Authorization: "Basic QWRtaW46MTIzNA==",
+              "Content-Type": "multipart/form-data",
+              "Accept" : "*/*",
               email: "admin@mail.com",
-              "X-Requested-With": "XMLHttpRequest",
+              Authorization: "Basic QWRtaW46MTIzNA==",
             },
-            // `auth` indica que HTTP Basic auth debe ser usado, y proveer credenciales.
-            // Esto establecerá una cabecera `Authorization`, sobrescribiendo cualquier cabecera personalizada
-            // existente `Authorization`, previamente a través de `headers`.
-            // Ten en cuenta que solo HTTP Basic auth es configurable a través de este parámetro.
-            // Para tokens Bearer y otros, usa la cabecera personalizada `Authorization` en su lugar.
-            auth: {
-              username: "Admin",
-              password: "1234",
-            },
-            data: credentials,
-            timeout: 10000,
+            body: formData,
+            redirect: "follow",
           };
-          console.log(config);
-          console.log(config.data);
 
-          await axios(config);
+          const response: Response = await fetch(URL, options);
 
-          // console.log(response);
+          console.log(response);
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+
           // toast.success("Usuario registrado correctamente.");
-
-          /**
-           **  1. Agregando un nuevo amigo `newUser` al principio de la lista utilizando el método setAmigos.
-           **  2. Utilizando la sintaxis de spread operator (...) para copiar los usuarios existentes y luego agregar el nuevo usuario al inicio.
-           */
         } catch (error) {
-          error instanceof Error
-            ? console.error("Error obtenido:", error.message)
-            : console.error("Error desconocido");
+          if (error instanceof Error) {
+            console.error("Error obtenido:", error.message);
+            console.log(error.message);
+          } else {
+            console.error("Error desconocido");
+          }
         }
       })(URL_API);
     } else {

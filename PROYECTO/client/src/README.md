@@ -28,7 +28,7 @@
 
 - [**Explicación de uso de CORS client y server**](https://stackoverflow.com/questions/65218218/react-php-blocked-my-cors-policy-only-in-post-request)
 
-- [**Explicación de la solución a CORS. Usar un Proxy gratuito**](https://es.stackoverflow.com/questions/463756/error-cors-en-react-axios)
+- [**Explicación de configuración de Proxy PHP. Fix CORS problem**](https://brightdata.es/blog/procedimientos/php-proxy-servers)
 
 - [**Explicación de package React-Toastify**](https://github.com/urian121/Implementa-Alertas-con-React-Toastify)
 
@@ -932,3 +932,292 @@ export default MyComponent;
 Ambas bibliotecas proporcionan herramientas poderosas para el manejo de formularios en React y permiten un desarrollo más eficiente y organizado. La elección entre Formik y React Hook Form dependerá de las necesidades específicas de tu proyecto y de tu preferencia personal.
 
 Puedes considerar el uso de `Ajax` también.
+
+
+- **Configuración de Proxy en Apache. Fix CORS problem**
+
+Antes de configurar tu servidor PHP para manejar las solicitudes y establecer los encabezados CORS, es importante asegurarte de que Apache esté configurado correctamente para permitir el tráfico entrante y dirigir las solicitudes correctamente al backend PHP. Aquí te guiaré a través de los pasos para configurar un proxy en Apache utilizando `mod_proxy`.
+
+Para permitir que Apache actúe como un proxy inverso y redirija las solicitudes entrantes desde React Vite (en `http://localhost:5173/ASATA/PROYECTO/client`) al backend PHP (en `http://localhost:80/ASATA/PROYECTO/server/credentials`), debes seguir estos pasos:
+
+### Paso 1: Habilitar `mod_proxy` en Apache
+
+Primero, asegúrate de que `mod_proxy` esté habilitado en tu servidor Apache. Puedes hacerlo ejecutando los siguientes comandos en la terminal:
+
+```bash
+sudo a2enmod proxy &&
+sudo a2enmod proxy_http &&
+sudo systemctl restart apache2
+```
+
+Estos comandos habilitarán `mod_proxy` y `mod_proxy_http`, que son necesarios para configurar un proxy HTTP en Apache.
+
+### Paso 2: Configurar el Proxy en el Archivo de Configuración de Apache
+
+Luego, debes configurar un proxy en el archivo de configuración de Apache (`httpd.conf` o un archivo de configuración virtual específico). 
+
+These are not your only options. On Ubuntu/Debian, Apache also processes all the files in /etc/apache2/sites-enabled/ (which should be symlinks to files in sites-available/ directory, managed by the `a2ensite` and `a2dissite` programs)
+You're intended to use these directories for VirtualHosts.
+
+Aquí tienes un ejemplo de cómo podrías configurarlo:
+
+```apache
+<VirtualHost *:5173>
+    ServerName localhost
+
+    ProxyPreserveHost On
+    ProxyPass /ASATA/PROYECTO/server/ http://localhost:80/ASATA/PROYECTO/server/
+    ProxyPassReverse /ASATA/PROYECTO/server/ http://localhost:80/ASATA/PROYECTO/server/
+
+    ErrorLog ${APACHE_LOG_DIR}/vite-client-error.log
+    CustomLog ${APACHE_LOG_DIR}/vite-client-access.log combined
+</VirtualHost>
+```
+
+In Ubuntu/Debian systems running Apache, the directories `/etc/apache2/sites-enabled/` and `/etc/apache2/sites-available/` are used for managing virtual hosts, which allow you to host multiple websites or applications on a single Apache server. Here’s how these directories are typically used and managed:
+
+### Directory Structure:
+
+1. **sites-available/**:
+   - This directory contains configuration files (`.conf` files) for all available virtual hosts.
+   - These configuration files define how each virtual host should behave, including details like domain names, document roots, logging, and more.
+
+2. **sites-enabled/**:
+   - This directory contains symbolic links to the configuration files from `sites-available/` that should be active (enabled) and processed by Apache.
+   - Only the configuration files symlinked here will be loaded and used by Apache.
+
+### Managing Virtual Hosts:
+
+- **Adding a New Virtual Host**:
+  1. Create a new configuration file in `sites-available/`. For example:
+     ```bash
+     sudo nano /etc/apache2/sites-available/mywebsite.conf
+     ```
+  2. Inside `mywebsite.conf`, define your virtual host configuration:
+     ```apache
+     <VirtualHost *:80>
+         ServerName mywebsite.com
+         DocumentRoot /var/www/mywebsite
+         ErrorLog ${APACHE_LOG_DIR}/error.log
+         CustomLog ${APACHE_LOG_DIR}/access.log combined
+     </VirtualHost>
+     ```
+     Adjust `ServerName`, `DocumentRoot`, and other directives as per your requirements.
+
+  3. Enable the virtual host by creating a symbolic link in `sites-enabled/` using `a2ensite`:
+     ```bash
+     sudo a2ensite mywebsite.conf
+     ```
+
+  4. Reload Apache for the changes to take effect:
+     ```bash
+     sudo systemctl reload apache2
+     ```
+
+- **Disabling a Virtual Host**:
+  - To disable a virtual host, use `a2dissite` followed by the virtual host configuration file name (without the `.conf` extension):
+    ```bash
+    sudo a2dissite mywebsite
+    ```
+  - Again, reload Apache to apply the changes:
+    ```bash
+    sudo systemctl reload apache2
+    ```
+
+- **Checking Syntax and Errors**:
+  - Before reloading Apache, it’s a good practice to check the syntax of your configuration files for errors:
+    ```bash
+    sudo apache2ctl configtest
+    ```
+
+### Virtual Host Examples:
+
+- **Simple Virtual Host**:
+  ```apache
+  <VirtualHost *:80>
+      ServerName mywebsite.com
+      DocumentRoot /var/www/mywebsite
+      ErrorLog ${APACHE_LOG_DIR}/error.log
+      CustomLog ${APACHE_LOG_DIR}/access.log combined
+  </VirtualHost>
+  ```
+
+- **Virtual Host with SSL** (if using HTTPS):
+  ```apache
+  <VirtualHost *:443>
+      ServerName mywebsite.com
+      DocumentRoot /var/www/mywebsite
+      ErrorLog ${APACHE_LOG_DIR}/error.log
+      CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+      SSLEngine on
+      SSLCertificateFile /etc/ssl/certs/mywebsite.crt
+      SSLCertificateKeyFile /etc/ssl/private/mywebsite.key
+  </VirtualHost>
+  ```
+
+### Summary:
+
+- Use `sites-available/` for storing all virtual host configuration files.
+- Use `sites-enabled/` for enabling and managing which virtual hosts are active.
+- Use `a2ensite` and `a2dissite` commands to enable and disable virtual hosts respectively.
+- Always reload Apache (`sudo systemctl reload apache2`) after making changes to virtual host configurations.
+
+This approach allows you to host multiple websites or applications on the same Apache server while keeping their configurations organized and manageable.
+
+En este ejemplo:
+
+- `<VirtualHost *:5173>`: Define el virtual host para el puerto 5173, donde se encuentra tu aplicación React Vite.
+- `ProxyPass` y `ProxyPassReverse`: Estas directivas indican a Apache que todas las solicitudes que lleguen a `http://localhost:5173/ASATA/PROYECTO/client/ASATA/PROYECTO/server/credentials` deben ser redirigidas al backend PHP en `http://localhost:80/ASATA/PROYECTO/server/credentials`.
+
+### Paso 3: Reiniciar Apache
+
+Después de realizar cambios en la configuración de Apache, asegúrate de reiniciar Apache para que los cambios surtan efecto:
+
+```bash
+sudo systemctl restart apache2
+```
+
+### Paso 4: Realizar archivo `curl.php`
+
+Crea un archivo `curl.php` para que funcione correctamente tu entorno donde creaste un proxy configurado en Apache previamente y deseas hacer solicitudes desde React Vite hacia tu backend PHP usando ese proxy.
+
+```php
+<?php
+$proxyUrl = 'http://localhost:80'; // URL del proxy configurado en Apache
+$targetUrl = 'http://localhost:80/ASATA/PROYECTO/server/credentials/credentials/registro.php'; // URL del backend PHP
+
+$ch = curl_init();
+
+curl_setopt($ch, CURLOPT_URL, $targetUrl);
+curl_setopt($ch, CURLOPT_PROXY, $proxyUrl);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // Opción para deshabilitar la verificación SSL (usar con precaución en producción)
+curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false); // Opción para deshabilitar la verificación SSL del host (usar con precaución en producción)
+
+$response = curl_exec($ch);
+
+if (curl_errno($ch)) {
+    echo 'cURL Error: ' . curl_error($ch);
+} else {
+    echo $response;
+}
+
+curl_close($ch);
+?>
+```
+
+### Explicación del código PHP ajustado:
+
+1. **`$proxyUrl`**: Aquí debes usar la URL del proxy que configuraste en Apache. En tu caso, `http://localhost:80` parece ser el proxy donde Apache está escuchando las solicitudes.
+
+2. **`$targetUrl`**: Esta es la URL del backend PHP al que deseas hacer la solicitud. Asegúrate de que coincida con la ruta correcta en tu servidor donde se encuentra el archivo `registro.php`.
+
+3. **Configuración de cURL**:
+   - **`CURLOPT_URL`**: Establece la URL de destino de la solicitud.
+   - **`CURLOPT_PROXY`**: Configura la URL del proxy que se utilizará para la solicitud.
+   - **`CURLOPT_RETURNTRANSFER`**: Establece esta opción a `true` para que cURL devuelva la respuesta como una cadena en lugar de imprimirla directamente.
+   - **`CURLOPT_SSL_VERIFYPEER`** y **`CURLOPT_SSL_VERIFYHOST`**: En el ejemplo, se han deshabilitado estas opciones (`false`) para evitar problemas de certificado SSL. Esto puede ser útil para entornos de desarrollo, pero **no es seguro** hacerlo en producción sin una configuración adecuada de seguridad.
+
+4. **Manejo de errores**: Si hay un error durante la ejecución de cURL, se imprime el mensaje de error. De lo contrario, se muestra la respuesta del servidor.
+
+5. **Consideraciones de seguridad**: Recuerda que deshabilitar la verificación SSL puede exponerte a vulnerabilidades de seguridad. Asegúrate de configurar adecuadamente tu entorno de producción para manejar correctamente la verificación SSL.
+
+6. **Ejecución**: Guarda este archivo como `curl.php` en tu servidor PHP y ejecútalo a través de tu navegador o línea de comandos con `php curl.php`. Observa la salida para verificar que la solicitud se esté realizando correctamente a través del proxy configurado en Apache hacia tu backend PHP.
+
+### Verificación
+
+Para verificar que el proxy esté funcionando correctamente, intenta acceder a tu aplicación React Vite y asegúrate de que las solicitudes al backend PHP (`http://localhost:80/ASATA/PROYECTO/server/credentials`) se estén redirigiendo correctamente a través de Apache.
+
+### Consideraciones Adicionales
+
+- **Seguridad**: Asegúrate de configurar correctamente la seguridad en tu servidor Apache y en tu aplicación PHP para evitar vulnerabilidades.
+- **Logs**: Utiliza los logs de Apache para monitorear y depurar cualquier problema relacionado con el proxy y las solicitudes HTTP.
+- **Configuración Específica**: Ajusta la configuración del proxy según las necesidades específicas de tu aplicación y entorno de desarrollo.
+
+Siguiendo estos pasos, deberías poder configurar un proxy en Apache para permitir que React Vite acceda al backend PHP sin problemas de CORS y asegurar un flujo de datos seguro y eficiente entre ambas partes de tu aplicación.
+
+- **Configuración de Proxy en React Vite. Fix CORS problem**
+
+Para configurar un proxy en Vite y poder realizar solicitudes desde una aplicación React Vite hacia un backend PHP sin problemas de CORS, utilizando las rutas proporcionadas:
+
+### Paso 1: Configuración del Proxy en `vite.config.js`
+
+Crea o modifica el archivo `vite.config.js` en la raíz de tu proyecto Vite con la siguiente configuración:
+
+```javascript
+import { defineConfig } from 'vite';
+import react from "@vitejs/plugin-react";
+
+export default defineConfig({
+  plugins: [react()],
+  build: {
+    target: "esnext",
+  },
+  server: {
+    proxy: {
+      // Las peticiones ahora deben empezar todas por `/api` para que la encuentre
+      "/api": {
+        target: "http://localhost:80/ASATA/PROYECTO/server", // URL del backend PHP
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, "/credentials"), // Reescritura de `/api` por `/credentials` (la carpeta donde está el archivo `registro.php`)
+      },
+    },
+  },
+});
+```
+
+- `'/api'`: Este es el prefijo de las URLs que serán redirigidas al servidor backend.
+- `target`: Especifica la URL base del servidor backend al que quieres redirigir las solicitudes (`http://localhost:80/ASATA/PROYECTO/server` en tu caso).
+- `changeOrigin`: Habilita el cambio de origen para las solicitudes CORS.
+- `rewrite`: No se realiza una modificación significativa de la ruta original, excepto por el cambio en el puerto.
+
+### Paso 2: Ejemplo de Uso en el Componente React
+
+A continuación, mostramos cómo realizar una solicitud GET básica desde un componente React hacia el backend PHP a través del proxy configurado:
+
+```javascript
+import React, { useEffect, useState } from 'react';
+
+const App = () => {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('/api/registro.php'); // Realiza una solicitud a '/api/registro.php', será redirigida a 'http://localhost:80/ASATA/PROYECTO/server/credentials/registro.php'
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const jsonData = await response.json();
+        setData(jsonData);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  return (
+    <div>
+      <h1>Backend Data:</h1>
+      <pre>{JSON.stringify(data, null, 2)}</pre>
+    </div>
+  );
+};
+
+export default App;
+```
+
+En este ejemplo:
+
+- `fetch('/api/registro.php')`: Realiza una solicitud GET a `/ASATA/PROYECTO/server/api/registro.php`, que será redirigida por el proxy configurado a `http://localhost:80/ASATA/PROYECTO/server/credentials/registro.php`.
+
+### Consideraciones Adicionales
+
+- **Configuración CORS en el Backend**: Asegúrate de que tu backend PHP en `localhost:80` tenga configurado CORS adecuadamente para aceptar solicitudes desde `localhost:5173`.
+- **Seguridad**: No es recomendable deshabilitar completamente CORS en producción. Configura tu servidor PHP para permitir CORS desde `localhost:5173` específicamente.
+
+Con esta configuración, deberías poder realizar solicitudes HTTP desde tu aplicación React Vite hacia tu backend PHP en `localhost:80/ASATA/PROYECTO/server/credentials` sin problemas de CORS, utilizando el proxy configurado en Vite para manejar las rutas adecuadamente.
