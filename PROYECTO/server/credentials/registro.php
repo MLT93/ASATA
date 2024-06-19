@@ -11,35 +11,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
   exit();
 }
 
-// Resto de tu lógica para manejar la solicitud
 $proxyUrl = 'http://localhost:80'; // URL del proxy configurado en Apache
 $targetUrl = 'http://localhost:80/ASATA/PROYECTO/server/credentials/registro.php'; // URL del backend PHP
 
-$ch = curl_init();
+// $ch = curl_init();
 
-curl_setopt($ch, CURLOPT_URL, $targetUrl);
-curl_setopt($ch, CURLOPT_PROXY, $proxyUrl);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+// curl_setopt($ch, CURLOPT_URL, $targetUrl);
+// curl_setopt($ch, CURLOPT_PROXY, $proxyUrl);
+// curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+// curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+// curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
 
-$response = curl_exec($ch);
+// $response = curl_exec($ch);
 
 
-if (curl_errno($ch)) {
-  echo 'cURL Error: ' . curl_error($ch);
-} else {
-  var_dump($response);
-}
+// if (curl_errno($ch)) {
+//   echo 'cURL Error: ' . curl_error($ch);
+// } else {
+//   var_dump($response);
+// }
 
-curl_close($ch);
+// curl_close($ch);
 
 //* OBTENGO LAS CREDENCIALES AUTH Y LA INFO AGREGADA EN EL HEADER */
+// var_dump($_SERVER);
 if (isset($_SERVER)) {
-  // echo $_SERVER["PHP_AUTH_USER"] . "<br/>";
-  // echo $_SERVER["PHP_AUTH_PW"] . "<br/>";
-  // echo $_SERVER["HTTP_EMAIL"] . "<br/>";
+  echo "User: ". $_SERVER["PHP_AUTH_USER"] . "<br/>";
+  echo "Password: ". $_SERVER["PHP_AUTH_PW"] . "<br/>";
+  echo "Email: ". $_SERVER["HTTP_EMAIL"] . "<br/>";
 } else {
   echo "<h3>No se han recibido las credenciales</h3>";
 }
@@ -49,16 +49,16 @@ $method = $_SERVER['REQUEST_METHOD'];
 
 switch ($method) {
   case 'GET':
-    echo $response;
+    # code...
     break;
   case 'POST':
-    echo $response;
+    # code...
     break;
   case 'PUT':
-    echo $response;
+    # code...
     break;
   case 'DELETE':
-    echo $response;
+    # code...
     break;
 
   default:
