@@ -1,9 +1,8 @@
 // import styles from "./Form.module.scss";
-import { ChangeEvent, useEffect, useRef, useState } from "react";
-import { Button } from "../03_Button/Button";
-import { Modal } from "../11_Modal/Modal";
+import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
+import { User } from "../../utils/interfaces";
 // import axios, {AxiosResponse} from "axios";
-import axios from "axios";
+// import axios from "axios";
 
 /**
  *
@@ -13,13 +12,13 @@ import axios from "axios";
  * @returns {JSX.Element} Elemento | Estructura HTML
  */
 
-const OldForm = (): JSX.Element => {
+const Register = (): JSX.Element => {
   //* URLs DE LAS PETICIONES */
-  const URL_API =
-    "https://cors-anywhere.herokuapp.com/http://localhost/ASATA/PROYECTO/server/api/registro.php";
+  // const URL_API = "https://cors-anywhere.herokuapp.com/http://localhost/ASATA/PROYECTO/server/api/registro.php";
+  const URL_API = "/api/registro.php";
 
   //* GUARDAR VALORES DE LOS INPUTS. Se puede hacer con `useRef()` o con `useState` */
-  const [user, setUser] = useState({
+  const [user, setUser] = useState<User>({
     username: "",
     email: "",
     password1: "",
@@ -45,7 +44,7 @@ const OldForm = (): JSX.Element => {
   };
 
   //* DESHABILITAR BOTÓN SI NO ESTÁN LOS CAMPOS LLENOS */
-  const [isDisabled, setIsDisabled] = useState(true);
+  const [isDisabled, setIsDisabled] = useState<boolean>(true);
   useEffect(() => {
     const areInputsFilled =
       user.username.trim() !== "" &&
@@ -73,18 +72,10 @@ const OldForm = (): JSX.Element => {
   // Email: /[\w._%+-]+@[\w.-]+\.[a-zA-Z]{2,4}/
 
   //* PETICIÓN API (POST) ENVIAMOS LA INFORMACIÓN DEL FORM AL SERVIDOR */
-  const handleSubmitForm = (event: {
-    target: EventTarget;
-    preventDefault: () => void;
-  }) => {
-    /**
-     ** 1. Impedimos que la página se vuelva a cargar una vez que apretamos el botón `Submit`
-     */
-    event.preventDefault();
-
+  const handleSubmitForm = (event: FormEvent<HTMLFormElement>) => {
     /**
      ** 1. Comprobamos que las passwords coincidan
-     ** 2. Si coinciden, realizamos petición POST y usamos `user` con la Class FormData para enviar la información al servidor
+     ** 2. Si coinciden, realizamos petición HTTP y usamos `user` con el objeto `formData` para enviar la información al servidor
      */
     let definitivePassword = "";
     let errMsg = "";
@@ -93,49 +84,89 @@ const OldForm = (): JSX.Element => {
       : (errMsg = "Las passwords no coinciden.");
 
     if (definitivePassword) {
+      /**
+       ** 1. Impedimos que la página se vuelva a cargar una vez que apretamos el botón `Submit`
+       */
+      event.preventDefault();
+
+      /**
+       ** 1. Creamos un objeto de pares clave/valor que representa los datos de un formulario HTML con la class FormData
+       ** 2. Permite construir fácilmente un conjunto de datos que luego se puede enviar a través de una solicitud HTTP
+       ** 3. Utilizamos el método `append` porque asigna nuevos valores al objeto de forma dinámica
+       ** 4. Recuerda que el primer parámetro de este método son los atributos `name=""` de los inputs
+       */
+      const formData = new FormData();
+      const credentials = {
+        username: user.username,
+        email: user.email,
+        password: definitivePassword,
+      };
+      formData.append("credentials", JSON.stringify(credentials));
+
       void (async (URL) => {
-        const formData = new FormData();
-        const credentials = {
-          username: user.username,
-          email: user.email,
-          password: definitivePassword,
-        };
-        formData.append("credentials", JSON.stringify(credentials));
-
         try {
-          const config = {
+          // const config = {
+          //   baseURL: URL,
+          //   // `timeout` especifica el número de milisegundos antes que la petición expire.
+          //   url: "/registro.php",
+          //   method: "POST",
+          //   headers: {
+          //     "Content-Type": " application/json; charset=UTF-8",
+          //     "Access-Control-Allow-Origin": "*",
+          //     "Access-Control-Allow-Headers": "*",
+          //     "Access-Control-Allow-Credentials": "true",
+          //     "Access-Control-Allow-Methods":
+          //       "GET, POST, PUT, PATCH, DELETE, OPTIONS",
+          //     Allow: " GET, POST, PUT, PATCH, DELETE, OPTIONS",
+          //     // Authorization: "Basic QWRtaW46MTIzNA==",
+          //     email: "admin@mail.com",
+          //     "X-Requested-With": "XMLHttpRequest",
+          //   },
+          //   // `auth` indica que HTTP Basic auth debe ser usado, y proveer credenciales.
+          //   // Esto establecerá una cabecera `Authorization`, sobrescribiendo cualquier cabecera personalizada
+          //   // existente `Authorization`, previamente a través de `headers`.
+          //   // Ten en cuenta que solo HTTP Basic auth es configurable a través de este parámetro.
+          //   // Para tokens Bearer y otros, usa la cabecera personalizada `Authorization` en su lugar.
+          //   auth: {
+          //     username: "Admin",
+          //     password: "1234",
+          //   },
+          //   data: credentials,
+          //   timeout: 10000,
+          // };
+          // console.log(config);
+          // console.log(config.data);
+          // await axios(config);
+          // // console.log(response);
+
+          const options: RequestInit = {
             method: "POST",
-            maxBodyLength: Infinity,
-            url: URL,
             headers: {
-              "Content-Type": " application/json; charset=UTF-8",
-              "Access-Control-Allow-Origin": "*",
-              "Access-Control-Allow-Headers": "*",
-              "Access-Control-Allow-Credentials": "true",
-              "Access-Control-Allow-Methods":
-                "GET, POST, PUT, PATCH, DELETE, OPTIONS",
-              Allow: " GET, POST, PUT, PATCH, DELETE, OPTIONS",
-              Authorization: "Basic QWRtaW46MTIzNA==",
+              "Content-Type": "multipart/form-data",
+              "Accept" : "*/*",
               email: "admin@mail.com",
+              Authorization: "Basic QWRtaW46MTIzNA==",
             },
-            data: credentials,
+            body: formData,
+            redirect: "follow",
           };
-          console.log(config);
-          console.log(config.data);
 
-          await axios(config);
+          const response: Response = await fetch(URL, options);
 
-          // console.log(response);
+          console.log(response);
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+
           // toast.success("Usuario registrado correctamente.");
-
-          /**
-           **  1. Agregando un nuevo amigo `newUser` al principio de la lista utilizando el método setAmigos.
-           **  2. Utilizando la sintaxis de spread operator (...) para copiar los usuarios existentes y luego agregar el nuevo usuario al inicio.
-           */
         } catch (error) {
-          error instanceof Error
-            ? console.error("Error obtenido:", error.message)
-            : console.error("Error desconocido");
+          if (error instanceof Error) {
+            console.error("Error obtenido:", error.message);
+            console.log(error.message);
+          } else {
+            console.error("Error desconocido");
+          }
         }
       })(URL_API);
     } else {
@@ -166,9 +197,6 @@ const OldForm = (): JSX.Element => {
   //   })(URL_API);
   // }, []);
 
-  //* PARA EL MODAL */
-  const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
-
   return (
     <>
       {/* LAS FUNCIONES Y LOS VALORES SE PASAN TODOS SIN PARÉNTESIS Y SIN ARROW FUNCTIONS */}
@@ -181,10 +209,10 @@ const OldForm = (): JSX.Element => {
         <input
           type="text"
           name="username"
-          id="usernameID"
+          id=""
           ref={inputRef}
-          onChange={handleInputOnChangeText}
           value={user.username}
+          onChange={handleInputOnChangeText}
           autoComplete=""
         />
 
@@ -192,9 +220,9 @@ const OldForm = (): JSX.Element => {
         <input
           type="text"
           name="email"
-          id="emailID"
-          onChange={handleInputOnChangeText}
+          id=""
           value={user.email}
+          onChange={handleInputOnChangeText}
           autoComplete=""
         />
 
@@ -202,9 +230,9 @@ const OldForm = (): JSX.Element => {
         <input
           type="password"
           name="password1"
-          id="password1ID"
-          onChange={handleInputOnChangeText}
+          id=""
           value={user.password1}
+          onChange={handleInputOnChangeText}
           autoComplete=""
         />
 
@@ -212,37 +240,22 @@ const OldForm = (): JSX.Element => {
         <input
           type="password"
           name="password2"
-          id="password2ID"
-          onChange={handleInputOnChangeText}
+          id=""
           value={user.password2}
+          onChange={handleInputOnChangeText}
           autoComplete=""
         />
 
-        <button
-          type="submit"
-          name="registro"
-          id="registroID"
-          disabled={isDisabled}>
+        <button type="submit" name="registro" id="" disabled={isDisabled}>
           SEND
         </button>
 
-        <button
-          type="reset"
-          name="reset"
-          id="resetID"
-          onClick={handleResetForm}>
+        <button type="reset" name="reset" id="" onClick={handleResetForm}>
           RESET
         </button>
       </form>
-
-      <Button text={"REGISTER"} onClick={() => setIsModalVisible(true)} />
-      {isModalVisible ? (
-        <Modal setIsModalVisible={setIsModalVisible}>
-          <h3>Registro</h3>
-        </Modal>
-      ) : null}
     </>
   );
 };
 
-export { OldForm };
+export { Register };
