@@ -63,6 +63,14 @@ class Proveedor
     return $arrAssoc;
   }
 
+  public function getProveedorByID2($id)
+  {
+    $consultaSQL = "SELECT * FROM proveedores WHERE proveedores.id = $id;"; // Aquí saco el producto a través de su ID y sus Foreign Keys asociados
+    $registro = $this->connection->query($consultaSQL);
+    $arrAssoc = $registro->fetch_all(MYSQLI_ASSOC); // Convertimos cada uno de los registros en forma de array asociativo (que tendrá sólo 1 elemento)
+    return $arrAssoc;
+  }
+
   // Static Methods
 
 
