@@ -92,7 +92,7 @@ class Router
         // var_dump($matches);
         $pathVariables = array_slice($matches, 1);
 
-        call_user_func_array([$controllerInstance, $method], array_slice($matches, 1));
+        call_user_func_array([$controllerInstance, $method], $pathVariables);
 
         return; // Si entra en este `if`, ejecuta el código y sale de la función para que no se ejecute `error404()`
       }
