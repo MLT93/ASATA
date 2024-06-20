@@ -67,22 +67,19 @@ class Router
 
     /* 
       1. Controlamos las rutas que posea el array `routes[]`, donde `$key` será cada ruta y `$value` el array anidado en esa clave con el controller y el método 
-      2. `preg_replace` toma `$key` y sustituye el primer parámetro con el segundo. Todo ello utilizando expresiones regulares porque nunca sabremos exactamente qué posee esa `Path Variable`
+      2. `preg_replace` toma `$key` y sustituye el primer parámetro con el segundo. Se utilizan expresiones regulares porque nunca sabremos exactamente qué posee esa `Path Variable`
       3. El primer parámetro busca todos el contenido alfanumérico que esté entre `{}` => /ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/almacen/productos/detail/{id}
       4. El segundo parámetro reemplaza el primero con contenido alfanumérico
       5. El tercer parámetro es la variable donde se realizan los cambios
       6. Asignamos a una variable para poder realizar el `if`
     */
     foreach ($this->getRoutes() as $key => $value) {
-      $pathPattern = preg_replace('#{[a-zA-Z][a-zA-Z0-9]*}#', '([a-zA-Z0-9]+)', $key); // #:[a-zA-Z][a-zA-Z0-9]*# con `:` antes => /ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/almacen/productos/detail/:id
+      $pathPattern = preg_replace('#{[a-zA-Z][a-zA-Z0-9]*}#', '([a-zA-Z0-9]+)', $key); // #:[a-zA-Z][a-zA-Z0-9]*# con `:` al principio => /ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/almacen/productos/detail/:id
 
-      /* 
-        1. Comprobamos si alguna de las `$pathPattern` coinciden con la URI del navegador, y se almacena en `$matches`
-        2. Utilizamos `$value`
-      */
+      // Comprobamos si alguna de las `$pathPattern` coinciden con la URI del navegador, y se almacena en `$matches`
       if (preg_match("#^$pathPattern$#", $uri, $matches)) {
 
-        // Asignamos la información dinamicamente para conseguir cada controller y su método correspondiente por cada ruta específica
+        // Utilizamos `$value` para asignar la información dinamicamente de cada controller y su método correspondiente por cada ruta específica
         $controller = $value['controller'];
         $method = $value['method'];
 
