@@ -62,21 +62,21 @@ VALUES
     1,
     'admin',
     'admin@mail.com',
-    '$2y$10$ocG4duDex0JETqxml4RnbuwUxGnKx0VCkvQDa8PUVeafr9OQjpYam',
+    '1234',
     ''
   ),
   (
     2,
     'panchu89',
     'user1@mail.com',
-    '$2y$10$N5h/AAPK23b3uvEiS/w4KeKsLzm9V1U8FOnuX56msvNeXmx5NEF4S',
+    '1234',
     ''
   ),
   (
     2,
     'juani23',
     'user2@mail.com',
-    '$2y$10$NxXN8ybG6sYo0qUejG35q.0gdgKhwjY5yEwaUh.pgPR1DQt3.KcMm',
+    '1234',
     ''
   );
 

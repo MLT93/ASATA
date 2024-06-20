@@ -1,13 +1,11 @@
 <nav>
 
     <?php
-    require_once("./classes/UsuarioDB.php");
-    require_once("./functions/authentication.php");
+    require_once("../classes/UsuarioDB.php");
+    require_once("../functions/authentication.php");
     require_once("../vendor/autoload.php");
 
-    use UserDB\Usuario as Usuario;
-
-    $dotenv = Dotenv\Dotenv::createImmutable("./");
+    $dotenv = Dotenv\Dotenv::createImmutable("../");
     $dotenv->load();
 
     use GuzzleHttp\Client;
@@ -63,7 +61,7 @@
             //agrego cookie del token para la API si el usuario es quien dice ser
             setcookie('token', $access_token, time() + 3600, "/"); // Duración de 1h (igual que la del usuario)
 
-            $infoUsuario = Usuario::mostrarUsuario($_SESSION['usuario']);
+            $infoUsuario = \UserDB\Usuario::mostrarUsuario($_SESSION['usuario']);
             echo "<a href='./newpedido.php'>🍜 HAZ PEDIDO </a>";
             echo "<a href='./historial.php'>🗒️HISTORIAL PEDIDOS</a>";
             echo "<a href='./lista_facturas.php'>🗒️HISTORIAL FACTURAS</a>";

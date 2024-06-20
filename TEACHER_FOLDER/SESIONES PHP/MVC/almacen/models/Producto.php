@@ -32,7 +32,7 @@ class Producto
     INNER JOIN proveedores ON productos.proveedor_id = proveedores.id;"; // Aquí saco todos los productos y sus Foreign Keys asociados
     $registros = $this->connection->query($consultaSQL); // Utilizamos los métodos de la instancia `\mysqli`. `query` ejecuta la sentencia y devuelve cosas, `execute` ejecuta solo la sentencia
     // $arrAssoc = $registros->fetch_assoc(); // Convertimos cada uno de los registros en forma de array asociativo
-    $arrAssoc = $registros->fetch_all(MYSQLI_ASSOC); // Convertimos cada uno de los registros en forma de array asociativo
+    $arrAssoc = $registros->fetch_all(MYSQLI_ASSOC); // Convertimos cada uno de los registros en forma de matriz asociativa
     return $arrAssoc;
   }
 

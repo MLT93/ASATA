@@ -60,7 +60,7 @@ session_start();
     $password = $_REQUEST['pass'];
 
     //comprobar que el email y password estan en la BD y pertenecen al mismo usuario
-    if(Usuario::verificarUsuario($email,$password)){
+    if(Usuario::verificarUsuario($email, $password)){
 
       //aqui genero instancia de sesion
       $misesion = new Sesion();

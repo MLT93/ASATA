@@ -1,0 +1,1 @@
+A la hora de clonar el repositorio, en la carpeta `backend` hay que proporcionar un archivo `.env` con las variables `SIGNATURE_KEY` y `CIPHER_KEY` (con cualquier valor). Es para que encuentre las claves y funcione la creación de JWT.

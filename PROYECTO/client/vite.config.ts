@@ -10,9 +10,9 @@ export default defineConfig({
     proxy: {
       // Las peticiones ahora deben empezar todas por `/api` para que la encuentre
       "/api": {
-        target: "http://localhost:80/ASATA/PROYECTO/server", // URL del backend PHP
+        target: "http://localhost:80/ASATA/PROYECTO/server/backend", // URL del backend PHP
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, "/credentials"), // Reescritura de `/api` por `/credentials` (la carpeta donde está el archivo `registro.php`)
+        rewrite: (path) => path.replace(/^\/api/, "/access"), // Reescritura de `/api/login.php` por `/access/login.php` (la carpeta donde está el archivo `/ASATA/PROYECTO/server/backend/login.php`)
       },
     },
   },

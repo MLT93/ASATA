@@ -1,0 +1,9 @@
+<?php
+// DEFINO UNAS CONSTANTES CON LA INFORMACIÓN NECESARIA PARA CONECTARME A LA DB con `\mysqli`
+// ? `DEFINE()` ESTRUCTURA NUEVAS VARIABLES CONSTANTES CON FORMATO CLAVE VALOR. POSEE 2 ARGUMENTOS
+// 1. Key
+// 1. Value
+define('DB_HOSTT', 'localhost:3306');
+define('DB_USERR', 'root');
+define('DB_PASSS', 'mysql');
+define('DB_NAMEE', 'hippoclothes');
