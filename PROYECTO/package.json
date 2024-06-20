@@ -8,7 +8,7 @@
     "install-client": "cd client/ && npm i",
     "start-client": "cd client/ && npm run dev:1",
     "clean-client-cache-prebuild": "cd client/ && npm cache clean --force && rm -rf node_modules package-lock.json && npm i && npm dedupe",
-    "build-client": "cd client/ npm run build",
+    "build-client": "cd client/ && npm run build",
     "install-server": "cd server/ && composer install",
     "start-server": "cd server/ && sudo systemctl restart apache2"
   },
