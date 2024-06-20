@@ -9,7 +9,7 @@
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASS', '');
-define('DB_NAME', 'gestion_fichajes');
+define('DB_NAME', 'gameclub');
 
 /*
   1. Este es el punto de entrada de mi aplicación desde el directorio raíz. Aquí se cargan todos los archivos
@@ -26,23 +26,27 @@ $router = new Router();
   4. Elijo el controlador
   5. Elijo el método (action) 
 */
-$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/fichajes/', 'Controller', 'index');
-$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/fichajes/create', 'Controller', 'create');
-$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/fichajes/store', 'Controller', 'store');
-$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/fichajes/detail', 'Controller', 'detail');
+$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/gameclubExercise/index', 'Controller', 'index');
+$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/gameclubExercise/create', 'Controller', 'create');
+// $router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/gameclubExercise/store', 'Controller', 'store');
+// $router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/gameclubExercise/detail/', 'Controller', 'queryParams'); // Aquí deberé pasarle el `Query Param` para que lo guarde en `$_GET`
+$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/gameclubExercise/detail/{id}', 'Controller', 'pathVariables'); // Aquí deberé pasarle el `Path Variable`
 
 // Obtener la ruta solicitada
 $_SERVER["REQUEST_URI"]; // Esto devuelve toda la URI con las Query Params y todo
-parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH); // Esto devuelve la URI sin Query Params
+parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH); // Esto devuelve un string con la URI sin Query Params
 parse_url($_SERVER["REQUEST_URI"], PHP_URL_QUERY); // Esto devuelve un string con los Query Params
 
 $uri = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 $query = parse_url($_SERVER["REQUEST_URI"], PHP_URL_QUERY);
 
-// `dispatch` será el método que enrute la página
+parse_str($query, $queryParams); // Esta función convierte el string en un array asociativo y lo guarda en la variable `$queryParams` que se asigna como segundo argumento
+// print_r($queryParams);
+
+// `dispatch` será el método que enrute la página, además maneja las `Query Params` y las `Path Variables`
 $router->dispatch($uri);
 
-// Si la variable `$queryParams` no está vacía, asocio los key/value que posea el array a la súper variable `$_GET` para que queden accesibles en todo el proyecto
+// Si la variable `$queryParams` no está vacía, asocio los key/value que posea este array a la súper variable `$_GET` para que queden accesibles las Query Params en todo el proyecto
 if (!empty($queryParams)) {
   foreach ($queryParams as $key => $value) {
     $_GET[$key] = $value;

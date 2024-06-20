@@ -18,11 +18,13 @@ require_once('./Router.php'); // Aquí llamo al enrutador para que gestione las 
 
 $router = new Router();
 
-// El método `addRoute` añade una nuevo endpoint a mi sitio
+// El método `addRoute()` añade un nuevo `Endpoint` a mi sitio
 /*
-  1. La ruta principal comienza desde la ruta raíz de mi proyecto (desde el host del servidor). En este caso es 'localhost'
-  2. elijo el controlador
-  3. elijo el método (action) 
+  1. La ruta raíz o base, es el directorio base donde está alojado el proyecto (/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/gameclubExercise/)
+  2. La ruta del host, es el servidor ('http://localhost')
+  3. Por lo tanto, deberé escribir la ruta raíz más el `Endpoint` que yo desee (`/index`, `/create`, `/store`, `/detail{id}`) en el primer parámetro de `addRoute()`
+  4. Elijo el controlador
+  5. Elijo el método (action) 
 */
 $router->addRoute( '/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/almacen/', 'ProductoController', 'index');
 $router->addRoute( '/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/almacen/productos/create', 'ProductoController', 'create');
