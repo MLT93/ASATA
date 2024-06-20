@@ -27,11 +27,12 @@ $router = new Router();
 $router->addRoute( '/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/almacen/', 'ProductoController', 'index');
 $router->addRoute( '/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/almacen/productos/create', 'ProductoController', 'create');
 $router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/almacen/productos/store', 'ProductoController', 'store');
-$router->addRoute( '/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/almacen/productos/detail', 'ProductoController', 'detail'); // Aquí deberé pasarle el Query Param para que lo guarde en `$_GET`
+$router->addRoute( '/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/almacen/productos/detail', 'ProductoController', 'detail'); // Aquí deberé pasarle el `Query Param` para que lo guarde en `$_GET`
+$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/almacen/productos/detail/{id}', 'ProductoController', 'detail2'); // Aquí deberé pasarle el `Path Variable` para que lo guarde en `$_GET`
 $router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/almacen/proveedores/', 'ProveedorController', 'index');
 $router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/almacen/proveedores/create', 'ProveedorController', 'create');
 $router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/almacen/proveedores/store', 'ProveedorController', 'store');
-$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/almacen/proveedores/detail', 'ProveedorController', 'detail'); // Aquí deberé pasarle el Query Param para que lo guarde en `$_GET`
+$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/almacen/proveedores/detail', 'ProveedorController', 'detail'); // Aquí deberé pasarle el `Query Param` para que lo guarde en `$_GET`
 
 // Obtener la ruta solicitada
 $_SERVER["REQUEST_URI"]; // Esto devuelve toda la URI con las Query Params y todo
@@ -45,9 +46,12 @@ parse_str($query, $queryParams); // Esta función convierte el string en un arra
 // print_r($queryParams);
 
 // `dispatch` será el método que enrute la página
-$router->dispatch($uri);
+// $router->dispatch($uri); // Este ya no sirve gracias al `dispatch2`
 
-// Si la variable `$queryParams` no está vacía, asocio los key/value que posea el array a la súper variable `$_GET` para que queden accesibles en todo el proyecto
+// `dispatch2` será el método que enrute la página y maneje además las Path Variables
+$router->dispatch2($uri);
+
+// Si la variable `$queryParams` no está vacía, asocio los key/value que posea este array a la súper variable `$_GET` para que queden accesibles las Query Params en todo el proyecto
 if (!empty($queryParams)) {
   foreach ($queryParams as $key => $value) {
     $_GET[$key] = $value;

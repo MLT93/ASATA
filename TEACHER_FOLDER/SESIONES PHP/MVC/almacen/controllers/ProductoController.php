@@ -64,6 +64,14 @@ class ProductoController
     require "views/detail_producto.php"; // Aquí existirá las variables `$producto`
   }
 
+  public function detail2($id) // Muestra sólo 1 a través del ID
+  {
+    $productoModel = new Producto(); // Instancia de `Producto` donde se realiza la conexión a la DB
+    $producto = $productoModel->getProductoByID2($id); // Obtengo la información de la DB y la envío a la View `detail_producto.php`
+
+    require "views/detail_producto.php"; // Aquí existirá las variables `$producto`
+  }
+
   // Static Methods
 
 

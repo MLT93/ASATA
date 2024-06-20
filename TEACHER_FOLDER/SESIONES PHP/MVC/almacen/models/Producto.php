@@ -70,6 +70,18 @@ class Producto
     return $arrAssoc;
   }
 
+  public function getProductoByID2($id)
+  {
+    $consultaSQL = "SELECT productos.id, productos.nombre, productos.precio, productos.stock, categorias.nombre AS categoria, proveedores.nombre AS proveedor 
+    FROM productos 
+    INNER JOIN categorias ON productos.categoria_id = categorias.id 
+    INNER JOIN proveedores ON productos.proveedor_id = proveedores.id
+    WHERE productos.id = $id;"; // Aquí saco el producto a través de su ID y sus Foreign Keys asociados
+    $registro = $this->connection->query($consultaSQL);
+    $arrAssoc = $registro->fetch_all(MYSQLI_ASSOC); // Convertimos cada uno de los registros en forma de array asociativo (que tendrá sólo 1 elemento)
+    return $arrAssoc;
+  }
+
   // Static Methods
 
 
