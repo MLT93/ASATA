@@ -1,4 +1,5 @@
 <?php
+// QUITAR PROYECTO REACT DE `htdocs`
 //* PERMITO CORS DE UNA DIRECCIÓN URL ESPECÍFICA */
 header("Access-Control-Allow-Origin: http://localhost:5173");
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
@@ -35,11 +36,11 @@ $targetUrl = 'http://localhost:80/ASATA/PROYECTO/server/credentials/registro.php
 // curl_close($ch);
 
 //* OBTENGO LAS CREDENCIALES AUTH Y LA INFO AGREGADA EN EL HEADER */
-// var_dump($_SERVER);
+var_dump($_SERVER);
 if (isset($_SERVER)) {
-  echo "User: ". $_SERVER["PHP_AUTH_USER"] . "<br/>";
-  echo "Password: ". $_SERVER["PHP_AUTH_PW"] . "<br/>";
-  echo "Email: ". $_SERVER["HTTP_EMAIL"] . "<br/>";
+  // echo "User: ". $_SERVER["PHP_AUTH_USER"] . "<br/>";
+  // echo "Password: ". $_SERVER["PHP_AUTH_PW"] . "<br/>";
+  // echo "Email: ". $_SERVER["HTTP_EMAIL"] . "<br/>";
 } else {
   echo "<h3>No se han recibido las credenciales</h3>";
 }

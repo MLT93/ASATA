@@ -7,6 +7,7 @@ import { Footer } from "./components/10_Footer/Footer";
 import { Aside } from "./components/09_Aside/Aside";
 import Dev from "./pages/01_Dev/Dev";
 import Access from "./pages/02_Access/Access";
+import Home from "./pages/03_Home/Home";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
       <Routes>
         <Route path="/dev" element={<Dev />} />
         <Route path="/access" element={<Access />} />
-        <Route path="/" element={"<Home />"} />
+        <Route path="/" element={<Home />} />
       </Routes>
       <Footer />
     </BrowserRouter>

@@ -27,6 +27,7 @@ const Card = ({
   isCardPrimary,
   isCardSecondary,
   isCardTertiary,
+  isCardQuaternary,
   svgCard,
   preTitle,
   title,
@@ -39,6 +40,7 @@ const Card = ({
   isCardPrimary?: boolean;
   isCardSecondary?: boolean;
   isCardTertiary?: boolean;
+  isCardQuaternary?: boolean;
   svgCard?: JSX.Element | string;
   preTitle: string;
   title: string;
@@ -53,6 +55,7 @@ const Card = ({
     is_card_primary: isCardPrimary,
     is_card_secondary: isCardSecondary,
     is_card_tertiary: isCardTertiary,
+    is_card_quaternary: isCardQuaternary,
   });
 
   return (
@@ -61,7 +64,7 @@ const Card = ({
         {isCardTertiary ? null : svgCard}
       </div>
       <div className="container_card_text">
-        <Text size={"pa_bold"} text={`${preTitle}`} />
+        {isCardQuaternary ? null: <Text size={"pa_bold"} text={`${preTitle}`} />}
         <Text size={"h3"} text={`${title}`} />
         {isCardTertiary ? null : <Text size={"pa_bold"} text={`${subtitle}`} />}
       </div>

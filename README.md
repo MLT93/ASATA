@@ -8,7 +8,7 @@
 
 - Explicación de una Pila de desarrollo: [**¿Qué son las pilas de desarrollo?**](https://www.noitech.net/es/la-mejor-pila-de-tecnologia-para-sus-proyectos-guia-completa/)
 
-- A la hora de clonar el repositorio, al lado de cada `.gitignore` hay que proporcionar un archivo `.env` con las variables `CIPHER_KEY` y `SIGNATURE_KEY` (cualquier valor es válido) para que encuentre las claves y funcione la app. Además, hay que instalar `Composer` en todos los lugares donde aparezcan los `composer.lock` y `composer.json` para crear la carpeta `vendor` y así actualizar los paquetes. Esto se hace yendo a la ruta donde están esos archivos y realizando el siguiente comando:
+- A la hora de clonar el repositorio, al lado de cada `.gitignore` hay que proporcionar un archivo `.env` con las variables `SIGNATURE_KEY` y `CIPHER_KEY` (cualquier valor es válido) para que encuentre las claves y funcione la app. Además, hay que instalar `Composer` en todos los lugares donde aparezcan los `composer.lock` y `composer.json` para crear la carpeta `vendor` y así actualizar los paquetes. Esto se hace yendo a la ruta donde están esos archivos y realizando el siguiente comando:
 
 ```bash
 composer install
