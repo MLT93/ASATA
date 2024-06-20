@@ -13,7 +13,7 @@ DROP TABLE IF EXISTS roles;
 CREATE TABLE
   `roles` (
     id INT (10) PRIMARY KEY AUTO_INCREMENT,
-    rol VARCHAR(5) DEFAULT 'User' COMMENT 'Admin, User, Proveedor',
+    rol VARCHAR(5) DEFAULT 'User' COMMENT 'Admin, User',
     descripcion TEXT
   ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_unicode_ci;
 
@@ -22,7 +22,7 @@ INSERT INTO
 VALUES
   (1, 'Admin'),
   (2, 'User'),
-  (3, 'Proveedor');
+  (3, 'User');
 
 /* Tabla metodos_pago */
 DROP TABLE IF EXISTS metodos_pago;
@@ -50,7 +50,7 @@ CREATE TABLE
     id_rol INT (10) NOT NULL,
     username VARCHAR(100) NOT NULL,
     email VARCHAR(50) UNIQUE NOT NULL,
-    hashedPassword VARCHAR(16) NOT NULL,
+    hashedPassword VARCHAR(255) NOT NULL,
     imagen VARCHAR(255),
     FOREIGN KEY (id_rol) REFERENCES roles (id) ON DELETE CASCADE ON UPDATE CASCADE
   ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_unicode_ci;
@@ -269,7 +269,7 @@ DROP TABLE IF EXISTS categorias;
 CREATE TABLE
   `categorias` (
     id INT (10) PRIMARY KEY AUTO_INCREMENT,
-    categoria INT (10) NOT NULL COMMENT 'Gorras, T-Shirts, Sudaderas, Gadgets, Zapatillas',
+    categoria VARCHAR (255) NOT NULL COMMENT 'Gorras, T-Shirts, Sudaderas, Gadgets, Zapatillas',
     imagen VARCHAR (255)
   ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_unicode_ci;
 

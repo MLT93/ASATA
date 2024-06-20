@@ -42,7 +42,7 @@
 import React, { ChangeEvent } from "react";
 
 export function UncontrolledForm() {
-  const [values, setValues] = React.useState({
+  const [values, setValues] = useState({
     email: "",
     password: "",
   });
@@ -111,7 +111,7 @@ export function UncontrolledForm() {
 import React, { FormEvent } from "react";
 
 export function ControlledForm() {
-  const formRef = React.useRef<HTMLFormElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
 
   function handleSubmit(evt: FormEvent<HTMLFormElement>) {
     evt.preventDefault();
@@ -141,6 +141,140 @@ export function ControlledForm() {
   );
 }
 ```
+
+- **Ejemplo de Traditional Form React**:
+
+En este enfoque, eliminamos la función `handleInputOnChangeText` y el uso de `useState` para almacenar los valores del formulario. El navegador enviará los datos directamente a la URL especificada en el atributo `action` del formulario cuando se haga clic en el botón de envío (`submit`).
+
+Aquí está el código modificado:
+
+```javascript
+import { useEffect, useRef, useState } from "react";
+
+const Login = (): JSX.Element => {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [isDisabled, setIsDisabled] = useState(true);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
+
+  const handleResetForm = () => {
+    if (inputRef.current) {
+      inputRef.current.value = "";
+      inputRef.current.form?.reset();
+      inputRef.current.focus();
+    }
+  };
+
+  const handleFormChange = (event: ChangeEvent<HTMLFormElement>) => {
+    const form = event.target as HTMLFormElement;
+    const isFilled =
+      form.username.value.trim() !== "" && form.password.value.trim() !== "";
+    setIsDisabled(!isFilled);
+  };
+
+  return (
+    <>
+      <form action="/api/registro.php" method="post" onChange={handleFormChange}>
+        <label htmlFor="usernameID">Username</label>
+        <input
+          type="text"
+          name="username"
+          id="usernameID"
+          ref={inputRef}
+          autoComplete="off"
+        />
+
+        <label htmlFor="password1ID">Password</label>
+        <input
+          type="password"
+          name="password"
+          id="password1ID"
+          autoComplete="off"
+        />
+
+        <button type="submit" name="login" id="loginID" disabled={isDisabled}>
+          SEND
+        </button>
+
+        <button
+          type="reset"
+          name="reset"
+          id="resetID"
+          onClick={handleResetForm}>
+          RESET
+        </button>
+      </form>
+    </>
+  );
+};
+
+export { Login };
+```
+
+### Explicación
+
+1. **Eliminación de `useState` y `onChange` en los inputs**: Ya no se utiliza el estado `user` para almacenar los valores de los inputs ni la función `handleInputOnChangeText` para actualizar estos valores.
+2. **Deshabilitar el botón de envío**: En lugar de actualizar el estado del formulario directamente, se agrega un evento `onChange` al formulario. Este evento se utiliza para habilitar o deshabilitar el botón de envío en función de si los campos del formulario están llenos.
+3. **Reset del formulario**: La función `handleResetForm` ahora reinicia el formulario y establece el foco en el primer input.
+
+### PHP Backend
+
+El backend PHP seguirá siendo el mismo que en la respuesta anterior, capaz de manejar una solicitud POST con los campos `username` y `password`.
+
+```php
+<?php
+header("Access-Control-Allow-Origin: http://localhost:5173");
+header("Access-Control-Allow-Credentials: true");
+header("Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, OPTIONS");
+header("Allow: GET, POST, PUT, PATCH, DELETE, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type, Accept, Authorization, X-Requested-With, X-Auth-Token, Origin, Application, X-API-KEY, Access-Control-Request-Method");
+header("Content-Type: application/json; charset=UTF-8");
+
+// Obtener los datos del formulario
+$username = $_POST['username'] ?? '';
+$password = $_POST['password'] ?? '';
+
+if (!empty($username) && !empty($password)) {
+    // Conexión a la base de datos (ajusta estos valores según tu configuración)
+    $servername = "localhost";
+    $database = "nombre_de_tu_base_de_datos";
+    $db_username = "tu_usuario";
+    $db_password = "tu_contraseña";
+
+    // Crear conexión
+    $conn = new mysqli($servername, $db_username, $db_password, $database);
+
+    // Verificar conexión
+    if ($conn->connect_error) {
+        die(json_encode(["success" => false, "message" => "Connection failed: " . $conn->connect_error]));
+    }
+
+    // Comprobar usuario en la base de datos
+    $sql = "SELECT * FROM usuarios WHERE username = ? AND password = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ss", $username, $password);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        // Usuario encontrado
+        echo json_encode(["success" => true, "message" => "Login successful"]);
+    } else {
+        // Usuario no encontrado
+        echo json_encode(["success" => false, "message" => "Invalid username or password"]);
+    }
+
+    $stmt->close();
+    $conn->close();
+} else {
+    echo json_encode(["success" => false, "message" => "Username and password are required"]);
+}
+?>
+```
+
+En este enfoque, el formulario en el frontend se envía directamente al backend PHP sin necesidad de gestionar los valores de los inputs en el estado del componente React, simplificando la gestión de datos y reduciendo la complejidad del código del frontend.
 
 - **Validación de Form React:**
 
@@ -208,123 +342,124 @@ export function Form() {
 }
 ```
 
-- **Ejemplo de código PHP 1**
+- **Ejemplo de código PHP**
 
-```php
-<?php
-// Establecer encabezados CORS para permitir solicitudes desde cualquier origen
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Credentials: true");
-header("Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, OPTIONS");
-header("Access-Control-Allow-Headers: Content-Type, Accept, Authorization, X-Requested-With, X-Auth-Token, Origin, Application, X-API-KEY, Access-Control-Request-Method");
-header("Allow: GET, POST, PUT, PATCH, DELETE, OPTIONS");
+La función `json_decode(file_get_contents("php://input"))` en PHP se usa para obtener y decodificar el cuerpo de la solicitud HTTP en formato JSON. Es especialmente útil cuando se trabaja con APIs RESTful, donde las solicitudes suelen enviar datos en formato JSON en el cuerpo de la solicitud.
 
-require('configBD.php');
-$metodo = $_SERVER['REQUEST_METHOD'];
-$tbl_amigos = 'tbl_amigos';
-$dirLocal = "fotos_amigos";
-$extensionesPermitidas = array("jpg", "jpeg", "png", "gif");
+### ¿Por qué se usa `php://input`?
 
-switch ($metodo) {
-    case 'GET':
-        $query = "SELECT * FROM $tbl_amigos ORDER BY id DESC";
-        $resultado = mysqli_query($con, $query);
+`php://input` es un flujo de solo lectura que permite acceder a los datos sin procesar del cuerpo de la solicitud. Esto es útil en situaciones en las que los datos se envían como un flujo, como en las solicitudes POST con datos JSON. 
 
-        $usuarios = array();
-        while ($fila = mysqli_fetch_assoc($resultado)) {
-            $usuarios[] = $fila;
-        }
-        echo json_encode($usuarios);
-        break;
+### ¿Por qué no usar `$_POST`?
 
-    case 'POST':
-        if (isset($_FILES['avatar'])) {
-            $archivoTemporal = $_FILES['avatar']['tmp_name'];
-            $nombreArchivo = $_FILES['avatar']['name'];
+- **Datos JSON:** `$_POST` solo funciona con datos enviados como `application/x-www-form-urlencoded` o `multipart/form-data`. Si estás enviando datos en formato JSON, `$_POST` no podrá acceder a ellos.
+- **Datos sin procesar:** `php://input` proporciona acceso a los datos sin procesar del cuerpo de la solicitud, lo que es ideal para trabajar con JSON.
 
-            $extension = strtolower(pathinfo($nombreArchivo, PATHINFO_EXTENSION));
+### Ejemplo detallado
 
-            if (in_array($extension, $extensionesPermitidas)) {
-                // Generar un nombre único y seguro para el archivo
-                $nombreArchivo = substr(md5(uniqid(rand())), 0, 10) . "." . $extension;
-                $rutaDestino = $dirLocal . '/' . $nombreArchivo;
+#### 1. Envío de datos desde el frontend (React Vite) después de configurar mi proxy virtual en `vite.config.ts`:
 
-                // Mover el archivo a la ubicación deseada
-                if (move_uploaded_file($archivoTemporal, $rutaDestino)) {
-                    $nombre = ucwords($_POST['nombre']);
-                    $email = trim($_POST['email']);
-                    $telefono = trim($_POST['telefono']);
+Aquí se envían datos JSON en el cuerpo de una solicitud POST.
 
-                    $query = "INSERT INTO $tbl_amigos (nombre, email, telefono, avatar) VALUES ('$nombre', '$email', '$telefono', '$nombreArchivo')";
-                    if (mysqli_query($con, $query)) {
-                        // Consultar el último amigo insertado
-                        $lastInsertedId = mysqli_insert_id($con);
-                        $selectQuery = "SELECT * FROM $tbl_amigos WHERE id = $lastInsertedId";
-                        $result = mysqli_query($con, $selectQuery);
-                        $lastAmigo = mysqli_fetch_assoc($result);
+```javascript
+const handleSubmitForm = async (event: {
+  target: EventTarget;
+  preventDefault: () => void;
+}) => {
+  event.preventDefault();
 
-                        // Devolver los detalles del último amigo como JSON
-                        echo json_encode($lastAmigo);
-                    } else {
-                        echo json_encode(array('error' => 'Error al crear amigo: ' . mysqli_error($con)));
-                    }
-                } else {
-                    echo json_encode(array('error' => 'Error al mover el archivo'));
-                }
-            } else {
-                echo json_encode(array('error' => 'Tipo de archivo no permitido'));
-            }
-        }
-        break;
-}
-mysqli_close($con);
+  if (user.username && user.password) {
+    try {
+      const response = await fetch('/api/registro.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(user),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        console.log("Login successful:", data);
+      } else {
+        console.error("Login failed:", data);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  } else {
+    console.error("Username and password are required.");
+  }
+};
 ```
 
-- **Ejemplo de código PHP 2:**
+#### 2. Recepción y manejo de datos en el backend (PHP):
+
+Aquí se obtiene y decodifica el JSON enviado en la solicitud.
 
 ```php
 <?php
-//* PERMITO CORS DE UNA DIRECCIÓN URL ESPECÍFICA */
 header("Access-Control-Allow-Origin: http://localhost:5173");
 header("Access-Control-Allow-Credentials: true");
 header("Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, OPTIONS");
-header("Access-Control-Allow-Headers: Content-Type, Accept, Authorization, X-Requested-With, X-Auth-Token, Origin, Application, X-API-KEY, Access-Control-Request-Method");
 header("Allow: GET, POST, PUT, PATCH, DELETE, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type, Accept, Authorization, X-Requested-With, X-Auth-Token, Origin, Application, X-API-KEY, Access-Control-Request-Method");
+header("Content-Type: application/json; charset=UTF-8");
 
-//* OBTENGO LA INFORMACIÓN DEL SERVIDOR */
-// var_dump($_SERVER);
+// Obtener los datos sin procesar del cuerpo de la solicitud
+$input = json_decode(file_get_contents("php://input"), true);
 
-//* OBTENGO LAS CREDENCIALES AUTH Y LA INFO AGREGADA EN EL HEADER */
-if (isset($_SERVER)) {
-  echo $_SERVER["PHP_AUTH_USER"] . "<br/>";
-  echo $_SERVER["PHP_AUTH_PW"] . "<br/>";
-  echo $_SERVER["HTTP_EMAIL"] . "<br/>";
+if (isset($input['username']) && isset($input['password'])) {
+    $username = $input['username'];
+    $password = $input['password'];
+
+    // Conexión a la base de datos (ajusta estos valores según tu configuración)
+    $servername = "localhost";
+    $database = "nombre_de_tu_base_de_datos";
+    $db_username = "tu_usuario";
+    $db_password = "tu_contraseña";
+
+    // Crear conexión
+    $conn = new mysqli($servername, $db_username, $db_password, $database);
+
+    // Verificar conexión
+    if ($conn->connect_error) {
+        die(json_encode(["success" => false, "message" => "Connection failed: " . $conn->connect_error]));
+    }
+
+    // Comprobar usuario en la base de datos
+    $sql = "SELECT * FROM usuarios WHERE username = ? AND password = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ss", $username, $password);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        // Usuario encontrado
+        echo json_encode(["success" => true, "message" => "Login successful"]);
+    } else {
+        // Usuario no encontrado
+        echo json_encode(["success" => false, "message" => "Invalid username or password"]);
+    }
+
+    $stmt->close();
+    $conn->close();
 } else {
-  echo "<h3>No se ha recibido información</h3>";
+    echo json_encode(["success" => false, "message" => "Username and password are required"]);
 }
-
-$method = $_SERVER['REQUEST_METHOD'];
-// var_dump($metodo);
-
-switch ($method) {
-  case 'GET':
-    # code...
-    break;
-  case 'POST':
-    # code...
-    break;
-  case 'PUT':
-    # code...
-    break;
-  case 'DELETE':
-    # code...
-    break;
-
-  default:
-    # code...
-    break;
-}
+?>
 ```
+
+### Detalle del código PHP
+
+- `file_get_contents("php://input")`: Lee el contenido sin procesar del cuerpo de la solicitud.
+- `json_decode(..., true)`: Decodifica el JSON en un array asociativo de PHP.
+- `isset($input['username']) && isset($input['password'])`: Verifica que los campos `username` y `password` existan en los datos decodificados.
+- `mysqli`: Se usa para conectarse a la base de datos y ejecutar consultas para verificar las credenciales del usuario.
+
+### Resumen
+
+Usar `json_decode(file_get_contents("php://input"))` permite manejar solicitudes con datos JSON de forma efectiva, proporcionando flexibilidad para trabajar con APIs modernas y enviar datos complejos entre el frontend y el backend.
 
 - **Configurar CORS:**
 
@@ -336,13 +471,12 @@ La forma más directa de resolver problemas de CORS es configurando el servidor 
 
 ```php
 <?php
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE OPTIONS");
-header("Access-Control-Allow-Headers: X-, Content-Type, Authorization");
-
-if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
-    exit(0);
-}
+header("Access-Control-Allow-Origin: http://localhost:5173");
+header("Access-Control-Allow-Credentials: true");
+header("Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, OPTIONS");
+header("Allow: GET, POST, PUT, PATCH, DELETE, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type, Accept, Authorization, X-Requested-With, X-Auth-Token, Origin, Application, X-API-KEY, Access-Control-Request-Method");
+header("Content-Type: application/json; charset=UTF-8");
 
 // Tu lógica de manejo de solicitudes aquí
 ?>
@@ -350,7 +484,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 
 2. `Uso de un Proxy`
 
-Otra forma de evitar problemas de CORS es configurando un proxy en tu servidor de desarrollo. Esto implica redirigir las solicitudes de tu aplicación React a través de un servidor proxy que hace la solicitud real al servidor PHP. Puedes configurar un proxy en tu proyecto `React` modificando el archivo `package.json` para redirigir las solicitudes de la API:
+Otra forma de evitar problemas de CORS es configurando un proxy en tu servidor de desarrollo `Create-React-App`. Esto implica redirigir las solicitudes de tu aplicación React a través de un servidor proxy que hace la solicitud real al servidor PHP. Puedes configurar un proxy en tu proyecto `React` modificando el archivo `package.json` para redirigir las solicitudes de la API:
 
 ```json
 {
@@ -370,6 +504,12 @@ Otra forma de evitar problemas de CORS es configurando un proxy en tu servidor d
   },
   "proxy": "http://localhost:80" // Cambia esto por la URL de tu servidor PHP
 }
+```
+
+También se puede hacer en `React Vite`:
+
+```tsx
+
 ```
 
 3. `Uso de Nginx o Apache como Proxy`
@@ -413,53 +553,6 @@ En tu archivo `.htaccess` o en la configuración de tu servidor Apache:
     ProxyPass /api/ http://localhost:80/
     ProxyPassReverse /api/ http://localhost:80/
 </IfModule>
-```
-
-4. `Hacer las Solicitudes desde el Mismo Dominio`
-
-Si es posible, considera servir tanto tu aplicación React como tu servidor PHP desde el mismo dominio. Esto puede implicar configurar tu servidor web para servir ambos, el frontend y el backend, desde la misma raíz.
-
-Ejemplo de Código React
-
-A continuación, un ejemplo de cómo puedes realizar una solicitud HTTP desde React utilizando `axios`:
-
-```typescript
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-
-const MyComponent: React.FC = () => {
-  const [data, setData] = useState<any>(null);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          "http://localhost/api/my-endpoint.php",
-        );
-        setData(response.data);
-      } catch (err) {
-        if (err instanceof Error) {
-          setError(err.message);
-        }
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  if (error) return <div>Error: {error}</div>;
-  if (!data) return <div>Loading...</div>;
-
-  return (
-    <div>
-      <h1>Data from PHP:</h1>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
-    </div>
-  );
-};
-
-export default MyComponent;
 ```
 
 - **Como Acceder a los Datos de un Formulario y Funciones Relacionadas en React**
@@ -1077,66 +1170,6 @@ Después de realizar cambios en la configuración de Apache, asegúrate de reini
 ```bash
 sudo systemctl restart apache2
 ```
-
-### Paso 4: Realizar archivo `curl.php`
-
-Crea un archivo `curl.php` para que funcione correctamente tu entorno donde creaste un proxy configurado en Apache previamente y deseas hacer solicitudes desde React Vite hacia tu backend PHP usando ese proxy.
-
-```php
-<?php
-$proxyUrl = 'http://localhost:80'; // URL del proxy configurado en Apache
-$targetUrl = 'http://localhost:80/ASATA/PROYECTO/server/credentials/credentials/registro.php'; // URL del backend PHP
-
-$ch = curl_init();
-
-curl_setopt($ch, CURLOPT_URL, $targetUrl);
-curl_setopt($ch, CURLOPT_PROXY, $proxyUrl);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // Opción para deshabilitar la verificación SSL (usar con precaución en producción)
-curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false); // Opción para deshabilitar la verificación SSL del host (usar con precaución en producción)
-
-$response = curl_exec($ch);
-
-if (curl_errno($ch)) {
-    echo 'cURL Error: ' . curl_error($ch);
-} else {
-    echo $response;
-}
-
-curl_close($ch);
-?>
-```
-
-### Explicación del código PHP ajustado:
-
-1. **`$proxyUrl`**: Aquí debes usar la URL del proxy que configuraste en Apache. En tu caso, `http://localhost:80` parece ser el proxy donde Apache está escuchando las solicitudes.
-
-2. **`$targetUrl`**: Esta es la URL del backend PHP al que deseas hacer la solicitud. Asegúrate de que coincida con la ruta correcta en tu servidor donde se encuentra el archivo `registro.php`.
-
-3. **Configuración de cURL**:
-   - **`CURLOPT_URL`**: Establece la URL de destino de la solicitud.
-   - **`CURLOPT_PROXY`**: Configura la URL del proxy que se utilizará para la solicitud.
-   - **`CURLOPT_RETURNTRANSFER`**: Establece esta opción a `true` para que cURL devuelva la respuesta como una cadena en lugar de imprimirla directamente.
-   - **`CURLOPT_SSL_VERIFYPEER`** y **`CURLOPT_SSL_VERIFYHOST`**: En el ejemplo, se han deshabilitado estas opciones (`false`) para evitar problemas de certificado SSL. Esto puede ser útil para entornos de desarrollo, pero **no es seguro** hacerlo en producción sin una configuración adecuada de seguridad.
-
-4. **Manejo de errores**: Si hay un error durante la ejecución de cURL, se imprime el mensaje de error. De lo contrario, se muestra la respuesta del servidor.
-
-5. **Consideraciones de seguridad**: Recuerda que deshabilitar la verificación SSL puede exponerte a vulnerabilidades de seguridad. Asegúrate de configurar adecuadamente tu entorno de producción para manejar correctamente la verificación SSL.
-
-6. **Ejecución**: Guarda este archivo como `curl.php` en tu servidor PHP y ejecútalo a través de tu navegador o línea de comandos con `php curl.php`. Observa la salida para verificar que la solicitud se esté realizando correctamente a través del proxy configurado en Apache hacia tu backend PHP.
-
-### Verificación
-
-Para verificar que el proxy esté funcionando correctamente, intenta acceder a tu aplicación React Vite y asegúrate de que las solicitudes al backend PHP (`http://localhost:80/ASATA/PROYECTO/server/credentials`) se estén redirigiendo correctamente a través de Apache.
-
-### Consideraciones Adicionales
-
-- **Seguridad**: Asegúrate de configurar correctamente la seguridad en tu servidor Apache y en tu aplicación PHP para evitar vulnerabilidades.
-- **Logs**: Utiliza los logs de Apache para monitorear y depurar cualquier problema relacionado con el proxy y las solicitudes HTTP.
-- **Configuración Específica**: Ajusta la configuración del proxy según las necesidades específicas de tu aplicación y entorno de desarrollo.
-
-Siguiendo estos pasos, deberías poder configurar un proxy en Apache para permitir que React Vite acceda al backend PHP sin problemas de CORS y asegurar un flujo de datos seguro y eficiente entre ambas partes de tu aplicación.
 
 - **Configuración de Proxy en React Vite. Fix CORS problem**
 
