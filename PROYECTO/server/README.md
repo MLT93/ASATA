@@ -263,7 +263,8 @@ Para habilitar y configurar el módulo `mod_headers.c` en Apache, sigue estos pa
      tecla '/' para buscar desde el cursor en adelante
      tecla '?' para buscar desde el cursor hacia atrás
      tecla 'i' para escribir
-     tecla ':qw' para guardar y salir
+     tecla 'exit o Esc' para salir del modo escritura
+     tecla ':wq' para guardar y salir
      tecla ':q' para salir
      ```
 
