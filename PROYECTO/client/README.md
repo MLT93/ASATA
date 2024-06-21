@@ -260,7 +260,7 @@ El backend PHP seguirá siendo el mismo que en la respuesta anterior, capaz de m
 
 ```php
 <?php
-header("Access-Control-Allow-Origin: http://localhost:5173");
+header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Authorization, X-Auth-Token");
 
@@ -431,7 +431,7 @@ Aquí se obtiene y decodifica el JSON enviado en la solicitud.
 
 ```php
 <?php
-header("Access-Control-Allow-Origin: http://localhost:5173");
+header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Authorization, X-Auth-Token");
 
