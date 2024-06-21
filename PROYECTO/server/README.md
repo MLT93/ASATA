@@ -135,13 +135,13 @@ Para habilitar y configurar el módulo `mod_headers.c` en Apache, sigue estos pa
    
    - Ve al archivo `httpd.conf` y en cada `<Directory></Directory>` modifica el `AllowOverride` añade:
 
-   ```txt
+   ```t
    <Directory>
       AllowOverride All
 
-      Header set Access-Control-Allow-Origin "<la_url_que_desees_permitir> o <*> para_permitir_todas_las_procedencias"
+      Header set Access-Control-Allow-Origin "<url_específica> o <*>"
       Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
-      Header set Access-Control-Allow-Headers "X-Requested-With, Content-Type, Authorization"
+      Header set Access-Control-Allow-Headers "X-Requested-With, Content-Type, Authorization, X-Auth-Token"
    </Directory>
    ``` 
 
@@ -150,9 +150,9 @@ Para habilitar y configurar el módulo `mod_headers.c` en Apache, sigue estos pa
    ```t
    <IfModule headers_module>
 
-      Header set Access-Control-Allow-Origin "<la_url_que_desees_permitir> o <*> para_permitir_todas_las_procedencias"
+      Header set Access-Control-Allow-Origin "<url_específica> o <*>"
       Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
-      Header set Access-Control-Allow-Headers "X-Requested-With, Content-Type, Authorization"
+      Header set Access-Control-Allow-Headers "X-Requested-With, Content-Type, Authorization, X-Auth-Token"
    </Directory>
    ```
 
@@ -173,18 +173,18 @@ Para habilitar y configurar el módulo `mod_headers.c` en Apache, sigue estos pa
    <Directory>
       AllowOverride All
 
-      Header set Access-Control-Allow-Origin "<la_url_que_desees_permitir> o <*> para_permitir_todas_las_procedencias"
+      Header set Access-Control-Allow-Origin "<url_específica> o <*>"
       Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
-      Header set Access-Control-Allow-Headers "X-Requested-With, Content-Type, Authorization"
+      Header set Access-Control-Allow-Headers "X-Requested-With, Content-Type, Authorization, X-Auth-Token"
    </Directory>
    ```
 
    ```t
    <IfModule mod_headers.c>
 
-      Header set Access-Control-Allow-Origin "<la_url_que_desees_permitir> o <*> para_permitir_todas_las_procedencias"
+      Header set Access-Control-Allow-Origin "<url_específica> o <*>"
       Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
-      Header set Access-Control-Allow-Headers "X-Requested-With, Content-Type, Authorization"
+      Header set Access-Control-Allow-Headers "X-Requested-With, Content-Type, Authorization, X-Auth-Token"
    </IfModule>
    ```
 
@@ -250,7 +250,7 @@ You're intended to use these directories for VirtualHosts.
 
 Aquí tienes un ejemplo de cómo podrías configurarlo:
 
-```apache
+```t
 <VirtualHost *:5173>
     ServerName localhost
 
@@ -283,7 +283,7 @@ In Ubuntu/Debian systems running Apache, the directories `/etc/apache2/sites-ena
      sudo nano /etc/apache2/sites-available/mywebsite.conf
      ```
   2. Inside `mywebsite.conf`, define your virtual host configuration:
-     ```apache
+     ```t
      <VirtualHost *:80>
          ServerName mywebsite.com
          DocumentRoot /var/www/mywebsite
@@ -322,7 +322,7 @@ In Ubuntu/Debian systems running Apache, the directories `/etc/apache2/sites-ena
 ### Virtual Host Examples:
 
 - **Simple Virtual Host**:
-  ```apache
+  ```t
   <VirtualHost *:80>
       ServerName mywebsite.com
       DocumentRoot /var/www/mywebsite
@@ -332,7 +332,7 @@ In Ubuntu/Debian systems running Apache, the directories `/etc/apache2/sites-ena
   ```
 
 - **Virtual Host with SSL** (if using HTTPS):
-  ```apache
+  ```t
   <VirtualHost *:443>
       ServerName mywebsite.com
       DocumentRoot /var/www/mywebsite
