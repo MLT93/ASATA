@@ -27,8 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
   unset($_POST["METHOD"]);
 
-  $response = GET("SELECT * FROM usuarios");
-  var_dump($response);
+  $usuarios = GET("SELECT * FROM usuarios");
+  print_r($usuarios); 
 
   // Verificar si se reciben los campos esperados
   if (isset($_POST['login'])) {

@@ -48,8 +48,8 @@ function GET(string $sentenceSQL)
     return null;
   }
 }
-// $usuarios = GET("SELECT * FROM usuarios");
-// print_r($usuarios);
+$usuarios = GET("SELECT * FROM usuarios");
+print_r($usuarios);
 
 /**
  * Summary of POST

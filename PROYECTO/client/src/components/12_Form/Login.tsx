@@ -46,8 +46,8 @@ const Login = (): JSX.Element => {
 
   // ******************* GET info API ***********************
 
-  const URL_BASE = "http://localhost:80/ASATA/PROYECTO/server/";
-  // const URL_LOGIN = "/api/login.php";
+  const URL_BASE = "http://localhost:80/server";
+  const URL_GET_USUARIOS = "/api/DB/DB.php";
 
   const [data, setData] = useState<Response>();
   const [error, setError] = useState<Error>();
@@ -73,7 +73,7 @@ const Login = (): JSX.Element => {
         setIsLoading(false);
       }
     };
-    void get(URL_BASE);
+    void get(URL_BASE + URL_GET_USUARIOS);
   }, []);
 
   console.log(data);
