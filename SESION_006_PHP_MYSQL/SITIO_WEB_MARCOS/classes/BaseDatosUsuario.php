@@ -73,7 +73,7 @@ class BaseDatosUsuario
     $cnx->execute($sqlQuery);
   }
 
-  public static function verificarUsuario(string $email, string $password)
+  public static function verificarUsuario(string $email, string $password): bool
   {
     // Conexión base de datos
     // $cnx = new BaseDatos("localhost", "root", "mysql", "gameclub");
