@@ -21,142 +21,6 @@ creados en el Servidor, y utilizar ese archivo para acceder a la información. E
 // ************************************************************************
 
 
-- **Configurar CORS:**
-
-Para realizar peticiones HTTP entre una aplicación React y un servidor PHP sin incurrir en problemas de CORS (Cross-Origin Resource Sharing), hay varias soluciones que puedes implementar. A continuación, se presentan algunas estrategias comunes:
-
-1. `Configuración del Servidor PHP para Permitir CORS`
-
-La forma más directa de resolver problemas de CORS es configurando el servidor PHP para permitir las solicitudes de origen cruzado. Puedes hacerlo agregando encabezados CORS en tu archivo PHP:
-
-```php
-<?php
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, OPTIONS");
-header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With, X-Auth-Token");
-
-// Tu lógica de manejo de solicitudes aquí
-?>
-```
-
-2. `Uso de un Proxy`
-
-Otra forma de evitar problemas de CORS es configurando un proxy en tu servidor de desarrollo `Create-React-App`. Esto implica redirigir las solicitudes de tu aplicación React a través de un servidor proxy que hace la solicitud real al servidor PHP. Puedes configurar un proxy en tu proyecto `React` modificando el archivo `package.json` para redirigir las solicitudes de la API:
-
-```json
-{
-  "name": "mi-app",
-  "version": "1.0.0",
-  "private": true,
-  "dependencies": {
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-scripts": "4.0.3"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "proxy": "http://localhost:80" // Cambia esto por la URL de tu servidor PHP
-}
-```
-
-También se puede hacer en `React Vite`:
-
-```tsx
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-
-export default defineConfig({
-  plugins: [react()],
-  build: {
-    target: "esnext",
-  },
-  server: {
-    proxy: {
-      // Las peticiones ahora deben empezar todas por `/api` para que la encuentre
-      "/api": {
-        target: "http://localhost:80/ASATA/PROYECTO/server", // URL del backend PHP
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, "/credentials"), // Reescritura de `/api` por `/credentials` (la carpeta donde está el archivo `registro.php`)
-      },
-    },
-  },
-});
-```
-
-3. `Uso de Nginx o Apache como Proxy`
-
-Si tienes control sobre tu servidor web (por ejemplo, Nginx o Apache), puedes configurarlo para que actúe como un proxy inverso, redirigiendo las solicitudes desde tu aplicación React al servidor PHP.
-
-### **Configuración de Nginx**
-
-```nginx
-server {
-    listen 80;
-    server_name tu_dominio.com;
-
-    location / {
-        proxy_pass http://localhost:3000; # Puerto donde corre tu app React
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection 'upgrade';
-        proxy_set_header Host $host;
-        proxy_cache_bypass $http_upgrade;
-    }
-
-    location /api/ {
-        proxy_pass http://localhost:80; # Puerto donde corre tu servidor PHP
-    }
-}
-```
-
-### **Configuración de Apache dentro del proyecto backend**
-
-Crea un archivo `.htaccess` en la raíz de tu proyecto con lo siguiente:
-
-Esto sirve para armar un Proxy virtual
-
-```apache
-<IfModule mod_proxy.c>
-    ProxyRequests Off
-    <Proxy *>
-        Order deny,allow
-        Allow from all
-    </Proxy>
-
-    ProxyPass /api/ http://localhost:80/
-    ProxyPassReverse /api/ http://localhost:80/
-</IfModule>
-```
-
-Esto habilita reescritura y reescribe la URL base para permitirme trabajar con Query Params en los endpoints
-
-<!-- Habilita la reescritura -->
-RewriteEngine On
-<!-- Actualizamos la URL base -->
-RewriteBase /ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/almacen/
-<!-- Condición para encontrar files (archivos). Si no lo encuentra, pasa a la siguiente línea -->
-RewriteCond %{REQUEST_FILENAME} !-f
-<!-- Condición para encontrar directories (carpetas). Si no lo encuentra, pasa a la siguiente línea -->
-RewriteCond %{REQUEST_FILENAME} !-d
-<!-- Si ningún Endpoint existe, me redirecciona a `index.php` y me guarda los Query Params `[QSA,L]` que haya puesto en el Endpoint equivocado. `index.php` al no tener esa ruta, cargará la página de error -->
-RewriteRule ^(.*)$ index.php [QSA,L]
-
-```apache
-RewriteEngine On
-RewriteBase /ruta/de/hasta/la/raíz/de/tu/proyecto/después/del/host/
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ index.php [QSA,L]
-```
-
-
-// ************************************************************************
-
-
 ### Ubicación de los archivos de configuración de Apache en Linux
 
 En sistemas Linux, especialmente aquellos que ejecutan el servidor web Apache, puedes encontrar la configuración de los módulos y directivas dentro de los archivos de configuración del servidor web. Aquí te guiaré a través de dónde encontrar y cómo trabajar con la configuración en Linux:
@@ -586,3 +450,140 @@ En este ejemplo:
 - **Seguridad**: No es recomendable deshabilitar completamente CORS en producción. Configura tu servidor PHP para permitir CORS desde `localhost:5173` específicamente.
 
 Con esta configuración, deberías poder realizar solicitudes HTTP desde tu aplicación React Vite hacia tu backend PHP en `localhost:80/ASATA/PROYECTO/server/credentials` sin problemas de CORS, utilizando el proxy configurado en Vite para manejar las rutas adecuadamente.
+
+
+// ************************************************************************
+
+
+- **Configurar CORS:**
+
+Para realizar peticiones HTTP entre una aplicación React y un servidor PHP sin incurrir en problemas de CORS (Cross-Origin Resource Sharing), hay varias soluciones que puedes implementar. A continuación, se presentan algunas estrategias comunes:
+
+1. `Configuración del Servidor PHP para Permitir CORS`
+
+La forma más directa de resolver problemas de CORS es configurando el servidor PHP para permitir las solicitudes de origen cruzado. Puedes hacerlo agregando encabezados CORS en tu archivo PHP:
+
+```php
+<?php
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With, X-Auth-Token");
+
+// Tu lógica de manejo de solicitudes aquí
+?>
+```
+
+2. `Uso de un Proxy`
+
+Otra forma de evitar problemas de CORS es configurando un proxy en tu servidor de desarrollo `Create-React-App`. Esto implica redirigir las solicitudes de tu aplicación React a través de un servidor proxy que hace la solicitud real al servidor PHP. Puedes configurar un proxy en tu proyecto `React` modificando el archivo `package.json` para redirigir las solicitudes de la API:
+
+```json
+{
+  "name": "mi-app",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "4.0.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "proxy": "http://localhost:80" // Cambia esto por la URL de tu servidor PHP
+}
+```
+
+También se puede hacer en `React Vite`:
+
+```tsx
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+
+export default defineConfig({
+  plugins: [react()],
+  build: {
+    target: "esnext",
+  },
+  server: {
+    proxy: {
+      // Las peticiones ahora deben empezar todas por `/api` para que la encuentre
+      "/api": {
+        target: "http://localhost:80/ASATA/PROYECTO/server", // URL del backend PHP
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, "/credentials"), // Reescritura de `/api` por `/credentials` (la carpeta donde está el archivo `registro.php`)
+      },
+    },
+  },
+});
+```
+
+3. `Uso de Nginx o Apache como Proxy`
+
+Si tienes control sobre tu servidor web (por ejemplo, Nginx o Apache), puedes configurarlo para que actúe como un proxy inverso, redirigiendo las solicitudes desde tu aplicación React al servidor PHP.
+
+### **Configuración de Nginx**
+
+```nginx
+server {
+    listen 80;
+    server_name tu_dominio.com;
+
+    location / {
+        proxy_pass http://localhost:3000; # Puerto donde corre tu app React
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+
+    location /api/ {
+        proxy_pass http://localhost:80; # Puerto donde corre tu servidor PHP
+    }
+}
+```
+
+### **Configuración de Apache dentro del proyecto backend**
+
+Crea un archivo `.htaccess` en la raíz de tu proyecto con lo siguiente:
+
+Esto sirve para armar un Proxy virtual
+
+```apache
+<IfModule mod_proxy.c>
+    ProxyRequests Off
+    <Proxy *>
+        Order deny,allow
+        Allow from all
+    </Proxy>
+
+    ProxyPass /api/ http://localhost:80/
+    ProxyPassReverse /api/ http://localhost:80/
+</IfModule>
+```
+
+Esto habilita reescritura y reescribe la URL base para permitirme trabajar con Query Params en los endpoints
+
+<!-- Habilita la reescritura -->
+RewriteEngine On
+<!-- Actualizamos la URL base -->
+RewriteBase /ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/almacen/
+<!-- Condición para encontrar files (archivos). Si no lo encuentra, pasa a la siguiente línea -->
+RewriteCond %{REQUEST_FILENAME} !-f
+<!-- Condición para encontrar directories (carpetas). Si no lo encuentra, pasa a la siguiente línea -->
+RewriteCond %{REQUEST_FILENAME} !-d
+<!-- Si ningún Endpoint existe, me redirecciona a `index.php` y me guarda los Query Params `[QSA,L]` que haya puesto en el Endpoint equivocado. `index.php` al no tener esa ruta, cargará la página de error -->
+RewriteRule ^(.*)$ index.php [QSA,L]
+
+```apache
+RewriteEngine On
+RewriteBase /ruta/de/hasta/la/raíz/de/tu/proyecto/después/del/host/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]
+```
+
