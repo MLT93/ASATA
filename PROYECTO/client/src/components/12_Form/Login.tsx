@@ -46,16 +46,17 @@ const Login = (): JSX.Element => {
 
   // ******************* GET info API ***********************
 
-  const URL_BASE = "http://localhost:80/server";
+  // const URL_BASE = "http://localhost:80/server";
   const URL_GET_USUARIOS = "/api/DB/DB.php";
 
   const [data, setData] = useState<Response>();
   const [error, setError] = useState<Error>();
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    const get = async (url: string): Promise<void> => {
+    void (async (url: string): Promise<void> => {
       try {
+        setIsLoading(true);
         const response = await axios.get(url);
         if (!response) {
           throw new Error("Error en la petición");
@@ -72,13 +73,12 @@ const Login = (): JSX.Element => {
       } finally {
         setIsLoading(false);
       }
-    };
-    void get(URL_BASE + URL_GET_USUARIOS);
+    })(URL_GET_USUARIOS);
   }, []);
 
   console.log(data);
-  console.log(error);
-  console.log(isLoading);
+  error ? console.log(error) : null;
+  isLoading ? console.log(isLoading) : null;
 
   // ********************************************************
 
