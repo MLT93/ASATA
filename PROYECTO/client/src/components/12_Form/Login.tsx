@@ -44,12 +44,15 @@ const Login = (): JSX.Element => {
     inputRef.current?.focus();
   };
 
-  const URL_BASE = "http://localhost:80/ASATA/PROYECTO/server/backend/api/";
-  const URL_LOGIN = "/api/login.php";
+  // ******************* GET info API ***********************
+
+  const URL_BASE = "http://localhost:80/ASATA/PROYECTO/server/";
+  // const URL_LOGIN = "/api/login.php";
 
   const [data, setData] = useState<Response>();
   const [error, setError] = useState<Error>();
   const [isLoading, setIsLoading] = useState<boolean>(true);
+
   useEffect(() => {
     const get = async (url: string): Promise<void> => {
       try {
@@ -69,13 +72,15 @@ const Login = (): JSX.Element => {
       } finally {
         setIsLoading(false);
       }
-
-      console.log(data);
-      console.log(error);
-      console.log(isLoading);
     };
-    void get(URL_BASE + URL_LOGIN);
-  }, [data, error, isLoading]);
+    void get(URL_BASE);
+  }, []);
+
+  console.log(data);
+  console.log(error);
+  console.log(isLoading);
+
+  // ********************************************************
 
   const handleSubmitForm = (event: { preventDefault: () => void }) => {
     event.preventDefault();
@@ -85,43 +90,43 @@ const Login = (): JSX.Element => {
     formDataUseState.set("password", user.password);
     console.log(formDataUseState);
 
-    void (async (url) => {
-      try {
-        const res = await axios.post(URL_LOGIN, formDataUseState, {
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-        });
-        const axiosData = res.data as Response;
-        console.log(axiosData);
+    // void (async (url) => {
+    //   try {
+    //     const res = await axios.post(URL_LOGIN, formDataUseState, {
+    //       headers: {
+    //         "Content-Type": "application/x-www-form-urlencoded",
+    //       },
+    //     });
+    //     const axiosData = res.data as Response;
+    //     console.log(axiosData);
 
-        if (!res) {
-          console.error("Login Failed:", res);
-        } else {
-          const data = (await res.data) as Response;
-          console.log(data);
-          // toast.success("Response recibido!");
-        }
+    //     if (!res) {
+    //       console.error("Login Failed:", res);
+    //     } else {
+    //       const data = (await res.data) as Response;
+    //       console.log(data);
+    //       // toast.success("Response recibido!");
+    //     }
 
-        // *************************************************
+    //     // *************************************************
 
-        const resp = await axios.post(url, formDataUseState); // No necesito poner `headers` porque FormData lo hace automáticamente
+    //     const resp = await axios.post(url, formDataUseState); // No necesito poner `headers` porque FormData lo hace automáticamente
 
-        if (!resp) {
-          console.error("Login Failed:", res);
-        } else {
-          const data = (await res.data) as Response;
-          console.log(data);
-          // toast.success("Response recibido!");
-        }
-      } catch (error) {
-        if (error instanceof Error) {
-          console.error("Thrawed Error:", error.message);
-        } else {
-          console.error("Unknown Error");
-        }
-      }
-    })(URL_LOGIN);
+    //     if (!resp) {
+    //       console.error("Login Failed:", res);
+    //     } else {
+    //       const data = (await res.data) as Response;
+    //       console.log(data);
+    //       // toast.success("Response recibido!");
+    //     }
+    //   } catch (error) {
+    //     if (error instanceof Error) {
+    //       console.error("Thrawed Error:", error.message);
+    //     } else {
+    //       console.error("Unknown Error");
+    //     }
+    //   }
+    // })(URL_LOGIN);
   };
 
   return (

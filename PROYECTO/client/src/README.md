@@ -558,9 +558,12 @@ server {
 }
 ```
 
-- Configuración de Apache
+- Configuración de Apache dentro del proyecto backend
 
-En tu archivo `.htaccess` o en la configuración de tu servidor Apache:
+Crea un archivo `.htaccess` en la raíz de tu proyecto con lo siguiente:
+
+
+Esto sirve para armar un Proxy virtual
 
 ```apache
 <IfModule mod_proxy.c>
@@ -574,6 +577,226 @@ En tu archivo `.htaccess` o en la configuración de tu servidor Apache:
     ProxyPassReverse /api/ http://localhost:80/
 </IfModule>
 ```
+
+Esto habilita reescritura y reescribe la URL base para permitirme trabajar con Query Params en los endpoints
+
+<!-- Habilita la reescritura -->
+RewriteEngine On
+<!-- Actualizamos la URL base -->
+RewriteBase /ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/almacen/
+<!-- Condición para encontrar files (archivos). Si no lo encuentra, pasa a la siguiente línea -->
+RewriteCond %{REQUEST_FILENAME} !-f
+<!-- Condición para encontrar directories (carpetas). Si no lo encuentra, pasa a la siguiente línea -->
+RewriteCond %{REQUEST_FILENAME} !-d
+<!-- Si ningún Endpoint existe, me redirecciona a `index.php` y me guarda los Query Params `[QSA,L]` que haya puesto en el Endpoint equivocado. `index.php` al no tener esa ruta, cargará la página de error -->
+RewriteRule ^(.*)$ index.php [QSA,L]
+
+```apache
+RewriteEngine On
+RewriteBase /ruta/de/hasta/la/raíz/de/tu/proyecto/después/del/host/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]
+```
+
+
+
+En sistemas Linux, especialmente aquellos que ejecutan el servidor web Apache, puedes encontrar la configuración de los módulos y directivas dentro de los archivos de configuración del servidor web. Aquí te guiaré a través de dónde encontrar y cómo trabajar con la configuración en Linux:
+
+### Ubicación de los archivos de configuración de Apache en Linux
+
+1. **Directorio principal de configuración de Apache:**
+
+   - El archivo principal de configuración de Apache se llama `httpd.conf` o `apache2.conf`, dependiendo de la distribución de Linux y la versión de Apache que estés utilizando.
+   - Por ejemplo, en Ubuntu y Debian, el archivo principal de configuración puede encontrarse en `/etc/apache2/apache2.conf`.
+   - En CentOS y Red Hat, el archivo principal puede estar en `/etc/httpd/conf/httpd.conf`.
+   - En Windows, el archivo puede estar en `C:\Xampp\htdocs`.
+
+2. **Archivos de configuración de los sitios virtuales (VirtualHosts):**
+
+   - Los sitios web individuales (VirtualHosts) tienen sus propios archivos de configuración generalmente ubicados en directorios como `/etc/apache2/sites-available/` y `/etc/apache2/sites-enabled/` en sistemas Debian/Ubuntu.
+
+   - En sistemas Red Hat/CentOS, los archivos de configuración de VirtualHosts pueden estar en `/etc/httpd/conf.d/`.
+  
+   - Lee esto: https://www.swhosting.com/es/comunidad/manual/como-ver-que-modulos-hay-activos-en-apache
+
+   - Mira también este vídeo: https://www.youtube.com/watch?v=ox5Ihgk27ic
+
+   - Y este explica todo paso a paso para los virtual host (es un argentino pro de Linux): https://www.youtube.com/watch?v=irGyqdliM8I
+   
+   - Video1: Entender qué son los `virtual hosts` y cómo modificarlos: https://www.youtube.com/watch?v=8EnTdCwaX48
+
+   - Video2: Este hay que verlo, forma parte de `Video1`: https://www.youtube.com/watch?v=RyCbZ7f-OoE
+   
+   - Para potenciar el servidor lee esto: https://www.proxadmin.es/blog/configurar-apache-para-maximo-rendimiento/
+
+   - Habilitar los headers
+
+   ```bash
+   sudo a2enmod headers
+   sudo systemctl restart apache2
+   ```
+
+   - Nos movemos a la carpeta de las configuraciones
+
+   ```bash
+   cd /etc/apache2/sites-available
+   ```
+
+   - Aquí se encuentran el archivo del configuración del puerto 80 (http) `000-default.conf` y del puerto 443 (https) `default-ssl.conf`. Realizamos una copia de la conf del puerto 80 y trabajaremos en ella (SOLO SI DESEAMOS CREAR MÁS VIRTUAL HOSTS Y SUBDOMINIOS. SI SE POSEE UN DOMINIO PROPRIO ES MEJOR)
+
+   ```bash
+   sudo cp 000-default.conf paginaProyectoReactPHP
+   ```
+
+   - Setear el archivo de configuración para crear páginas
+
+   ```bash
+   sudo vim paginaProyectoReactPHP
+   ```
+
+   - En ese archivo se modifica el `DocumentRoot`, `ServerName` y `ServerAdmin` para crear los directorios de las páginas y demás.
+
+   - Después de eso habría que crear las carpetas por cada pagina creada, en el directorio donde asignaste `DocumentRoot` para que encuentre dichos sitios.
+
+   ```bash
+   cd /var/www/html && mkdir pagina1
+   ```
+
+   - Ahora hay que habilitar la página creada usando `apache2 enabled site -> a2ensite`
+
+   ```bash
+   cd /etc/apache2/sites-available
+   sudo /usr/sbin/a2ensite pagina1
+   sudo systemctl restart apache2
+   ```
+
+   - Ahora encontrarás `pagina1` en las páginas habilitadas:
+
+   ```bash
+   cd /etc/apache2/sites-available
+   ```
+
+   - Si querés deshabilitar los sitios `apache2 disable site -> a2dissite`
+
+   ```bash
+   sudo /usr/sbin/a2dissite pagina1
+   ```
+
+### Encontrar la sección `<IfModule mod_headers.c>` en Windows y Linux
+
+Para habilitar y configurar el módulo `mod_headers.c` en Apache, sigue estos pasos:
+
+1. **Abrir el archivo de configuración:**
+
+   - Usa un editor de texto como `nano`, `vim` o `gedit` para abrir el archivo de configuración principal de Apache.
+
+     ```bash
+     sudo vim /etc/apache2/apache2.conf
+     ```
+
+     ```cmd
+     cd C:\xampp\apache\conf
+     dir httpd.conf
+     ```
+
+     ```vim
+     tecla '/' para buscar desde el cursor en adelante
+     tecla '?' para buscar desde el cursor hacia atrás
+     tecla 'i' para escribir
+     tecla ':qw' para guardar y salir
+     tecla ':q' para salir
+     ```
+
+2. **Buscar la sección `<IfModule mod_headers.c>` en Windows `httpd.conf`:**
+
+   - Dentro del archivo, puedes buscar directamente la sección `<IfModule mod_headers.c>` en Windows. Esta sección se utiliza para condicionar la carga de configuraciones específicas solo si el módulo `mod_headers` está cargado y disponible en Apache. Si no existen, créalos (sólo para windows).
+   
+   - Ve al archivo `httpd.conf` y en cada `<Directory></Directory>` modifica el `AllowOverride` añade:
+
+   ```txt
+   <Directory>
+      AllowOverride All
+
+      Header set Access-Control-Allow-Origin "<la_url_que_desees_permitir> o <*> para_permitir_todas_las_procedencias"
+      Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+      Header set Access-Control-Allow-Headers "X-Requested-With, Content-Type, Authorization"
+   </Directory>
+   ``` 
+
+   - Además, en el `<IfModule headers_module>` agrega:
+
+   ```t
+   <IfModule headers_module>
+
+      Header set Access-Control-Allow-Origin "<la_url_que_desees_permitir> o <*> para_permitir_todas_las_procedencias"
+      Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+      Header set Access-Control-Allow-Headers "X-Requested-With, Content-Type, Authorization"
+   </Directory>
+   ```
+
+   - Por último descomenta esta línea:
+
+   ```t
+   LoadModule headers_module modules/mod_headers.so
+   ```
+
+
+4. **Para ver los módulos y activar `mod_headers` en Linux `apache2.conf`:** 
+
+   - Dentro de `<IfModule mod_headers.c>`, puedes agregar directivas como `Header` para configurar encabezados HTTP según sea necesario para tu aplicación web dentro del archivo `apache2.conf`.
+  
+   - También agregamos en cada `<Directory></Directory>`
+
+   ```t
+   <Directory>
+      AllowOverride All
+
+      Header set Access-Control-Allow-Origin "<la_url_que_desees_permitir> o <*> para_permitir_todas_las_procedencias"
+      Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+      Header set Access-Control-Allow-Headers "X-Requested-With, Content-Type, Authorization"
+   </Directory>
+   ```
+
+   ```t
+   <IfModule mod_headers.c>
+
+      Header set Access-Control-Allow-Origin "<la_url_que_desees_permitir> o <*> para_permitir_todas_las_procedencias"
+      Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+      Header set Access-Control-Allow-Headers "X-Requested-With, Content-Type, Authorization"
+   </IfModule>
+   ```
+
+   - Otro ejemplo de uso típico sería:
+
+   ```t
+   <IfModule mod_headers.c>
+       # Ejemplo: Aquí colocas las configuraciones específicas para mod_headers
+       Header always set X-Frame-Options "SAMEORIGIN"
+       Header always set X-XSS-Protection "1; mode=block"
+       Header always set X-Content-Type-Options "nosniff"
+   </IfModule>
+   ```
+
+5. **Guardar y salir:**
+
+   - Guarda los cambios en el archivo de configuración y cierra el editor.
+
+6. **Reiniciar Apache:**
+
+   - Después de hacer cambios en la configuración de Apache, siempre debes reiniciar el servicio para que los cambios surtan efecto:
+
+   ```bash
+   sudo systemctl restart apache2   # En Debian/Ubuntu
+   sudo systemctl restart httpd     # En CentOS/Red Hat
+   ```
+
+### Consideraciones adicionales
+
+- **Permisos de usuario:** Para editar archivos de configuración en `/etc/apache2/` o `/etc/httpd/`, normalmente necesitarás privilegios de superusuario (root). Usa `sudo` antes de los comandos de edición o reinicio del servicio.
+- **Documentación:** Siempre es útil revisar la documentación oficial de Apache y la guía específica para tu distribución de Linux para obtener detalles adicionales y mejores prácticas.
+
+Siguiendo estos pasos, podrás encontrar y modificar la configuración dentro de `<IfModule mod_headers.c>` según sea necesario para tu configuración específica de Apache en Linux o Windows.
 
 - **Como Acceder a los Datos de un Formulario y Funciones Relacionadas en React**
 

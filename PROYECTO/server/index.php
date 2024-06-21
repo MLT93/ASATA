@@ -1,8 +1,10 @@
+INDEX /server/index.php
+
 <?php
 
 // Importar archivos
 require_once("./DB/DB.php");
-require_once ("./classes/SesionDB.php");
+require_once("./classes/SesionDB.php");
 
 // Asegurarme de ver todos los errores
 error_reporting(E_ALL);
@@ -26,6 +28,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
   unset($_POST["METHOD"]);
 
+  $response = GET("SELECT * FROM usuarios");
+  var_dump($response);
+
   // Verificar si se reciben los campos esperados
   if (isset($_POST['login'])) {
 
@@ -35,7 +40,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     // Construir consulta DB
     comprobarUsuario($email, $password);
     $usuario = new \SessionDB\Session();
-    
   } else {
     // Datos incompletos
     echo json_encode(["success" => false, "message" => "Email and password are required"]);
@@ -46,6 +50,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
   echo json_encode(["success" => false, "message" => "Method not allowed"]);
 }
 
-  // Manejo del método GET
+  // Manejo del método POST
   // Manejo del método PUT
   // Manejo del método DELETE
