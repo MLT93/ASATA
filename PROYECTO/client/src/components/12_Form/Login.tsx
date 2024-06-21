@@ -1,6 +1,24 @@
+import axios from "axios";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 
+/* 
+  1. CONECTAR PHP, REACT VITE Y MYSQL
+  2. PRIMERA PARTE: https://www.youtube.com/watch?v=Gu-Fl1zIVbE
+  3. SEGUNDA PARTE: https://www.youtube.com/watch?v=4B2XJHFaFIc
+  4. MOVER BUILD FILES AL SERVIDOR PHP: https://www.techstackk.com/programming/reactjs/xampp-reactjs?pid=523
+*/
+
+/**
+ *
+ * @param {Object} props - Propiedades para renderizar el tipo de texto
+ * @param {ReactNode} props.children - Este componente acepta el anidamiento de contenido, utilizando dos etiquetas `<Modal></Modal>`
+ * @param {(isVisible: boolean) => void} props.setIsModalVisible Función para asignar la visibilidad del Modal
+ *
+ * @returns {JSX.Element} Elemento | Estructura HTML
+ */
+
 const Login = (): JSX.Element => {
+  // useState, FormData y Fetch
   const [user, setUser] = useState({ email: "", password: "" });
 
   const handleInputOnChangeText = (evt: ChangeEvent<HTMLInputElement>) => {
@@ -26,41 +44,84 @@ const Login = (): JSX.Element => {
     inputRef.current?.focus();
   };
 
+  const URL_BASE = "http://localhost:80/ASATA/PROYECTO/server/backend/api/";
+  const URL_LOGIN = "/api/login.php";
+
+  const [data, setData] = useState<Response>();
+  const [error, setError] = useState<Error>();
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  useEffect(() => {
+    const get = async (url: string): Promise<void> => {
+      try {
+        const response = await axios.get(url);
+        if (!response) {
+          throw new Error("Error en la petición");
+        }
+        const result = (await response.data) as Response;
+        setData(result);
+      } catch (error) {
+        if (error instanceof Error) {
+          console.error("Error obtenido:", error.message);
+          setError(error);
+        } else {
+          console.error("Error desconocido");
+        }
+      } finally {
+        setIsLoading(false);
+      }
+
+      console.log(data);
+      console.log(error);
+      console.log(isLoading);
+    };
+    void get(URL_BASE + URL_LOGIN);
+  }, [data, error, isLoading]);
+
   const handleSubmitForm = (event: { preventDefault: () => void }) => {
     event.preventDefault();
 
-    if (user.email && user.password) {
-      const URL = "/api/login.php";
-      const formData = new FormData();
-      console.log(user);
-      formData.append("email", user.email);
-      formData.append("password", user.password);
+    const formDataUseState = new FormData();
+    formDataUseState.set("email", user.email);
+    formDataUseState.set("password", user.password);
+    console.log(formDataUseState);
 
-      void (async (URL) => {
-        try {
-          const response = await fetch(URL, {
-            // No necesito poner `headers` porque FormData lo hace automáticamente
-            method: "POST",
-            body: formData,
-          });
+    void (async (url) => {
+      try {
+        const res = await axios.post(URL_LOGIN, formDataUseState, {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+        });
+        const axiosData = res.data as Response;
+        console.log(axiosData);
 
-          const data: unknown = await response.json();
-          if (response.ok) {
-            console.log("Login successful:", data);
-          } else {
-            console.error("Login failed:", data);
-          }
-        } catch (error) {
-          if (error instanceof Error) {
-            console.error("Error obtenido:", error.message);
-          } else {
-            console.error("Error desconocido");
-          }
+        if (!res) {
+          console.error("Login Failed:", res);
+        } else {
+          const data = (await res.data) as Response;
+          console.log(data);
+          // toast.success("Response recibido!");
         }
-      })(URL);
-    } else {
-      console.error(`No se ha introducido ni usuario, ni contraseña`);
-    }
+
+        // *************************************************
+
+        const resp = await axios.post(url, formDataUseState); // No necesito poner `headers` porque FormData lo hace automáticamente
+
+        if (!resp) {
+          console.error("Login Failed:", res);
+        } else {
+          const data = (await res.data) as Response;
+          console.log(data);
+          // toast.success("Response recibido!");
+        }
+      } catch (error) {
+        if (error instanceof Error) {
+          console.error("Thrawed Error:", error.message);
+        } else {
+          console.error("Unknown Error");
+        }
+      }
+    })(URL_LOGIN);
   };
 
   return (

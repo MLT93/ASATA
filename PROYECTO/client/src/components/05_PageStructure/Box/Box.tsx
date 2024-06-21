@@ -58,6 +58,7 @@ export const Box = ({
   isFlexRowSpaceBetween,
   isFlexRowSpaceAround,
   isItemWithBlur,
+  isWrap,
   bg,
   maxWidth,
   height,
@@ -95,6 +96,7 @@ export const Box = ({
   isFlexRowSpaceBetween?: boolean;
   isFlexRowSpaceAround?: boolean;
   isItemWithBlur?: boolean;
+  isWrap?: boolean;
   bg?: string;
   maxWidth?: string;
   height?: string;
@@ -122,19 +124,20 @@ export const Box = ({
 }): JSX.Element => {
   const views = classNames({
     box: true,
-    "flex-col": isFlexCol,
-    "flex-col-center": isFlexColCenter,
-    "flex-col-start": isFlexColStart,
-    "flex-col-space-between": isFlexColSpaceBetween,
-    "flex-row": isFlexRow,
-    "flex-row-center": isFlexRowCenter,
-    "flex-row-start": isFlexRowStart,
-    "flex-row-space-between": isFlexRowSpaceBetween,
-    "flex-row-space-around": isFlexRowSpaceAround,
-    "item-with-blur": isItemWithBlur,
-    "position-relative": isRelative,
-    "position-absolute": isAbsolute,
-    "position-fixed": isFixed,
+    flex_col: isFlexCol,
+    flex_col_center: isFlexColCenter,
+    flex_col_start: isFlexColStart,
+    flex_col_space_between: isFlexColSpaceBetween,
+    flex_row: isFlexRow,
+    flex_row_center: isFlexRowCenter,
+    flex_row_start: isFlexRowStart,
+    flex_row_space_between: isFlexRowSpaceBetween,
+    flex_row_space_around: isFlexRowSpaceAround,
+    item_with_blur: isItemWithBlur,
+    position_relative: isRelative,
+    position_absolute: isAbsolute,
+    position_fixed: isFixed,
+    is_wrap: isWrap,
   });
 
   const combinedStyles = classNames(views, className); // Añadir `className` es útil si necesito utilizar un className específico para ese box

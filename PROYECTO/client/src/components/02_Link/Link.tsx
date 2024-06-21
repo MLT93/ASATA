@@ -1,6 +1,7 @@
 import "./Link.scss";
 import classNames from "classnames";
 import { Text } from "../01_Text/Text";
+import { MouseEventHandler } from "react";
 
 /**
  *
@@ -15,6 +16,7 @@ import { Text } from "../01_Text/Text";
  * @param {string} props.gap - Espaciado entre el contenido de la caja, relacionado con `display: flex; | grid;`
  * @param {boolean} props.isTarget - Variable booleana para hacer que el renderizado de la URL se realice en otra página del navegador
  * @param {boolean} props.isSelf - Variable booleana para hacer que el renderizado de la URL se realice en la misma página del navegador
+ * @param {MouseEventHandler<HTMLButtonElement> | string} props.onClick - Función al hacer click en el botón
  *
  * @returns {JSX.Element} Elemento | Estructura HTML
  */
@@ -30,6 +32,7 @@ const Link = ({
   gap,
   isTarget,
   isSelf,
+  onClick,
 }: {
   isAnchorPrimary?: boolean;
   isAnchorSecondary?: boolean;
@@ -41,6 +44,7 @@ const Link = ({
   gap?: string;
   isTarget?: boolean;
   isSelf?: boolean;
+  onClick?: MouseEventHandler<HTMLAnchorElement>;
 }): JSX.Element => {
   const targets = classNames({
     _blank: isTarget,
@@ -60,7 +64,8 @@ const Link = ({
       href={href}
       target={targets}
       rel="nofollow"
-      style={{ gap: `${gap}rem` }}>
+      style={{ gap: `${gap}rem` }}
+      onClick={onClick}>
       {!isAnchorPrimary && !isAnchorTertiary ? svg && svg : null}
       <Text size="an" text={text} color={color} />
     </a>

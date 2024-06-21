@@ -10,8 +10,10 @@ import classNames from "classnames";
  * @param {boolean} props.isCardPrimary - Booleano para definir si la card es de tipo primario o no
  * @param {boolean} props.isCardSecondary - Booleano para definir si la card es de tipo secundario o no
  * @param {boolean} props.isCardTertiary - Booleano para definir si la card es de tipo terciario o no
+ * @param {boolean} props.isCardQuaternary - Booleano para definir si la card es de tipo cuaternario o no
  * @param {boolean} props.className - Asignación de los estilos SCSS
  * @param {boolean} props.svgCard - El icono dentro de la card, puede ser un componente o un elemento svg
+ * @param {boolean} props.imgCard - La imagen dentro de la card, puede ser un componente o un imagen
  * @param {boolean} props.preTitle - El texto previo al título del botón
  * @param {string} props.title - El texto del título del botón
  * @param {string} props.subtitle - El texto del subtítulo del botón
@@ -29,6 +31,7 @@ const Card = ({
   isCardTertiary,
   isCardQuaternary,
   svgCard,
+  imgCard,
   preTitle,
   title,
   subtitle,
@@ -42,6 +45,7 @@ const Card = ({
   isCardTertiary?: boolean;
   isCardQuaternary?: boolean;
   svgCard?: JSX.Element | string;
+  imgCard?: JSX.Element | string;
   preTitle: string;
   title: string;
   subtitle?: string;
@@ -61,14 +65,35 @@ const Card = ({
   return (
     <div className={cardClassNames}>
       <div className="container_card_svg">
-        {isCardTertiary ? null : svgCard}
+        {isCardTertiary || isCardQuaternary ? null : svgCard}
       </div>
+
+      {isCardQuaternary ? (
+        <div className="container_card_img">{imgCard}</div>
+      ) : null}
+
+      {isCardQuaternary ? null : (
+        <div className="container_card_text">
+          <Text size={"pa_bold"} text={`${preTitle}`} />
+        </div>
+      )}
+
       <div className="container_card_text">
-        {isCardQuaternary ? null: <Text size={"pa_bold"} text={`${preTitle}`} />}
         <Text size={"h3"} text={`${title}`} />
-        {isCardTertiary ? null : <Text size={"pa_bold"} text={`${subtitle}`} />}
       </div>
-      {isCardTertiary ? null : <Text size={"pa"} text={`${body}`} />}
+
+      {isCardTertiary ? null : (
+        <div className="container_card_text">
+          <Text size={"pa_bold"} text={`${subtitle}`} />
+        </div>
+      )}
+
+      {isCardTertiary || isCardQuaternary ? null : (
+        <div className="container_card_text">
+          <Text size={"pa"} text={`${body}`} />
+        </div>
+      )}
+
       <div className="container_card_button">
         <div className="container_card_opacity">
           <Button

@@ -22,7 +22,7 @@ const Nav = (): JSX.Element => {
           alignItems="center"
           paddingLeft="3"
           marginTop="5">
-          <Link text={""} href={"###"} svg={<Logo width="7.5" />} />
+          <Link text={""} href={"/"} svg={<Logo width="7.5" />} />
         </Box>
         <Box
           isFlexRowSpaceBetween
@@ -30,10 +30,42 @@ const Nav = (): JSX.Element => {
           alignItems="center"
           paddingRight="3"
           marginTop="5">
-          <Link isAnchorPrimary text={"CATEGORIES"} href={"###"} />
-          <Link isAnchorPrimary text={"CONTACT"} href={"###"} />
-          <Link isAnchorPrimary text={"ABOUT US"} href={"###"} />
-          <Link isAnchorPrimary text={"TEAM"} href={"###"} />
+          <Link
+            isAnchorPrimary
+            text={"PRODUCTS"}
+            href={"/products"}
+            onClick={(e) => {
+              e.preventDefault();
+              console.log("SCROLL a PRODUCTS");
+            }}
+          />
+          <Link
+            isAnchorPrimary
+            text={"CONTACT"}
+            href={"/contact"}
+            onClick={(e) => {
+              e.preventDefault();
+              console.log("SCROLL a CONTACT");
+            }}
+          />
+          <Link
+            isAnchorPrimary
+            text={"ABOUT US"}
+            href={"/about_us"}
+            onClick={(e) => {
+              e.preventDefault();
+              console.log("SCROLL a ABOUT US");
+            }}
+          />
+          <Link
+            isAnchorPrimary
+            text={"TEAM"}
+            href={"/team"}
+            onClick={(e) => {
+              e.preventDefault();
+              console.log("SCROLL a TEAM");
+            }}
+          />
           <Link isAnchorPrimary text={"ACCESS"} href={"/access"} />
           <Link text={""} href={"###"} svg={<Carrito width="3.7" />} />
         </Box>

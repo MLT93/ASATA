@@ -12,7 +12,7 @@ export default defineConfig({
       "/api": {
         target: "http://localhost:80/ASATA/PROYECTO/server/backend", // URL del backend PHP
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, "/access"), // Reescritura de `/api/login.php` por `/access/login.php` (la carpeta donde está el archivo `/ASATA/PROYECTO/server/backend/login.php`)
+        rewrite: (path) => path.replace(/^\/api/, ""), // Reescritura de `/api/login.php` por `/login.php` (la carpeta donde está el archivo `/ASATA/PROYECTO/server/backend/login.php`)
       },
     },
   },

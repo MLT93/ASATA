@@ -102,6 +102,17 @@ const Dev = (): JSX.Element => {
               svgButton={<IconExample1 width="3" />}
               onClick={() => console.log("Button Tertiary Card")}
             />
+            <Card
+              isCardQuaternary
+              svgCard={<IconExample2 width="3" />}
+              preTitle="preTitle"
+              title="Title"
+              subtitle="Subtitle"
+              body="Body"
+              textButton="textButton"
+              svgButton={<IconExample1 width="3" />}
+              onClick={() => console.log("Button Quaternary Card")}
+            />
           </Box>
         </Section>
       </main>

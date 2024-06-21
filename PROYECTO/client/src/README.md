@@ -4,6 +4,8 @@
 
 - [**Ejemplo de Registro, Login y Logout hecho con React y PHP**](https://github.com/stutzerik/reactjs-php-login-system/blob/main/frontend/src/components/Register.jsx)
 
+- [**Explicación de cómo integrar React Vite en PHP**](https://www.quora.com/How-could-I-transpile-a-react-vite-exercise-to-be-used-on-Apache-server-running-PHP-or-even-to-be-simply-imported-in-HTML-with-a-script-tag)
+
 - [**Explicación video para conectar PHP con React**](https://www.youtube.com/watch?v=OC9_B0bPku8)
 
 - [**Explicación de Formularios en React**](https://www.escuelafrontend.com/formularios-en-react)

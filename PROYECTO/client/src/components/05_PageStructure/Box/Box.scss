@@ -3,58 +3,58 @@
   height: 100%;
 }
 
-.flex-col {
+.flex_col {
   display: flex;
   flex-direction: column;
 }
 
-.flex-col-center {
+.flex_col_center {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.flex-col-start {
+.flex_col_start {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
-.flex-col-space-between {
+.flex_col_space_between {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
-.flex-row {
+.flex_row {
   display: flex;
 }
 
-.flex-row-center {
+.flex_row_center {
   display: flex;
   justify-content: center;
 }
 
-.flex-row-start {
+.flex_row_start {
   display: flex;
   justify-content: flex-start;
 }
 
-.flex-row-space-between {
+.flex_row_space_between {
   display: flex;
   justify-content: space-between;
 }
 
-.flex-row-space-around {
+.flex_row_space_around {
   display: flex;
   justify-content: space-around;
 }
 
-.wrap {
+.is_wrap {
   flex-wrap: wrap;
 }
 
-.item-with-blur {
+.item_with_blur {
   width: 100%;
   height: 100%;
 
@@ -67,33 +67,33 @@
 
   border: 2px solid var(--color-border-blur);
 
-  @media (min-width: 1200px) {
-    padding: var(--space-xll);
-    border-radius: var(--border-radius-xxl);
-    -webkit-border-radius: var(--border-radius-xxl);
-    -moz-border-radius: var(--border-radius-xxl);
-    -ms-border-radius: var(--border-radius-xxl);
-    -o-border-radius: var(--border-radius-xxl);
-  }
-  @media (min-width: 768px) {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-    -webkit-border-radius: none;
-  }
-  @media (min-width: 390px) {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-  }
+  // @media (min-width: 1200px) {
+  //   padding: var(--space-xll);
+  //   border-radius: var(--border-radius-xxl);
+  //   -webkit-border-radius: var(--border-radius-xxl);
+  //   -moz-border-radius: var(--border-radius-xxl);
+  //   -ms-border-radius: var(--border-radius-xxl);
+  //   -o-border-radius: var(--border-radius-xxl);
+  // }
+  // @media (min-width: 768px) {
+  //   padding-top: 2rem;
+  //   padding-bottom: 2rem;
+  //   -webkit-border-radius: none;
+  // }
+  // @media (min-width: 390px) {
+  //   padding-top: 2rem;
+  //   padding-bottom: 2rem;
+  // }
 }
 
-.position-relative {
+.position_relative {
   position: relative;
 }
 
-.position-absolute {
+.position_absolute {
   position: absolute;
 }
 
-.position-fixed {
+.position_fixed {
   position: fixed;
 }
