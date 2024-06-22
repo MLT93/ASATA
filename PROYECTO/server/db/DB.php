@@ -1,7 +1,7 @@
 <?php
 
 // Importar archivos
-require_once("./constantVariables.php");
+require_once(__DIR__ . "/constantVariables.php"); // Se incluye el `__DIR__` para que tome toda la ruta del PC. No es válida la ruta relativa en este archivo
 
 // Asegurarme de ver todos los errores
 error_reporting(E_ALL);
@@ -10,7 +10,7 @@ ini_set('display_errors', 1);
 // Habilitar CORS para permitir peticiones desde cualquier origen
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, OPTIONS");
-header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With, X-Auth-Token");
+header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With");
 
 /**
  * Summary of GET
@@ -27,14 +27,14 @@ function GET(string $sentenceSQL)
     // Verificar conexión
     if ($cnx->connect_error) {
       http_response_code(500);
-      throw new Exception("Connection failed: " . $cnx->connect_error);
+      echo json_encode(["success" => false, "message" => "Connection failed: " . $cnx->connect_error]);
     }
 
     // Consulta DB
     $response = $cnx->query($sentenceSQL);
 
     if (!$response) {
-      throw new Exception("Query execution failed: " . $cnx->error);
+      echo json_encode(["success" => false, "message" => "Query execution failed: " . $cnx->error]);
     }
 
     $result = $response->fetch_all(MYSQLI_ASSOC); // Matriz asociativa
@@ -49,7 +49,8 @@ function GET(string $sentenceSQL)
   }
 }
 $usuarios = GET("SELECT * FROM usuarios");
-print_r($usuarios);
+http_response_code(200);
+echo json_encode(["success" => true, "message" => $usuarios]);
 
 /**
  * Summary of POST

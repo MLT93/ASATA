@@ -4,108 +4,114 @@ namespace SessionDB;
 
 // Importar archivos
 require_once("UsuarioDB.php");
-require_once("../DB/constantVariables.php");
+require_once("../db/constantVariables.php");
+require_once("../db/DB.php");
 
 use DateTime;
 
 class Session
 {
 
-    private bool $login;
-    private string $usuario;
+  // Properties
+  private bool $login;
+  private string $usuario;
 
-    function __construct()
-    {
-        session_start();
-        $this->verificarLogin();
+  // Constructor
+  function __construct()
+  {
+    session_start();
+    $this->verificarLogin();
+  }
+
+  // Getters y Setters
+  protected function setLogin(bool $login)
+  {
+    $this->login = $login;
+  }
+  protected function setUsuario(string $usuario)
+  {
+    $this->usuario = $usuario;
+  }
+  protected function getLogin()
+  {
+    return $this->login;
+  }
+  protected function getUsuario()
+  {
+    return $this->usuario;
+  }
+
+  // Methods
+  public function inicioLogin(string $emailUsuario): void
+  { // Email de Usuario 
+
+    $cnx = new \mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+    $idUsuario = \UserDB\Usuario::mostrarIdUsuario($emailUsuario);
+    if ($idUsuario > 0) {
+
+      $_SESSION['usuario'] = $emailUsuario;
+      $this->setUsuario($emailUsuario);
+      $this->setLogin(true);
+
+      $now = new DateTime();
+      $fecha = $now->format('Y-m-d H:i:s');
+      // $SQL = "INSERT INTO sesiones (id_usuario, fecha, estado) VALUES ($idUsuario,'$fecha', 'LOG IN')";
+      // $cnx->query($SQL);
+      POST("sesiones", ["id_usuario", "fecha", "estado"], [[$idUsuario, "$fecha", "LOG OUT"]]);
+    }
+    $cnx->close();
+  }
+
+  public function verificarLogin(): void
+  {
+    if (isset($_SESSION['usuario'])) {
+      $this->setUsuario($_SESSION['usuario']);
+      $this->setLogin(true);
+    } else {
+      unset($this->usuario);
+      $this->setLogin(false);
+    }
+  }
+
+  public static function isLogged() // Verificar si el usuario posee un login activo
+  {
+    /* 
+      1. Devuelve `true` si $_SESSION['usuario'] contiene algo distinto de una cadena vacía 
+      2. Devuelve `false` si $_SESSION['usuario'] es una cadena vacía.
+    */
+    return $_SESSION['usuario'] != "";
+  }
+
+  public static function closeSession() // Cerrar la sesión del usuario
+  {
+    if (isset($_SESSION['usuario'])) {
+
+      $cnx = new \mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+      $idUsuario = \UserDB\Usuario::mostrarIdUsuario($_SESSION['usuario']);
+      if ($idUsuario > 0) {
+        $now = new DateTime();
+        $fecha = $now->format('Y-m-d H:i:s');
+        // $SQL = "INSERT INTO sesiones (id_usuario, fecha, estado) VALUES ($idUsuario, '$fecha', 'LOG OUT')";
+        // $cnx->query($SQL);
+        POST("sesiones", ["id_usuario", "fecha", "estado"], [[$idUsuario, "$fecha", "LOG OUT"]]);
+      }
+      $cnx->close();
     }
 
-    protected function setLogin($opcion)
-    {
-        $this->login = $opcion;
-    }
-    protected function setUsuario($usuario)
-    {
-        $this->usuario = $usuario;
-    }
+    session_unset();  // Limpiar todas las variables de sesión
+    session_destroy();  // Destruir la sesión
+  }
 
-
-    protected function getLogin()
-    {
-        return $this->login;
-    }
-    protected function getUsuario()
-    {
-        return $this->usuario;
-    }
-
-
-    public function inicioLogin(string $emailUsuario)
-    { // email de Usuario 
-
-        $cnx = new \mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-        $idUsuario = \UserDB\Usuario::mostrarIdUsuario($emailUsuario);
-        if ($idUsuario > 0) {
-
-            $_SESSION['usuario'] = $emailUsuario;
-            $this->setUsuario($emailUsuario);
-            $this->setLogin(true);
-
-            $now = new DateTime();
-            $fecha = $now->format('Y-m-d H:i:s');
-            $SQL = "INSERT INTO sesiones (id_usuario, fecha, estado) VALUES ($idUsuario,'$fecha', 'LOG IN')";
-            $cnx->query($SQL);
-        }
-        $cnx->close();
-    }
+  // Static Methods
 
 
 
-    public function verificarLogin()
-    {
-        if (isset($_SESSION['usuario'])) {
-            $this->setUsuario($_SESSION['usuario']);
-            $this->setLogin(true);
-        } else {
-            unset($this->usuario);
-            $this->setLogin(false);
-        }
-    }
-
-
-    // Verificar si el usuario está logueado
-    public static function estaLogueado()
-    {
-        return $_SESSION['usuario'] != ""; // Devuelvo la variable de sesión creada
-    }
-
-
-    // Cerrar la sesión del usuario
-    public static function closeSession()
-    {
-
-        if (isset($_SESSION['usuario'])) {
-
-            $cnx = new \Database\Db(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-            $idUsuario = \UserDB\Usuario::mostrarIdUsuario($_SESSION['usuario']);
-            if ($idUsuario > 0) {
-                $now = new DateTime();
-                $fecha = $now->format('Y-m-d  H:i:s');
-                $SQL = "INSERT INTO sesiones (id_usuario, fecha, estado) VALUES ($idUsuario,'$fecha', 'LOG OUT')";
-                $cnx->execute($SQL);
-            }
-            $cnx->close();
-        }
-
-        session_unset();  // Limpiar todas las variables de sesión
-        session_destroy();  // Destruir la sesión
-    }
 }
 
-// $misesion = new Sesion();
-// $misesion->inicioLogin("usuario1@mail.com");
-// echo $misesion->estadoLogin();echo"<br/>";
-// $misesion->finLogin();
-// echo $misesion->estadoLogin();echo"<br/>";
-// $misesion->inicioLogin("pedro");
-// echo $misesion->estadoLogin();echo"<br/>";
+// $mySession = new Session();
+// $mySession->inicioLogin("usuario1@mail.com");
+// echo $mySession->estadoLogin();echo"<br/>";
+// $mySession->finLogin();
+// echo $mySession->estadoLogin();echo"<br/>";
+// $mySession->inicioLogin("pedro");
+// echo $mySession->estadoLogin();echo"<br/>";

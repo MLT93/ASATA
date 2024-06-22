@@ -17,21 +17,19 @@ If you are developing a production application, we recommend updating the config
 export default {
   // other rules...
   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
+    ecmaVersion: "latest",
+    sourceType: "module",
+    project: ["./tsconfig.json", "./tsconfig.node.json"],
     tsconfigRootDir: __dirname,
   },
-}
+};
 ```
 
 - Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
 - Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
 - Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
 
-
-// ************************************************************************
-
+// **********************************\*\*\*\***********************************
 
 # ESPECIFICACIONES FRONTEND
 
@@ -67,9 +65,7 @@ export default {
 
 - [**Explicación video para crear tus propios Toastify**](https://www.youtube.com/watch?v=qlHSvwHpwaA)
 
-
-// ************************************************************************
-
+// **********************************\*\*\*\***********************************
 
 - **Ejemplo de Uncontrolled Form React:**
 
@@ -262,7 +258,7 @@ El backend PHP seguirá siendo el mismo que en la respuesta anterior, capaz de m
 <?php
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, OPTIONS");
-header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Authorization, X-Auth-Token");
+header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Authorization");
 
 // Obtener los datos del formulario
 $username = $_POST['username'] ?? '';
@@ -380,7 +376,7 @@ La función `json_decode(file_get_contents("php://input"))` en PHP se usa para o
 
 ### ¿Por qué se usa `php://input`?
 
-`php://input` es un flujo de solo lectura que permite acceder a los datos sin procesar del cuerpo de la solicitud. Esto es útil en situaciones en las que los datos se envían como un flujo, como en las solicitudes POST con datos JSON. 
+`php://input` es un flujo de solo lectura que permite acceder a los datos sin procesar del cuerpo de la solicitud. Esto es útil en situaciones en las que los datos se envían como un flujo, como en las solicitudes POST con datos JSON.
 
 ### ¿Por qué no usar `$_POST`?
 
@@ -395,17 +391,17 @@ Aquí se envían datos JSON en el cuerpo de una solicitud POST.
 
 ```javascript
 const handleSubmitForm = async (event: {
-  target: EventTarget;
-  preventDefault: () => void;
+  target: EventTarget,
+  preventDefault: () => void,
 }) => {
   event.preventDefault();
 
   if (user.username && user.password) {
     try {
-      const response = await fetch('/api/registro.php', {
-        method: 'POST',
+      const response = await fetch("/api/registro.php", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(user),
       });
@@ -433,7 +429,7 @@ Aquí se obtiene y decodifica el JSON enviado en la solicitud.
 <?php
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, OPTIONS");
-header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Authorization, X-Auth-Token");
+header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Authorization");
 
 // Obtener los datos sin procesar del cuerpo de la solicitud
 $input = json_decode(file_get_contents("php://input"), true);

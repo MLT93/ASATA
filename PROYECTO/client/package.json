@@ -5,8 +5,7 @@
   "type": "module",
   "scripts": {
     "modificar-puerto": "Para modificar el puerto del servidor virtual, debes utilizar `vite --port <num_puerto>`",
-    "dev:1": "vite --port 80",
-    "dev:2": "vite --port 3000",
+    "dev:1": "vite --port 3000",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"

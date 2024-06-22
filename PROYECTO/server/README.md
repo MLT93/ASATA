@@ -6,56 +6,56 @@ La carpeta `server` debe pegarse donde esté alojado el servidor, o mejor dicho,
 creados en el Servidor, y utilizar ese archivo para acceder a la información. En este, caso será para el servidor Apache. En Windows `Xampp/htdocs` y en Linux en `var/www/html`.
 
 
-// ************************************************************************
+// ****************\*\*****************\*\*\*\*****************\*\*****************
 
 
 - [**Explicación de uso de CORS client y server**](https://stackoverflow.com/questions/65218218/react-php-blocked-my-cors-policy-only-in-post-request)
 
-- [**Explicación de configuración de Proxy PHP. Fix CORS problem**](https://brightdata.es/blog/procedimientos/php-proxy-servers)
+- [**Explicación de configuración de Proxy en backend PHP**](https://brightdata.es/blog/procedimientos/php-proxy-servers)
+
+- [**Explicación de configuración Proxy en Apache Linux**](https://www.ionos.es/digitalguide/servidores/configuracion/configurar-apache-como-proxy-inverso/)
+
+- [**Explicación de Proxy en Windows**](https://help.eset.com/protect_install/90/es-ES/upgrade_apache_http_proxy_windows_instructions_manual.html)
 
 - [**Explicación de cómo integrar React Vite en PHP**](https://www.quora.com/How-could-I-transpile-a-react-vite-exercise-to-be-used-on-Apache-server-running-PHP-or-even-to-be-simply-imported-in-HTML-with-a-script-tag)
 
 - [**Explicación video para conectar PHP con React**](https://www.youtube.com/watch?v=OC9_B0bPku8)
 
+- [**Ver módulos activos en Apache**](https://www.swhosting.com/es/comunidad/manual/como-ver-que-modulos-hay-activos-en-apache)
 
-// ************************************************************************
+- [**Módulo Headers**](https://www.youtube.com/watch?v=ox5Ihgk27ic)
+
+- [**Y este explica todo paso a paso para los Virtual Host (es un argentino pro de Linux)**](https://www.youtube.com/watch?v=irGyqdliM8I)
+
+- [**Video1: Entender qué son los Virtual Hosts y cómo modificarlos**](https://www.youtube.com/watch?v=8EnTdCwaX48)
+
+- [**Video2: Este hay que verlo, forma parte de Video1**](https://www.youtube.com/watch?v=RyCbZ7f-OoE)
+
+- [**Para potenciar el servidor lee esto**](https://www.proxadmin.es/blog/configurar-apache-para-maximo-rendimiento/)
 
 
-### Ubicación de los archivos de configuración de Apache en Linux
+// ****************\*\*****************\*\*\*\*****************\*\*****************
+
+
+## **`Archivos de configuración de Apache en Linux`**
 
 En sistemas Linux, especialmente aquellos que ejecutan el servidor web Apache, puedes encontrar la configuración de los módulos y directivas dentro de los archivos de configuración del servidor web. Aquí te guiaré a través de dónde encontrar y cómo trabajar con la configuración en Linux:
 
 1. **Directorio principal de configuración de Apache:**
 
    - El archivo principal de configuración de Apache se llama `httpd.conf` o `apache2.conf`, dependiendo de la distribución de Linux y la versión de Apache que estés utilizando.
+
    - Por ejemplo, en Ubuntu y Debian, el archivo principal de configuración puede encontrarse en `/etc/apache2/apache2.conf`.
+
    - En CentOS y Red Hat, el archivo principal puede estar en `/etc/httpd/conf/httpd.conf`.
+
    - En Windows, el archivo puede estar en `C:\Xampp\htdocs`.
 
 2. **Archivos de configuración de los sitios virtuales (VirtualHosts):**
 
-   - Los sitios web individuales (VirtualHosts) tienen sus propios archivos de configuración generalmente ubicados en directorios como `/etc/apache2/sites-available/` y `/etc/apache2/sites-enabled/` en sistemas Debian/Ubuntu.
+   Los sitios web individuales (VirtualHosts) tienen sus propios archivos de configuración generalmente ubicados en directorios como `/etc/apache2/sites-available/` y `/etc/apache2/sites-enabled/` en sistemas Debian/Ubuntu.
 
    - En sistemas Red Hat/CentOS, los archivos de configuración de VirtualHosts pueden estar en `/etc/httpd/conf.d/`.
-  
-   - [**Lee esto**](https://www.swhosting.com/es/comunidad/manual/como-ver-que-modulos-hay-activos-en-apache)
-
-   - [**Mira también este vídeo**](https://www.youtube.com/watch?v=ox5Ihgk27ic)
-
-   - [**Y este explica todo paso a paso para los virtual host (es un argentino pro de Linux)**](https://www.youtube.com/watch?v=irGyqdliM8I)
-   
-   - [**Video1: Entender qué son los `virtual hosts` y cómo modificarlos**](https://www.youtube.com/watch?v=8EnTdCwaX48)
-
-   - [**Video2: Este hay que verlo, forma parte de `Video1`**](https://www.youtube.com/watch?v=RyCbZ7f-OoE)
-   
-   - [**Para potenciar el servidor lee esto**](https://www.proxadmin.es/blog/configurar-apache-para-maximo-rendimiento/)
-
-   - Habilitar los headers
-
-   ```bash
-   sudo a2enmod headers
-   sudo systemctl restart apache2
-   ```
 
    - Nos movemos a la carpeta de las configuraciones
 
@@ -103,11 +103,21 @@ En sistemas Linux, especialmente aquellos que ejecutan el servidor web Apache, p
    sudo /usr/sbin/a2dissite pagina1
    ```
 
-### Encontrar la sección `<IfModule mod_headers.c>` en Windows y Linux
 
-Para habilitar y configurar el módulo `mod_headers.c` en Apache, sigue estos pasos:
+// ****************\*\*****************\*\*\*\*****************\*\*****************
+
+
+## **`Configuración de Headers en Windows y Linux`**
+
+Para habilitar y configurar el módulo `mod_headers` en Apache, sigue estos pasos:
 
 1. **Abrir el archivo de configuración:**
+
+   - Habilita el módulo por terminal:
+
+     ```bash
+     sudo a2enmod headers
+     ```
 
    - Usa un editor de texto como `nano`, `vim` o `gedit` para abrir el archivo de configuración principal de Apache.
 
@@ -129,74 +139,51 @@ Para habilitar y configurar el módulo `mod_headers.c` en Apache, sigue estos pa
      tecla ':q' para salir
      ```
 
-2. **Buscar la sección `<IfModule mod_headers.c>` en Windows `httpd.conf`:**
+2. **Agregar permisos a `mod_headers` en Linux `apache2.conf`:**
 
-   - Dentro del archivo, puedes buscar directamente la sección `<IfModule mod_headers.c>` en Windows. Esta sección se utiliza para condicionar la carga de configuraciones específicas solo si el módulo `mod_headers` está cargado y disponible en Apache. Si no existen, créalos (sólo para windows).
+   - Agrega el archivo `<IfModule mod_headers>`. Aquí se añaden las directivas `Headers` para configurar encabezados HTTP según sea necesario para tu aplicación web dentro del archivo `apache2.conf`.
    
-   - Ve al archivo `httpd.conf` y en cada `<Directory></Directory>` modifica el `AllowOverride` añade:
+   - Recuerda modificar los permisos de escritura en los directorios `<Directory></Directory>` modificando el comando `AllowOverride None` por `AllowOverride None` en los directorios de tu interés.
 
    ```t
-   <Directory>
-      AllowOverride All
+   <IfModule mod_headers>
 
       Header set Access-Control-Allow-Origin "<url_específica> o <*>"
       Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
-      Header set Access-Control-Allow-Headers "X-Requested-With, Content-Type, Authorization, X-Auth-Token"
-   </Directory>
-   ``` 
-
-   - Además, en el `<IfModule headers_module>` agrega:
-
-   ```t
-   <IfModule headers_module>
-
-      Header set Access-Control-Allow-Origin "<url_específica> o <*>"
-      Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
-      Header set Access-Control-Allow-Headers "X-Requested-With, Content-Type, Authorization, X-Auth-Token"
-   </Directory>
-   ```
-
-   - Por último descomenta esta línea:
-
-   ```t
-   LoadModule headers_module modules/mod_headers.so
-   ```
-
-
-3. **Para ver los módulos y activar `mod_headers` en Linux `apache2.conf`:** 
-
-   - Dentro de `<IfModule mod_headers.c>`, puedes agregar directivas como `Header` para configurar encabezados HTTP según sea necesario para tu aplicación web dentro del archivo `apache2.conf`.
-  
-   - También agregamos en cada `<Directory></Directory>`
-
-   ```t
-   <Directory>
-      AllowOverride All
-
-      Header set Access-Control-Allow-Origin "<url_específica> o <*>"
-      Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
-      Header set Access-Control-Allow-Headers "X-Requested-With, Content-Type, Authorization, X-Auth-Token"
-   </Directory>
-   ```
-
-   ```t
-   <IfModule mod_headers.c>
-
-      Header set Access-Control-Allow-Origin "<url_específica> o <*>"
-      Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
-      Header set Access-Control-Allow-Headers "X-Requested-With, Content-Type, Authorization, X-Auth-Token"
+      Header set Access-Control-Allow-Headers "X-Requested-With, Content-Type, Authorization"
    </IfModule>
    ```
 
    - Otro ejemplo de uso típico sería:
 
    ```t
-   <IfModule mod_headers.c>
+   <IfModule mod_headers>
        # Ejemplo: Aquí colocas las configuraciones específicas para mod_headers
        Header always set X-Frame-Options "SAMEORIGIN"
        Header always set X-XSS-Protection "1; mode=block"
        Header always set X-Content-Type-Options "nosniff"
    </IfModule>
+   ```
+
+3. **Ahora en Windows, activación y añadido de permisos en `<IfModule headers_module></IfModule>` dentro del archivo `httpd.conf`:**
+
+   - Esta sección se utiliza para condicionar la carga de configuraciones específicas solo si el módulo `mod_headers` está cargado y disponible en Apache. Si no existen, créalos (sólo para windows).
+
+   - Ve al archivo `httpd.conf` y en el `<IfModule headers_module>` agrega:
+
+   ```t
+   <IfModule headers_module>
+
+      Header set Access-Control-Allow-Origin "<url_específica> o <*>"
+      Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+      Header set Access-Control-Allow-Headers "X-Requested-With, Content-Type, Authorization"
+   </Directory>
+   ```
+
+   - Por último descomenta esta línea (el módulo):
+
+   ```t
+   LoadModule headers_module modules/mod_headers.so
    ```
 
 4. **Guardar y salir:**
@@ -217,72 +204,45 @@ Para habilitar y configurar el módulo `mod_headers.c` en Apache, sigue estos pa
 - **Permisos de usuario:** Para editar archivos de configuración en `/etc/apache2/` o `/etc/httpd/`, normalmente necesitarás privilegios de superusuario (root). Usa `sudo` antes de los comandos de edición o reinicio del servicio.
 - **Documentación:** Siempre es útil revisar la documentación oficial de Apache y la guía específica para tu distribución de Linux para obtener detalles adicionales y mejores prácticas.
 
-Siguiendo estos pasos, podrás encontrar y modificar la configuración dentro de `<IfModule mod_headers.c>` según sea necesario para tu configuración específica de Apache en Linux o Windows.
+Siguiendo estos pasos, podrás encontrar y modificar la configuración dentro de `<IfModule mod_headers>` según sea necesario para tu configuración específica de Apache en Linux o Windows.
 
 
-// ************************************************************************
+// ****************\*\*****************\*\*\*\*****************\*\*****************
 
 
-- **Configuración de Proxy en Apache. Fix CORS problem**
+## **`Configuración de Virtual Host en Apache`**
 
-Antes de configurar tu servidor PHP para manejar las solicitudes y establecer los encabezados CORS, es importante asegurarte de que Apache esté configurado correctamente para permitir el tráfico entrante y dirigir las solicitudes correctamente al backend PHP. Aquí te guiaré a través de los pasos para configurar un proxy en Apache utilizando `mod_proxy`.
+### Paso 1: Crear tu Virtual Host
 
-Para permitir que Apache actúe como un proxy inverso y redirija las solicitudes entrantes desde React Vite (en `http://localhost:5173/ASATA/PROYECTO/client`) al backend PHP (en `http://localhost:80/ASATA/PROYECTO/server/credentials`), debes seguir estos pasos:
-
-### Paso 1: Habilitar `mod_proxy` en Apache
-
-Primero, asegúrate de que `mod_proxy` esté habilitado en tu servidor Apache. Puedes hacerlo ejecutando los siguientes comandos en la terminal:
-
-```bash
-sudo a2enmod proxy &&
-sudo a2enmod proxy_http &&
-sudo systemctl restart apache2
-```
-
-Estos comandos habilitarán `mod_proxy` y `mod_proxy_http`, que son necesarios para configurar un proxy HTTP en Apache.
-
-### Paso 2: Configurar el Proxy en el Archivo de Configuración de Apache
-
-Luego, debes configurar un proxy en el archivo de configuración de Apache (`httpd.conf` o un archivo de configuración virtual específico). 
-
-These are not your only options. On Ubuntu/Debian, Apache also processes all the files in /etc/apache2/sites-enabled/ (which should be symlinks to files in sites-available/ directory, managed by the `a2ensite` and `a2dissite` programs)
+On Ubuntu/Debian Apache also processes all the files in /etc/apache2/sites-enabled/ (which should be symlinks to files in sites-available/ directory, managed by the `a2ensite` and `a2dissite` programs)
 You're intended to use these directories for VirtualHosts.
-
-Aquí tienes un ejemplo de cómo podrías configurarlo:
-
-```t
-<VirtualHost *:5173>
-    ServerName localhost
-
-    ProxyPreserveHost On
-    ProxyPass /ASATA/PROYECTO/server/ http://localhost:80/ASATA/PROYECTO/server/
-    ProxyPassReverse /ASATA/PROYECTO/server/ http://localhost:80/ASATA/PROYECTO/server/
-
-    ErrorLog ${APACHE_LOG_DIR}/vite-client-error.log
-    CustomLog ${APACHE_LOG_DIR}/vite-client-access.log combined
-</VirtualHost>
-```
 
 In Ubuntu/Debian systems running Apache, the directories `/etc/apache2/sites-enabled/` and `/etc/apache2/sites-available/` are used for managing virtual hosts, which allow you to host multiple websites or applications on a single Apache server. Here’s how these directories are typically used and managed:
 
 ### Directory Structure:
 
 1. **sites-available/**:
+
    - This directory contains configuration files (`.conf` files) for all available virtual hosts.
    - These configuration files define how each virtual host should behave, including details like domain names, document roots, logging, and more.
 
 2. **sites-enabled/**:
+
    - This directory contains symbolic links to the configuration files from `sites-available/` that should be active (enabled) and processed by Apache.
    - Only the configuration files symlinked here will be loaded and used by Apache.
 
 ### Managing Virtual Hosts:
 
 - **Adding a New Virtual Host**:
-  1. Create a new configuration file in `sites-available/`. For example:
+
+  1. Create a new configuration file in `sites-available/`:
+
      ```bash
-     sudo nano /etc/apache2/sites-available/mywebsite.conf
+     sudo vim /etc/apache2/sites-available/mywebsite.conf
      ```
+
   2. Inside `mywebsite.conf`, define your virtual host configuration:
+
      ```t
      <VirtualHost *:80>
          ServerName mywebsite.com
@@ -291,30 +251,39 @@ In Ubuntu/Debian systems running Apache, the directories `/etc/apache2/sites-ena
          CustomLog ${APACHE_LOG_DIR}/access.log combined
      </VirtualHost>
      ```
+
      Adjust `ServerName`, `DocumentRoot`, and other directives as per your requirements.
 
   3. Enable the virtual host by creating a symbolic link in `sites-enabled/` using `a2ensite`:
+
      ```bash
      sudo a2ensite mywebsite.conf
      ```
 
   4. Reload Apache for the changes to take effect:
+
      ```bash
      sudo systemctl reload apache2
      ```
 
 - **Disabling a Virtual Host**:
+
   - To disable a virtual host, use `a2dissite` followed by the virtual host configuration file name (without the `.conf` extension):
+
     ```bash
     sudo a2dissite mywebsite
     ```
+
   - Again, reload Apache to apply the changes:
+
     ```bash
     sudo systemctl reload apache2
     ```
 
 - **Checking Syntax and Errors**:
+
   - Before reloading Apache, it’s a good practice to check the syntax of your configuration files for errors:
+
     ```bash
     sudo apache2ctl configtest
     ```
@@ -322,6 +291,7 @@ In Ubuntu/Debian systems running Apache, the directories `/etc/apache2/sites-ena
 ### Virtual Host Examples:
 
 - **Simple Virtual Host**:
+
   ```t
   <VirtualHost *:80>
       ServerName mywebsite.com
@@ -332,6 +302,7 @@ In Ubuntu/Debian systems running Apache, the directories `/etc/apache2/sites-ena
   ```
 
 - **Virtual Host with SSL** (if using HTTPS):
+
   ```t
   <VirtualHost *:443>
       ServerName mywebsite.com
@@ -357,9 +328,9 @@ This approach allows you to host multiple websites or applications on the same A
 En este ejemplo:
 
 - `<VirtualHost *:5173>`: Define el virtual host para el puerto 5173, donde se encuentra tu aplicación React Vite.
-- `ProxyPass` y `ProxyPassReverse`: Estas directivas indican a Apache que todas las solicitudes que lleguen a `http://localhost:5173/ASATA/PROYECTO/client/ASATA/PROYECTO/server/credentials` deben ser redirigidas al backend PHP en `http://localhost:80/ASATA/PROYECTO/server/credentials`.
+- `ProxyPass` y `ProxyPassReverse`: Estas directivas indican a Apache que todas las solicitudes que lleguen a `http://localhost:80/ASATA/PROYECTO/server/` deben ser redirigidas al backend PHP en `http://localhost:80/ASATA/PROYECTO/server/`.
 
-### Paso 3: Reiniciar Apache
+### Paso 2: Reiniciar Apache
 
 Después de realizar cambios en la configuración de Apache, asegúrate de reiniciar Apache para que los cambios surtan efecto:
 
@@ -367,113 +338,65 @@ Después de realizar cambios en la configuración de Apache, asegúrate de reini
 sudo systemctl restart apache2
 ```
 
-- **Configuración de Proxy en React Vite. Fix CORS problem**
 
-Para configurar un proxy en Vite y poder realizar solicitudes desde una aplicación React Vite hacia un backend PHP sin problemas de CORS, utilizando las rutas proporcionadas:
+// ****************\*\*****************\*\*\*\*****************\*\*****************
 
-### Paso 1: Configuración del Proxy en `vite.config.js`
 
-Crea o modifica el archivo `vite.config.js` en la raíz de tu proyecto Vite con la siguiente configuración:
+## **`Configurar Proxy en Apache y CORS en el archivo PHP`**
 
-```javascript
-import { defineConfig } from 'vite';
-import react from "@vitejs/plugin-react";
+Antes de configurar tu servidor PHP para manejar las solicitudes y establecer los encabezados CORS, es importante asegurarte de que Apache esté configurado correctamente para permitir el tráfico entrante y dirigir las solicitudes correctamente al backend PHP. Aquí te guiaré a través de los pasos para configurar un proxy en Apache utilizando `mod_proxy`.
 
-export default defineConfig({
-  plugins: [react()],
-  build: {
-    target: "esnext",
-  },
-  server: {
-    proxy: {
-      // Las peticiones ahora deben empezar todas por `/api` para que la encuentre
-      "/api": {
-        target: "http://localhost:80/ASATA/PROYECTO/server", // URL del backend PHP
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, "/credentials"), // Reescritura de `/api` por `/credentials` (la carpeta donde está el archivo `registro.php`)
-      },
-    },
-  },
-});
+Para permitir que Apache actúe como un proxy inverso y redirija las solicitudes entrantes desde React Vite (en `http://localhost:5173/ASATA/PROYECTO/client`) al backend PHP (en `http://localhost:80/ASATA/PROYECTO/server/credentials`), debes seguir estos pasos:
+
+### 1. Habilitar `mod_proxy` en el servidor Apache
+
+Primero, asegúrate de que `mod_proxy` esté habilitado en tu servidor Apache en Linux. Puedes hacerlo ejecutando los siguientes comandos en la terminal:
+
+```bash
+sudo a2enmod proxy
+sudo a2enmod proxy_http
+sudo a2enmod proxy_balancer
+sudo a2enmod proxy_connect
+sudo a2enmod proxy_html
+sudo systemctl restart apache2
 ```
 
-- `'/api'`: Este es el prefijo de las URLs que serán redirigidas al servidor backend.
-- `target`: Especifica la URL base del servidor backend al que quieres redirigir las solicitudes (`http://localhost:80/ASATA/PROYECTO/server` en tu caso).
-- `changeOrigin`: Habilita el cambio de origen para las solicitudes CORS.
-- `rewrite`: No se realiza una modificación significativa de la ruta original, excepto por el cambio en el puerto.
+En Windows, lo hacemos de forma manual en el archivo `httpd.conf` con:
 
-### Paso 2: Ejemplo de Uso en el Componente React
-
-A continuación, mostramos cómo realizar una solicitud GET básica desde un componente React hacia el backend PHP a través del proxy configurado:
-
-```javascript
-import React, { useEffect, useState } from 'react';
-
-const App = () => {
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('/api/registro.php'); // Realiza una solicitud a '/api/registro.php', será redirigida a 'http://localhost:80/ASATA/PROYECTO/server/credentials/registro.php'
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const jsonData = await response.json();
-        setData(jsonData);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  return (
-    <div>
-      <h1>Backend Data:</h1>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
-    </div>
-  );
-};
-
-export default App;
+```t
+<Proxy *>
+  AuthType Basic
+  AuthName "Password Required"
+  AuthUserFile password.file
+  AuthGroupFile group.file
+  Require group usergroup
+  Order deny,allow
+  Deny from all
+  Allow from all
+</Proxy>
 ```
 
-En este ejemplo:
+Estos comandos habilitarán `mod_proxy` y `mod_proxy_http`, que son necesarios para configurar un proxy HTTP en Apache.
 
-- `fetch('/api/registro.php')`: Realiza una solicitud GET a `/ASATA/PROYECTO/server/api/registro.php`, que será redirigida por el proxy configurado a `http://localhost:80/ASATA/PROYECTO/server/credentials/registro.php`.
+Para realizar peticiones HTTP entre una aplicación React y un servidor PHP sin incurrir en problemas de CORS (Cross-Origin Resource Sharing), hay varias soluciones que puedes implementar:
 
-### Consideraciones Adicionales
+### 2. Configuración del archivo PHP para Permitir Headers (CORS)
 
-- **Configuración CORS en el Backend**: Asegúrate de que tu backend PHP en `localhost:80` tenga configurado CORS adecuadamente para aceptar solicitudes desde `localhost:5173`.
-- **Seguridad**: No es recomendable deshabilitar completamente CORS en producción. Configura tu servidor PHP para permitir CORS desde `localhost:5173` específicamente.
-
-Con esta configuración, deberías poder realizar solicitudes HTTP desde tu aplicación React Vite hacia tu backend PHP en `localhost:80/ASATA/PROYECTO/server/credentials` sin problemas de CORS, utilizando el proxy configurado en Vite para manejar las rutas adecuadamente.
-
-
-// ************************************************************************
-
-
-- **Configurar CORS:**
-
-Para realizar peticiones HTTP entre una aplicación React y un servidor PHP sin incurrir en problemas de CORS (Cross-Origin Resource Sharing), hay varias soluciones que puedes implementar. A continuación, se presentan algunas estrategias comunes:
-
-1. `Configuración del Servidor PHP para Permitir CORS`
-
-La forma más directa de resolver problemas de CORS es configurando el servidor PHP para permitir las solicitudes de origen cruzado. Puedes hacerlo agregando encabezados CORS en tu archivo PHP:
+La forma más directa de resolver problemas de CORS es configurando el servidor PHP para permitir las solicitudes de origen cruzado.
 
 ```php
 <?php
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, OPTIONS");
-header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With, X-Auth-Token");
+header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With");
 
 // Tu lógica de manejo de solicitudes aquí
+
+# code...
 ?>
 ```
 
-2. `Uso de un Proxy`
+### 3. Uso de un Proxy
 
 Otra forma de evitar problemas de CORS es configurando un proxy en tu servidor de desarrollo `Create-React-App`. Esto implica redirigir las solicitudes de tu aplicación React a través de un servidor proxy que hace la solicitud real al servidor PHP. Puedes configurar un proxy en tu proyecto `React` modificando el archivo `package.json` para redirigir las solicitudes de la API:
 
@@ -497,7 +420,7 @@ Otra forma de evitar problemas de CORS es configurando un proxy en tu servidor d
 }
 ```
 
-También se puede hacer en `React Vite`:
+También se puede hacer en `React Vite` dentro del archivo `vite.config.tsx`:
 
 ```tsx
 import { defineConfig } from "vite";
@@ -512,20 +435,68 @@ export default defineConfig({
     proxy: {
       // Las peticiones ahora deben empezar todas por `/api` para que la encuentre
       "/api": {
-        target: "http://localhost:80/ASATA/PROYECTO/server", // URL del backend PHP
+        target: "http://localhost:80/server", // URL del backend PHP
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, "/credentials"), // Reescritura de `/api` por `/credentials` (la carpeta donde está el archivo `registro.php`)
+        rewrite: (path) => path.replace(/^\/api/, ""), // Reescritura de `/api/registro.php` por `/registro.php` (la carpeta donde está el archivo `registro.php`)
       },
     },
   },
 });
 ```
 
-3. `Uso de Nginx o Apache como Proxy`
+- `/api`: Este es el prefijo de las URLs que serán redirigidas al servidor backend. Esto significa que en tu petición frontend deberás incluir ese prefijo en el endpoint, ejemplo: `/api/registro.php`.
+- `target`: Especifica la URL base del servidor backend al que quieres redirigir las solicitudes (`http://localhost:80/server` en tu caso). Siguiendo el ejemplo de arriba, la petición iría al backend de la siguiente forma: `http://localhost:80/server/registro.php`
+- `changeOrigin`: Habilita el cambio de origen para las solicitudes CORS.
+- `rewrite`: No se realiza una modificación significativa de la ruta original, excepto por el cambio en el puerto.
+
+A continuación, mostramos cómo realizar una solicitud GET básica desde un componente React hacia el backend PHP a través del proxy configurado:
+
+```javascript
+import React, { useEffect, useState } from "react";
+
+const App = () => {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    const getFetchData = async () => {
+      try {
+        const response = await fetch("/api/registro.php"); // Realiza una solicitud a '/api/registro.php', será redirigida a 'http://localhost:80/server/registro.php'
+        if (!response.ok) {
+          throw new Error(
+            "Get Error: Network response failed:",
+            response.status,
+          );
+        }
+        const jsonData = await response.json();
+        setData(jsonData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    getFetchData();
+  }, []);
+
+  return (
+    <div>
+      <h1>Backend Data:</h1>
+      <pre>{JSON.stringify(data, null, 2)}</pre>
+    </div>
+  );
+};
+
+export default App;
+```
+
+En este ejemplo:
+
+- `fetch('/api/registro.php')`: Realiza una solicitud GET a `/api/registro.php`, que será redirigida por el proxy configurado a `http://localhost:80/server/registro.php`.
+
+### 4. Uso de Nginx o Apache como Proxy
 
 Si tienes control sobre tu servidor web (por ejemplo, Nginx o Apache), puedes configurarlo para que actúe como un proxy inverso, redirigiendo las solicitudes desde tu aplicación React al servidor PHP.
 
-### **Configuración de Nginx**
+- `Configuración de Nginx`
 
 ```nginx
 server {
@@ -547,36 +518,57 @@ server {
 }
 ```
 
-### **Configuración de Apache dentro del proyecto backend**
+- `Configuración dentro del proyecto Backend que usa Apache`
 
-Crea un archivo `.htaccess` en la raíz de tu proyecto con lo siguiente:
+Crea un archivo `.htaccess` en la raíz de tu proyecto backend y añade lo sieguiente:
 
-Esto sirve para armar un Proxy virtual
+- Esto sirve para armar un Proxy virtual dentro de `.htaccess`:
 
 ```apache
-<IfModule mod_proxy.c>
+<IfModule mod_proxy>
     ProxyRequests Off
+
     <Proxy *>
         Order deny,allow
         Allow from all
     </Proxy>
 
-    ProxyPass /api/ http://localhost:80/
-    ProxyPassReverse /api/ http://localhost:80/
+    ProxyPreserveHost On
+    ProxyPass /api/ http://localhost:80/server/
+    ProxyPassReverse /api/ http://localhost:80/server/
+
+    ErrorLog ${APACHE_LOG_DIR}/vite-client-error.log
+    CustomLog ${APACHE_LOG_DIR}/vite-client-access.log combined
 </IfModule>
 ```
 
-Esto habilita reescritura y reescribe la URL base para permitirme trabajar con Query Params en los endpoints
+- Esto habilita reescritura y reescribe la URL base para permitirme trabajar con Query Params en los endpoints dentro de `.htaccess`:
+
+También deberás dar los permisos de escritura:
+
+```bash
+sudo a2enmod rewrite
+sudo systemctl restart apache2
+```
 
 <!-- Habilita la reescritura -->
+
 RewriteEngine On
+
 <!-- Actualizamos la URL base -->
+
 RewriteBase /ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/almacen/
+
 <!-- Condición para encontrar files (archivos). Si no lo encuentra, pasa a la siguiente línea -->
+
 RewriteCond %{REQUEST_FILENAME} !-f
+
 <!-- Condición para encontrar directories (carpetas). Si no lo encuentra, pasa a la siguiente línea -->
+
 RewriteCond %{REQUEST_FILENAME} !-d
+
 <!-- Si ningún Endpoint existe, me redirecciona a `index.php` y me guarda los Query Params `[QSA,L]` que haya puesto en el Endpoint equivocado. `index.php` al no tener esa ruta, cargará la página de error -->
+
 RewriteRule ^(.*)$ index.php [QSA,L]
 
 ```apache
@@ -587,3 +579,47 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php [QSA,L]
 ```
 
+- Esto configura los Headers dentro de `.htaccess`
+
+También deberás dar los permisos al módulo Headers (en Windows está dentro del archivo de configuración `httpd.conf` como `<IfModule headers_module></IfModule>`):
+
+```bash
+sudo a2enmod headers
+sudo systemctl restart apache2
+```
+
+```
+<IfModule mod_headers>
+  header("Access-Control-Allow-Origin: *");
+  header("Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, OPTIONS");
+  header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With");
+</IfModule>
+```
+
+
+// ****************\*\*****************\*\*\*\*****************\*\*****************
+
+
+## **`Errores`**
+
+En caso de recibir algún error en la manipulación o ejecución de la API, revisa los logs:
+
+```bash
+sudo tail -f /var/log/apache2/error.log
+```
+
+```bash
+sudo tail -f /var/log/apache2/access.log
+```
+
+Prueba a realizar las peticiones a través de Curl o Postman:
+
+```bash
+curl -X GET http://localhost/server/users/users.php
+```
+
+Eventualmente se puede dar permiso de lectura y escritura para manipular `/server` dentro de Apache con:
+
+```bash
+sudo chmod 755 /var/www/html/server/
+```

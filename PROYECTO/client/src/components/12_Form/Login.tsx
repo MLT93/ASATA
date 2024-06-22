@@ -44,10 +44,10 @@ const Login = (): JSX.Element => {
     inputRef.current?.focus();
   };
 
-  // ******************* GET info API ***********************
+  // ************************ GET ***************************
 
   // const URL_BASE = "http://localhost:80/server";
-  const URL_GET_USUARIOS = "/api/DB/DB.php";
+  const URL_GET = "/api/DB/DB.php";
 
   const [data, setData] = useState<Response>();
   const [error, setError] = useState<Error>();
@@ -73,60 +73,83 @@ const Login = (): JSX.Element => {
       } finally {
         setIsLoading(false);
       }
-    })(URL_GET_USUARIOS);
+    })(URL_GET);
   }, []);
 
   console.log(data);
   error ? console.log(error) : null;
   isLoading ? console.log(isLoading) : null;
 
-  // ********************************************************
+  // ************************ GET ***************************
+
+  // const URL_BASE = "http://localhost:80/server";
+  const URL_GET_USUARIOS = "/api/users/users.php";
+
+  const [data2, setData2] = useState<Response>();
+  const [error2, setError2] = useState<Error>();
+  const [isLoading2, setIsLoading2] = useState<boolean>(false);
+
+  useEffect(() => {
+    void (async (url: string): Promise<void> => {
+      try {
+        setIsLoading2(true);
+        const response = await axios.get(url);
+        if (!response) {
+          throw new Error("Error en la petición");
+        }
+        const result = (await response.data) as Response;
+        setData2(result);
+      } catch (error) {
+        if (error instanceof Error) {
+          console.error("Error obtenido:", error.message);
+          setError2(error);
+        } else {
+          console.error("Error desconocido");
+        }
+      } finally {
+        setIsLoading2(false);
+      }
+    })(URL_GET_USUARIOS);
+  }, []);
+
+  console.log(data2);
+  error ? console.log(error2) : null;
+  isLoading ? console.log(isLoading2) : null;
+
+  // *********************** POST ***************************
 
   const handleSubmitForm = (event: { preventDefault: () => void }) => {
     event.preventDefault();
 
-    const formDataUseState = new FormData();
-    formDataUseState.set("email", user.email);
-    formDataUseState.set("password", user.password);
-    console.log(formDataUseState);
+    const URL_POST_LOGIN = "/api/indexito.php";
 
-    // void (async (url) => {
-    //   try {
-    //     const res = await axios.post(URL_LOGIN, formDataUseState, {
-    //       headers: {
-    //         "Content-Type": "application/x-www-form-urlencoded",
-    //       },
-    //     });
-    //     const axiosData = res.data as Response;
-    //     console.log(axiosData);
+    console.log(user);
 
-    //     if (!res) {
-    //       console.error("Login Failed:", res);
-    //     } else {
-    //       const data = (await res.data) as Response;
-    //       console.log(data);
-    //       // toast.success("Response recibido!");
-    //     }
+    void (async (url) => {
+      try {
+        const res = await axios.post(url, JSON.stringify(user), {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        const axiosData = res.data as Response;
+        console.log(axiosData);
 
-    //     // *************************************************
-
-    //     const resp = await axios.post(url, formDataUseState); // No necesito poner `headers` porque FormData lo hace automáticamente
-
-    //     if (!resp) {
-    //       console.error("Login Failed:", res);
-    //     } else {
-    //       const data = (await res.data) as Response;
-    //       console.log(data);
-    //       // toast.success("Response recibido!");
-    //     }
-    //   } catch (error) {
-    //     if (error instanceof Error) {
-    //       console.error("Thrawed Error:", error.message);
-    //     } else {
-    //       console.error("Unknown Error");
-    //     }
-    //   }
-    // })(URL_LOGIN);
+        if (!res) {
+          console.error("Login Failed:", res);
+        } else {
+          const data = (await res.data) as Response;
+          console.log(data);
+          // toast.success("Response recibido!");
+        }
+      } catch (error) {
+        if (error instanceof Error) {
+          console.error("Thrawed Error:", error.message);
+        } else {
+          console.error("Unknown Error");
+        }
+      }
+    })(URL_POST_LOGIN);
   };
 
   return (
