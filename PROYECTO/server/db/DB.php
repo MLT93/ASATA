@@ -43,14 +43,14 @@ function GET(string $sentenceSQL)
     $cnx->close();
     return $result;
   } catch (\Throwable $th) {
-    // Manejar excepciones
-    echo json_encode(["success" => false, "message" => "Exception: " . $th->getMessage()]);
+    // Manejar error de sentencia SQL
+    echo json_encode(["success" => false, "message" => "Error: " . $th->getMessage()]);
     return null;
   }
 }
-$usuarios = GET("SELECT * FROM usuarios");
-http_response_code(200);
-echo json_encode(["success" => true, "message" => $usuarios]);
+// $usuarios = GET("SELECT * FROM usuarios");
+// http_response_code(200);
+// echo json_encode(["success" => true, "message" => $usuarios]);
 
 /**
  * Summary of POST
@@ -218,7 +218,7 @@ function DEL(string $tableName, string $condition)
 // DEL("usuarios", "id = 4");
 
 /**
- * Summary of ComprobarUsuario
+ * Summary of comprobarUsuario
  * @param string $email Email del usuario a comprobar. Debe ser de tipo UNIQUE en la DB
  * @param string $password Password del usuario
  * @return boolean Devuelve `true` o `false` si la password es correcta o no
@@ -238,7 +238,7 @@ function comprobarUsuario(string $email, string $password): bool
     }
 
     // Consulta DB
-    $SQL = "SELECT * FROM usuarios WHERE email = '$email';";
+    $SQL = "SELECT * FROM usuarios WHERE email = '$email'";
     $response = $cnx->query($SQL);
     $result = $response->fetch_assoc(); // Array asociativo
 

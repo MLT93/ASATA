@@ -4,28 +4,43 @@ namespace UserDB;
 
 // Importar archivos
 require_once("../db/constantVariables.php");
+require_once("../db/DB.php");
 
-class Usuario
+class User
 {
 
   // Properties
-  private string $name;
+  /**
+   * Summary of properties
+   * @var string $username Nickname del usuario
+   * @var string $email Email del usuario
+   * @var string $hashedPassword Password hashed del usuario
+   */
+  private string $username;
   private string $email;
   private string $hashedPassword;
 
   // Constructor
-  function __construct(string $nombre, string $email, string $password)
+  /**
+   * Summary of __construct
+   * @param string $nom Nombre del nuevo usuario. Se almacena en las props de la clase
+   * @param string $mail Email del nuevo usuario. Se almacena en las props de la clase
+   * @param string $pass Password del nuevo usuario. Se almacena en las props de la clase
+   * 
+   * No crea el usuario directamente
+   */
+  function __construct(string $nom, string $mail, string $pass)
   {
 
-    $this->name = $nombre;
-    $this->email = $email;
-    $this->hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+    $this->username = $nom;
+    $this->email = $mail;
+    $this->hashedPassword = password_hash($pass, PASSWORD_DEFAULT);
   }
 
   // Getters y Setters
   protected function getName()
   {
-    return $this->name;
+    return $this->username;
   }
   protected function getEmail()
   {
@@ -37,7 +52,7 @@ class Usuario
   }
   protected function setName($nombre)
   {
-    $this->name = $nombre;
+    $this->username = $nombre;
   }
   protected function setEmail($email)
   {
@@ -53,80 +68,96 @@ class Usuario
 
 
   // Static Methods
-  public static function mostrarIdUsuario(string $email)
+  /**
+   * Summary of verifyUser
+   * @param string $email Email ingresada en el input
+   * @param string $password Password ingresada en el input
+   * @return bool Devuelve `true` si se encuentra el usuario y la password corresponde a la ingresada en el input. Si no, devuelve `false`
+   */
+  public static function verifyUser(string $email, string $password): bool
   {
-    $cnx = new \mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-    $SQL =   "SELECT id FROM usuarios WHERE usuarios.email = '$email'";
-    $stmt = $cnx->query($SQL);
-    // $respuesta = $stmt->fetch_all(MYSQLI_ASSOC); // Matriz asociativa
-    $respuesta = $stmt->fetch_assoc(); // Matriz asociativa
-    if (isset($respuesta["id"])) {
-      $id = $respuesta["id"];
-      return $id;
-    } else {
-      // return "!existe";
-      return 0;
-    }
-  }
-
-  public static function verificarUsuario(string $email, string $password)
-  {
-    $cnx = new \mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
     $SQL = "SELECT hashedPassword FROM usuarios WHERE email = '$email'";
-    $stmt = $cnx->query($SQL);
-    // $respuesta = $stmt->fetch_all(MYSQLI_ASSOC); // Matriz asociativa
-    $respuesta = $stmt->fetch_assoc(); // Array asociativo
-    $hashedPassword = $respuesta["hashedPassword"];
+    $response = GET($SQL);
+
+    // print_r($response[0]);
+
+    $hashedPassword = $response[0]["hashedPassword"];
     return password_verify($password, $hashedPassword);
   }
 
-  public static function actualizarPassword(string $email, string $password)
+  public static function changePassword(string $email, string $password)
   {
-    $cnx = new \mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-    $SQL = "UPDATE usuarios SET hashedPassword = '$hashedPassword' WHERE email = '$email' ";
-    $cnx->query($SQL);
+    PUT("usuarios", ["hashedPassword"], [["'$hashedPassword'"]], "email = '$email'");
   }
 
-  public static function registrarUsuario(int $id_rol, string $username, string $email, string $password, $imagen)
+  /**
+   * Summary of registerUser
+   * @param int $id_rol Número del ID correspondiente al rol en la DB: 1 => Admin, 2 => User
+   * @param string $username Nombre del nuevo usuario
+   * @param string $email Email del usuario
+   * @param string $password Password que va a tener el usuario
+   * @param mixed $imagen Imagen seleccionada. Alojada en `/repo/users_img/`
+   * @return `void` No devuelve nada. Carga la información en la DB
+   */
+  public static function registerUser(int $id_rol, string $username, string $email, string $password, $imagen)
   {
-
-    $cnx = new \mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    $SQL = "INSERT INTO usuarios (id_rol, username, email, hashedPassword, imagen) VALUES ('$id_rol','$username','$email','$hashedPassword','$imagen')";
-    $cnx->query($SQL);
+    POST("usuarios", ["id_rol", "username", "email", "hashedPassword", "imagen"], [[$id_rol, "$username", "$email", "$hashedPassword", "$imagen"]]);
   }
 
-  public static function mostrarUsuario(string $email)
+  /**
+   * Summary of showUser
+   * @param string $email Email para iniciar la búsqueda en la DB
+   * @return `array | bool` Devuelve el `registro del usuario` o `false`
+   * 
+   * Obtiene el `registro del usuario` correspondiente a la propiedad de la función (email del usuario) contrastada en la DB
+   * Si no se encuentra usuario, devuelve `false`
+   */
+  public static function showUser(string $email): array | bool
   {
-    $cnx = new \mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-    $SQL =   "SELECT * FROM usuarios WHERE usuarios.email = '$email'";
-    // $cnx->connect();
-    $stmt = $cnx->query($SQL);
-    // $respuesta = $stmt->fetch_all(MYSQLI_ASSOC); // Matriz Asociativa
-    $respuesta = $stmt->fetch_assoc(); // Array Asociativo
-    if (isset($respuesta["id"])) {
-      return $respuesta;
+    $SQL = "SELECT * FROM usuarios WHERE email = '$email'";
+    $response = GET($SQL);
+    if (isset($response[0]["id"])) {
+      return $response[0];
     } else {
-      // Aquí entro si no existe ese registro
-      // echo "Error";
-      return 0;
+      return false;
     }
   }
+
+  // /**
+  //  * Summary of showIdUser
+  //  * @param string $email Email ingresada en el input
+  //  * @return int Devuelve el `ID` del usuario o `0`
+  //  * 
+  //  * Se trabaja con números porque es más fácil modificar y utilizar el ID
+  //  */
+  // public static function showIdUser(string $email): int
+  // {
+  //   $SQL =   "SELECT id FROM usuarios WHERE usuarios.email = '$email'";
+  //   $response = GET($SQL);
+
+  //   if (isset($response["id"])) {
+
+  //     return intval($response["id"]); // Number
+  //   } else {
+  //     return 0;
+  //   }
+  // }
 }
 
-// echo Usuario::mostrarIdUsuario("usuario3@mail.com");
-// Usuario::actualizarPassword("use1@mail.com","1234");
-// Usuario::actualizarPassword("use2@mail.com","1234");
-// Usuario::actualizarPassword("use3@mail.com","1234");
-// Usuario::actualizarPassword("use4@mail.com","1234");
-// Usuario::actualizarPassword("use5@mail.com","1234");
-// Usuario::actualizarPassword("use6@mail.com","1234");
-// Usuario::actualizarPassword("use7@mail.com","1234");
-// Usuario::actualizarPassword("use8@mail.com","1234");
-// Usuario::actualizarPassword("use9@mail.com","1234");
-// Usuario::actualizarPassword("use10@mail.com","1234");
-// echo Usuario::verificarUsuario("usuario1@mail.com","1234")?"VERIFICADO":"FAIL"  ;echo"<br/>";//true
-// echo Usuario::verificarUsuario("usuario1@mail.com","1222")?"VERIFICADO":"FAIL"  ;echo"<br/>";//false
-// Usuario::registrarUsuario("newuser","newuser@mail.com","1234");
+// User::changePassword("admin@mail.com","1234");
+// User::changePassword("user1@mail.com","1234");
+// User::changePassword("user2@mail.com","1234");
+// User::changePassword("user3@mail.com","1234");
+
+// print_r(User::showUser("admin@mail.com")) . "<br/>";
+
+// echo User::verifyUser("admin@mail.com", "1234") ? "VERIFICADO" : "FAIL" . "<br/>";
+
+// User::registerUser(2, "albi23", "user3@mail.com", "1234", "/repo/users_img/user3.jpg");
+
+// print_r(User::showUser("admin@mail.com")) . "<br/>";
+
+// print_r(User::changePassword("user3@mail.com", "1234")) . "<br/>";

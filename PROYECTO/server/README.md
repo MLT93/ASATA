@@ -9,6 +9,20 @@ creados en el Servidor, y utilizar ese archivo para acceder a la información. E
 // ****************\*\*****************\*\*\*\*****************\*\*****************
 
 
+## **`Pasos a seguir`**
+
+1. `habilitar el módulo Headers en Apache`
+2. `habilitar el módulo de reescritura en Apache`
+3. `habilitar módulo Proxy Apache`
+4. `exportar la API a la raíz del servidor` (la API y la App tienen que estar separadas)
+5. `configurar el proxy virtual de React Vite en el vite.config.ts`
+6. configurar el archivo `.htaccess` del backend con el código `<IfModule headers_module></IfModule>, RewriteEngine y <IfModule mod_proxy></IfModule>`
+7. Revisar `error.log`
+
+
+// ****************\*\*****************\*\*\*\*****************\*\*****************
+
+
 - [**Explicación de uso de CORS client y server**](https://stackoverflow.com/questions/65218218/react-php-blocked-my-cors-policy-only-in-post-request)
 
 - [**Explicación de configuración de Proxy en backend PHP**](https://brightdata.es/blog/procedimientos/php-proxy-servers)

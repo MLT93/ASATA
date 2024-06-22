@@ -47,7 +47,7 @@ DROP TABLE IF EXISTS usuarios;
 CREATE TABLE
   `usuarios` (
     id INT (10) PRIMARY KEY AUTO_INCREMENT,
-    id_rol INT (10) NOT NULL,
+    id_rol INT (10) NOT NULL COMMENT '1 o 2',
     username VARCHAR(100) NOT NULL,
     email VARCHAR(50) UNIQUE NOT NULL,
     hashedPassword VARCHAR(255) NOT NULL,
@@ -78,6 +78,13 @@ VALUES
     'user2@mail.com',
     '1234',
     ''
+  ),
+  (
+    3,
+    'albi07',
+    'user3@mail.com',
+    '1234',
+    ''
   );
 
 /* Tabla sesiones */
@@ -85,7 +92,7 @@ DROP TABLE IF EXISTS sesiones;
 
 CREATE TABLE
   `sesiones` (
-    id INT (10) NOT NULL,
+    id INT (10) PRIMARY KEY AUTO_INCREMENT,
     id_usuario INT (10) NOT NULL,
     fecha_hora DATETIME NOT NULL,
     estado VARCHAR(255) NOT NULL COMMENT 'LOG IN, LOG OUT',

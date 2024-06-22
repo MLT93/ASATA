@@ -1,7 +1,9 @@
 <?php
 
 // Importar archivos
-require_once("../db/DB.php");
+// require_once("../db/DB.php");
+require_once(__DIR__ . '/../db/DB.php');
+
 require_once("../classes/SesionDB.php");
 
 // Asegurarme de ver todos los errores
