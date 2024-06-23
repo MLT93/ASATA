@@ -52,19 +52,19 @@ class ClaveAleatoria
     $codigoCaracteresASCII = [];
     
     // por defecto tendremos letras minúsculas
-    for ($i = 97; $i < 122; $i++) {
-      array_push($codigoCaracteresASCII, $i); /* Añado los valores en decimal que corresponden a las letras mayúsculas del código ASCII (ver tabla ASCII). https://www.man7.org/linux/man-pages/man7/ascii.7.html */
+    for ($i = 97; $i < 122; $i++) { /* Itero el valor decimal mínimo y el valor decimal máximo que corresponden a las letras minúsculas del código ASCII (ver tabla ASCII). https://www.man7.org/linux/man-pages/man7/ascii.7.html */
+      array_push($codigoCaracteresASCII, $i);
     }
     // compruebo si la prop números toma el valor true y, en ese caso, los añado a mi clave los números
     if ($this->getNumeros()) {
-      for ($i = 48; $i < 57; $i++) {
-        array_push($codigoCaracteresASCII, $i); /* Añado los valores en decimal que corresponden a las letras mayúsculas del código ASCII (ver tabla ASCII). https://www.man7.org/linux/man-pages/man7/ascii.7.html */
+      for ($i = 48; $i < 57; $i++) { /* Itero el valor decimal mínimo y el valor decimal máximo que corresponden a los números del código ASCII (ver tabla ASCII). https://www.man7.org/linux/man-pages/man7/ascii.7.html */
+        array_push($codigoCaracteresASCII, $i);
       }
     }
     // compruebo si la prop de mayúsculas toma el valor true y, en ese caso, los añado a mi clave las letras mayúsculas
     if ($this->getMayusculas()) {
-      for ($i = 65; $i < 90; $i++) {
-        array_push($codigoCaracteresASCII, $i); /* Añado los valores en decimal que corresponden a las letras mayúsculas del código ASCII (ver tabla ASCII). https://www.man7.org/linux/man-pages/man7/ascii.7.html */
+      for ($i = 65; $i < 90; $i++) { /* Itero el valor decimal mínimo y el valor decimal máximo que corresponden a las letras mayúsculas del código ASCII (ver tabla ASCII). https://www.man7.org/linux/man-pages/man7/ascii.7.html */
+        array_push($codigoCaracteresASCII, $i);
       }
     }
     

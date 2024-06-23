@@ -6,9 +6,17 @@ namespace UserDB;
 require_once("../db/constantVariables.php");
 require_once("../db/DB.php");
 
+/**
+ * Summary of User
+ * @param string $username Nombre del nuevo usuario
+ * @param string $email Email del nuevo usuario
+ * @param string $password Password del nuevo usuario
+ * 
+ * Al crear una instancia transforma la password a del nuevo usuario a `hashedPassword`
+ * Para registrar el nuevo usuario en la DB utiliza `User::registerUser`
+ */
 class User
 {
-
   // Properties
   /**
    * Summary of properties
@@ -23,18 +31,17 @@ class User
   // Constructor
   /**
    * Summary of __construct
-   * @param string $nom Nombre del nuevo usuario. Se almacena en las props de la clase
-   * @param string $mail Email del nuevo usuario. Se almacena en las props de la clase
-   * @param string $pass Password del nuevo usuario. Se almacena en las props de la clase
+   * @param string $username Nombre del nuevo usuario
+   * @param string $email Email del nuevo usuario
+   * @param string $password Password del nuevo usuario
    * 
-   * No crea el usuario directamente
+   * Transforma la password a `hashedPassword`
    */
-  function __construct(string $nom, string $mail, string $pass)
+  function __construct(string $username, string $email, string $password)
   {
-
-    $this->username = $nom;
-    $this->email = $mail;
-    $this->hashedPassword = password_hash($pass, PASSWORD_DEFAULT);
+    $this->username = $username;
+    $this->email = $email;
+    $this->hashedPassword = password_hash($password, PASSWORD_DEFAULT);
   }
 
   // Getters y Setters
@@ -79,12 +86,18 @@ class User
     $SQL = "SELECT hashedPassword FROM usuarios WHERE email = '$email'";
     $response = GET($SQL);
 
-    // print_r($response[0]);
-
     $hashedPassword = $response[0]["hashedPassword"];
     return password_verify($password, $hashedPassword);
   }
 
+  /**
+   * Summary of changePassword
+   * @param string $email Email del usuario
+   * @param string $password Password a cambiar
+   * @return `void` No devuelve nada
+   * 
+   * Modifica la password a `hashedPassword` y guarda la información en la DB
+   */
   public static function changePassword(string $email, string $password)
   {
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
@@ -93,12 +106,14 @@ class User
 
   /**
    * Summary of registerUser
-   * @param int $id_rol Número del ID correspondiente al rol en la DB: 1 => Admin, 2 => User
+   * @param int $id_rol Número del ID correspondiente al rol en la DB: `1 => Admin`, `2 => User`
    * @param string $username Nombre del nuevo usuario
    * @param string $email Email del usuario
    * @param string $password Password que va a tener el usuario
    * @param mixed $imagen Imagen seleccionada. Alojada en `/repo/users_img/`
-   * @return `void` No devuelve nada. Carga la información en la DB
+   * @return `void` No devuelve nada.
+   * 
+   * Registra el usuario en la DB
    */
   public static function registerUser(int $id_rol, string $username, string $email, string $password, $imagen)
   {
@@ -125,26 +140,6 @@ class User
       return false;
     }
   }
-
-  // /**
-  //  * Summary of showIdUser
-  //  * @param string $email Email ingresada en el input
-  //  * @return int Devuelve el `ID` del usuario o `0`
-  //  * 
-  //  * Se trabaja con números porque es más fácil modificar y utilizar el ID
-  //  */
-  // public static function showIdUser(string $email): int
-  // {
-  //   $SQL =   "SELECT id FROM usuarios WHERE usuarios.email = '$email'";
-  //   $response = GET($SQL);
-
-  //   if (isset($response["id"])) {
-
-  //     return intval($response["id"]); // Number
-  //   } else {
-  //     return 0;
-  //   }
-  // }
 }
 
 // User::changePassword("admin@mail.com","1234");

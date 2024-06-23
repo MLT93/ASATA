@@ -8,6 +8,14 @@ require_once(__DIR__ . "/../db/DB.php");
 
 use \DateTime;
 
+/**
+ * Summary of Session
+ * 
+ * Al crear una instancia se guardan los valores por defecto en las props de la clase
+ * Inicia una sesión con `session_start()`
+ * Si `$_SESSION['usuario']` está definida, guarda el valor de en la prop `$usuario`
+ * Si no, elimina el valor de `$usuario`
+ */
 class Session
 {
   // Properties
@@ -22,8 +30,6 @@ class Session
   // Constructor
   /**
    * Summary of __construct
-   * @param mixed $log Valor por defecto `false`
-   * @param mixed $user Valor por defecto `empty string`
    * 
    * Al crear una instancia:
    * 
@@ -43,7 +49,7 @@ class Session
   // Esto funciona al imprimir instancias. Te permite crear un `string` para ser devuelto cuando se utiliza `echo` o `print`
   function __toString(): string
   {
-    // CREAR UN SWITCH CON RESPUESTAS
+    // ToDo: Crear un switch para todas las respuestas
     return json_encode(["login" => $this->getLogin(), "message" => "Usuario " . (!empty($this->getUsuario()) ? $this->getUsuario() : "not exists")]);
   }
 
@@ -81,7 +87,7 @@ class Session
     $idUsuario = $usuario['id'];
 
     if (isset($usuario['id']) && intval($idUsuario) > 0) {
-      
+
       $_SESSION['usuario'] = $emailUsuario;
 
       $this->setUsuario($emailUsuario);
@@ -89,7 +95,7 @@ class Session
 
       $now = new DateTime();
       $fecha = $now->format('Y-m-d H:i:s');
-      POST("sesiones", ["id_usuario", "fecha_hora", "estado"], [[$idUsuario, "$fecha", "LOG IN"]]);
+      POST("sesiones", ["id_usuario", "fecha_hora", "estado"], [[intval($idUsuario), "$fecha", "LOG IN"]]);
     }
   }
 
@@ -118,7 +124,7 @@ class Session
    * Comprueba si `$_SESSION['usuario']` contiene algo distinto de una cadena vacía
    * Si está vacía, `$_SESSION['usuario']` no estará disponible
    */
-  public static function isSessionActive(): bool
+  static function isSessionActive(): bool
   {
     return isset($_SESSION['usuario']) && $_SESSION['usuario'] != "";
   }
@@ -129,28 +135,29 @@ class Session
    * 
    * Cierra la sesión activa del usuario
    */
-  public static function closeSession(): void
+  static function closeSession(): void
   {
     if (isset($_SESSION['usuario'])) {
-      $cnx = new \mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+
       $usuario = \UserDB\User::showUser($_SESSION['usuario']);
       $idUsuario = $usuario['id'];
-      $idUsuario = intval($idUsuario);
 
       if (isset($usuario['id']) && intval($idUsuario) > 0) {
         $now = new DateTime();
         $fecha = $now->format('Y-m-d H:i:s');
-        POST("sesiones", ["id_usuario", "fecha_hora", "estado"], [[$idUsuario, "$fecha", "LOG OUT"]]);
+        POST("sesiones", ["id_usuario", "fecha_hora", "estado"], [[intval($idUsuario), "$fecha", "LOG OUT"]]);
       }
-      $cnx->close();
     }
 
     session_unset();
     session_destroy();
+    session_abort();
+    unset($_SESSION['usuario']);
   }
 }
 
 $mySession = new Session();
-$mySession->startLogin("admin@mail.com") . "<br/>";
+echo $mySession->startLogin("admin@mail.com") . "<br/>";
+echo $mySession . "<br/>";
 
-echo $mySession;
+\SessionDB\Session::closeSession();
