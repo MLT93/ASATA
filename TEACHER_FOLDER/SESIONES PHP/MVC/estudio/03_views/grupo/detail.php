@@ -16,26 +16,16 @@
 
   <h1>DETALLE</h1>
 
-  <button><a href="/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/">VUELVE A LA LISTA</a></button>
+  <button><a href="/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/grupo/">VUELVE A LA LISTA</a></button>
 
   <table>
     <tr>
       <th>ID</th>
-      <th>NOMBRE</th>
-      <th>APELLIDO 1</th>
-      <th>APELLIDO 2</th>
-      <th>DNI</th>
-      <th>ID_GRUPO</th>
       <th>TAG GRUPO</th>
     </tr>
     <?php
     echo "<tr>";
     echo "<td>" . $detail[0]['id'] . "</td>";
-    echo "<td>" . $detail[0]['nombre'] . "</td>";
-    echo "<td>" . $detail[0]['apellido1'] . "</td>";
-    echo "<td>" . $detail[0]['apellido2'] . "</td>";
-    echo "<td>" . $detail[0]['dni'] . "</td>";
-    echo "<td>" . $detail[0]['id_grupo'] . "</td>";
     echo "<td>" . $detail[0]['tag'] . "</td>";
     echo "</tr>";
     ?>

@@ -26,10 +26,23 @@ $router = new Router();
   4. Elijo el controlador
   5. Elijo el método (action) 
 */
-$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/', 'Controller', 'index'); // Tiene que ser igual que la ruta especificada en `.htaccess`
-$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/alumno/create', 'Controller', 'create');
-$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/alumno/store', 'Controller', 'store');
-$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/alumno/detail', 'Controller', 'detail');
+$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/', 'AlumnoController', 'index'); // Tiene que ser igual que la ruta especificada en `.htaccess`
+$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/alumno/create', 'AlumnoController', 'create');
+$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/alumno/store', 'AlumnoController', 'store');
+$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/alumno/detail', 'AlumnoController', 'queryParams');
+$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/alumno/detail/{id}', 'AlumnoController', 'pathVariables');
+
+$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/clase/', 'ClaseController', 'index');
+$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/clase/create', 'ClaseController', 'create');
+$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/clase/store', 'ClaseController', 'store');
+$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/clase/detail', 'ClaseController', 'queryParams');
+$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/clase/detail/{id}', 'ClaseController', 'pathVariables');
+
+$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/grupo/', 'GrupoController', 'index');
+$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/grupo/create', 'GrupoController', 'create');
+$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/grupo/store', 'GrupoController', 'store');
+$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/grupo/detail', 'GrupoController', 'queryParams');
+$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/grupo/detail/{id}', 'GrupoController', 'pathVariables');
 
 // Obtener la ruta solicitada
 $_SERVER["REQUEST_URI"]; // Esto devuelve toda la URI con las Query Params y todo

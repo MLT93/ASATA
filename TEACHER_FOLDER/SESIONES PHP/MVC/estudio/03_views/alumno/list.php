@@ -12,9 +12,10 @@
 
   <?php
   // var_dump($alumnos);
+  // var_dump($grupos);
   ?>
 
-  <h1>LISTA DE</h1>
+  <h1>LISTA</h1>
 
   <button><a href="/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/alumno/create">REGISTRAR NUEVO</a></button>
 
@@ -44,6 +45,9 @@
     }
     ?>
   </table>
+
+  <button><a href="/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/clase/">CLASES</a></button>
+  <button><a href="/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/grupo/">GRUPOS</a></button>
 
 </body>
 

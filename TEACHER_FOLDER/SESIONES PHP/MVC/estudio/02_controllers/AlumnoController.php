@@ -4,7 +4,7 @@
 require_once("01_models/Alumno.php");
 require_once("01_models/Grupo.php");
 
-class Controller
+class AlumnoController
 {
   // Propiedades
 
@@ -21,6 +21,9 @@ class Controller
     /* AQUÍ OBTENGO LA INFO PRINCIPAL DE LOS DE MI DB */
     $listModel = new Alumno(); // Instancia donde se realiza la conexión a la DB
     $alumnos = $listModel->getAll(); // Obtengo la información de la DB y la envío a la View `list.php`
+
+    $createModel = new Grupo(); // Instancia donde se realiza la conexión a la DB
+    $grupos = $createModel->getAll(); // Obtengo la información de la DB y la envío a la View `form_create.php`
 
     require "03_views/alumno/list.php";
   }
@@ -46,16 +49,24 @@ class Controller
       $fichajeModel = new Alumno();
       $fichajeModel->add($nombre, $apellido1, $apellido2, $dni, $id_grupo);
 
-      header("Location: /ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/");
+      header("Location: /ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/clase/");
     }
   }
 
-  public function detail()
+  public function queryParams() // Muestra sólo 1 a través del ID
   {
     $detailModel = new Alumno(); // Instancia donde se realiza la conexión a la DB
-    $detail = $detailModel->getByID(); // Obtengo la información de la DB y la envío a la View `detail.php`
+    $detail = $detailModel->getByIDQueryParams(); // Obtengo la información de la DB y la envío a la View `detail.php`
 
-    require "03_views/alumno/detail.php"; // Aquí estará disponible la variable sin utilizar
+    require "03_views/alumno/detail.php"; // Aquí existirá las variables `$producto`
+  }
+
+  public function pathVariables($id) // Muestra sólo 1 a través del ID
+  {
+    $detailModel = new Alumno(); // Instancia donde se realiza la conexión a la DB
+    $detail = $detailModel->getByIDPathVariables($id); // Obtengo la información de la DB y la envío a la View `detail.php`
+
+    require "03_views/alumno/detail.php"; // Aquí existirá las variables `$producto`
   }
 
   // Static Methods

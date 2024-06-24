@@ -58,14 +58,24 @@ class Grupo
   //   return $consultaPrepare->execute(); // Ejecuto la consulta
   // }
 
-  // public function getByID()
-  // {
-  //   $id = intval($_GET['id']);
-  //   $consultaSQL = "SELECT id, tag FROM grupos WHERE grupos.id = $id;"; // Aquí saco la info a través de su ID y sus Foreign Keys asociados
-  //   $registro = $this->getConnection()->query($consultaSQL);
-  //   $arrAssoc = $registro->fetch_all(MYSQLI_ASSOC); // Convertimos cada uno de los registros en forma de matriz numérica con arrays asociativos (que tendrá sólo 1 elemento)
-  //   return $arrAssoc;
-  // }
+  public function getByIDQueryParams()
+  {
+    $id = intval($_GET['id']);
+    $consultaSQL = "SELECT id, tag FROM grupos 
+    WHERE grupos.id = $id;"; // Aquí saco la info a través de su ID y sus Foreign Keys asociados
+    $registro = $this->getConnection()->query($consultaSQL);
+    $arrAssoc = $registro->fetch_all(MYSQLI_ASSOC); // Convertimos cada uno de los registros en forma de matriz numérica con arrays asociativos (que tendrá sólo 1 elemento)
+    return $arrAssoc;
+  }
+
+  public function getByIDPathVariables($id)
+  {
+    $consultaSQL = "SELECT id, tag FROM grupos 
+    WHERE grupos.id = $id;"; // Aquí saco la info a través de su ID y sus Foreign Keys asociados
+    $registro = $this->getConnection()->query($consultaSQL);
+    $arrAssoc = $registro->fetch_all(MYSQLI_ASSOC); // Convertimos cada uno de los registros en forma de matriz numérica con arrays asociativos (que tendrá sólo 1 elemento)
+    return $arrAssoc;
+  }
 
   // Static Methods
 

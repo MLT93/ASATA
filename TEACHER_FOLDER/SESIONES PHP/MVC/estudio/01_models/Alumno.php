@@ -60,9 +60,20 @@ class Alumno
     return $consultaPrepare->execute(); // Ejecuto la consulta
   }
 
-  public function getByID()
+  public function getByIDQueryParams()
   {
     $id = intval($_GET['id']);
+    $consultaSQL = "SELECT alumnos.id, alumnos.nombre, alumnos.apellido1, alumnos.apellido2, alumnos.dni, grupos.id AS id_grupo, grupos.tag 
+    FROM alumnos 
+    INNER JOIN grupos ON alumnos.id_grupo = grupos.id 
+    WHERE alumnos.id = $id;"; // Aquí saco la info a través de su ID y sus Foreign Keys asociados
+    $registro = $this->getConnection()->query($consultaSQL);
+    $arrAssoc = $registro->fetch_all(MYSQLI_ASSOC); // Convertimos cada uno de los registros en forma de matriz numérica con arrays asociativos (que tendrá sólo 1 elemento)
+    return $arrAssoc;
+  }
+
+  public function getByIDPathVariables($id)
+  {
     $consultaSQL = "SELECT alumnos.id, alumnos.nombre, alumnos.apellido1, alumnos.apellido2, alumnos.dni, grupos.id AS id_grupo, grupos.tag 
     FROM alumnos 
     INNER JOIN grupos ON alumnos.id_grupo = grupos.id 
