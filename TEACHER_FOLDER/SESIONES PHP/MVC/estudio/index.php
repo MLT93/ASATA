@@ -9,7 +9,7 @@
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASS', '');
-define('DB_NAME', 'gestion_fichajes');
+define('DB_NAME', 'estudio');
 
 /*
   1. Este es el punto de entrada de mi aplicación desde el directorio raíz. Aquí se cargan todos los archivos
@@ -26,10 +26,10 @@ $router = new Router();
   4. Elijo el controlador
   5. Elijo el método (action) 
 */
-$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/fichajes/', 'Controller', 'index');
-$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/fichajes/create', 'Controller', 'create');
-$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/fichajes/store', 'Controller', 'store');
-$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/fichajes/detail', 'Controller', 'detail');
+$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/', 'Controller', 'index'); // Tiene que ser igual que la ruta especificada en `.htaccess`
+$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/alumno/create', 'Controller', 'create');
+$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/alumno/store', 'Controller', 'store');
+$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/alumno/detail', 'Controller', 'detail');
 
 // Obtener la ruta solicitada
 $_SERVER["REQUEST_URI"]; // Esto devuelve toda la URI con las Query Params y todo
@@ -39,7 +39,7 @@ parse_url($_SERVER["REQUEST_URI"], PHP_URL_QUERY); // Esto devuelve un string co
 $uri = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 $query = parse_url($_SERVER["REQUEST_URI"], PHP_URL_QUERY);
 
-parse_str($query, $queryParams); // Esta función convierte el string en un array asociativo y lo guarda en la variable `$queryParams` que se asigna como segundo argumento
+parse_str($query, $queryParams); // Convierte el string en un array asociativo y lo guarda en la variable `$queryParams` que se asigna como segundo argumento
 // print_r($queryParams);
 
 // `dispatch` será el método que enrute la página
