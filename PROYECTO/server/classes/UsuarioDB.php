@@ -142,17 +142,15 @@ class User
   }
 }
 
-// User::changePassword("admin@mail.com","1234");
+print_r(User::showUser("admin@mail.com")) . "<br/>";
+
+// echo User::verifyUser("admin@mail.com", "1234") ? "VERIFICADO" : "FAIL" . "<br/>";
+
+// User::registerUser(2, "pimpollo_09", "user4@mail.com", "1234", "/repo/users_img/user3.jpg");
+
+// print_r(User::changePassword("admin@mail.com", "1234")) . "<br/>";
 // User::changePassword("user1@mail.com","1234");
 // User::changePassword("user2@mail.com","1234");
 // User::changePassword("user3@mail.com","1234");
 
 // print_r(User::showUser("admin@mail.com")) . "<br/>";
-
-// echo User::verifyUser("admin@mail.com", "1234") ? "VERIFICADO" : "FAIL" . "<br/>";
-
-// User::registerUser(2, "albi23", "user3@mail.com", "1234", "/repo/users_img/user3.jpg");
-
-// print_r(User::showUser("admin@mail.com")) . "<br/>";
-
-// print_r(User::changePassword("user3@mail.com", "1234")) . "<br/>";

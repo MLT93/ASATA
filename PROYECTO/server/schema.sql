@@ -80,7 +80,7 @@ VALUES
     ''
   ),
   (
-    3,
+    2,
     'albi07',
     'user3@mail.com',
     '1234',
