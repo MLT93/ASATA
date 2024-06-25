@@ -45,9 +45,9 @@ $router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/grupo/detail
 $router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/grupo/detail/{id}', 'GrupoController', 'pathVariables');
 
 // Obtener la ruta solicitada
-$_SERVER["REQUEST_URI"]; // Esto devuelve toda la URI con las Query Params y todo
-parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH); // Esto devuelve la URI sin Query Params
-parse_url($_SERVER["REQUEST_URI"], PHP_URL_QUERY); // Esto devuelve un string con los Query Params
+$_SERVER["REQUEST_URI"]; // Devuelve toda la URI
+parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH); // Devuelve la URI sin Query Params
+parse_url($_SERVER["REQUEST_URI"], PHP_URL_QUERY); // Devuelve los Query Params solamente
 
 $uri = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 $query = parse_url($_SERVER["REQUEST_URI"], PHP_URL_QUERY);

@@ -20,20 +20,24 @@
 
   <table>
     <tr>
-      <th>ID</th>
+      <!-- <th>ID</th> -->
       <th>TAG</th>
       <th>ENLACE</th>
     </tr>
     <?php
     foreach ($grupos as $key => $value) {
       echo "<tr>";
-      echo "<td>" . $value['id'] . "</td>";
+      // echo "<td>" . $value['id'] . "</td>";
       echo "<td>" . $value['tag'] . "</td>";
-      echo "<td><a href='/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/grupo/detail?id=" . $value['id'] . "'" . ">Detalle</a></td>";
+      // echo "<td><a href='/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/grupo/detail?id=" . $value['id'] . "'" . ">Detalle</a></td>";
+      echo "<td><a href='/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/grupo/detail/" . $value['id'] . "'" . ">Detalle</a></td>";
       echo "</tr>";
     }
     ?>
+
   </table>
+
+  <button><a href="/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/">VUELVE ATRÁS</a></button>
 
 </body>
 

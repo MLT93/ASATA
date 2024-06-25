@@ -20,7 +20,7 @@
 
   <table>
     <tr>
-      <th>ID</th>
+      <!-- <th>ID</th> -->
       <th>NOMBRE CURSO</th>
       <th>HORARIOS CURSO</th>
       <th>NIVEL CURSO</th>
@@ -33,19 +33,22 @@
     <?php
     foreach ($clases as $key => $value) {
       echo "<tr>";
-      echo "<td>" . $value['id'] . "</td>";
+      // echo "<td>" . $value['id'] . "</td>";
       echo "<td>" . $value['nombreCurso'] . "</td>";
       echo "<td>" . $value['horas'] . "</td>";
       echo "<td>" . $value['nivel'] . "</td>";
       echo "<td>" . $value['grupoTag'] . "</td>";
-      echo "<td>" . $value['nombreProfesor']. " " . $value['apellido1'] . " " . $value['apellido2'] . "</td>";
+      echo "<td>" . $value['nombreProfesor'] . "</td>";
       echo "<td>" . $value['horario'] . "</td>";
       echo "<td>" . $value['fechaInicio'] . "</td>";
-      echo "<td><a href='/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/clase/detail?id=" . $value['id'] . "'" . ">Detalle</a></td>";
+      // echo "<td><a href='/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/clase/detail?id=" . $value['id'] . "'" . ">Detalle</a></td>";
+      echo "<td><a href='/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/clase/detail/" . $value['id'] . "'" . ">Detalle</a></td>";
       echo "</tr>";
     }
     ?>
   </table>
+
+  <button><a href="/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/">VUELVE ATRÁS</a></button>
 
 </body>
 

@@ -43,13 +43,15 @@
     echo "<td>" . $detail[0]['planta'] . "</td>";
     echo "<td>" . $detail[0]['numeroAula'] . "</td>";
     echo "<td>" . $detail[0]['grupoTag'] . "</td>";
-    echo "<td>" . $detail[0]['nombreProfesor'] . "</td>";
+    echo "<td>" . $detail[0]['nombreProfesor'] . " " . $detail[0]['apellido1'] . " " . $detail[0]['apellido2'] . "</td>";
     echo "<td>" . $detail[0]['horario'] . "</td>";
     echo "<td>" . $detail[0]['anioConvocatoria'] . "</td>";
     echo "<td>" . $detail[0]['fechaInicio'] . "</td>";
     echo "</tr>";
     ?>
   </table>
+
+  <button><a href="/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/">VUELVE ATRÁS</a></button>
 
 </body>
 

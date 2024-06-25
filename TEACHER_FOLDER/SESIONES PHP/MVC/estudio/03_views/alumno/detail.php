@@ -16,8 +16,6 @@
 
   <h1>DETALLE</h1>
 
-  <button><a href="/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/">VUELVE A LA LISTA</a></button>
-
   <table>
     <tr>
       <th>ID</th>
@@ -40,6 +38,8 @@
     echo "</tr>";
     ?>
   </table>
+
+  <button><a href="/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/">VUELVE ATRÁS</a></button>
 
 </body>
 

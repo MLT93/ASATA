@@ -40,7 +40,8 @@
       echo "<td>" . $value['dni'] . "</td>";
       echo "<td>" . $value['id_grupo'] . "</td>";
       echo "<td>" . $value['tag'] . "</td>";
-      echo "<td><a href='/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/alumno/detail?id=" . $value['id'] . "'" . ">Detalle</a></td>";
+      // echo "<td><a href='/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/alumno/detail?id=" . $value['id'] . "'" . ">Detalle</a></td>";
+      echo "<td><a href='/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/alumno/detail/" . $value['id'] . "'" . ">Detalle</a></td>";
       echo "</tr>";
     }
     ?>
