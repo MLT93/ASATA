@@ -14,9 +14,9 @@ creados en el Servidor, y utilizar ese archivo para acceder a la información. E
 1. `habilitar el módulo Headers en Apache`
 2. `habilitar el módulo de reescritura en Apache`
 3. `habilitar módulo Proxy Apache`
-4. `exportar la API a la raíz del servidor` (la API y la App tienen que estar separadas)
+4. `exportar la API (carpeta server) a la raíz del servidor` (la API y la App tienen que estar separadas)
 5. `configurar el proxy virtual de React Vite en el vite.config.ts`
-6. configurar el archivo `.htaccess` del backend con el código `<IfModule headers_module></IfModule>, RewriteEngine y <IfModule mod_proxy></IfModule>`
+6. configurar el archivo `.htaccess` del backend con el código `<IfModule headers_module></IfModule>, RewriteEngine y <IfModule mod_proxy></IfModule>`. Recuerda que `RewriteBase /server/` es la ruta base (el `index | home`) del backend
 7. Revisar `error.log`
 
 

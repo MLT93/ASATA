@@ -101,7 +101,7 @@ class User
   public static function changePassword(string $email, string $password)
   {
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-    PUT("usuarios", ["hashedPassword"], [["'$hashedPassword'"]], "email = '$email'");
+    PUT("usuarios", ["hashedPassword"], [["$hashedPassword"]], "email = '$email'");
   }
 
   /**
@@ -142,15 +142,15 @@ class User
   }
 }
 
-print_r(User::showUser("admin@mail.com")) . "<br/>";
+// echo json_encode(["success" => true, "message" => User::changePassword("admin@mail.com", "1234")]);
+// echo json_encode(["success" => true, "message" => User::changePassword("user1@mail.com", "1234")]);
+// echo json_encode(["success" => true, "message" => User::changePassword("user2@mail.com", "1234")]);
+// echo json_encode(["success" => true, "message" => User::changePassword("user3@mail.com", "1234")]);
 
-// echo User::verifyUser("admin@mail.com", "1234") ? "VERIFICADO" : "FAIL" . "<br/>";
+// if (User::verifyUser("admin@mail.com", "1234")) {
+//   echo json_encode(["success" => true, "message" => "VERIFIED"]);
+// } else {
+//   echo json_encode(["success" => true, "message" => "FAIL"]);
+// }
 
-// User::registerUser(2, "pimpollo_09", "user4@mail.com", "1234", "/repo/users_img/user3.jpg");
-
-// print_r(User::changePassword("admin@mail.com", "1234")) . "<br/>";
-// User::changePassword("user1@mail.com","1234");
-// User::changePassword("user2@mail.com","1234");
-// User::changePassword("user3@mail.com","1234");
-
-// print_r(User::showUser("admin@mail.com")) . "<br/>";
+// echo json_encode(["success" => true, "message" => User::registerUser(2, "pimpollo_09", "user4@mail.com", "1234", "/repo/users_img/user3.jpg")]);
