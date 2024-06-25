@@ -55,6 +55,31 @@ class GrupoController
     $detailModel = new Grupo(); // Instancia donde se realiza la conexión a la DB
     $detail = $detailModel->getByIDQueryParams(); // Obtengo la información de la DB y la envío a la View `detail.php`
 
+    switch ($detail[0]['tag']) {
+      case 'Grupo A':
+        $alumnosByGroupTag = $detailModel->getAlumnosByGroupTag($detail[0]['tag']);
+        break;
+      case 'Grupo B':
+        $alumnosByGroupTag = $detailModel->getAlumnosByGroupTag($detail[0]['tag']);
+        break;
+      case 'Grupo C':
+        $alumnosByGroupTag = $detailModel->getAlumnosByGroupTag($detail[0]['tag']);
+        break;
+      case 'Grupo D':
+        $alumnosByGroupTag = $detailModel->getAlumnosByGroupTag($detail[0]['tag']);
+        break;
+      case 'Grupo E':
+        $alumnosByGroupTag = $detailModel->getAlumnosByGroupTag($detail[0]['tag']);
+        break;
+      case 'Grupo F':
+        $alumnosByGroupTag = $detailModel->getAlumnosByGroupTag($detail[0]['tag']);
+        break;
+
+      default:
+        # code...
+        break;
+    }
+
     require "03_views/grupo/detail.php"; // Aquí existirá las variables `$producto`
   }
 
@@ -63,6 +88,30 @@ class GrupoController
     $detailModel = new Grupo(); // Instancia donde se realiza la conexión a la DB
     $detail = $detailModel->getByIDPathVariables($id); // Obtengo la información de la DB y la envío a la View `detail.php`
 
+    switch ($detail[0]['tag']) {
+      case 'Grupo A':
+        $alumnosByGroupTag = $detailModel->getAlumnosByGroupTag($detail[0]['tag']);
+        break;
+      case 'Grupo B':
+        $alumnosByGroupTag = $detailModel->getAlumnosByGroupTag($detail[0]['tag']);
+        break;
+      case 'Grupo C':
+        $alumnosByGroupTag = $detailModel->getAlumnosByGroupTag($detail[0]['tag']);
+        break;
+      case 'Grupo D':
+        $alumnosByGroupTag = $detailModel->getAlumnosByGroupTag($detail[0]['tag']);
+        break;
+      case 'Grupo E':
+        $alumnosByGroupTag = $detailModel->getAlumnosByGroupTag($detail[0]['tag']);
+        break;
+      case 'Grupo F':
+        $alumnosByGroupTag = $detailModel->getAlumnosByGroupTag($detail[0]['tag']);
+        break;
+
+      default:
+        # code...
+        break;
+    }
     require "03_views/grupo/detail.php"; // Aquí existirá las variables `$producto`
   }
 

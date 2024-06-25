@@ -63,7 +63,7 @@ class Grupo
     $id = intval($_GET['id']);
     $consultaSQL = "SELECT id, tag FROM grupos 
     WHERE grupos.id = $id;"; // Aquí saco la info a través de su ID y sus Foreign Keys asociados
-    $registro = $this->getConnection()->query($consultaSQL);
+    $registro = $this->getConnection()->query($consultaSQL); // Utilizamos los métodos de la instancia `\mysqli`. `query` ejecuta la sentencia y devuelve cosas, `execute` ejecuta solo la sentencia
     $arrAssoc = $registro->fetch_all(MYSQLI_ASSOC); // Convertimos cada uno de los registros en forma de matriz numérica con arrays asociativos (que tendrá sólo 1 elemento)
     return $arrAssoc;
   }
@@ -72,8 +72,18 @@ class Grupo
   {
     $consultaSQL = "SELECT id, tag FROM grupos 
     WHERE grupos.id = $id;"; // Aquí saco la info a través de su ID y sus Foreign Keys asociados
-    $registro = $this->getConnection()->query($consultaSQL);
+    $registro = $this->getConnection()->query($consultaSQL); // Utilizamos los métodos de la instancia `\mysqli`. `query` ejecuta la sentencia y devuelve cosas, `execute` ejecuta solo la sentencia
     $arrAssoc = $registro->fetch_all(MYSQLI_ASSOC); // Convertimos cada uno de los registros en forma de matriz numérica con arrays asociativos (que tendrá sólo 1 elemento)
+    return $arrAssoc;
+  }
+
+  function getAlumnosByGroupTag($grupoTag)
+  {
+    // $SQL = "SELECT * FROM alumnos, grupos WHERE grupos.tag = 'Grupo A';"; // Devuelve los alumnos según el grupo que pertenezca
+    $consultaSQL = "SELECT * FROM alumnos, grupos 
+    WHERE grupos.tag = '$grupoTag';"; // Aquí saco toda la información necesaria. Además de la info entre las tablas relacionadas por sus Foreign Keys
+    $registros = $this->getConnection()->query($consultaSQL); // Utilizamos los métodos de la instancia `\mysqli`. `query` ejecuta la sentencia y devuelve cosas, `execute` ejecuta solo la sentencia
+    $arrAssoc = $registros->fetch_all(MYSQLI_ASSOC); // Convertimos cada uno de los registros en forma de matriz numérica con arrays asociativos
     return $arrAssoc;
   }
 

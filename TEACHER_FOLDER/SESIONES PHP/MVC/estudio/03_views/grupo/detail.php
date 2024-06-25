@@ -11,7 +11,7 @@
 <body>
 
   <?php
-  // var_dump($detail);
+  // var_dump($alumnosByGroupTag);
   ?>
 
   <h1>DETALLE</h1>
@@ -24,10 +24,17 @@
       <th>TAG GRUPO</th>
     </tr>
     <?php
-    echo "<tr>";
-    echo "<td>" . $detail[0]['id'] . "</td>";
-    echo "<td>" . $detail[0]['tag'] . "</td>";
-    echo "</tr>";
+    foreach ($alumnosByGroupTag as $key => $value) {
+      echo "<tr>";
+      // echo "<td>" . $value['id'] . "</td>";
+      echo "<td>" . $value['nombre'] . "</td>";
+      echo "<td>" . $value['apellido1'] . "</td>";
+      echo "<td>" . $value['apellido2'] . "</td>";
+      echo "<td>" . $value['dni'] . "</td>";
+      echo "<td>" . $value['id_grupo'] . "</td>";
+      echo "<td>" . $value['tag'] . "</td>";
+      echo "</tr>";
+    }
     ?>
   </table>
 

@@ -80,7 +80,7 @@ class Clase
     INNER JOIN calendarios ON clases.id_calendario = calendarios.id
     INNER JOIN convocatorias ON calendarios.id_convocatoria = convocatorias.id 
     WHERE clases.id = $id;"; // Aquí saco la info a través de su ID y sus Foreign Keys asociados
-    $registro = $this->getConnection()->query($consultaSQL);
+    $registro = $this->getConnection()->query($consultaSQL); // Utilizamos los métodos de la instancia `\mysqli`. `query` ejecuta la sentencia y devuelve cosas, `execute` ejecuta solo la sentencia
     $arrAssoc = $registro->fetch_all(MYSQLI_ASSOC); // Convertimos cada uno de los registros en forma de matriz numérica con arrays asociativos (que tendrá sólo 1 elemento)
     return $arrAssoc;
   }
@@ -97,7 +97,7 @@ class Clase
     INNER JOIN calendarios ON clases.id_calendario = calendarios.id
     INNER JOIN convocatorias ON calendarios.id_convocatoria = convocatorias.id 
     WHERE clases.id = $id;"; // Aquí saco la info a través de su ID y sus Foreign Keys asociados
-    $registro = $this->getConnection()->query($consultaSQL);
+    $registro = $this->getConnection()->query($consultaSQL); // Utilizamos los métodos de la instancia `\mysqli`. `query` ejecuta la sentencia y devuelve cosas, `execute` ejecuta solo la sentencia
     $arrAssoc = $registro->fetch_all(MYSQLI_ASSOC); // Convertimos cada uno de los registros en forma de matriz numérica con arrays asociativos (que tendrá sólo 1 elemento)
     return $arrAssoc;
   }
