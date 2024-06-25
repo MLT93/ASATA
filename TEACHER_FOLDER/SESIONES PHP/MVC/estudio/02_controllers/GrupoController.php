@@ -80,7 +80,7 @@ class GrupoController
         break;
     }
 
-    require "03_views/grupo/detail.php"; // Aquí existirá las variables `$producto`
+    require "03_views/grupo/detail.php"; // Aquí estará disponible la variable sin utilizar
   }
 
   public function pathVariables($id) // Muestra sólo 1 a través del ID
@@ -112,7 +112,7 @@ class GrupoController
         # code...
         break;
     }
-    require "03_views/grupo/detail.php"; // Aquí existirá las variables `$producto`
+    require "03_views/grupo/detail.php"; // Aquí estará disponible la variable sin utilizar
   }
 
   // Static Methods

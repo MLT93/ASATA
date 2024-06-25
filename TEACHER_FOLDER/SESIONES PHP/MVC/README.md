@@ -13,15 +13,15 @@ Recuerda que la transición entre archivos funcionará así:
 1. - Pasarás primero por la llamada a la DB (models)
 2. - Posteriormente utilizarás y/o transformarás la información (controllers)
 3. - Después mostrarás esa información (views)
-4. - Todo ello pasará por el enrutador (Router) donde se crea el array de las rutas 
-5. - Por último se cargará en el archivo principal (index) el enrutador, donde se instancia y se obtiene el array con las rutas
-6. - Recuerda que deberás crear un `.htaccess` para Apache con la siguiente estructura:
+4. - Recuerda que deberás crear un `.htaccess` para Apache con la siguiente estructura para que pueda renderizar las páginas (el index debe coincidir con la ruta base establecida en este archivo `RewriteBase`). "Lo que hace es reescribir los directorios en la URL para que encuentre los controladores y los métodos asociados":
       `
        RewriteEngine On
-       RewriteBase /ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/almacen/
+       RewriteBase /ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/index/
        RewriteCond %{REQUEST_FILENAME} !-f
        RewriteCond %{REQUEST_FILENAME} !-d
        RewriteRule ^(.*)$ index.php [QSA,L]
       `
+5. - Todo ello pasará por el enrutador (Router) donde se crea el array de las rutas 
+6. - Por último se cargará en el archivo principal (index) el enrutador, donde se instancia y se obtiene el array con las rutas
 
 **Consejo:** Crea el primer Modelo, Controlador, Vista, Enrutamiento e index, y posteriormente crea inmediatamente la página de errores (esto es porque el error no necesita modelo, solo controlador y vista)

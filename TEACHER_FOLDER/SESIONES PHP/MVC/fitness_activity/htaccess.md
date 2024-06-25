@@ -2,7 +2,7 @@
 
 <!-- Habilita la reescritura -->
 RewriteEngine On
-<!-- Actualizamos la URL base -->
+<!-- Actualizamos la URL base (es el directorio raíz del servidor del proyecto) -->
 RewriteBase /ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/almacen/
 <!-- Condición para encontrar files (archivos). Si no lo encuentra, pasa a la siguiente línea -->
 RewriteCond %{REQUEST_FILENAME} !-f

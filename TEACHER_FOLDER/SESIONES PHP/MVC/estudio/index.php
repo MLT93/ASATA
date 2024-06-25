@@ -26,7 +26,7 @@ $router = new Router();
   4. Elijo el controlador
   5. Elijo el método (action) 
 */
-$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/', 'AlumnoController', 'index'); // Tiene que ser igual que la ruta especificada en `.htaccess`
+$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/', 'AlumnoController', 'index'); // Esta es la ruta principal del directorio del proyecto (desde la raíz del servidor). Es el `home` de la página, y tiene que ser igual que la ruta especificada en `.htaccess`
 $router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/alumno/create', 'AlumnoController', 'create');
 $router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/alumno/store', 'AlumnoController', 'store');
 $router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/alumno/detail', 'AlumnoController', 'queryParams');

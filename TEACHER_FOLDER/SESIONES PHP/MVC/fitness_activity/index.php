@@ -9,7 +9,7 @@
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASS', '');
-define('DB_NAME', 'estudio');
+define('DB_NAME', 'fitness_activity');
 
 /*
   1. Este es el punto de entrada de mi aplicación desde el directorio raíz. Aquí se cargan todos los archivos
@@ -22,27 +22,18 @@ $router = new Router();
 /*
   1. La ruta raíz o base, es el directorio base donde está alojado el proyecto (/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/gameclubExercise/)
   2. La ruta del host, es el servidor ('http://localhost')
-  3. Por lo tanto, deberé escribir la ruta raíz más el `Endpoint` que yo desee (`/index`, `/create`, `/store`, `/detail{id}`) en el primer parámetro de `addRoute()`
+  3. Por lo tanto, deberé escribir la ruta raíz más el `Endpoint` que yo desee (`/index`, `/list`, `/register`, `/store`, `/detail{id}`) en el primer parámetro de `addRoute()`
   4. Elijo el controlador
   5. Elijo el método (action) 
 */
-$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/', 'AlumnoController', 'index'); // Tiene que ser igual que la ruta especificada en `.htaccess`
-$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/alumno/create', 'AlumnoController', 'create');
-$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/alumno/store', 'AlumnoController', 'store');
-$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/alumno/detail', 'AlumnoController', 'queryParams');
-$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/alumno/detail/{id}', 'AlumnoController', 'pathVariables');
+$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/fitness_activity/', 'EntrenamientoController', 'register'); // Esta es la ruta principal del directorio del proyecto (desde la raíz del servidor). Es el `home` de la página, y tiene que ser igual que la ruta especificada en `.htaccess`
+$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/fitness_activity/list/', 'EntrenamientoController', 'list');
+// $router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/fitness_activity/list/mediaKcalMes/', 'EntrenamientoController', 'pathVariables');
+$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/fitness_activity/store/', 'EntrenamientoController', 'store');
+$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/fitness_activity/list/detail', 'EntrenamientoController', 'queryParams');
+$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/fitness_activity/list/detail/{id}', 'EntrenamientoController', 'pathVariables');
 
-$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/clase/', 'ClaseController', 'index');
-$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/clase/create', 'ClaseController', 'create');
-$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/clase/store', 'ClaseController', 'store');
-$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/clase/detail', 'ClaseController', 'queryParams');
-$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/clase/detail/{id}', 'ClaseController', 'pathVariables');
 
-$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/grupo/', 'GrupoController', 'index');
-$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/grupo/create', 'GrupoController', 'create');
-$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/grupo/store', 'GrupoController', 'store');
-$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/grupo/detail', 'GrupoController', 'queryParams');
-$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/estudio/grupo/detail/{id}', 'GrupoController', 'pathVariables');
 
 // Obtener la ruta solicitada
 $_SERVER["REQUEST_URI"]; // Devuelve toda la URI
