@@ -23,6 +23,10 @@ creados en el Servidor, y utilizar ese archivo para acceder a la información. E
 // ****************\*\*****************\*\*\*\*****************\*\*****************
 
 
+- [**Video1: explicación CRUD backend entre React y PHP**](https://www.youtube.com/watch?v=Gu-Fl1zIVbE)
+
+- [**Video2: Explicación CRUD backend entre React y PHP**](https://www.youtube.com/watch?v=4B2XJHFaFIc)
+
 - [**Explicación de uso de CORS client y server**](https://stackoverflow.com/questions/65218218/react-php-blocked-my-cors-policy-only-in-post-request)
 
 - [**Explicación de configuración de Proxy en backend PHP**](https://brightdata.es/blog/procedimientos/php-proxy-servers)
