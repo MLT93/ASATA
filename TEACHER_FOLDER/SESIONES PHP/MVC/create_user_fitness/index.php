@@ -26,8 +26,8 @@ $router = new Router();
   4. Elijo el controlador
   5. Elijo el método (action) 
 */
-$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/create_user_fitness/', 'EntrenamientoController', 'register'); // Esta es la ruta principal del directorio del proyecto (desde la raíz del servidor). Es el `home` de la página, y tiene que ser igual que la ruta especificada en `.htaccess`
-$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/create_user_fitness/list/', 'EntrenamientoController', 'list');
+$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/create_user_fitness/', 'UsuarioController', 'register'); // Esta es la ruta principal del directorio del proyecto (desde la raíz del servidor). Es el `home` de la página, y tiene que ser igual que la ruta especificada en `.htaccess`
+$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/create_user_fitness/list/', 'UsuarioController', 'list');
 // $router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/create_user_fitness/list/mediaKcalMes/', 'EntrenamientoController', 'pathVariables');
 $router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/create_user_fitness/store/', 'EntrenamientoController', 'store');
 $router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/create_user_fitness/list/detail', 'EntrenamientoController', 'queryParams');

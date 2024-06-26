@@ -32,7 +32,7 @@ class EntrenamientoController
 
   public function register() // Nos manda al formulario de registro
   {
-    /* AQUÍ DEBO OBTENER LAS INFORMACIONES DE LAS DISTINTAS TABLAS DE LA DB PARA ENVIAR LA INFO A LA VIEW QUE TIENE EL FORM Y PODER REALIZAR UN NUEVO FICHAJE */
+    /* AQUÍ DEBO OBTENER LAS INFORMACIONES DE LAS DISTINTAS TABLAS DE LA DB PARA ENVIAR LA INFO A LA VIEW QUE TIENE EL FORM Y PODER REALIZAR UN NUEVO REGISTRO */
     $trainingModel = new Entrenamiento(); // Instancia donde se realiza la conexión a la DB
     $entrenamientos = $trainingModel->getAll(); // Obtengo la información de la DB y la envío a la View `form_create.php`
 

@@ -34,7 +34,7 @@ class Controller
 
   public function create()
   {
-    /* AQUÍ DEBO OBTENER LAS INFORMACIONES DE LAS DISTINTAS TABLAS DE LA DB PARA ENVIAR LA INFO A LA VIEW QUE TIENE EL FORM Y PODER REALIZAR UN NUEVO FICHAJE */
+    /* AQUÍ DEBO OBTENER LAS INFORMACIONES DE LAS DISTINTAS TABLAS DE LA DB PARA ENVIAR LA INFO A LA VIEW QUE TIENE EL FORM Y PODER REALIZAR UN NUEVO REGISTRO */
     $modelGame = new Game(); // Instancia de `Game` donde se realiza la conexión a la DB
     $modelGenero = new Genero(); // Instancia de `Genero` donde se realiza la conexión a la DB
     $modelDesarrollador = new Desarrollador(); // Instancia de `Desarrollador` donde se realiza la conexión a la DB

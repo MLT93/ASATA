@@ -27,7 +27,7 @@ class GrupoController
 
   // public function create()
   // {
-  //   /* AQUÍ DEBO OBTENER LAS INFORMACIONES DE LAS DISTINTAS TABLAS DE LA DB PARA ENVIAR LA INFO A LA VIEW QUE TIENE EL FORM Y PODER REALIZAR UN NUEVO FICHAJE */
+  //   /* AQUÍ DEBO OBTENER LAS INFORMACIONES DE LAS DISTINTAS TABLAS DE LA DB PARA ENVIAR LA INFO A LA VIEW QUE TIENE EL FORM Y PODER REALIZAR UN NUEVO REGISTRO */
   //   $createModel = new Grupo(); // Instancia donde se realiza la conexión a la DB
   //   $grupos = $createModel->getAll(); // Obtengo la información de la DB y la envío a la View `form_create.php`
 
