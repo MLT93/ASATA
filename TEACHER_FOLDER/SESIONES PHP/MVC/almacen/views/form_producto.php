@@ -25,8 +25,8 @@
       <option value="">Elige una categoría</option>
       <?php
       /* 
-      1. El Controller (intermediario entre el Model y la View) Utiliza el Model (donde realiza la consulta a la DB) y envía la información (la variable) a la View (donde está lo que ve el usuario)
-      2. Se encargará de enviar la variable `$categorias` (array asociativo que viene de la class `CategoriaController`)
+          1. El Controller (intermediario entre el Model y la View) Utiliza el Model (donde realiza la consulta a la DB) y envía la información (la variable) a la View (donde está lo que ve el usuario)
+      2. Se encargará de enviar la variable que no se usa en el Controller
     */
       foreach ($categorias as $key => $value) { ?>
         <option value="<?= $value['id'] ?>"> <?= $value["nombre"] ?> </option>
@@ -40,8 +40,8 @@
       <option value="0">Elige un proveedor</option>
       <?php
       /* 
-      1. El Controller (intermediario entre el Model y la View) Utiliza el Model (donde realiza la consulta a la DB) y envía la información (la variable) a la View (donde está lo que ve el usuario)
-      2. Se encargará de enviar la variable `$proveedores` (array asociativo que viene de la class `ProveedorController`)
+            1. El Controller (intermediario entre el Model y la View) Utiliza el Model (donde realiza la consulta a la DB) y envía la información (la variable) a la View (donde está lo que ve el usuario)
+      2. Se encargará de enviar la variable que no se usa en el Controller
     */
       foreach ($proveedores as $key => $value) { ?>
         <option value="<?= $value['id'] ?>"> <?= $value["nombre"] ?> </option>

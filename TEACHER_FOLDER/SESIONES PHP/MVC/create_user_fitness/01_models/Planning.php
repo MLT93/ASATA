@@ -31,7 +31,7 @@ class Planning
   // Methods
   public function getAll()
   {
-    $consultaSQL = "SELECT plannings.id, plannings.fecha_prevista, plannings.estado, actividades.descripcion, objetivos.consumo_Kcal_total, usuarios.nombre 
+    $consultaSQL = "SELECT plannings.id, plannings.fecha_prevista, plannings.estado, actividades.descripcion AS descripcionActividad, objetivos.consumo_Kcal_total AS objetivoActividad, usuarios.nombre AS nombreUsuario
     FROM plannings
     INNER JOIN actividades ON plannings.id_actividad_prevista = actividades.id 
     INNER JOIN objetivos ON plannings.id_objetivo = objetivos.id 
@@ -66,7 +66,7 @@ class Planning
   public function getByIDQueryParams()
   {
     $id = intval($_GET['id']);
-    $consultaSQL = "SELECT plannings.id, plannings.fecha_prevista, plannings.estado, actividades.descripcion, objetivos.consumo_Kcal_total, usuarios.nombre 
+    $consultaSQL = "SELECT plannings.id, plannings.fecha_prevista, plannings.estado, actividades.descripcion AS descripcionActividad, objetivos.consumo_Kcal_total AS objetivoActividad, usuarios.nombre AS nombreUsuario
     FROM plannings
     INNER JOIN actividades ON plannings.id_actividad_prevista = actividades.id 
     INNER JOIN objetivos ON plannings.id_objetivo = objetivos.id 
@@ -79,7 +79,7 @@ class Planning
 
   public function getByIDPathVariables($id)
   {
-    $consultaSQL = "SELECT plannings.id, plannings.fecha_prevista, plannings.estado, actividades.descripcion, objetivos.consumo_Kcal_total, usuarios.nombre 
+    $consultaSQL = "SELECT plannings.id, plannings.fecha_prevista, plannings.estado, actividades.descripcion AS descripcionActividad, objetivos.consumo_Kcal_total AS objetivoActividad, usuarios.nombre AS nombreUsuario
     FROM plannings
     INNER JOIN actividades ON plannings.id_actividad_prevista = actividades.id 
     INNER JOIN objetivos ON plannings.id_objetivo = objetivos.id 

@@ -28,11 +28,15 @@ $router = new Router();
 */
 $router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/create_user_fitness/', 'UsuarioController', 'register'); // Esta es la ruta principal del directorio del proyecto (desde la raíz del servidor). Es el `home` de la página, y tiene que ser igual que la ruta especificada en `.htaccess`
 $router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/create_user_fitness/list/', 'UsuarioController', 'list');
-// $router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/create_user_fitness/list/mediaKcalMes/', 'EntrenamientoController', 'pathVariables');
-$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/create_user_fitness/store/', 'EntrenamientoController', 'store');
-$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/create_user_fitness/list/detail', 'EntrenamientoController', 'queryParams');
-$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/create_user_fitness/list/detail/{id}', 'EntrenamientoController', 'pathVariables');
-$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/create_user_fitness/user/mediaKcalMes', 'EntrenamientoController', 'queryParams');
+$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/create_user_fitness/store/', 'UsuarioController', 'store');
+$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/create_user_fitness/list/detail', 'UsuarioController', 'queryParams');
+$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/create_user_fitness/list/detail/{id}', 'UsuarioController', 'pathVariables');
+
+$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/create_user_fitness/planning/', 'PlanningController', 'register'); // Esta es la ruta principal del directorio del proyecto (desde la raíz del servidor). Es el `home` de la página, y tiene que ser igual que la ruta especificada en `.htaccess`
+$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/create_user_fitness/planning/list/', 'PlanningController', 'list');
+$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/create_user_fitness/planning/store/', 'PlanningController', 'store');
+$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/create_user_fitness/planning/list/detail', 'PlanningController', 'queryParams');
+$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/create_user_fitness/planning/list/detail/{id}', 'PlanningController', 'pathVariables');
 
 // Obtener la ruta solicitada
 $_SERVER["REQUEST_URI"]; // Devuelve toda la URI
