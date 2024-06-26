@@ -32,8 +32,7 @@ $router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/fitness_activity/lis
 $router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/fitness_activity/store/', 'EntrenamientoController', 'store');
 $router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/fitness_activity/list/detail', 'EntrenamientoController', 'queryParams');
 $router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/fitness_activity/list/detail/{id}', 'EntrenamientoController', 'pathVariables');
-
-
+$router->addRoute('/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/fitness_activity/user/mediaKcalMes', 'EntrenamientoController', 'mediaKcalMes');
 
 // Obtener la ruta solicitada
 $_SERVER["REQUEST_URI"]; // Devuelve toda la URI

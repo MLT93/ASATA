@@ -49,7 +49,7 @@ class ProveedorController
     }
   }
 
-  public function queryParams() // Muestra sólo 1 a través del ID
+  public function queryParams() // Muestra a través del ID
   {
     $proveedorModel = new Proveedor(); // Instancia de `Proveedor` donde se realiza la conexión a la DB
     $arrProveedores = $proveedorModel->getProveedorByID(); // Obtengo la información de la DB y la envío a la View `detail_proveedor.php`
@@ -57,7 +57,7 @@ class ProveedorController
     require "views/detail_proveedor.php"; // Aquí existirá las variables `$arrProveedores`
   }
 
-  public function pathVariables($id) // Muestra sólo 1 a través del ID
+  public function pathVariables($id) // Muestra a través del ID
   {
     $productoModel = new Proveedor(); // Instancia de `Proveedor` donde se realiza la conexión a la DB
     $arrProveedores = $productoModel->getProveedorByID2($id); // Obtengo la información de la DB y la envío a la View `detail_proveedor.php`

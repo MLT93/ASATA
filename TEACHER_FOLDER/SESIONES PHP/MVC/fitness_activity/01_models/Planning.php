@@ -92,6 +92,4 @@ class Planning
 
   // Static Methods
 
-
-
 }

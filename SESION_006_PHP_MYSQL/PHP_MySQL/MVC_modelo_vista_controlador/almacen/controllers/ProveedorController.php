@@ -49,7 +49,7 @@ class ProveedorController
     }
   }
 
-  public function detail() // Muestra sólo 1 a través del ID
+  public function detail() // Muestra a través del ID
   {
     $proveedorModel = new Proveedor(); // Instancia de `Proveedor` donde se realiza la conexión a la DB
     $arrProveedores = $proveedorModel->getProveedorByID(); // Obtengo la información de la DB y la envío a la View `detail_proveedor.php`

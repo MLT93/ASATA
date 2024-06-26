@@ -56,7 +56,7 @@ class ProductoController
     }
   }
 
-  public function detail() // Muestra sólo 1 a través del ID
+  public function detail() // Muestra a través del ID
   {
     $productoModel = new Producto(); // Instancia de `Producto` donde se realiza la conexión a la DB
     $producto = $productoModel->getProductoByID(); // Obtengo la información de la DB y la envío a la View `detail_producto.php`

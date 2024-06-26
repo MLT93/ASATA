@@ -1,4 +1,4 @@
-**Crear un ejemplo de MVC en PHP con la base de datos de una aplicación fitness_activity donde hay para visualizar**
+**Crear un ejemplo de MVC en PHP con la base de datos fitness_activity donde hay para visualizar**
 
 - Página para generar un entrenamiento (index)
 - Página que calcule la media de calorías consumidas por entrenamiento y por usuario (lista y media)

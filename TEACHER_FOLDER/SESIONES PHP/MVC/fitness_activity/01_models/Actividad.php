@@ -80,6 +80,4 @@ class Actividad
 
   // Static Methods
 
-
-
 }

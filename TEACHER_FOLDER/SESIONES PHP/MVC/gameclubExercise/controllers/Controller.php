@@ -67,7 +67,7 @@ class Controller
   //   }
   // }
 
-  // public function queryParams() // Muestra sólo 1 a través del ID
+  // public function queryParams()// Muestra a través del ID
   // {
   //   $model = new Game(); // Instancia de `Game` donde se realiza la conexión a la DB
   //   $arrDetailByQueryParam = $model->getByIDQueryParam(); // Obtengo la información de la DB y la envío a la View `game_detail.php`
@@ -75,7 +75,7 @@ class Controller
   //   require "views/game_detail.php"; // Aquí existirá las variables `$detailByQueryParam`
   // }
 
-  public function pathVariables($id) // Muestra sólo 1 a través del ID
+  public function pathVariables($id) // Muestra a través del ID
   {
     $modelGame = new Game(); // Instancia de `Videojuego` donde se realiza la conexión a la DB
     $arrDetailByPathVariable = $modelGame->getByIDPathVariable($id); // Obtengo la información de la DB y la envío a la View `game_detail.php`

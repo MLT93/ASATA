@@ -80,6 +80,4 @@ class Usuario
 
   // Static Methods
 
-
-
 }

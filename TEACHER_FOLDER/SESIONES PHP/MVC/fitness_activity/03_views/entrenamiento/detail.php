@@ -12,6 +12,7 @@
 
   <?php
   // var_dump($detail);
+  // var_dump($entrenamientosPorUsuario);
   ?>
 
   <h1>DETALLE</h1>
@@ -30,22 +31,40 @@
       <th>ESTADO</th>
     </tr>
     <?php
-    echo "<tr>";
-    echo "<td>" . $detail[0]['id'] . "</td>";
-    echo "<td>" . $detail[0]['fecha_inicio'] . "</td>";
-    echo "<td>" . $detail[0]['duracion'] . "</td>";
-    echo "<td>" . $detail[0]['nickname'] . "</td>";
-    echo "<td>" . $detail[0]['email'] . "</td>";
-    echo "<td>" . $detail[0]['fecha_nacimiento'] . "</td>";
-    echo "<td>" . $detail[0]['descripcion'] . "</td>";
-    echo "<td>" . $detail[0]['consumo_Kcal_hora'] . "</td>";
-    echo "<td>" . $detail[0]['fecha_prevista'] . "</td>";
-    echo "<td>" . $detail[0]['estado'] . "</td>";
-    echo "</tr>";
+    // $totKcalEntrenamiento = array_sum(array_column($entrenamientosPorUsuario, 'consumo_Kcal_hora'));
+    $totKcalEntrenamiento = 0;
+    $cantidadEntrenamientos = count($entrenamientosPorUsuario);
+    $mediaKcalEntrenamiento = 0;
+    $idUsuario = "";
+    foreach ($entrenamientosPorUsuario as $key => $value) {
+      echo "<tr>";
+      echo "<td>" . $value['id'] . "</td>";
+      echo "<td>" . $value['fecha_inicio'] . "</td>";
+      echo "<td>" . $value['duracion'] . "</td>";
+      echo "<td>" . $value['nickname'] . "</td>";
+      echo "<td>" . $value['email'] . "</td>";
+      echo "<td>" . $value['fecha_nacimiento'] . "</td>";
+      echo "<td>" . $value['descripcion'] . "</td>";
+      echo "<td>" . $value['consumo_Kcal_hora'] . "</td>";
+      echo "<td>" . $value['fecha_prevista'] . "</td>";
+      echo "<td>" . $value['estado'] . "</td>";
+      echo "</tr>";
+
+      $totKcalEntrenamiento += $value['consumo_Kcal_hora'];
+      $mediaKcalEntrenamiento = round($totKcalEntrenamiento / $cantidadEntrenamientos, 2);
+      $idUsuario = $value['id'];
+    }
     ?>
   </table>
 
-  <button><a href="/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/fitness_activity/">VUELVE ATRÁS</a></button>
+  <?php
+  echo "<h3>TOTAL KCAL DE LOS ENTRENAMIENTOS: " . $totKcalEntrenamiento . "kcal</h3>";
+  echo "<h3>MEDIA KCAL DE LOS ENTRENAMIENTOS: " . $mediaKcalEntrenamiento . "kcal</h3>";
+  ?>
+
+  <button><a href="/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/fitness_activity/list/">VUELVE ATRÁS</a></button>
+
+  <button><a href="/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/fitness_activity/user/mediaKcalMes?id=<?= $idUsuario ?>&kcalPerMonth=<?= $mediaKcalEntrenamiento ?>">MEDIA KCAL MES</a></button>
 
 </body>
 
