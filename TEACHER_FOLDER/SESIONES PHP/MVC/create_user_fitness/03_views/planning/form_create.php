@@ -18,10 +18,10 @@
   <form action="/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/create_user_fitness/planning/store/" method="post" target="_self">
 
     <label for="nDiasPorSemanaID">Nº DÍAS POR SEMANA</label>
-    <input type="number" name="nDiasPorSemana" id="nDiasPorSemanaID">
+    <input type="number" name="nDiasPorSemana" id="nDiasPorSemanaID" min="1" max="7" maxlength="1">
 
-    <label for="kcalMedPerSessionID">KCAL A CONSUMIR POR ENTRENAMIENTO</label>
-    <input type="number" name="kcalMedPerSession" id="kcalMedPerSessionID" min="300" max="700" maxlength="3">
+    <label for="kcalPerSessionID">KCAL A CONSUMIR POR ENTRENAMIENTO</label>
+    <input type="number" name="kcalPerSession" id="kcalPerSessionID" min="300" max="700" maxlength="3">
 
     <label for="minPerSessionID">MINUTOS DEL ENTRENAMIENTO</label>
     <input type="number" name="minPerSession" id="minPerSessionID" min="45" max="120" maxlength="3">

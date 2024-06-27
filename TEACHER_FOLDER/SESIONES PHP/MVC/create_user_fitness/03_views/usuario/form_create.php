@@ -10,7 +10,7 @@
 
 <body>
 
-  <form action="/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/fitness_activity/store/" method="post" target="_self">
+  <form action="/ASATA/TEACHER_FOLDER/SESIONES%20PHP/MVC/create_user_fitness/store/" method="post" target="_self">
 
     <label for="nombreID">NOMBRE</label>
     <input type="text" name="nombre" id="nombreID" maxlength="10" max="120">

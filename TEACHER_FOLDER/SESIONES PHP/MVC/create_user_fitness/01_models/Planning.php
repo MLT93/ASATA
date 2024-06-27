@@ -31,9 +31,9 @@ class Planning
   // Methods
   public function getAll()
   {
-    $consultaSQL = "SELECT plannings.id, plannings.fecha_prevista, plannings.estado, actividades.descripcion AS descripcionActividad, objetivos.consumo_Kcal_total AS objetivoActividad, usuarios.nombre AS nombreUsuario
+    $consultaSQL = "SELECT plannings.id, plannings.fecha_prevista, plannings.estado, actividades.descripcion AS descripcionActividad, objetivos.consumo_Kcal_total AS objetivoActividad, usuarios.nombre AS nombreUsuario 
     FROM plannings
-    INNER JOIN actividades ON plannings.id_actividad_prevista = actividades.id 
+    INNER JOIN actividades ON plannings.id_actividad = actividades.id 
     INNER JOIN objetivos ON plannings.id_objetivo = objetivos.id 
     INNER JOIN usuarios ON plannings.id_usuario = usuarios.id;"; // Aquí saco toda la información necesaria. Además de la info entre las tablas relacionadas por sus Foreign Keys (el último INNER JOIN va exactamente después del Foreign key de clases con calendarios para poder utilizar el Foreign Key anidado en la tabla calendarios y así poder obtener toda la información por completo. `Esto funciona porque al tener un INNER JOIN previo ya enlazado entre clases y calendarios donde devolvemos su ID` (HAY QUE DEVOLVER ESE ID PARA PODER REALIZAR LA CONSULTA), conseguimos esa relación. Entonces simplemente realizamos la consulta entre convocatorias y calendarios)
     $registros = $this->getConnection()->query($consultaSQL); // Utilizamos los métodos de la instancia `\mysqli`. `query` ejecuta la sentencia y devuelve cosas, `execute` ejecuta solo la sentencia
@@ -41,10 +41,10 @@ class Planning
     return $arrAssoc;
   }
 
-  public function add($id_actividad_prevista, $id_objetivo, $id_usuario, $fecha_prevista, $estado)
+  public function add($id_actividad, $id_objetivo, $id_usuario, $fecha_prevista, $estado)
   {
-    $consultaSQL = "INSERT INTO plannings (id_actividad_prevista, id_objetivo, id_usuario, fecha_prevista, estado) VALUES
-    (?, ?, ?, ?, ?, ?);"; // Para preparar esta consulta, los valores vacíos de VALUES deben escribirse como `?` porque utilizamos la class `\mysqli`
+    $consultaSQL = "INSERT INTO plannings (id_actividad, id_objetivo, id_usuario, fecha_prevista, estado) VALUES 
+    (?, ?, ?, ?, ?);"; // Para preparar esta consulta, los valores vacíos de VALUES deben escribirse como `?` porque utilizamos la class `\mysqli`
 
     $consultaPrepare = $this->getConnection()->prepare($consultaSQL); // Toma la consulta y la prepara para vincularle los VALUES a través de otro método 
 
@@ -58,7 +58,7 @@ class Planning
             `b`	la variable correspondiente es un blob y se envía en paquetes
           2. Las variables correspondientes a la cantidad de VALUES a ingresar en la consulta
     */
-    $consultaPrepare->bind_param("iiiiss", $id_actividad_prevista, $id_objetivo, $id_usuario, $fecha_prevista, $estado);
+    $consultaPrepare->bind_param("iiiss", $id_actividad, $id_objetivo, $id_usuario, $fecha_prevista, $estado);
 
     return $consultaPrepare->execute(); // Ejecuto la consulta
   }
@@ -66,9 +66,9 @@ class Planning
   public function getByIDQueryParams()
   {
     $id = intval($_GET['id']);
-    $consultaSQL = "SELECT plannings.id, plannings.fecha_prevista, plannings.estado, actividades.descripcion AS descripcionActividad, objetivos.consumo_Kcal_total AS objetivoActividad, usuarios.nombre AS nombreUsuario
-    FROM plannings
-    INNER JOIN actividades ON plannings.id_actividad_prevista = actividades.id 
+    $consultaSQL = "SELECT plannings.id, plannings.fecha_prevista, plannings.estado, actividades.descripcion AS descripcionActividad, objetivos.consumo_Kcal_total AS objetivoActividad, usuarios.nombre AS nombreUsuario 
+    FROM plannings 
+    INNER JOIN actividades ON plannings.id_actividad = actividades.id 
     INNER JOIN objetivos ON plannings.id_objetivo = objetivos.id 
     INNER JOIN usuarios ON plannings.id_usuario = usuarios.id 
     WHERE id = $id;"; // Aquí saco la info a través de su ID y sus Foreign Keys asociados
@@ -79,9 +79,9 @@ class Planning
 
   public function getByIDPathVariables($id)
   {
-    $consultaSQL = "SELECT plannings.id, plannings.fecha_prevista, plannings.estado, actividades.descripcion AS descripcionActividad, objetivos.consumo_Kcal_total AS objetivoActividad, usuarios.nombre AS nombreUsuario
-    FROM plannings
-    INNER JOIN actividades ON plannings.id_actividad_prevista = actividades.id 
+    $consultaSQL = "SELECT plannings.id, plannings.fecha_prevista, plannings.estado, actividades.descripcion AS descripcionActividad, objetivos.consumo_Kcal_total AS objetivoActividad, usuarios.nombre AS nombreUsuario 
+    FROM plannings 
+    INNER JOIN actividades ON plannings.id_actividad = actividades.id 
     INNER JOIN objetivos ON plannings.id_objetivo = objetivos.id 
     INNER JOIN usuarios ON plannings.id_usuario = usuarios.id 
     WHERE id = $id;"; // Aquí saco la info a través de su ID y sus Foreign Keys asociados

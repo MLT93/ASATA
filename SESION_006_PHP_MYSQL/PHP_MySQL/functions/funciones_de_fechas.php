@@ -41,7 +41,9 @@ echo strtotime("+1 week 2 days 4 hours 2 seconds") . "<br/>"; //=> 1713132000
 // 2 timestamp de la fecha requerida en formato de integer
 echo date("d-m-y H:i:s", intval($nextWeek)) . "<br/>";
 echo $timeStamp1 = strtotime("22 September 2024") . "<br/>";
-echo $date = date("d/m/y  H:i:s", intval($timeStamp1)) . "<br/>";
+echo $date = date("d/m/y H:i:s", intval($timeStamp1)) . "<br/>";
+$fechaHoraDeHoy = date("Y-m-d H:i:s", intval(strtotime("now"))); // ESTO ESTÁ BUENÍSIMO
+echo $fechaHoraDeHoy_Plus1day = date("Y-m-d", intval(strtotime($fechaHoraDeHoy, "+ 1 days"))); // Y ESTO MÁS
 
 // `checkdate()` valida una fecha y me dice si es correcta. Devuelve true (1) o false (0)
 // la fecha se pasa como DD-MM-AAAA

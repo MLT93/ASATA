@@ -1,7 +1,7 @@
 <?php
-/* Esta clase va a gestionar la tabla `entrenamientos` */
+/* Esta clase va a gestionar la tabla `objetivos` */
 
-class Entrenamiento
+class Objetivo
 {
   // Propiedades
   private $connection;
@@ -31,33 +31,23 @@ class Entrenamiento
   // Methods
   public function getAll()
   {
-    $consultaSQL = "SELECT entrenamientos.id, entrenamientos.fecha_inicio, entrenamientos.duracion, usuarios.nickname, usuarios.email, usuarios.fecha_nacimiento, actividades.descripcion, actividades.consumo_Kcal_hora, plannings.fecha_prevista, plannings.estado 
-    FROM entrenamientos 
-    INNER JOIN usuarios ON entrenamientos.id_usuario = usuarios.id 
-    INNER JOIN actividades ON entrenamientos.id_actividad = actividades.id 
-    INNER JOIN plannings ON entrenamientos.id_planning = plannings.id;"; // Aquí saco toda la información necesaria. Además de la info entre las tablas relacionadas por sus Foreign Keys
+    $consultaSQL = "SELECT * FROM objetivos;"; // Aquí saco toda la información necesaria. Además de la info entre las tablas relacionadas por sus Foreign Keys (el último INNER JOIN va exactamente después del Foreign key de clases con calendarios para poder utilizar el Foreign Key anidado en la tabla calendarios y así poder obtener toda la información por completo. `Esto funciona porque al tener un INNER JOIN previo ya enlazado entre clases y calendarios donde devolvemos su ID` (HAY QUE DEVOLVER ESE ID PARA PODER REALIZAR LA CONSULTA), conseguimos esa relación. Entonces simplemente realizamos la consulta entre convocatorias y calendarios)
     $registros = $this->getConnection()->query($consultaSQL); // Utilizamos los métodos de la instancia `\mysqli`. `query` ejecuta la sentencia y devuelve cosas, `execute` ejecuta solo la sentencia
     $arrAssoc = $registros->fetch_all(MYSQLI_ASSOC); // Convertimos cada uno de los registros en forma de matriz numérica con arrays asociativos
     return $arrAssoc;
   }
 
-  public function getAllByUserId($id)
+  public function getLastOneByID()
   {
-    $consultaSQL = "SELECT entrenamientos.id, entrenamientos.fecha_inicio, entrenamientos.duracion, usuarios.nickname, usuarios.email, usuarios.fecha_nacimiento, actividades.descripcion, actividades.consumo_Kcal_hora, plannings.fecha_prevista, plannings.estado 
-    FROM entrenamientos 
-    INNER JOIN usuarios ON entrenamientos.id_usuario = usuarios.id 
-    INNER JOIN actividades ON entrenamientos.id_actividad = actividades.id 
-    INNER JOIN plannings ON entrenamientos.id_planning = plannings.id
-    WHERE usuarios.id = $id;"; // Aquí saco toda la información necesaria. Además de la info entre las tablas relacionadas por sus Foreign Keys
+    $consultaSQL = "SELECT * FROM objetivos ORDER BY id DESC LIMIT 0,1;"; // Aquí saco toda la información necesaria. Además de la info entre las tablas relacionadas por sus Foreign Keys (el último INNER JOIN va exactamente después del Foreign key de clases con calendarios para poder utilizar el Foreign Key anidado en la tabla calendarios y así poder obtener toda la información por completo. `Esto funciona porque al tener un INNER JOIN previo ya enlazado entre clases y calendarios donde devolvemos su ID` (HAY QUE DEVOLVER ESE ID PARA PODER REALIZAR LA CONSULTA), conseguimos esa relación. Entonces simplemente realizamos la consulta entre convocatorias y calendarios)
     $registros = $this->getConnection()->query($consultaSQL); // Utilizamos los métodos de la instancia `\mysqli`. `query` ejecuta la sentencia y devuelve cosas, `execute` ejecuta solo la sentencia
     $arrAssoc = $registros->fetch_all(MYSQLI_ASSOC); // Convertimos cada uno de los registros en forma de matriz numérica con arrays asociativos
     return $arrAssoc;
   }
 
-  public function add($id_usuario, $id_actividad, $id_planning, $duracion, $fecha_inicio)
+  public function add($consumo_Kcal_total)
   {
-    $consultaSQL = "INSERT INTO entrenamientos (id_usuario, id_actividad, id_planning, duracion, fecha_inicio) VALUES
-    (?, ?, ?, ?, ?);"; // Para preparar esta consulta, los valores vacíos de VALUES deben escribirse como `?` porque utilizamos la class `\mysqli`
+    $consultaSQL = "INSERT INTO objetivos (consumo_Kcal_total) VALUES (?);"; // Para preparar esta consulta, los valores vacíos de VALUES deben escribirse como `?` porque utilizamos la class `\mysqli`
 
     $consultaPrepare = $this->getConnection()->prepare($consultaSQL); // Toma la consulta y la prepara para vincularle los VALUES a través de otro método 
 
@@ -71,7 +61,7 @@ class Entrenamiento
             `b`	la variable correspondiente es un blob y se envía en paquetes
           2. Las variables correspondientes a la cantidad de VALUES a ingresar en la consulta
     */
-    $consultaPrepare->bind_param("iiiis", $id_usuario, $id_actividad, $id_planning, $duracion, $fecha_inicio);
+    $consultaPrepare->bind_param("s", $consumo_Kcal_total);
 
     return $consultaPrepare->execute(); // Ejecuto la consulta
   }
@@ -79,26 +69,17 @@ class Entrenamiento
   public function getByIDQueryParams()
   {
     $id = intval($_GET['id']);
-    $kcalPerMonth = ($_GET['kcalPerMonth']);
-    $consultaSQL = "SELECT entrenamientos.id, entrenamientos.fecha_inicio, entrenamientos.duracion, usuarios.nickname, usuarios.email, usuarios.fecha_nacimiento, actividades.descripcion, actividades.consumo_Kcal_hora, plannings.fecha_prevista, plannings.estado 
-    FROM entrenamientos 
-    INNER JOIN usuarios ON entrenamientos.id_usuario = usuarios.id 
-    INNER JOIN actividades ON entrenamientos.id_actividad = actividades.id 
-    INNER JOIN plannings ON entrenamientos.id_planning = plannings.id 
-    WHERE entrenamientos.id = $id;"; // Aquí saco la info a través de su ID y sus Foreign Keys asociados
+    $consultaSQL = "SELECT * FROM objetivos 
+    WHERE id = $id;"; // Aquí saco la info a través de su ID y sus Foreign Keys asociados
     $registro = $this->getConnection()->query($consultaSQL); // Utilizamos los métodos de la instancia `\mysqli`. `query` ejecuta la sentencia y devuelve cosas, `execute` ejecuta solo la sentencia
     $arrAssoc = $registro->fetch_all(MYSQLI_ASSOC); // Convertimos cada uno de los registros en forma de matriz numérica con arrays asociativos (que tendrá sólo 1 elemento)
-    return [$arrAssoc, $kcalPerMonth];
+    return $arrAssoc;
   }
 
   public function getByIDPathVariables($id)
   {
-    $consultaSQL = "SELECT entrenamientos.id, entrenamientos.fecha_inicio, entrenamientos.duracion, usuarios.nickname, usuarios.email, usuarios.fecha_nacimiento, actividades.descripcion, actividades.consumo_Kcal_hora, plannings.fecha_prevista, plannings.estado 
-    FROM entrenamientos 
-    INNER JOIN usuarios ON entrenamientos.id_usuario = usuarios.id 
-    INNER JOIN actividades ON entrenamientos.id_actividad = actividades.id 
-    INNER JOIN plannings ON entrenamientos.id_planning = plannings.id 
-    WHERE entrenamientos.id = $id;"; // Aquí saco la info a través de su ID y sus Foreign Keys asociados
+    $consultaSQL = "SELECT * FROM objetivos 
+    WHERE id = $id;"; // Aquí saco la info a través de su ID y sus Foreign Keys asociados
     $registro = $this->getConnection()->query($consultaSQL); // Utilizamos los métodos de la instancia `\mysqli`. `query` ejecuta la sentencia y devuelve cosas, `execute` ejecuta solo la sentencia
     $arrAssoc = $registro->fetch_all(MYSQLI_ASSOC); // Convertimos cada uno de los registros en forma de matriz numérica con arrays asociativos (que tendrá sólo 1 elemento)
     return $arrAssoc;

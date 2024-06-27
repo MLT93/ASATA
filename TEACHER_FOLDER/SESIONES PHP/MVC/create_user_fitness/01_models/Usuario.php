@@ -39,7 +39,7 @@ class Usuario
 
   public function add($nombre, $apellido, $nickname, $hashed_password, $email, $fecha_nacimiento, $peso, $altura)
   {
-    $consultaSQL = "INSERT INTO usuarios (nombre, apellido, nickname, hashed_password, email, fecha_nacimiento, peso, altura) VALUES
+    $consultaSQL = "INSERT INTO usuarios (nombre, apellido, nickname, hashed_password, email, fecha_nacimiento, peso, altura) VALUES 
     (?, ?, ?, ?, ?, ?, ?, ?);"; // Para preparar esta consulta, los valores vacíos de VALUES deben escribirse como `?` porque utilizamos la class `\mysqli`
 
     $consultaPrepare = $this->getConnection()->prepare($consultaSQL); // Toma la consulta y la prepara para vincularle los VALUES a través de otro método 
