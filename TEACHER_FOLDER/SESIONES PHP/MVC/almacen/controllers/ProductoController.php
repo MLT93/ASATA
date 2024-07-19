@@ -56,7 +56,7 @@ class ProductoController
     }
   }
 
-  public function queryParams() // Muestra sólo 1 a través del ID
+  public function queryParams() // Muestra a través del ID
   {
     $productoModel = new Producto(); // Instancia de `Producto` donde se realiza la conexión a la DB
     $producto = $productoModel->getProductoByID(); // Obtengo la información de la DB y la envío a la View `detail_producto.php`
@@ -64,7 +64,7 @@ class ProductoController
     require "views/detail_producto.php"; // Aquí existirá las variables `$producto`
   }
 
-  public function pathVariables($id) // Muestra sólo 1 a través del ID
+  public function pathVariables($id) // Muestra a través del ID
   {
     $productoModel = new Producto(); // Instancia de `Producto` donde se realiza la conexión a la DB
     $producto = $productoModel->getProductoByID2($id); // Obtengo la información de la DB y la envío a la View `detail_producto.php`

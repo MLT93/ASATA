@@ -30,7 +30,7 @@ class AlumnoController
 
   public function create()
   {
-    /* AQUÍ DEBO OBTENER LAS INFORMACIONES DE LAS DISTINTAS TABLAS DE LA DB PARA ENVIAR LA INFO A LA VIEW QUE TIENE EL FORM Y PODER REALIZAR UN NUEVO FICHAJE */
+    /* AQUÍ DEBO OBTENER LAS INFORMACIONES DE LAS DISTINTAS TABLAS DE LA DB PARA ENVIAR LA INFO A LA VIEW QUE TIENE EL FORM Y PODER REALIZAR UN NUEVO REGISTRO */
     $createModel = new Grupo(); // Instancia donde se realiza la conexión a la DB
     $grupos = $createModel->getAll(); // Obtengo la información de la DB y la envío a la View `form_create.php`
 
@@ -53,7 +53,7 @@ class AlumnoController
     }
   }
 
-  public function queryParams() // Muestra sólo 1 a través del ID
+  public function queryParams() // Muestra a través del ID
   {
     $detailModel = new Alumno(); // Instancia donde se realiza la conexión a la DB
     $detail = $detailModel->getByIDQueryParams(); // Obtengo la información de la DB y la envío a la View `detail.php`
@@ -61,7 +61,7 @@ class AlumnoController
     require "03_views/alumno/detail.php"; // Aquí estará disponible la variable sin utilizar
   }
 
-  public function pathVariables($id) // Muestra sólo 1 a través del ID
+  public function pathVariables($id) // Muestra a través del ID
   {
     $detailModel = new Alumno(); // Instancia donde se realiza la conexión a la DB
     $detail = $detailModel->getByIDPathVariables($id); // Obtengo la información de la DB y la envío a la View `detail.php`
