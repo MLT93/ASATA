@@ -14,9 +14,10 @@ module.exports = {
     "import",
     "promise",
     "react",
-    "react-hooks"
+    "react-hooks",
   ],
   rules: {
+    "@typescript-eslint/no-unused-vars": "warn",
     "react-refresh/only-export-components": [
       "warn",
       { allowConstantExport: true },
