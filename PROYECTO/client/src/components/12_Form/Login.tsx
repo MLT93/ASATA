@@ -85,39 +85,40 @@ const Login = (): JSX.Element => {
   const handleSubmitForm = (event: { preventDefault: () => void }) => {
     event.preventDefault();
 
-    const URL_POST_LOGIN = "/api/login/login.php";
+    // const URL_POST_LOGIN = "/api/login/login.php";
 
     console.log(user);
 
-    void (async (url) => {
-      try {
-        const res = await axios.post(url, JSON.stringify(user), {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        const axiosData = res.data as Response;
-        console.log(axiosData);
+    // void (async (url) => {
+    //   try {
+    //     const res = await axios.post(url, JSON.stringify(user), {
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //       },
+    //     });
+    //     const axiosData = res.data as Response;
+    //     console.log(axiosData);
 
-        if (!res) {
-          console.error("Login Failed:", res);
-        } else {
-          const data = (await res.data) as Response;
-          console.log(data);
-          // toast.success("Response recibido!");
-        }
-      } catch (error) {
-        if (error instanceof Error) {
-          console.error("Thrawed Error:", error.message);
-        } else {
-          console.error("Unknown Error");
-        }
-      }
-    })(URL_POST_LOGIN);
+    //     if (!res) {
+    //       console.error("Login Failed:", res);
+    //     } else {
+    //       const data = (await res.data) as Response;
+    //       console.log(data);
+    //       // toast.success("Response recibido!");
+    //     }
+    //   } catch (error) {
+    //     if (error instanceof Error) {
+    //       console.error("Thrawed Error:", error.message);
+    //     } else {
+    //       console.error("Unknown Error");
+    //     }
+    //   }
+    // })(URL_POST_LOGIN);
   };
 
   return (
     <>
+      {isLoading && <h2>Is Loading...</h2>}
       <form onSubmit={handleSubmitForm}>
         <label htmlFor="emailID">Email</label>
         <input
@@ -152,6 +153,7 @@ const Login = (): JSX.Element => {
           RESET
         </button>
       </form>
+      {error && <h2>Ha ocurrido un error...</h2>}
     </>
   );
 };

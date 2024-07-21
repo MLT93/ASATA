@@ -41,22 +41,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 }
 
 // Solicitud POST usuarios
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  try {
+// if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+//   try {
 
-    // Falta la info recibida por $_POST;
+//     // Falta la info recibida por $_POST;
 
-    POST("usuarios", ["id_rol", "username", "email", "hashedPassword"], [["2", "userPrueba", "userPrueba@mail.com", "1234"]]);
-    if ($usuarios === null) {
-      throw new Exception("Failed to fetch users");
-    }
-    http_response_code(200);
-    echo json_encode(["success" => true, "data" => $usuarios]);
-  } catch (Exception $e) {
-    http_response_code(500);
-    echo json_encode(["success" => false, "message" => $e->getMessage()]);
-  }
-} else {
-  http_response_code(400);
-  echo json_encode(["success" => false, "message" => "Bad request"]);
-}
+//     POST("usuarios", ["id_rol", "username", "email", "hashedPassword"], [["2", "userPrueba", "userPrueba@mail.com", "1234"]]);
+//     if ($usuarios === null) {
+//       throw new Exception("Failed to fetch users");
+//     }
+//     http_response_code(200);
+//     echo json_encode(["success" => true, "data" => $usuarios]);
+//   } catch (Exception $e) {
+//     http_response_code(500);
+//     echo json_encode(["success" => false, "message" => $e->getMessage()]);
+//   }
+// } else {
+//   http_response_code(400);
+//   echo json_encode(["success" => false, "message" => "Bad request"]);
+// }

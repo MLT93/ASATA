@@ -10,7 +10,6 @@ import styles from "./Text.module.scss";
  *
  * @returns {JSX.Element} Elemento HTML para el texto
  */
-
 const Text = ({
   size,
   color,
