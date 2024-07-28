@@ -126,8 +126,8 @@ const Login = (): JSX.Element => {
           name="email"
           id="emailID"
           ref={inputRef}
-          onChange={handleInputOnChangeText}
           value={user.email}
+          onChange={handleInputOnChangeText}
           autoComplete="off"
         />
 
@@ -136,8 +136,8 @@ const Login = (): JSX.Element => {
           type="password"
           name="password"
           id="passwordID"
-          onChange={handleInputOnChangeText}
           value={user.password}
+          onChange={handleInputOnChangeText}
           autoComplete="off"
         />
 

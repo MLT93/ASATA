@@ -2308,6 +2308,12 @@ Los eventos en React permiten la interactividad en una aplicación al responder 
        });
      };
 
+     // El useRef y el useEffect unicamente se utilizan para crear un `focus` en el primer input del componente. Así el usuario puede empezar a escribir directamente sin ayuda de un mouse
+     const inputRef = useRef<HTMLInputElement>(null);
+     useEffect(() => {
+       inputRef.current?.focus();
+     }, []);
+
      const handleSubmit = (event) => {
        event.preventDefault();
        console.log("Formulario enviado:", user);
@@ -2318,6 +2324,7 @@ Los eventos en React permiten la interactividad en una aplicación al responder 
          <input
            type="text"
            name="username"
+           ref={inputRef}
            // Ahora el valor será el valor proporcionado al objeto
            value={user.username}
            onChange={handleInputChange}
@@ -2337,6 +2344,8 @@ Los eventos en React permiten la interactividad en una aplicación al responder 
    ```
 
    En este ejemplo, `user` es un objeto en el estado que contiene las propiedades `username` y `email`. Los campos de entrada están vinculados a estas propiedades del estado, y cualquier cambio en los campos de entrada invoca la función `handleInputChange` que actualiza el estado a través del gestor de eventos `onChange`.
+
+   Este formato de formulario renderiza demasiadas veces el componente porque con cada cambio que se ejecute volverá a actualizar el componente. Esto crea un uso excesivo de recursos.
 
 4. #### `Evento onChange y Control de Estado`:
 
@@ -2398,31 +2407,60 @@ Los formularios controlados en React son una técnica poderosa para manejar la e
 
 3. #### `Sintaxis y Uso Básico de Formulario no controlado`:
 
-   Para crear un formulario no controlado, simplemente se deja que el DOM maneje el valor del elemento de formulario y se accede a él utilizando referencias (refs) de React.
+   Para crear un formulario no controlado, simplemente se deja que el DOM maneje el valor del elemento de formulario y se accede a él utilizando referencias `Ref` de React.
 
-   ```jsx
-   import React, { useRef } from "react";
+    ```jsx
+   import React, { useRef } from 'react';
 
-   const UncontrolledForm = () => {
-     const inputRef = useRef(null);
-
-     const handleSubmit = (event) => {
+   const ControlledForm = () => {
+     // Utilizando useRef
+     const usernameRef = useRef<HTMLInputElement>(null);
+     const emailRef = useRef<HTMLInputElement>(null);
+   
+     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
        event.preventDefault();
-       console.log("Valor del input:", inputRef.current.value);
+   
+       // Obtenemos los valores actuales de los inputs a través de las referencias
+       const username = usernameRef.current?.value || '';
+       const email = emailRef.current?.value || '';
+   
+       // Creamos un objeto para manejar los datos
+       const user = {
+         username,
+         email,
+       };
+   
+       console.log('Formulario enviado:', user);
      };
-
+   
      return (
        <form onSubmit={handleSubmit}>
-         <input type="text" ref={inputRef} />
+         <input
+           type="text"
+           name="username"
+           ref={usernameRef}
+           autoFocus // Aplicamos autofocus al primer input
+           placeholder="Nombre de usuario"
+         />
+         <input
+           type="email"
+           name="email"
+           ref={emailRef}
+           placeholder="Correo electrónico"
+         />
          <button type="submit">Enviar</button>
        </form>
      );
    };
-
-   export default UncontrolledForm;
+   
+   export default ControlledForm;
    ```
 
-   En este ejemplo, el elemento de entrada (`<input>`) no está vinculado a ninguna propiedad de estado. En su lugar, se utiliza una referencia (`inputRef`) para acceder al valor del elemento de formulario en el DOM.
+   En este ejemplo, el componente ControlledForm utiliza referencias `useRef` para manejar los campos del formulario. En lugar de utilizar el estado `useState` para almacenar y actualizar los valores de los campos, se usan referencias `usernameRef` y `emailRef` para acceder directamente a los nodos del DOM.
+
+   Las referencias son especialmente útiles para evitar renderizados innecesarios. A diferencia de `useState`, donde cada cambio en el estado provoca una nueva renderización del componente, el uso de `useRef` permite que los cambios en los valores de los campos de entrada no desencadenen una re-renderización del componente. Esto puede ser beneficioso para el rendimiento en formularios donde no se necesita una actualización reactiva del estado.
+
+   En este ejemplo, el elemento de entrada (`<input>`) no está vinculado a ninguna propiedad de estado. En su lugar, se utiliza una referencia para acceder al valor del elemento de formulario en el DOM. Además, para aplicar el focus al primer input, utilizamos la propiedad autofocus de HTML.
 
 4. #### `Uso de Refs para Acceder a los Elementos del DOM`:
 
