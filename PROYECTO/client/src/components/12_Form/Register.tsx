@@ -17,7 +17,7 @@ const Register = (): JSX.Element => {
   // const URL_API = "https://cors-anywhere.herokuapp.com/http://localhost/ASATA/PROYECTO/server/api/registro.php";
   const URL_API = "/api/registro.php";
 
-  //* GUARDAR VALORES DE LOS INPUTS. Se puede hacer con `useRef()` o con `useState` */
+  //* GUARDAR VALORES DE LOS INPUTS. Se puede hacer con `useRef()` (para evitar tantos renderizados del componente) o con `useState` (forma más antigua) */
   const [user, setUser] = useState<User>({
     username: "",
     email: "",
@@ -28,8 +28,11 @@ const Register = (): JSX.Element => {
   const handleInputOnChangeText = (evt: ChangeEvent<HTMLInputElement>) => {
     /**
      ** 1. evt.target es el elemento que ejecuta el evento y obtiene los valores de los inputs (por eso lo desestructuramos)
-     ** 2. Desestructuro el objeto `evt.target`
-     ** 3. `name` identifica el atributo name del input, `value` describe el valor actual, `type` es el tipo de input y `checked` es el valor booleano que adquieren los checkbox
+     ** 2. Desestructuro el objeto `evt.target` para poder manejar más comodamente los valores
+     ** 3. `name` identifica el atributo (name) del input
+     ** 4. `value` describe el valor que recibe el input
+     ** 5. `type` es el tipo de input (text, number, checkbox, radio)
+     ** 6. `checked` es el valor booleano que adquieren los checkbox
      */
     const { name, value, type, checked } = evt.target;
 
@@ -38,9 +41,7 @@ const Register = (): JSX.Element => {
      ** 2. Reemplaza solo el valor del input que ejecutó el evento (`[name]: value` o `[name]: checked`)
      ** 3. Sincroniza el estado del nuevo valor usando `setUser`
      */
-    type === "checkbox"
-      ? setUser({ ...user, [name]: checked })
-      : setUser({ ...user, [name]: value });
+    type === "checkbox" ? setUser({ ...user, [name]: checked }) : setUser({ ...user, [name]: value });
   };
 
   //* DESHABILITAR BOTÓN SI NO ESTÁN LOS CAMPOS LLENOS */
@@ -56,6 +57,10 @@ const Register = (): JSX.Element => {
   }, [user, setIsDisabled]);
 
   //* FOCUS SOBRE EL PRIMER INPUT DEL FORM Y RESET DE LOS CAMPOS ESCRITOS */
+  /**
+   ** 1. Esto es válido si trabajamos el formulario con `useState()`
+   ** 2. También se puede conseguir el mismo efecto con `autoFocus` (atributo de HTML) directamente en el input deseado
+   */
   const inputRef = useRef<HTMLInputElement>(null);
   useEffect(() => {
     inputRef.current?.focus();
@@ -143,7 +148,7 @@ const Register = (): JSX.Element => {
             method: "POST",
             headers: {
               "Content-Type": "multipart/form-data",
-              "Accept" : "*/*",
+              Accept: "*/*",
               email: "admin@mail.com",
               Authorization: "Basic QWRtaW46MTIzNA==",
             },
@@ -200,17 +205,14 @@ const Register = (): JSX.Element => {
   return (
     <>
       {/* LAS FUNCIONES Y LOS VALORES SE PASAN TODOS SIN PARÉNTESIS Y SIN ARROW FUNCTIONS */}
-      <form
-        action="registro.php"
-        method="post"
-        target="_self"
-        onSubmit={handleSubmitForm}>
+      <form action="registro.php" method="post" target="_self" onSubmit={handleSubmitForm}>
         <label htmlFor="usernameID">Username</label>
         <input
           type="text"
           name="username"
           id=""
           ref={inputRef}
+          autoFocus
           value={user.username}
           onChange={handleInputOnChangeText}
           autoComplete=""
