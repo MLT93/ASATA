@@ -352,13 +352,15 @@
 
 7. #### **`Manejo de Eventos en JSX (handleEvent)`**:
 
-   En JSX, los eventos se escriben utilizando camelCase y se pasan como funciones. Estas funciones se ejecutan cuando ocurre el evento prefijado (por ejemplo: `onChange`, `onClick`, `onSubmit`, etc...) y tienen una convención, que es empezar el nombre de la función con `handle`.
+   En JSX los eventos funcionan igual que en JavaScript, se espera un evento y este acciona una función. Lo que se diferencia es cómo se manejan las funciones y dónde.
 
-   Recuerda que el `handleEvent` cuando viene activado siempre se lleva consigo el `objeto evento con sus propiedades`, que `en React es una instancia de la clase SyntheticEvent` y que a su vez es una abstracción de como los eventos de la UI al interno de los navegadores deberían ser estructurados, siguiendo las especificaciones W3C.
+   Las funciones tienen una convención, que es empezar el nombre de la propia función con `handle` (`handleInput`, `handleChange`, etc...).
 
-   Por lo tanto, cada gestor de eventos está efectivamente recibiendo un parámetro, que podemos llamar `event` y utilizarlo cuando nos interese (también podemos ignorarlo si queremos).
+   Los eventos se fijan a través de un atributo HTML (`onChange`, `onClick`, `onSubmit`, etc...) dentro del tag HTML deseado. Este evento, accionará la función correspondiente para cambiar el estado del tag HTML.
 
-   Recuerda siempre que si hay un `<input>`, habrá un `event` dentro del `handleEvent` conectado al `onChange`. Mientras que si hay botón, no hace falta el `event` dentro del `handleEvent` conectado al `onClick`.
+   Recuerda que el `handleEvent` (la función que se ejecuta al accionarse el evento) siempre se lleva consigo el objeto `event` con sus propiedades (en React es una instancia de la clase `SyntheticEvent`), que a su vez es una abstracción de cómo los eventos de la UI deberían ser estructurados al interno de los navegadores siguiendo las especificaciones W3C. Por lo tanto, cada gestor de eventos está efectivamente recibiendo un parámetro, que podemos llamar `event` y utilizarlo cuando nos interese alguno de sus atributos (`event.name`, `event.value`, `event.checked`, `event.type`, etc...).
+
+   Recuerda: si hay un `<input>`, hay un `event` dentro del `handleEvent` conectado al `onChange` que debemos utilizar. Si hay un `<button>` no será necesario utilizar el `event` dentro del `handleEvent` en el atributo `onClick` relacionado.
 
    Ejemplo de manejo de eventos en JSX:
 
@@ -895,6 +897,7 @@ Los más comunes son:
 
   function ComponenteConEvento() {
     useEffect(() => {
+      // Se crea una función que maneja el evento para que al desmontar el componente y realizar el `componentWillUnmount` haga referencia a la misma memoria de caché, y por lo tanto, a la misma función
       const handleResize = () => {
         console.log("La ventana ha cambiado de tamaño");
       };
