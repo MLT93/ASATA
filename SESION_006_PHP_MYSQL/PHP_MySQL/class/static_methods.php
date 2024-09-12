@@ -2,7 +2,7 @@
 
 // ? `STATIC` NO DEPENDE DE NINGUNA PROPIEDAD O MÉTODO DE LA INSTANCIA O CLASE DEFINIDA, PERO TIENE RELACIÓN CON ELLA Y PUEDE SER UTILIZADA A TRAVÉS DE LAS INSTANCIAS
 // Sólo puede ser estático si no tiene relación con las propiedades o métodos de la clase o instancia establecida, pero sí tiene que ver con ella y puede ser utilizada a través de las instancias
-/* Ejemplo: una clase `Agente` nos informará sobre el agente con su grado, especialidad, el cuerpo al cual pertenece, etc... Pero también poseerá un método `estático` que será `comprobar documentación` que no utiliza sus métodos o sus propiedades pero sí tiene que ver con la clase y puede ser utilizada por cada agente [instancia (obj)] */
+/* Ejemplo: una clase `Agente` nos informará sobre el tipo de agente, su grado, especialidad, el cuerpo al cual pertenece, etc... Pero también poseerá un método `estático` que será `comprobar documentación` que no utiliza los métodos o las propiedades ya definidas pero sí tiene que ver con la clase. El método estático puede ser utilizado por cada agente (la instancia) [instance (obj)] o directamente a través de la clase [class Agente] */
 class SerHumano
 {
   protected $name;
@@ -68,9 +68,9 @@ class SerHumano
   public static function genoma($DNA)
   {
     if ($DNA !== "humano") {
-      echo "No es ADN humano";
+      echo "Isn't human DNA";
     } else {
-      echo "Es ADN humano";
+      echo "Correct Human DNA";
     }
   }
 }
