@@ -136,3 +136,12 @@ instrucción mientras se cumpla cierta condición (bucle).
 # ¿QUÉ ES LA VALIDACIÓN?
 
 - Se encarga de asegurar que el software cumpla la funcionalidad requerida por el cliente. Pregunta: ¿Está haciendo el producto requerido?
+
+# ¿DIFERENCIA ENTRE ROM Y RAM?
+
+- RAM es la memoria es la que guarda información mientras está conectada a la electricidad. Como el session storage en el navegador
+- ROM es la memoria que guarda la info permanentemente como el local storage en el navegador. Además, es la que proporciona el creador
+
+# Sectores, Cilindros, Cláusters
+
+- Son partes del disco duro de un PC
