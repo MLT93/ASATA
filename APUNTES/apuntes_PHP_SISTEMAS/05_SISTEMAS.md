@@ -139,8 +139,8 @@ instrucción mientras se cumpla cierta condición (bucle).
 
 # ¿DIFERENCIA ENTRE ROM Y RAM?
 
-- RAM es la memoria es la que guarda información mientras está conectada a la electricidad. Como el session storage en el navegador
-- ROM es la memoria que guarda la info permanentemente como el local storage en el navegador. Además, es la que proporciona el creador
+- RAM es la memoria es la que guarda información mientras está conectada a la electricidad (donde se guardan las instrucciones o algoritmos de un programa para ser ejecutado). Es de solo trabajo.
+- ROM es la memoria que guarda la info permanentemente. Es proporcionada por el creador y es necesaria para arrancar el PC. Es de solo lectura.
 
 # Sectores, Cilindros, Cláusters
 
