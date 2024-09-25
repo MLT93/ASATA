@@ -33,7 +33,7 @@ class Auction
   {
     $consultaSQL = "SELECT auctions.id AS auctionsID, auctions.title, auctions.descripcion, auctions.start_price, auctions.current_price, auctions.end_time, users.id AS userID, users.username, users.pass, users.email, users.created_at 
     FROM auctions 
-    INNER JOIN users ON auctions.user_id = users.id;"; // Aquí saco toda la información necesaria. Además de la info entre las tablas relacionadas por sus Foreign Keys (el último INNER JOIN va exactamente después del Foreign key de clases con calendarios para poder utilizar el Foreign Key anidado en la tabla calendarios y así poder obtener toda la información por completo. `Esto funciona porque al tener un INNER JOIN previo ya enlazado entre clases y calendarios donde devolvemos su ID` (HAY QUE DEVOLVER ESE ID PARA PODER REALIZAR LA CONSULTA), conseguimos esa relación. Entonces simplemente realizamos la consulta entre convocatorias y calendarios)
+    INNER JOIN users ON auctions.user_id = users.id;"; // Aquí saco toda la información necesaria. Además de la info entre las tablas relacionadas por sus Foreign Keys 
     $registros = $this->getConnection()->query($consultaSQL); // Utilizamos los métodos de la instancia `\mysqli`. `query` ejecuta la sentencia y devuelve cosas, `execute` ejecuta solo la sentencia
     $arrAssoc = $registros->fetch_all(MYSQLI_ASSOC); // Convertimos cada uno de los registros en forma de matriz numérica con arrays asociativos
     return $arrAssoc;
