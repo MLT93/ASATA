@@ -31,14 +31,14 @@
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 
   line-height: 1.5;
 
   /* Variables */
-  --color-1: #c92bceda;
-  --color-2: #28ffffce;
-  --color-3: #ff7f08e7;
+  --color-1: #ce2b98da;
+  --color-2: #28a9ffce;
+  --color-3: #ff9c08e7;
   --color-4: #08ff08b0;
   --color-5: #ff4208d7;
   --color-6: #8808ffd7;
@@ -82,11 +82,11 @@ body {
 
   display: grid;
   grid-template-areas:
-    "cabecera       cabecera      cabecera"
-    "navegacion     navegacion    navegacion"
-    "principal      principal     principal"
-    "publi          publi         publi"
-    "pie            pie           pie";
+    'cabecera       cabecera      cabecera'
+    'navegacion     navegacion    navegacion'
+    'principal      principal     principal'
+    'publi          publi         publi'
+    'pie            pie           pie';
   grid-template-rows: 5rem 3rem auto 3rem 5rem;
   /* grid-template-columns: 10rem auto auto; */
 }
@@ -259,10 +259,10 @@ footer {
 @media (width >= 1080px) {
   body {
     grid-template-areas:
-      "cabecera       cabecera      cabecera"
-      "navegacion     navegacion    navegacion"
-      "principal      principal     principal"
-      "pie            pie           pie";
+      'cabecera       cabecera      cabecera'
+      'navegacion     navegacion    navegacion'
+      'principal      principal     principal'
+      'pie            pie           pie';
     grid-template-rows: 5rem 3rem auto 5rem;
     grid-template-columns: 10rem auto auto;
     gap: 0.3rem;
