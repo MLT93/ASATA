@@ -33,11 +33,7 @@
     <main>
       <section>
         <form
-          action="./server-saving-form.php"
-          method="post"
-          class="form"
-          target="_self"
-          autocomplete="on">
+          action="./server-saving-form.php" method="post" class="form" target="_self" autocomplete="on">
           <fieldset class="field">
             <legend>
               <h3>INFORMACIÓN PERSONAL</h3>
@@ -52,15 +48,11 @@
             </div>
             <div>
               <label for="dateID">Fecha de nacimiento</label>
-              <input type="date" id="dateID" name="date" required />
+              <input type="date" id="dateID" name="date" required /> <!-- `type="date-time""` para fecha-hora -->
             </div>
             <div>
               <label for="edadID">Edad</label>
-              <input
-                type="number"
-                name="edad"
-                id="edadID"
-                placeholder="Introduce tu edad" required />
+              <input type="number" name="edad" id="edadID" placeholder="Introduce tu edad" required />
             </div>
             <div style="display: flex; flex-direction: column">
               <label for="descripcionID">Descripción personal</label>
