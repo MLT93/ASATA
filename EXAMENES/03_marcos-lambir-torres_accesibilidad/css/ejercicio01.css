@@ -12,9 +12,9 @@ body {
 
   display: grid;
   grid-template-areas:
-    "cabecera       cabecera      cabecera"
-    "principal      principal     principal"
-    "footer         footer        footer";
+    'cabecera       cabecera      cabecera'
+    'principal      principal     principal'
+    'footer         footer        footer';
   grid-template-rows: 5rem auto 5rem;
 }
 
@@ -31,8 +31,14 @@ footer {
 }
 
 #registro {
+  background: #333333;
+  color: aliceblue;
+
+  padding: 1.25rem 1.875rem;
+
+  max-width: 1200px;
   display: flex;
-  flex: 1;
+  margin: auto;
 }
 
 #formRegistro {
@@ -42,14 +48,12 @@ footer {
   justify-content: center;
   min-width: 100%;
   min-height: 100%;
-}
-
-#formRegistro fieldset {
-  display: flex;
-  flex-flow: column wrap;
+  padding-top: 3.125rem;
 }
 
 fieldset {
+  display: flex;
+  flex-flow: column wrap;
   flex: 1;
   width: max-content;
   padding: 15px 30px;
@@ -63,18 +67,23 @@ fieldset label {
 
 fieldset input,
 fieldset select {
-  width: 150px;
-  height: 20px;
   margin: 5px 7px;
+  padding: 7px 10px;
+  outline: 0;
+  border-radius: 7px;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -ms-border-radius: 7px;
+  -o-border-radius: 7px;
 }
 
-fieldset input[type="checkbox"] {
+fieldset input[type='checkbox'] {
   width: fit-content;
   margin: 25px 10px;
   padding: 3px;
 }
 
-button[type="submit"] {
+button[type='submit'] {
   width: 150px;
   padding: 5px 15px;
   background-color: rgb(97, 123, 184);
@@ -91,16 +100,19 @@ button[type="submit"] {
 @media (width >= 1080px) {
   body {
     grid-template-areas:
-      "cabecera       cabecera      cabecera"
-      "principal      principal     principal"
-      "footer         footer        footer";
+      'cabecera       cabecera      cabecera'
+      'principal      principal     principal'
+      'footer         footer        footer';
     grid-template-rows: 3rem auto 3rem;
     grid-template-columns: auto auto auto;
   }
 
-  #formRegistro {
-    width: 100%;
-    height: 100%;
-    flex: 1;
+  .msg {
+    visibility: hidden;
+    padding: 5px 10px;
+    width: auto;
+    color: chocolate;
+    font-size: large;
+    font-weight: bold;
   }
 }
