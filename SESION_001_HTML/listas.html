@@ -4,18 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="MLT" />
-    <meta name="description" content="Ejercicio titulos" />
+    <meta name="description" content="Ejercicio Títulos" />
     <meta name="keywords" content="HTML5, títulos y subtítulos" />
-    <title>Curso ASATA - Listas</title>
+    <title>Curso ASATA - Listas HTML</title>
   </head>
   <body>
     <header>
-      <h1>LISTAS</h1>
+      <h1>LISTAS HTML</h1>
     </header>
     <hr />
+    <!-- Lista desordenada para el nav -->
     <nav>
-      <!-- Lista desordenada para el nav -->
-      <h3>Lista desordenada - con links</h3>
+      <h3>Lista desordenada - Links</h3>
       <ul>
         <li><a href="#">link 1</a></li>
         <li><a href="##">link 2</a></li>
@@ -24,19 +24,10 @@
         <li><a href="#####">link 5</a></li>
         <li><a href="######">link 6</a></li>
       </ul>
-      <!-- Lista ordenada para el nav -->
-      <ol>
-        <li><a href="#">link 1</a></li>
-        <li><a href="##">link 2</a></li>
-        <li><a href="###">link 3</a></li>
-        <li><a href="####">link 4</a></li>
-        <li><a href="#####">link 5</a></li>
-        <li><a href="######">link 6</a></li>
-      </ol>
     </nav>
     <hr />
     <!-- Lista desordenada -->
-    <h3>Lista ordenada - Opciones</h3>
+    <h3>Lista desordenada - Opciones</h3>
     <ul>
       <li>Opción 1</li>
       <li>Opción 2</li>
@@ -57,20 +48,33 @@
     </ul>
     <hr />
     <!-- Lista ordenada -->
-    <h3>Lista ordenada - Freir un huevo</h3>
+    <h3>Lista ordenada - Freír un huevo</h3>
     <ol>
       <li>Poner una sartén al fuego</li>
       <li>Echar aceite</li>
-      <li>Romer el huevo</li>
+      <li>Romper el huevo</li>
       <li>Introducir el huevo en la sartén</li>
       <li>Retirar al cabo de 10min</li>
     </ol>
+    <hr />
+    <!-- Lista ordenada para el nav -->
+    <nav>
+      <h3>Lista ordenada - Links</h3>
+      <ol>
+        <li><a href="#">link 1</a></li>
+        <li><a href="##">link 2</a></li>
+        <li><a href="###">link 3</a></li>
+        <li><a href="####">link 4</a></li>
+        <li><a href="#####">link 5</a></li>
+        <li><a href="######">link 6</a></li>
+      </ol>
+    </nav>
     <hr />
     <!-- Lista mixta -->
     <h3>Lista mixta - Continentes</h3>
     <ul>
       <li>
-        Asia
+        <h4>Asia</h4>
         <!-- Anidamiento ordenado -->
         <ol type="A">
           <li>Afganistán</li>
@@ -84,7 +88,7 @@
         </ol>
       </li>
       <li>
-        África
+        <h4>África</h4>
         <ol type="a">
           <li>Angola</li>
           <li>Argelia</li>
@@ -96,7 +100,7 @@
         </ol>
       </li>
       <li>
-        Oceanía
+        <h4>Oceanía</h4>
         <ol type="I">
           <li>Australia</li>
           <li>Fiyi</li>
@@ -109,7 +113,7 @@
         </ol>
       </li>
       <li>
-        América
+        <h4>América</h4>
         <ol type="i">
           <li>Antigua y Barbuda</li>
           <li>Argentina</li>
@@ -122,7 +126,7 @@
         </ol>
       </li>
       <li>
-        Europa
+        <h4>Europa</h4>
         <ol>
           <li>Albania</li>
           <li>Alemania</li>
@@ -135,7 +139,7 @@
         </ol>
       </li>
       <li>
-        Antártida
+        <h4>Antártida</h4>
         <ol>
           <li>
             Reino Unido
@@ -152,6 +156,7 @@
     </ul>
     <hr />
     <!-- Lista key-value estilo diccionario/glosario -->
+    <h3>Lista Estilo diccionario</h3>
     <dl>
       <dt>España</dt>
       <dd>Madrid</dd>
@@ -168,7 +173,7 @@
       <ul>
         <li>Artículos</li>
         <li>
-          <b>Noticias</b>
+          <strong>Noticias</strong>
           <ul>
             <li>Recientes</li>
             <li><b>Más leídas</b></li>
@@ -198,7 +203,7 @@
         </li>
       </ul>
     </div>
-        
+
     <!-- El tag del archivo `./script.js` hace la conexión al archivo JavaScript y SIEMPRE debe ponerse antes del cierre del cuerpo 'body' -->
     <script src="./script.js"></script>
   </body>
