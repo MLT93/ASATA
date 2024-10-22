@@ -32,8 +32,7 @@
     <hr />
     <main>
       <section>
-        <form
-          action="./server-saving-form.php" method="post" class="form" target="_self" autocomplete="on">
+        <form action="./server-saving-form.php" method="post" class="form" target="_self" autocomplete="on">
           <fieldset class="field">
             <legend>
               <h3>INFORMACIÓN PERSONAL</h3>
@@ -48,7 +47,8 @@
             </div>
             <div>
               <label for="dateID">Fecha de nacimiento</label>
-              <input type="date" id="dateID" name="date" required /> <!-- `type="date-time""` para fecha-hora -->
+              <input type="date" id="dateID" name="date" required />
+              <!-- `type="date-time""` para fecha-hora -->
             </div>
             <div>
               <label for="edadID">Edad</label>
@@ -89,12 +89,7 @@
             </legend>
             <div>
               <label for="usuarioID">Usuario</label>
-              <input
-                type="text"
-                id="usuarioID"
-                name="usuario"
-                placeholder="Usuario"
-                autofocus />
+              <input type="text" id="usuarioID" name="usuario" placeholder="Usuario" autofocus />
             </div>
             <div>
               <label for="passowrdID">Contraseña</label>
@@ -135,9 +130,7 @@
             </div>
             <div>
               <input type="checkbox" name="doctorados" id="doctoradosID" />
-              <label el for="doctoradosID"
-                >Estudio universitario - Doctorado</label
-              >
+              <label el for="doctoradosID">Estudio universitario - Doctorado</label>
             </div>
           </fieldset>
           <fieldset class="field">
@@ -191,12 +184,7 @@
             <input type="button" value="Botón" />
             <input type="submit" value="Enviar" />
             <input type="reset" value="Reset" />
-            <input
-              type="image"
-              src="./img/arrow_right.png"
-              alt="Submit"
-              width="30"
-              height="30" />
+            <input type="image" src="./img/arrow_right.png" alt="Submit" width="30" height="30" />
           </div>
         </form>
       </section>
@@ -204,6 +192,7 @@
     <footer></footer>
 
     <!-- El tag del archivo `./script.js` hace la conexión al archivo JavaScript y SIEMPRE debe ponerse antes del cierre del cuerpo 'body' -->
-    <script src="./script.js"></script>
+    <!-- El `type=""` nos indica la forma en JavaScript para importar o exportar funciones entre archivos -->
+    <script type="module" src="./script.js"></script>
   </body>
 </html>
