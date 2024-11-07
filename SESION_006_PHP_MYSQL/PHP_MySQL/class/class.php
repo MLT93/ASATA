@@ -6,8 +6,8 @@ class Gato
 {
   // ? `PUBLIC`, `PRIVATE` Y `PROTECTED`
   // `private` es unicamente accesible desde la propia clase
-  // `protected` es accesible desde la propia clase y desde las clases hijas, pero no desde una instancia (obj)
-  // `public` es accesible desde todos los lados
+  // `protected` es accesible desde la propia clase y desde las clases hijas, pero no desde una instancia (obj creado a partir del `new`)
+  // `public` es accesible desde la class, clases hijas e instancias (de todos los lados)
 
   // `PROPIEDADES` o variables de la class. Normalmente son siempre `private`
   /**
