@@ -6,8 +6,8 @@ document.getElementById("formulario").addEventListener("submit", (event) => {
   const nombre = document.getElementById("nombreID").value;
   const precio = Number(document.getElementById("precioID").value);
   const colores = document
-    .getElementById("coloresID")
-    .value.split(",") // El método `split()` convierte cadenas de texto en arrays, y según lo que le indique dentro de los paréntesis, creará la división de las cadenas de texto cuando encuentre lo que especificamos en ellos
+    .getElementById('coloresID')
+    .value.split(',') // El método `split()` convierte cadenas de texto en arrays. Creará la división del texto manipulado en base a lo encontrado en los paréntesis
     .map((element) => element.trim()); // El método `trim()` elimina los espacios anteriores y posteriores de la cadena de texto
   const cantidad = Number(document.getElementById("cantidadID").value);
 
