@@ -19,7 +19,7 @@
     <!-- `method="post"` envía de forma oculta al usuario -->
     <form action="resp_numerico.php" method="post" target="_blank">
       <label for="precio">INTRODUCE UN NÚMERO</label>
-      <input type="number" id="precio" name="precio" required />
+      <input type="number" id="precio" step="0.01" name="precio" required /> <!-- `step="0.01"` permite escribir decimales -->
 
       <button type="submit" id="enviar" name="enviar" value="send">
         ENVIAR
