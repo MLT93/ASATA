@@ -26,9 +26,7 @@
         <section class="section-container background-5">
           <div id="vm">
             <ul>
-              <li v-for="nombre of nombresUsuarios" :key="nombre.id">
-                {{nombre}}
-              </li>
+              <li v-for="nombre of nombresUsuarios" :key="nombre.id">{{nombre}}</li>
               <li v-for="edad of edadesUsuarios" :key="edad.id">{{edad}}</li>
             </ul>
           </div>
@@ -36,7 +34,7 @@
       </article>
     </main>
 
-    <aside><section></section></aside>
+    <aside><div></div></aside> <!-- Se usa <div> porque no es parte directamente relacionada con la página web -->
 
     <footer><section></section></footer>
 

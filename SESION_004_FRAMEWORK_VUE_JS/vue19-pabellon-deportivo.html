@@ -28,41 +28,21 @@
             <h2>Gestión de pabellón deportivo</h2>
 
             <!-- DISPONIBILIDAD PABELLÓN -->
-            <div
-              id="pabellon"
-              class="pabellon"
-              :class="{free: isLibre > 0, busy: isLibre === 0}"
-            >
+            <div id="pabellon" class="pabellon" :class="{free: isLibre > 0, busy: isLibre === 0}">
               <h3>Pabellón</h3>
               <p v-if="isLibre > 0">DISPONIBLE</p>
               <p v-else>COMPLETO</p>
             </div>
 
             <!-- INSTALACIONES -->
-            <div
-              id="instalaciones"
-              class="instalaciones"
-              v-for="iterator of instalaciones"
-              :class="{free: !iterator.reservada, busy: iterator.reservada}"
-            >
+            <div id="instalaciones" class="instalaciones" v-for="iterator of instalaciones" :class="{free: !iterator.reservada, busy: iterator.reservada}">
               <div class="instalacion">
                 <h3>{{iterator.id}}</h3>
                 <p v-if="iterator.reservada">RESERVADA</p>
                 <p v-else>LIBRE</p>
-                <input
-                  type="text"
-                  placeholder="Nombre de la reserva"
-                  v-model="iterator.usuarioReserva"
-                  v-if="!iterator.reservada"
-                />
+                <input type="text" placeholder="Nombre de la reserva" v-model="iterator.usuarioReserva" v-if="!iterator.reservada" />
                 <!-- <p v-if="iterator.reservada">Reserva realizada!</p> -->
-                <button
-                  type="submit"
-                  @click="toggleReserva(iterator)"
-                  :disabled="!validReservation(iterator)"
-                >
-                  RESERVAR
-                </button>
+                <button type="submit" @click="toggleReserva(iterator)" :disabled="!validReservation(iterator)">RESERVAR</button>
               </div>
             </div>
 
@@ -70,11 +50,7 @@
             <div id="incidencias" class="incidencias">
               <h3>Listado incidencias</h3>
 
-              <input
-                type="text"
-                v-model="nuevaIncidencia"
-                placeholder="Añade tu incidencia"
-              />
+              <input type="text" v-model="nuevaIncidencia" placeholder="Añade tu incidencia" />
               <button @click="agregarIncidencia()">AGREGAR INCIDENCIA</button>
 
               <div v-for="(iterator, index) of incidencias">
@@ -87,7 +63,7 @@
       </article>
     </main>
 
-    <aside><section></section></aside>
+    <aside><div></div></aside> <!-- Se usa <div> porque no es parte directamente relacionada con la página web -->
 
     <footer><section></section></footer>
 

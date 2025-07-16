@@ -1,0 +1,12 @@
+{
+  "printWidth": 500,
+  "htmlWhitespaceSensitivity": "ignore",
+  "trailingComma": "none",
+  "proseWrap": "never",
+  "useTabs": false,
+  "semi": true,
+  "singleQuote": true,
+  "jsxSingleQuote": true,
+  "tsxSingleQuote": true,
+  "arrowParens": "avoid"
+}

@@ -27,19 +27,14 @@
           <div id="vm">
             <input type="file" accept=".json" @change="readFile($event)" />
             <ul>
-              <li
-                v-for="(iterator, index) of items"
-                @dblclick.stop.prevent="deleteItem(index)"
-              >
-                {{iterator.name}} - {{iterator.dni}}
-              </li>
+              <li v-for="(iterator, index) of items" @dblclick.stop.prevent="deleteItem(index)">{{iterator.name}} - {{iterator.dni}}</li>
             </ul>
           </div>
         </section>
       </article>
     </main>
 
-    <aside><section></section></aside>
+    <aside><div></div></aside> <!-- Se usa <div> porque no es parte directamente relacionada con la página web -->
 
     <footer><section></section></footer>
 

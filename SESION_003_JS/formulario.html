@@ -24,57 +24,26 @@
       </section>
 
       <section class="section-form">
-        <form
-          action="./server-saving-form.php"
-          method="post"
-          target="_self"
-          autocomplete="on"
-          id="formulario"
-        >
+        <form action="./server-saving-form.php" method="post" target="_self" autocomplete="on" id="formulario">
           <fieldset>
             <legend>
               <h3>PRODUCTO</h3>
             </legend>
             <div>
               <label for="producto">Nombre del producto:</label>
-              <input
-                type="text"
-                name="producto"
-                id="nombreID"
-                placeholder="Nombre"
-                required
-              />
+              <input type="text" name="producto" id="nombreID" placeholder="Nombre" required />
             </div>
             <div>
               <label for="precio">Precio del producto:</label>
-              <input
-                type="number"
-                name="precio"
-                id="precioID"
-                step="0.01"
-                placeholder="Precio"
-                required
-              />
+              <input type="number" name="precio" id="precioID" step="0.01" placeholder="Precio" required />
             </div>
             <div>
               <label for="colores">Colores disponibles:</label>
-              <input
-                type="text"
-                name="colores"
-                id="coloresID"
-                placeholder="Color"
-                required
-              />
+              <input type="text" name="colores" id="coloresID" placeholder="Color" required />
             </div>
             <div>
               <label for="cantidad">Cantidad disponible:</label>
-              <input
-                type="number"
-                name="cantidad"
-                id="cantidadID"
-                placeholder="Cantidad"
-                required
-              />
+              <input type="number" name="cantidad" id="cantidadID" placeholder="Cantidad" required />
             </div>
             <button type="submit">Agregar</button>
           </fieldset>
@@ -84,7 +53,7 @@
       <section id="container"></section>
     </main>
 
-    <aside><section></section></aside>
+    <aside><div></div></aside> <!-- Se usa <div> porque no es parte directamente relacionada con la página web -->
 
     <footer><section></section></footer>
 

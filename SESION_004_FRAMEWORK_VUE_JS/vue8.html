@@ -25,17 +25,13 @@
       <article class="order-containers">
         <section class="section-container background-1">
           <div id="vm">
-            <div
-              v-bind:style="{backgroundColor: myBackground, color: colorText}"
-            >
-              Texto con estilos
-            </div>
+            <div v-bind:style="{backgroundColor: myBackground, color: colorText}">Texto con estilos</div>
           </div>
         </section>
       </article>
     </main>
 
-    <aside><section></section></aside>
+    <aside><div></div></aside> <!-- Se usa <div> porque no es parte directamente relacionada con la página web -->
 
     <footer><section></section></footer>
 

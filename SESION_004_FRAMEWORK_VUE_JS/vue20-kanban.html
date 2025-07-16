@@ -26,49 +26,26 @@
         <section class="section-container background-5">
           <div id="vm">
             <button @click="agregarBloque()">AGREGAR BLOQUE</button>
-            <input
-              type="text"
-              v-model="nuevoTitulo"
-              placeholder="Ingresa el título del bloque"
-            />
+            <input type="text" v-model="nuevoTitulo" placeholder="Ingresa el título del bloque" />
 
             <!-- TABLERO (BAN) -->
             <div class="tablero">
-              <div
-                class="bloque"
-                v-for="(item, indexBloque) in bloques"
-                :key="indexBloque"
-              >
+              <div class="bloque" v-for="(item, indexBloque) in bloques" :key="indexBloque">
                 <!-- Título -->
-                <h3 class="titulo" :style="{background: item.color}">
-                  {{item.id}} - {{item.titulo}}
-                </h3>
+                <h3 class="titulo" :style="{background: item.color}">{{item.id}} - {{item.titulo}}</h3>
                 <!-- Líneas -->
                 <ul>
-                  <li
-                    v-for="(element, indexLinea) in item.lineas"
-                    :key="indexLinea"
-                  >
-                    <button @click="borrarLinea(indexBloque, indexLinea)">
-                      BORRAR
-                    </button>
+                  <li v-for="(element, indexLinea) in item.lineas" :key="indexLinea">
+                    <button @click="borrarLinea(indexBloque, indexLinea)">BORRAR</button>
                     {{element}}
                   </li>
                 </ul>
                 <!-- Controles -->
                 <div class="nuevo-elemento">
-                  <input
-                    type="text"
-                    placeholder="Nueva linea..."
-                    v-model="nuevaLinea[indexBloque]"
-                  />
-                  <button @click="insertarLinea(indexBloque)">
-                    INSERTAR LINEA
-                  </button>
+                  <input type="text" placeholder="Nueva linea..." v-model="nuevaLinea[indexBloque]" />
+                  <button @click="insertarLinea(indexBloque)">INSERTAR LINEA</button>
                 </div>
-                <button @click="eliminarBloque(indexBloque)">
-                  ELIMINAR BLOQUE
-                </button>
+                <button @click="eliminarBloque(indexBloque)">ELIMINAR BLOQUE</button>
               </div>
             </div>
           </div>
@@ -76,12 +53,12 @@
       </article>
     </main>
 
-    <aside><section></section></aside>
+    <aside><div></div></aside> <!-- Se usa <div> porque no es parte directamente relacionada con la página web -->
 
     <footer><section></section></footer>
 
     <!-- El `type=""` nos indica la forma en JavaScript para importar o exportar funciones entre archivos -->
-     <!-- El tag del archivo `./script.js` hace la conexión al archivo JavaScript y SIEMPRE debe ponerse antes del cierre del cuerpo 'body' -->
+    <!-- El tag del archivo `./script.js` hace la conexión al archivo JavaScript y SIEMPRE debe ponerse antes del cierre del cuerpo 'body' -->
     <script type="module" src="./src/js/vue20Kanban.js"></script>
   </body>
 </html>

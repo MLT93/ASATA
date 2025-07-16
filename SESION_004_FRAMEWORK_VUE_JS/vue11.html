@@ -24,16 +24,10 @@
       <p>Ver el archivo JavaScript linkeado</p>
       <article class="order-containers">
         <section class="section-container background-4">
-          <h3>
-            Hasta que no escribas 'HOLA' no obtendrás mensaje. Míra la consola
-            de 'Dev Tools'
-          </h3>
+          <h3>Hasta que no escribas 'HOLA' no obtendrás mensaje. Míra la consola de 'Dev Tools'</h3>
           <div id="vm">
             <input v-model="saludito" />
-            <p v-if="mostrarMensaje">
-              Este mensaje apareció si "mostrarMensaje === true" y si el watch
-              recibe 'HOLA'
-            </p>
+            <p v-if="mostrarMensaje">Este mensaje apareció si "mostrarMensaje === true" y si el watch recibe 'HOLA'</p>
           </div>
 
           <h3>If-Else</h3>
@@ -63,7 +57,7 @@
       </article>
     </main>
 
-    <aside><section></section></aside>
+    <aside><div></div></aside> <!-- Se usa <div> porque no es parte directamente relacionada con la página web -->
 
     <footer><section></section></footer>
 

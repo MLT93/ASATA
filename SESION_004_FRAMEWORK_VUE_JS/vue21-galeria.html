@@ -30,23 +30,11 @@
               <input type="number" class="n-img" v-model="numImg" />
               <span>SIZE</span>
               <input type="number" class="d-img" v-model="dimImg" />
-              <button class="g-img" @click="generarGaleria()">
-                GENERAR GALERÍA
-              </button>
+              <button class="g-img" @click="generarGaleria()">GENERAR GALERÍA</button>
             </div>
             <div class="album">
-              <div
-                class="img-container"
-                v-for="(item, index) in images"
-                :key="index"
-              >
-                <img
-                  :src="item.src"
-                  alt="Fotografía producida aleatoriamente"
-                  :class="{bn: true}"
-                  @dblclick.stop.prevent="borrarFoto(index)"
-                  @click="moverFoto(index)"
-                />
+              <div class="img-container" v-for="(item, index) in images" :key="index">
+                <img :src="item.src" alt="Fotografía producida aleatoriamente" :class="{bn: true}" @dblclick.stop.prevent="borrarFoto(index)" @click="moverFoto(index)" />
               </div>
             </div>
           </div>
@@ -54,7 +42,7 @@
       </article>
     </main>
 
-    <aside><section></section></aside>
+    <aside><div></div></aside> <!-- Se usa <div> porque no es parte directamente relacionada con la página web -->
 
     <footer><section></section></footer>
 
