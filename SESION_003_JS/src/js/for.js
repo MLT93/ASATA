@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   // for (crear variable; crear condición con esa variable; modificar la variable) {}
-  // Pregunta antes de disparar! Realiza una operación si una condición se cumple
+  // Itera variables o arrays siguiendo un índice
   // Es ideal para iterar cosas determinadas
   for (let i = 0; i <= 10; i++) {
     console.log(`${i}`);
@@ -17,9 +17,9 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
 
   for (let index = 0; index < diasSemana.length; index++) {
-    const element = diasSemana[index];
+    const ele = diasSemana[index]; // Cada elemento del array según su iteración (en la vuelta del bucle en el que esté según el índice)
 
-    console.log(element);
+    console.log(ele);
   }
 
   let alumno1 = ["Pepin", 16];

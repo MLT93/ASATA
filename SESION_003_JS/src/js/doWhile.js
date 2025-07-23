@@ -7,19 +7,19 @@ window.document.addEventListener("DOMContentLoaded", () => {
 
     // Dispara antes de preguntar! Realiza operaciones antes de ejecutar la condición y repite la operación si la condición se cumple.
     // Ideal para ejecutar la función al menos una vez (ej. casos 'Trigger')
-    // `continue;`
-    // `break;`
+    // `continue;` Esta instrucción salta la iteración actual y pasa directamente a la siguiente
+    // `break;` Esta instrucción detiene la iteración y sale del bucle
     do {
-      numUser = prompt("Introduzca un numero que sea entre 1 y 10.");
+      numUser = prompt('Introduzca un numero que sea entre 1 y 10.');
 
       if (numUser < numAleatory) {
-        alert("Casi! Es más arriba.");
+        alert('Casi! Es más arriba.');
         continue;
       } else if (numUser > numAleatory) {
-        alert("Aún nada! Es más abajo.");
+        alert('Aún nada! Es más abajo.');
         continue;
       } else if (numUser === numAleatory) {
-        alert("Yeppa! Lo conseguiste!");
+        alert('Yeppa! Lo conseguiste!');
         break;
       }
     } while (numAleatory !== numUser);

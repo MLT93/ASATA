@@ -138,6 +138,7 @@ class InstalledVersions
     {
         foreach (self::getInstalled() as $installed) {
             if (!isset($installed['versions'][$packageName])) {
+                
                 continue;
             }
 
